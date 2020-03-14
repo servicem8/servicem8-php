@@ -1,4 +1,4 @@
-# Swagger\Client\CategoriesApi
+# OpenAPI\Client\CategoriesApi
 
 All URIs are relative to *https://api.servicem8.com/api_1.0*
 
@@ -11,33 +11,38 @@ Method | HTTP request | Description
 [**postCategorySingle**](CategoriesApi.md#postCategorySingle) | **POST** /category/{uuid}.json | Update a Category
 
 
-# **deleteCategorySingle**
-> \Swagger\Client\Model\Result deleteCategorySingle($uuid)
+
+## deleteCategorySingle
+
+> \OpenAPI\Client\Model\Result deleteCategorySingle($uuid)
 
 Delete a Category
 
 In ServiceM8, records are never deleted, but are archived. Archived records will remain accessible via the API as (active = 0), however will no longer be visible in UI. Archived records can be restored to active by setting the record active field to 1.          #### OAuth Scope This endpoint requires the following OAuth scope **manage_job_categories**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\CategoriesApi(
+
+$apiInstance = new OpenAPI\Client\Api\CategoriesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Category
+$uuid = 'uuid_example'; // string | UUID of the Category
 
 try {
     $result = $apiInstance->deleteCategorySingle($uuid);
@@ -50,13 +55,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Category |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -64,32 +70,39 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getCategoryAll**
-> \Swagger\Client\Model\Category[] getCategoryAll()
+
+## getCategoryAll
+
+> \OpenAPI\Client\Model\Category[] getCategoryAll()
 
 List all Categories
 
 #### Filtering This endpoint supports result filtering. For more information on how to filter this request, [go here](/docs/filtering).         #### OAuth Scope This endpoint requires the following OAuth scope **read_job_categories**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\CategoriesApi(
+
+$apiInstance = new OpenAPI\Client\Api\CategoriesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -106,11 +119,12 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\Category[]**](../Model/Category.md)
+[**\OpenAPI\Client\Model\Category[]**](../Model/Category.md)
 
 ### Authorization
 
@@ -118,38 +132,45 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getCategorySingle**
-> \Swagger\Client\Model\Category getCategorySingle($uuid)
+
+## getCategorySingle
+
+> \OpenAPI\Client\Model\Category getCategorySingle($uuid)
 
 Retrieve a Category
 
 #### OAuth Scope This endpoint requires the following OAuth scope **read_job_categories**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\CategoriesApi(
+
+$apiInstance = new OpenAPI\Client\Api\CategoriesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Category
+$uuid = 'uuid_example'; // string | UUID of the Category
 
 try {
     $result = $apiInstance->getCategorySingle($uuid);
@@ -162,13 +183,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Category |
 
 ### Return type
 
-[**\Swagger\Client\Model\Category**](../Model/Category.md)
+[**\OpenAPI\Client\Model\Category**](../Model/Category.md)
 
 ### Authorization
 
@@ -176,38 +198,45 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postCategoryCreate**
-> \Swagger\Client\Model\Result postCategoryCreate($category)
+
+## postCategoryCreate
+
+> \OpenAPI\Client\Model\Result postCategoryCreate($category)
 
 Create a new Category
 
 #### OAuth Scope This endpoint requires the following OAuth scope **manage_job_categories**.          #### Record UUID UUID is optional for record creation. If no UUID is supplied, a UUID will be automatically generated for the new record and returned in the response header as x-record-uuid.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\CategoriesApi(
+
+$apiInstance = new OpenAPI\Client\Api\CategoriesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$category = new \Swagger\Client\Model\Category(); // \Swagger\Client\Model\Category | Category record to create
+$category = new \OpenAPI\Client\Model\Category(); // \OpenAPI\Client\Model\Category | Category record to create
 
 try {
     $result = $apiInstance->postCategoryCreate($category);
@@ -220,13 +249,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **category** | [**\Swagger\Client\Model\Category**](../Model/Category.md)| Category record to create |
+ **category** | [**\OpenAPI\Client\Model\Category**](../Model/Category.md)| Category record to create |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -234,39 +264,46 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postCategorySingle**
-> \Swagger\Client\Model\Result postCategorySingle($uuid, $category)
+
+## postCategorySingle
+
+> \OpenAPI\Client\Model\Result postCategorySingle($uuid, $category)
 
 Update a Category
 
 #### OAuth Scope This endpoint requires the following OAuth scope **manage_job_categories**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\CategoriesApi(
+
+$apiInstance = new OpenAPI\Client\Api\CategoriesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Category
-$category = new \Swagger\Client\Model\Category(); // \Swagger\Client\Model\Category | Category fields to update
+$uuid = 'uuid_example'; // string | UUID of the Category
+$category = new \OpenAPI\Client\Model\Category(); // \OpenAPI\Client\Model\Category | Category fields to update
 
 try {
     $result = $apiInstance->postCategorySingle($uuid, $category);
@@ -279,14 +316,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Category |
- **category** | [**\Swagger\Client\Model\Category**](../Model/Category.md)| Category fields to update |
+ **category** | [**\OpenAPI\Client\Model\Category**](../Model/Category.md)| Category fields to update |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -294,8 +332,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 

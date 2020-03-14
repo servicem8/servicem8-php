@@ -1,4 +1,4 @@
-# Swagger\Client\FeedbackApi
+# OpenAPI\Client\FeedbackApi
 
 All URIs are relative to *https://api.servicem8.com/api_1.0*
 
@@ -11,33 +11,38 @@ Method | HTTP request | Description
 [**postFeedbackSingle**](FeedbackApi.md#postFeedbackSingle) | **POST** /feedback/{uuid}.json | Update a Feedback
 
 
-# **deleteFeedbackSingle**
-> \Swagger\Client\Model\Result deleteFeedbackSingle($uuid)
+
+## deleteFeedbackSingle
+
+> \OpenAPI\Client\Model\Result deleteFeedbackSingle($uuid)
 
 Delete a Feedback
 
 In ServiceM8, records are never deleted, but are archived. Archived records will remain accessible via the API as (active = 0), however will no longer be visible in UI. Archived records can be restored to active by setting the record active field to 1.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\FeedbackApi(
+
+$apiInstance = new OpenAPI\Client\Api\FeedbackApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Feedback
+$uuid = 'uuid_example'; // string | UUID of the Feedback
 
 try {
     $result = $apiInstance->deleteFeedbackSingle($uuid);
@@ -50,13 +55,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Feedback |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -64,32 +70,39 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getFeedbackAll**
-> \Swagger\Client\Model\Feedback[] getFeedbackAll()
+
+## getFeedbackAll
+
+> \OpenAPI\Client\Model\Feedback[] getFeedbackAll()
 
 List all Feedback
 
 #### Filtering This endpoint supports result filtering. For more information on how to filter this request, [go here](/docs/filtering).
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\FeedbackApi(
+
+$apiInstance = new OpenAPI\Client\Api\FeedbackApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -106,11 +119,12 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\Feedback[]**](../Model/Feedback.md)
+[**\OpenAPI\Client\Model\Feedback[]**](../Model/Feedback.md)
 
 ### Authorization
 
@@ -118,38 +132,43 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getFeedbackSingle**
-> \Swagger\Client\Model\Feedback getFeedbackSingle($uuid)
+
+## getFeedbackSingle
+
+> \OpenAPI\Client\Model\Feedback getFeedbackSingle($uuid)
 
 Retrieve a Feedback
 
-
-
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\FeedbackApi(
+
+$apiInstance = new OpenAPI\Client\Api\FeedbackApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Feedback
+$uuid = 'uuid_example'; // string | UUID of the Feedback
 
 try {
     $result = $apiInstance->getFeedbackSingle($uuid);
@@ -162,13 +181,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Feedback |
 
 ### Return type
 
-[**\Swagger\Client\Model\Feedback**](../Model/Feedback.md)
+[**\OpenAPI\Client\Model\Feedback**](../Model/Feedback.md)
 
 ### Authorization
 
@@ -176,38 +196,45 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postFeedbackCreate**
-> \Swagger\Client\Model\Result postFeedbackCreate($feedback)
+
+## postFeedbackCreate
+
+> \OpenAPI\Client\Model\Result postFeedbackCreate($feedback)
 
 Create a new Feedback
 
 #### Record UUID UUID is optional for record creation. If no UUID is supplied, a UUID will be automatically generated for the new record and returned in the response header as x-record-uuid.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\FeedbackApi(
+
+$apiInstance = new OpenAPI\Client\Api\FeedbackApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$feedback = new \Swagger\Client\Model\Feedback(); // \Swagger\Client\Model\Feedback | Feedback record to create
+$feedback = new \OpenAPI\Client\Model\Feedback(); // \OpenAPI\Client\Model\Feedback | Feedback record to create
 
 try {
     $result = $apiInstance->postFeedbackCreate($feedback);
@@ -220,13 +247,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **feedback** | [**\Swagger\Client\Model\Feedback**](../Model/Feedback.md)| Feedback record to create |
+ **feedback** | [**\OpenAPI\Client\Model\Feedback**](../Model/Feedback.md)| Feedback record to create |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -234,39 +262,44 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postFeedbackSingle**
-> \Swagger\Client\Model\Result postFeedbackSingle($uuid, $feedback)
+
+## postFeedbackSingle
+
+> \OpenAPI\Client\Model\Result postFeedbackSingle($uuid, $feedback)
 
 Update a Feedback
 
-
-
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\FeedbackApi(
+
+$apiInstance = new OpenAPI\Client\Api\FeedbackApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Feedback
-$feedback = new \Swagger\Client\Model\Feedback(); // \Swagger\Client\Model\Feedback | Feedback fields to update
+$uuid = 'uuid_example'; // string | UUID of the Feedback
+$feedback = new \OpenAPI\Client\Model\Feedback(); // \OpenAPI\Client\Model\Feedback | Feedback fields to update
 
 try {
     $result = $apiInstance->postFeedbackSingle($uuid, $feedback);
@@ -279,14 +312,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Feedback |
- **feedback** | [**\Swagger\Client\Model\Feedback**](../Model/Feedback.md)| Feedback fields to update |
+ **feedback** | [**\OpenAPI\Client\Model\Feedback**](../Model/Feedback.md)| Feedback fields to update |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -294,8 +328,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 

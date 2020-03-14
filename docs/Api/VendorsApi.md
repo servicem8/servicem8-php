@@ -1,4 +1,4 @@
-# Swagger\Client\VendorsApi
+# OpenAPI\Client\VendorsApi
 
 All URIs are relative to *https://api.servicem8.com/api_1.0*
 
@@ -9,27 +9,32 @@ Method | HTTP request | Description
 [**postVendorSingle**](VendorsApi.md#postVendorSingle) | **POST** /vendor/{uuid}.json | Update a Vendor
 
 
-# **getVendorAll**
-> \Swagger\Client\Model\Vendor[] getVendorAll()
+
+## getVendorAll
+
+> \OpenAPI\Client\Model\Vendor[] getVendorAll()
 
 List all Vendors
 
 #### Filtering This endpoint supports result filtering. For more information on how to filter this request, [go here](/docs/filtering).         #### OAuth Scope This endpoint requires the following OAuth scope **vendor**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\VendorsApi(
+
+$apiInstance = new OpenAPI\Client\Api\VendorsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -46,11 +51,12 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\Vendor[]**](../Model/Vendor.md)
+[**\OpenAPI\Client\Model\Vendor[]**](../Model/Vendor.md)
 
 ### Authorization
 
@@ -58,38 +64,45 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getVendorSingle**
-> \Swagger\Client\Model\Vendor getVendorSingle($uuid)
+
+## getVendorSingle
+
+> \OpenAPI\Client\Model\Vendor getVendorSingle($uuid)
 
 Retrieve a Vendor
 
 #### OAuth Scope This endpoint requires the following OAuth scope **vendor**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\VendorsApi(
+
+$apiInstance = new OpenAPI\Client\Api\VendorsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Vendor
+$uuid = 'uuid_example'; // string | UUID of the Vendor
 
 try {
     $result = $apiInstance->getVendorSingle($uuid);
@@ -102,13 +115,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Vendor |
 
 ### Return type
 
-[**\Swagger\Client\Model\Vendor**](../Model/Vendor.md)
+[**\OpenAPI\Client\Model\Vendor**](../Model/Vendor.md)
 
 ### Authorization
 
@@ -116,39 +130,44 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postVendorSingle**
-> \Swagger\Client\Model\Result postVendorSingle($uuid, $vendor)
+
+## postVendorSingle
+
+> \OpenAPI\Client\Model\Result postVendorSingle($uuid, $vendor)
 
 Update a Vendor
 
-
-
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\VendorsApi(
+
+$apiInstance = new OpenAPI\Client\Api\VendorsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Vendor
-$vendor = new \Swagger\Client\Model\Vendor(); // \Swagger\Client\Model\Vendor | Vendor fields to update
+$uuid = 'uuid_example'; // string | UUID of the Vendor
+$vendor = new \OpenAPI\Client\Model\Vendor(); // \OpenAPI\Client\Model\Vendor | Vendor fields to update
 
 try {
     $result = $apiInstance->postVendorSingle($uuid, $vendor);
@@ -161,14 +180,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Vendor |
- **vendor** | [**\Swagger\Client\Model\Vendor**](../Model/Vendor.md)| Vendor fields to update |
+ **vendor** | [**\OpenAPI\Client\Model\Vendor**](../Model/Vendor.md)| Vendor fields to update |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -176,8 +196,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 

@@ -1,4 +1,4 @@
-# Swagger\Client\AssetsApi
+# OpenAPI\Client\AssetsApi
 
 All URIs are relative to *https://api.servicem8.com/api_1.0*
 
@@ -10,33 +10,38 @@ Method | HTTP request | Description
 [**postAssetSingle**](AssetsApi.md#postAssetSingle) | **POST** /asset/{uuid}.json | Update an Asset
 
 
-# **deleteAssetSingle**
-> \Swagger\Client\Model\Result deleteAssetSingle($uuid)
+
+## deleteAssetSingle
+
+> \OpenAPI\Client\Model\Result deleteAssetSingle($uuid)
 
 Delete an Asset
 
 In ServiceM8, records are never deleted, but are archived. Archived records will remain accessible via the API as (active = 0), however will no longer be visible in UI. Archived records can be restored to active by setting the record active field to 1.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AssetsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AssetsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Asset
+$uuid = 'uuid_example'; // string | UUID of the Asset
 
 try {
     $result = $apiInstance->deleteAssetSingle($uuid);
@@ -49,13 +54,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Asset |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -63,32 +69,39 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getAssetAll**
-> \Swagger\Client\Model\Asset[] getAssetAll()
+
+## getAssetAll
+
+> \OpenAPI\Client\Model\Asset[] getAssetAll()
 
 List all Assets
 
 #### Filtering This endpoint supports result filtering. For more information on how to filter this request, [go here](/docs/filtering).         #### OAuth Scope This endpoint requires the following OAuth scope **read_assets**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AssetsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AssetsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -105,11 +118,12 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\Asset[]**](../Model/Asset.md)
+[**\OpenAPI\Client\Model\Asset[]**](../Model/Asset.md)
 
 ### Authorization
 
@@ -117,38 +131,45 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getAssetSingle**
-> \Swagger\Client\Model\Asset getAssetSingle($uuid)
+
+## getAssetSingle
+
+> \OpenAPI\Client\Model\Asset getAssetSingle($uuid)
 
 Retrieve an Asset
 
 #### OAuth Scope This endpoint requires the following OAuth scope **read_assets**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AssetsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AssetsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Asset
+$uuid = 'uuid_example'; // string | UUID of the Asset
 
 try {
     $result = $apiInstance->getAssetSingle($uuid);
@@ -161,13 +182,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Asset |
 
 ### Return type
 
-[**\Swagger\Client\Model\Asset**](../Model/Asset.md)
+[**\OpenAPI\Client\Model\Asset**](../Model/Asset.md)
 
 ### Authorization
 
@@ -175,39 +197,44 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postAssetSingle**
-> \Swagger\Client\Model\Result postAssetSingle($uuid, $asset)
+
+## postAssetSingle
+
+> \OpenAPI\Client\Model\Result postAssetSingle($uuid, $asset)
 
 Update an Asset
 
-
-
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AssetsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AssetsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Asset
-$asset = new \Swagger\Client\Model\Asset(); // \Swagger\Client\Model\Asset | Asset fields to update
+$uuid = 'uuid_example'; // string | UUID of the Asset
+$asset = new \OpenAPI\Client\Model\Asset(); // \OpenAPI\Client\Model\Asset | Asset fields to update
 
 try {
     $result = $apiInstance->postAssetSingle($uuid, $asset);
@@ -220,14 +247,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Asset |
- **asset** | [**\Swagger\Client\Model\Asset**](../Model/Asset.md)| Asset fields to update |
+ **asset** | [**\OpenAPI\Client\Model\Asset**](../Model/Asset.md)| Asset fields to update |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -235,8 +263,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 

@@ -1,4 +1,4 @@
-# Swagger\Client\JobAllocationsApi
+# OpenAPI\Client\JobAllocationsApi
 
 All URIs are relative to *https://api.servicem8.com/api_1.0*
 
@@ -11,33 +11,38 @@ Method | HTTP request | Description
 [**postJobAllocationSingle**](JobAllocationsApi.md#postJobAllocationSingle) | **POST** /joballocation/{uuid}.json | Update a Job Allocation
 
 
-# **deleteJobAllocationSingle**
-> \Swagger\Client\Model\Result deleteJobAllocationSingle($uuid)
+
+## deleteJobAllocationSingle
+
+> \OpenAPI\Client\Model\Result deleteJobAllocationSingle($uuid)
 
 Delete a Job Allocation
 
 In ServiceM8, records are never deleted, but are archived. Archived records will remain accessible via the API as (active = 0), however will no longer be visible in UI. Archived records can be restored to active by setting the record active field to 1.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\JobAllocationsApi(
+
+$apiInstance = new OpenAPI\Client\Api\JobAllocationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Job Allocation
+$uuid = 'uuid_example'; // string | UUID of the Job Allocation
 
 try {
     $result = $apiInstance->deleteJobAllocationSingle($uuid);
@@ -50,13 +55,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Job Allocation |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -64,32 +70,39 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getJobAllocationAll**
-> \Swagger\Client\Model\JobAllocation[] getJobAllocationAll()
+
+## getJobAllocationAll
+
+> \OpenAPI\Client\Model\JobAllocation[] getJobAllocationAll()
 
 List all Job Allocations
 
 #### Filtering This endpoint supports result filtering. For more information on how to filter this request, [go here](/docs/filtering).         #### OAuth Scope This endpoint requires the following OAuth scope **read_schedule**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\JobAllocationsApi(
+
+$apiInstance = new OpenAPI\Client\Api\JobAllocationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -106,11 +119,12 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\JobAllocation[]**](../Model/JobAllocation.md)
+[**\OpenAPI\Client\Model\JobAllocation[]**](../Model/JobAllocation.md)
 
 ### Authorization
 
@@ -118,38 +132,45 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getJobAllocationSingle**
-> \Swagger\Client\Model\JobAllocation getJobAllocationSingle($uuid)
+
+## getJobAllocationSingle
+
+> \OpenAPI\Client\Model\JobAllocation getJobAllocationSingle($uuid)
 
 Retrieve a Job Allocation
 
 #### OAuth Scope This endpoint requires the following OAuth scope **read_schedule**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\JobAllocationsApi(
+
+$apiInstance = new OpenAPI\Client\Api\JobAllocationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Job Allocation
+$uuid = 'uuid_example'; // string | UUID of the Job Allocation
 
 try {
     $result = $apiInstance->getJobAllocationSingle($uuid);
@@ -162,13 +183,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Job Allocation |
 
 ### Return type
 
-[**\Swagger\Client\Model\JobAllocation**](../Model/JobAllocation.md)
+[**\OpenAPI\Client\Model\JobAllocation**](../Model/JobAllocation.md)
 
 ### Authorization
 
@@ -176,38 +198,45 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postJobAllocationCreate**
-> \Swagger\Client\Model\Result postJobAllocationCreate($jobAllocation)
+
+## postJobAllocationCreate
+
+> \OpenAPI\Client\Model\Result postJobAllocationCreate($jobAllocation)
 
 Create a new Job Allocation
 
 #### OAuth Scope This endpoint requires the following OAuth scope **manage_schedule**.          #### Record UUID UUID is optional for record creation. If no UUID is supplied, a UUID will be automatically generated for the new record and returned in the response header as x-record-uuid.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\JobAllocationsApi(
+
+$apiInstance = new OpenAPI\Client\Api\JobAllocationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$jobAllocation = new \Swagger\Client\Model\JobAllocation(); // \Swagger\Client\Model\JobAllocation | Job Allocation record to create
+$jobAllocation = new \OpenAPI\Client\Model\JobAllocation(); // \OpenAPI\Client\Model\JobAllocation | Job Allocation record to create
 
 try {
     $result = $apiInstance->postJobAllocationCreate($jobAllocation);
@@ -220,13 +249,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **jobAllocation** | [**\Swagger\Client\Model\JobAllocation**](../Model/JobAllocation.md)| Job Allocation record to create |
+ **jobAllocation** | [**\OpenAPI\Client\Model\JobAllocation**](../Model/JobAllocation.md)| Job Allocation record to create |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -234,39 +264,44 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postJobAllocationSingle**
-> \Swagger\Client\Model\Result postJobAllocationSingle($uuid, $jobAllocation)
+
+## postJobAllocationSingle
+
+> \OpenAPI\Client\Model\Result postJobAllocationSingle($uuid, $jobAllocation)
 
 Update a Job Allocation
 
-
-
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\JobAllocationsApi(
+
+$apiInstance = new OpenAPI\Client\Api\JobAllocationsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Job Allocation
-$jobAllocation = new \Swagger\Client\Model\JobAllocation(); // \Swagger\Client\Model\JobAllocation | Job Allocation fields to update
+$uuid = 'uuid_example'; // string | UUID of the Job Allocation
+$jobAllocation = new \OpenAPI\Client\Model\JobAllocation(); // \OpenAPI\Client\Model\JobAllocation | Job Allocation fields to update
 
 try {
     $result = $apiInstance->postJobAllocationSingle($uuid, $jobAllocation);
@@ -279,14 +314,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Job Allocation |
- **jobAllocation** | [**\Swagger\Client\Model\JobAllocation**](../Model/JobAllocation.md)| Job Allocation fields to update |
+ **jobAllocation** | [**\OpenAPI\Client\Model\JobAllocation**](../Model/JobAllocation.md)| Job Allocation fields to update |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -294,8 +330,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 

@@ -1,36 +1,39 @@
 {
     "name": "servicem8/servicem8-php",
-    "description": "",
+    "description": "Move your app forward with the ServiceM8 API    ## Limits and Throttling To ensure continuous quality of service, API usage can be subject to throttling. The throttle will be applied once an API consumer reaches a certain  threshold in terms of a maximum number of requests per minute. Most clients will never hit this threshold, but those that do, will get met by a  HTTP 429 Too Many Requests response code.    There is a limit of 180 requests per minute, if you reach this you will receive a HTTP 429 with a text body of \"Number of allowed API requests per minute exceeded\". There is a limit of 20000 requests per day, if you reach this you will receive a HTTP 429 with a text body of \"Number of allowed API requests per day exceeded\".  We encourage all API developers to anticipate this error, and take appropriate measures like e.g. using a cached value from a previous call, or passing on a message to the end user that gets subjected to this behaviour (if any).  Limits are per Addon per account.",
     "keywords": [
-        "swagger",
+        "openapitools",
+        "openapi-generator",
+        "openapi",
         "php",
         "sdk",
+        "rest",
         "api"
     ],
-    "homepage": "http://swagger.io",
-    "license": "proprietary",
+    "homepage": "https://openapi-generator.tech",
+    "license": "unlicense",
     "authors": [
         {
-            "name": "Swagger and contributors",
-            "homepage": "https://github.com/swagger-api/swagger-codegen"
+            "name": "OpenAPI-Generator contributors",
+            "homepage": "https://openapi-generator.tech"
         }
     ],
     "require": {
-        "php": ">=5.5",
+        "php": ">=7.1",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "^6.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8",
+        "phpunit/phpunit": "^7.4",
         "squizlabs/php_codesniffer": "~2.6",
         "friendsofphp/php-cs-fixer": "~2.12"
     },
     "autoload": {
-        "psr-4": { "Swagger\\Client\\" : "lib/" }
+        "psr-4": { "OpenAPI\\Client\\" : "lib/" }
     },
     "autoload-dev": {
-        "psr-4": { "Swagger\\Client\\" : "test/" }
+        "psr-4": { "OpenAPI\\Client\\" : "test/" }
     }
 }

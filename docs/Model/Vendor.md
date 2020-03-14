@@ -1,11 +1,12 @@
-# Vendor
+# # Vendor
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **string** | Record UUID key | [optional] 
 **active** | **float** | Record active/deleted flag.   Valid values are [0,1] | [optional] 
-**editDate** | **string** | Record last modified timestamp | [optional] 
+**editDate** | **string** | Record last modified timestamp | [optional] [readonly] 
 **name** | **string** | Company Name | 
 **abnNumber** | **string** | Company ABN Number (Australian Accounts Only) | [optional] 
 **website** | **string** | Company Website address | [optional] 
@@ -33,6 +34,6 @@ Name | Type | Description | Notes
 **invoiceTermsNumberOfDays** | **string** |  | [optional] 
 **jobDefaultStatus** | **string** |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
 

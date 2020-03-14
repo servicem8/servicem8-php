@@ -1,4 +1,4 @@
-# Swagger\Client\KnowledgeArticlesApi
+# OpenAPI\Client\KnowledgeArticlesApi
 
 All URIs are relative to *https://api.servicem8.com/api_1.0*
 
@@ -11,33 +11,38 @@ Method | HTTP request | Description
 [**postKnowledgeArticleSingle**](KnowledgeArticlesApi.md#postKnowledgeArticleSingle) | **POST** /knowledgearticle/{uuid}.json | Update a Knowledge Article
 
 
-# **deleteKnowledgeArticleSingle**
-> \Swagger\Client\Model\Result deleteKnowledgeArticleSingle($uuid)
+
+## deleteKnowledgeArticleSingle
+
+> \OpenAPI\Client\Model\Result deleteKnowledgeArticleSingle($uuid)
 
 Delete a Knowledge Article
 
 In ServiceM8, records are never deleted, but are archived. Archived records will remain accessible via the API as (active = 0), however will no longer be visible in UI. Archived records can be restored to active by setting the record active field to 1.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\KnowledgeArticlesApi(
+
+$apiInstance = new OpenAPI\Client\Api\KnowledgeArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Knowledge Article
+$uuid = 'uuid_example'; // string | UUID of the Knowledge Article
 
 try {
     $result = $apiInstance->deleteKnowledgeArticleSingle($uuid);
@@ -50,13 +55,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Knowledge Article |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -64,32 +70,39 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getKnowledgeArticleAll**
-> \Swagger\Client\Model\KnowledgeArticle[] getKnowledgeArticleAll()
+
+## getKnowledgeArticleAll
+
+> \OpenAPI\Client\Model\KnowledgeArticle[] getKnowledgeArticleAll()
 
 List all Knowledge Articles
 
 #### Filtering This endpoint supports result filtering. For more information on how to filter this request, [go here](/docs/filtering).         #### OAuth Scope This endpoint requires the following OAuth scope **read_knowledge**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\KnowledgeArticlesApi(
+
+$apiInstance = new OpenAPI\Client\Api\KnowledgeArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -106,11 +119,12 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\KnowledgeArticle[]**](../Model/KnowledgeArticle.md)
+[**\OpenAPI\Client\Model\KnowledgeArticle[]**](../Model/KnowledgeArticle.md)
 
 ### Authorization
 
@@ -118,38 +132,45 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getKnowledgeArticleSingle**
-> \Swagger\Client\Model\KnowledgeArticle getKnowledgeArticleSingle($uuid)
+
+## getKnowledgeArticleSingle
+
+> \OpenAPI\Client\Model\KnowledgeArticle getKnowledgeArticleSingle($uuid)
 
 Retrieve a Knowledge Article
 
 #### OAuth Scope This endpoint requires the following OAuth scope **read_knowledge**.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\KnowledgeArticlesApi(
+
+$apiInstance = new OpenAPI\Client\Api\KnowledgeArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Knowledge Article
+$uuid = 'uuid_example'; // string | UUID of the Knowledge Article
 
 try {
     $result = $apiInstance->getKnowledgeArticleSingle($uuid);
@@ -162,13 +183,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Knowledge Article |
 
 ### Return type
 
-[**\Swagger\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)
+[**\OpenAPI\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)
 
 ### Authorization
 
@@ -176,38 +198,45 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postKnowledgeArticleCreate**
-> \Swagger\Client\Model\Result postKnowledgeArticleCreate($knowledgeArticle)
+
+## postKnowledgeArticleCreate
+
+> \OpenAPI\Client\Model\Result postKnowledgeArticleCreate($knowledgeArticle)
 
 Create a new Knowledge Article
 
 #### OAuth Scope This endpoint requires the following OAuth scope **manage_knowledge**.          #### Record UUID UUID is optional for record creation. If no UUID is supplied, a UUID will be automatically generated for the new record and returned in the response header as x-record-uuid.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\KnowledgeArticlesApi(
+
+$apiInstance = new OpenAPI\Client\Api\KnowledgeArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$knowledgeArticle = new \Swagger\Client\Model\KnowledgeArticle(); // \Swagger\Client\Model\KnowledgeArticle | Knowledge Article record to create
+$knowledgeArticle = new \OpenAPI\Client\Model\KnowledgeArticle(); // \OpenAPI\Client\Model\KnowledgeArticle | Knowledge Article record to create
 
 try {
     $result = $apiInstance->postKnowledgeArticleCreate($knowledgeArticle);
@@ -220,13 +249,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **knowledgeArticle** | [**\Swagger\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article record to create |
+ **knowledgeArticle** | [**\OpenAPI\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article record to create |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -234,39 +264,44 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postKnowledgeArticleSingle**
-> \Swagger\Client\Model\Result postKnowledgeArticleSingle($uuid, $knowledgeArticle)
+
+## postKnowledgeArticleSingle
+
+> \OpenAPI\Client\Model\Result postKnowledgeArticleSingle($uuid, $knowledgeArticle)
 
 Update a Knowledge Article
 
-
-
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\KnowledgeArticlesApi(
+
+$apiInstance = new OpenAPI\Client\Api\KnowledgeArticlesApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Knowledge Article
-$knowledgeArticle = new \Swagger\Client\Model\KnowledgeArticle(); // \Swagger\Client\Model\KnowledgeArticle | Knowledge Article fields to update
+$uuid = 'uuid_example'; // string | UUID of the Knowledge Article
+$knowledgeArticle = new \OpenAPI\Client\Model\KnowledgeArticle(); // \OpenAPI\Client\Model\KnowledgeArticle | Knowledge Article fields to update
 
 try {
     $result = $apiInstance->postKnowledgeArticleSingle($uuid, $knowledgeArticle);
@@ -279,14 +314,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Knowledge Article |
- **knowledgeArticle** | [**\Swagger\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article fields to update |
+ **knowledgeArticle** | [**\OpenAPI\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article fields to update |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -294,8 +330,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 

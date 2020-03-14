@@ -1,11 +1,12 @@
-# Asset
+# # Asset
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **uuid** | **string** | Record UUID key | [optional] 
 **active** | **float** | Record active/deleted flag.   Valid values are [0,1] | [optional] 
-**editDate** | **string** | Record last modified timestamp | [optional] 
+**editDate** | **string** | Record last modified timestamp | [optional] [readonly] 
 **companyUuid** | **string** | UUID of the Client to which this Asset is attached | [optional] 
 **assetCode** | **string** | The unique code printed on this Asset&#39;s attached label (read only) (Read-only) | [optional] 
 **assetTypeUuid** | **string** | UUID of an Asset Type which defines the fields that can be stored for this Asset (read only) (Read-only) | [optional] 
@@ -14,8 +15,8 @@ Name | Type | Description | Notes
 **lng** | **float** | Longitude component of the Asset&#39;s location in degrees | [optional] 
 **geoTimestamp** | **string** | Timestamp at which the Asset&#39;s location was last updated | [optional] 
 **altitude** | **float** | Altitude component of the Asset&#39;s location in metres | [optional] 
-**fieldData** | [**\Swagger\Client\Model\AssetFieldData[]**](AssetFieldData.md) |  | [optional] 
+**fieldData** | [**\OpenAPI\Client\Model\AssetFieldData[]**](AssetFieldData.md) |  | [optional] 
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
 

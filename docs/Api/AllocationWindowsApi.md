@@ -1,4 +1,4 @@
-# Swagger\Client\AllocationWindowsApi
+# OpenAPI\Client\AllocationWindowsApi
 
 All URIs are relative to *https://api.servicem8.com/api_1.0*
 
@@ -11,33 +11,38 @@ Method | HTTP request | Description
 [**postAllocationWindowSingle**](AllocationWindowsApi.md#postAllocationWindowSingle) | **POST** /allocationwindow/{uuid}.json | Update an Allocation Window
 
 
-# **deleteAllocationWindowSingle**
-> \Swagger\Client\Model\Result deleteAllocationWindowSingle($uuid)
+
+## deleteAllocationWindowSingle
+
+> \OpenAPI\Client\Model\Result deleteAllocationWindowSingle($uuid)
 
 Delete an Allocation Window
 
 In ServiceM8, records are never deleted, but are archived. Archived records will remain accessible via the API as (active = 0), however will no longer be visible in UI. Archived records can be restored to active by setting the record active field to 1.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AllocationWindowsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AllocationWindowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Allocation Window
+$uuid = 'uuid_example'; // string | UUID of the Allocation Window
 
 try {
     $result = $apiInstance->deleteAllocationWindowSingle($uuid);
@@ -50,13 +55,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Allocation Window |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -64,32 +70,39 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getAllocationWindowAll**
-> \Swagger\Client\Model\AllocationWindow[] getAllocationWindowAll()
+
+## getAllocationWindowAll
+
+> \OpenAPI\Client\Model\AllocationWindow[] getAllocationWindowAll()
 
 List all Allocation Windows
 
 #### Filtering This endpoint supports result filtering. For more information on how to filter this request, [go here](/docs/filtering).
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AllocationWindowsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AllocationWindowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
@@ -106,11 +119,12 @@ try {
 ```
 
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
 
-[**\Swagger\Client\Model\AllocationWindow[]**](../Model/AllocationWindow.md)
+[**\OpenAPI\Client\Model\AllocationWindow[]**](../Model/AllocationWindow.md)
 
 ### Authorization
 
@@ -118,38 +132,43 @@ This endpoint does not need any parameter.
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **getAllocationWindowSingle**
-> \Swagger\Client\Model\AllocationWindow getAllocationWindowSingle($uuid)
+
+## getAllocationWindowSingle
+
+> \OpenAPI\Client\Model\AllocationWindow getAllocationWindowSingle($uuid)
 
 Retrieve an Allocation Window
 
-
-
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AllocationWindowsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AllocationWindowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Allocation Window
+$uuid = 'uuid_example'; // string | UUID of the Allocation Window
 
 try {
     $result = $apiInstance->getAllocationWindowSingle($uuid);
@@ -162,13 +181,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Allocation Window |
 
 ### Return type
 
-[**\Swagger\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)
+[**\OpenAPI\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)
 
 ### Authorization
 
@@ -176,38 +196,45 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postAllocationWindowCreate**
-> \Swagger\Client\Model\Result postAllocationWindowCreate($allocationWindow)
+
+## postAllocationWindowCreate
+
+> \OpenAPI\Client\Model\Result postAllocationWindowCreate($allocationWindow)
 
 Create a new Allocation Window
 
 #### Record UUID UUID is optional for record creation. If no UUID is supplied, a UUID will be automatically generated for the new record and returned in the response header as x-record-uuid.
 
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AllocationWindowsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AllocationWindowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$allocationWindow = new \Swagger\Client\Model\AllocationWindow(); // \Swagger\Client\Model\AllocationWindow | Allocation Window record to create
+$allocationWindow = new \OpenAPI\Client\Model\AllocationWindow(); // \OpenAPI\Client\Model\AllocationWindow | Allocation Window record to create
 
 try {
     $result = $apiInstance->postAllocationWindowCreate($allocationWindow);
@@ -220,13 +247,14 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **allocationWindow** | [**\Swagger\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)| Allocation Window record to create |
+ **allocationWindow** | [**\OpenAPI\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)| Allocation Window record to create |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -234,39 +262,44 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
-# **postAllocationWindowSingle**
-> \Swagger\Client\Model\Result postAllocationWindowSingle($uuid, $allocationWindow)
+
+## postAllocationWindowSingle
+
+> \OpenAPI\Client\Model\Result postAllocationWindowSingle($uuid, $allocationWindow)
 
 Update an Allocation Window
 
-
-
 ### Example
+
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
 
+
 // Configure HTTP basic authorization: basicAuth
-$config = Swagger\Client\Configuration::getDefaultConfiguration()
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
               ->setPassword('YOUR_PASSWORD');
 
 // Configure OAuth2 access token for authorization: oauth2
-$config = Swagger\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
+$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
 
-$apiInstance = new Swagger\Client\Api\AllocationWindowsApi(
+
+$apiInstance = new OpenAPI\Client\Api\AllocationWindowsApi(
     // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
     // This is optional, `GuzzleHttp\Client` will be used as default.
     new GuzzleHttp\Client(),
     $config
 );
-$uuid = "uuid_example"; // string | UUID of the Allocation Window
-$allocationWindow = new \Swagger\Client\Model\AllocationWindow(); // \Swagger\Client\Model\AllocationWindow | Allocation Window fields to update
+$uuid = 'uuid_example'; // string | UUID of the Allocation Window
+$allocationWindow = new \OpenAPI\Client\Model\AllocationWindow(); // \OpenAPI\Client\Model\AllocationWindow | Allocation Window fields to update
 
 try {
     $result = $apiInstance->postAllocationWindowSingle($uuid, $allocationWindow);
@@ -279,14 +312,15 @@ try {
 
 ### Parameters
 
+
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uuid** | [**string**](../Model/.md)| UUID of the Allocation Window |
- **allocationWindow** | [**\Swagger\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)| Allocation Window fields to update |
+ **allocationWindow** | [**\OpenAPI\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)| Allocation Window fields to update |
 
 ### Return type
 
-[**\Swagger\Client\Model\Result**](../Model/Result.md)
+[**\OpenAPI\Client\Model\Result**](../Model/Result.md)
 
 ### Authorization
 
@@ -294,8 +328,10 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: application/json
+- **Accept**: application/json
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
+[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to README]](../../README.md)
 
