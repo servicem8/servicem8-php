@@ -220,8 +220,8 @@ class SMSTemplate implements ModelInterface, ArrayAccess
             $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 50.";
         }
 
-        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 400)) {
-            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 400.";
+        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 612)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 612.";
         }
 
         return $invalidProperties;
@@ -358,8 +358,8 @@ class SMSTemplate implements ModelInterface, ArrayAccess
      */
     public function setMessage($message)
     {
-        if (!is_null($message) && (mb_strlen($message) > 400)) {
-            throw new \InvalidArgumentException('invalid length for $message when calling SMSTemplate., must be smaller than or equal to 400.');
+        if (!is_null($message) && (mb_strlen($message) > 612)) {
+            throw new \InvalidArgumentException('invalid length for $message when calling SMSTemplate., must be smaller than or equal to 612.');
         }
 
         $this->container['message'] = $message;
