@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class JobMaterial implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -77,6 +80,8 @@ class JobMaterial implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -242,20 +247,20 @@ class JobMaterial implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['jobUuid'] = isset($data['jobUuid']) ? $data['jobUuid'] : null;
-        $this->container['materialUuid'] = isset($data['materialUuid']) ? $data['materialUuid'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['quantity'] = isset($data['quantity']) ? $data['quantity'] : null;
-        $this->container['price'] = isset($data['price']) ? $data['price'] : null;
-        $this->container['displayedAmount'] = isset($data['displayedAmount']) ? $data['displayedAmount'] : null;
-        $this->container['displayedAmountIsTaxInclusive'] = isset($data['displayedAmountIsTaxInclusive']) ? $data['displayedAmountIsTaxInclusive'] : null;
-        $this->container['taxRateUuid'] = isset($data['taxRateUuid']) ? $data['taxRateUuid'] : null;
-        $this->container['sortOrder'] = isset($data['sortOrder']) ? $data['sortOrder'] : null;
-        $this->container['cost'] = isset($data['cost']) ? $data['cost'] : null;
-        $this->container['displayedCost'] = isset($data['displayedCost']) ? $data['displayedCost'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['jobUuid'] = $data['jobUuid'] ?? null;
+        $this->container['materialUuid'] = $data['materialUuid'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['quantity'] = $data['quantity'] ?? null;
+        $this->container['price'] = $data['price'] ?? null;
+        $this->container['displayedAmount'] = $data['displayedAmount'] ?? null;
+        $this->container['displayedAmountIsTaxInclusive'] = $data['displayedAmountIsTaxInclusive'] ?? null;
+        $this->container['taxRateUuid'] = $data['taxRateUuid'] ?? null;
+        $this->container['sortOrder'] = $data['sortOrder'] ?? null;
+        $this->container['cost'] = $data['cost'] ?? null;
+        $this->container['displayedCost'] = $data['displayedCost'] ?? null;
     }
 
     /**
@@ -308,7 +313,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -332,7 +337,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -356,7 +361,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -380,7 +385,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $jobUuid jobUuid
      *
-     * @return $this
+     * @return self
      */
     public function setJobUuid($jobUuid)
     {
@@ -404,7 +409,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $materialUuid materialUuid
      *
-     * @return $this
+     * @return self
      */
     public function setMaterialUuid($materialUuid)
     {
@@ -428,7 +433,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $name name
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -456,7 +461,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string $quantity quantity
      *
-     * @return $this
+     * @return self
      */
     public function setQuantity($quantity)
     {
@@ -484,7 +489,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $price price
      *
-     * @return $this
+     * @return self
      */
     public function setPrice($price)
     {
@@ -508,7 +513,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $displayedAmount displayedAmount
      *
-     * @return $this
+     * @return self
      */
     public function setDisplayedAmount($displayedAmount)
     {
@@ -532,7 +537,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $displayedAmountIsTaxInclusive displayedAmountIsTaxInclusive
      *
-     * @return $this
+     * @return self
      */
     public function setDisplayedAmountIsTaxInclusive($displayedAmountIsTaxInclusive)
     {
@@ -556,7 +561,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $taxRateUuid taxRateUuid
      *
-     * @return $this
+     * @return self
      */
     public function setTaxRateUuid($taxRateUuid)
     {
@@ -580,7 +585,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $sortOrder sortOrder
      *
-     * @return $this
+     * @return self
      */
     public function setSortOrder($sortOrder)
     {
@@ -604,7 +609,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $cost cost
      *
-     * @return $this
+     * @return self
      */
     public function setCost($cost)
     {
@@ -628,7 +633,7 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param string|null $displayedCost displayedCost
      *
-     * @return $this
+     * @return self
      */
     public function setDisplayedCost($displayedCost)
     {
@@ -653,18 +658,18 @@ class JobMaterial implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

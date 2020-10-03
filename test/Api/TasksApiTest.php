@@ -26,7 +26,7 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Api;
 
 use \OpenAPI\Client\Configuration;
 use \OpenAPI\Client\ApiException;
@@ -80,6 +80,8 @@ class TasksApiTest extends TestCase
      */
     public function testDeleteTaskSingle()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +92,8 @@ class TasksApiTest extends TestCase
      */
     public function testGetTaskAll()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -100,6 +104,8 @@ class TasksApiTest extends TestCase
      */
     public function testGetTaskSingle()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -110,6 +116,8 @@ class TasksApiTest extends TestCase
      */
     public function testPostTaskCreate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -120,5 +128,7 @@ class TasksApiTest extends TestCase
      */
     public function testPostTaskSingle()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

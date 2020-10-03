@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class NoteTest extends TestCase
      */
     public function testNote()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyRelatedObject()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyRelatedObjectUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyNote()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyActionRequired()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,6 +148,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyActionCompletedByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,6 +157,8 @@ class NoteTest extends TestCase
      */
     public function testPropertyEditByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -146,5 +166,7 @@ class NoteTest extends TestCase
      */
     public function testPropertyCreateDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

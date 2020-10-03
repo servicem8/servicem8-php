@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class FormResponse implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -75,6 +78,8 @@ class FormResponse implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -232,18 +237,18 @@ class FormResponse implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['formUuid'] = isset($data['formUuid']) ? $data['formUuid'] : null;
-        $this->container['staffUuid'] = isset($data['staffUuid']) ? $data['staffUuid'] : null;
-        $this->container['regardingObject'] = isset($data['regardingObject']) ? $data['regardingObject'] : null;
-        $this->container['regardingObjectUuid'] = isset($data['regardingObjectUuid']) ? $data['regardingObjectUuid'] : null;
-        $this->container['fieldData'] = isset($data['fieldData']) ? $data['fieldData'] : null;
-        $this->container['timestamp'] = isset($data['timestamp']) ? $data['timestamp'] : null;
-        $this->container['formByStaffUuid'] = isset($data['formByStaffUuid']) ? $data['formByStaffUuid'] : null;
-        $this->container['documentAttachmentUuid'] = isset($data['documentAttachmentUuid']) ? $data['documentAttachmentUuid'] : null;
-        $this->container['assetUuid'] = isset($data['assetUuid']) ? $data['assetUuid'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['formUuid'] = $data['formUuid'] ?? null;
+        $this->container['staffUuid'] = $data['staffUuid'] ?? null;
+        $this->container['regardingObject'] = $data['regardingObject'] ?? null;
+        $this->container['regardingObjectUuid'] = $data['regardingObjectUuid'] ?? null;
+        $this->container['fieldData'] = $data['fieldData'] ?? null;
+        $this->container['timestamp'] = $data['timestamp'] ?? null;
+        $this->container['formByStaffUuid'] = $data['formByStaffUuid'] ?? null;
+        $this->container['documentAttachmentUuid'] = $data['documentAttachmentUuid'] ?? null;
+        $this->container['assetUuid'] = $data['assetUuid'] ?? null;
     }
 
     /**
@@ -285,7 +290,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -309,7 +314,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -333,7 +338,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -357,7 +362,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $formUuid formUuid
      *
-     * @return $this
+     * @return self
      */
     public function setFormUuid($formUuid)
     {
@@ -381,7 +386,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $staffUuid staffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setStaffUuid($staffUuid)
     {
@@ -405,7 +410,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $regardingObject regardingObject
      *
-     * @return $this
+     * @return self
      */
     public function setRegardingObject($regardingObject)
     {
@@ -429,7 +434,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $regardingObjectUuid regardingObjectUuid
      *
-     * @return $this
+     * @return self
      */
     public function setRegardingObjectUuid($regardingObjectUuid)
     {
@@ -453,7 +458,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $fieldData fieldData
      *
-     * @return $this
+     * @return self
      */
     public function setFieldData($fieldData)
     {
@@ -477,7 +482,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $timestamp timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setTimestamp($timestamp)
     {
@@ -501,7 +506,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $formByStaffUuid formByStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setFormByStaffUuid($formByStaffUuid)
     {
@@ -525,7 +530,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $documentAttachmentUuid documentAttachmentUuid
      *
-     * @return $this
+     * @return self
      */
     public function setDocumentAttachmentUuid($documentAttachmentUuid)
     {
@@ -549,7 +554,7 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param string|null $assetUuid assetUuid
      *
-     * @return $this
+     * @return self
      */
     public function setAssetUuid($assetUuid)
     {
@@ -574,18 +579,18 @@ class FormResponse implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

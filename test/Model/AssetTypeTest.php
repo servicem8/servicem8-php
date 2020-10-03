@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class AssetTypeTest extends TestCase
      */
     public function testAssetType()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class AssetTypeTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class AssetTypeTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class AssetTypeTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,5 +112,7 @@ class AssetTypeTest extends TestCase
      */
     public function testPropertyName()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

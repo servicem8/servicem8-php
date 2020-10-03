@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class BadgeTest extends TestCase
      */
     public function testBadge()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class BadgeTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class BadgeTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class BadgeTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class BadgeTest extends TestCase
      */
     public function testPropertyName()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class BadgeTest extends TestCase
      */
     public function testPropertyAutomaticallyAllocated()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class BadgeTest extends TestCase
      */
     public function testPropertyFileName()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class BadgeTest extends TestCase
      */
     public function testPropertyRegardingFormUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,5 +148,7 @@ class BadgeTest extends TestCase
      */
     public function testPropertyRegardingAssetTypeUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

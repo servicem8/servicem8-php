@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class TaskTest extends TestCase
      */
     public function testTask()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyDueDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyTaskDetails()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyName()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyRelatedObject()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,6 +148,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyRelatedObjectUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,6 +157,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyTaskComplete()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -146,6 +166,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyCompletedTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -153,6 +175,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyCompletedByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -160,6 +184,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyAssignedToStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -167,6 +193,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyLng()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -174,6 +202,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyLat()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -181,6 +211,8 @@ class TaskTest extends TestCase
      */
     public function testPropertyCreatedByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -188,5 +220,7 @@ class TaskTest extends TestCase
      */
     public function testPropertyCreateDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

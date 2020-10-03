@@ -26,7 +26,7 @@
  * Please update the test case below to test the endpoint.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Api;
 
 use \OpenAPI\Client\Configuration;
 use \OpenAPI\Client\ApiException;
@@ -80,6 +80,8 @@ class EmailTemplatesApiTest extends TestCase
      */
     public function testDeleteEmailTemplateSingle()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +92,8 @@ class EmailTemplatesApiTest extends TestCase
      */
     public function testGetEmailTemplateAll()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -100,6 +104,8 @@ class EmailTemplatesApiTest extends TestCase
      */
     public function testGetEmailTemplateSingle()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -110,6 +116,8 @@ class EmailTemplatesApiTest extends TestCase
      */
     public function testPostEmailTemplateCreate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -120,5 +128,7 @@ class EmailTemplatesApiTest extends TestCase
      */
     public function testPostEmailTemplateSingle()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

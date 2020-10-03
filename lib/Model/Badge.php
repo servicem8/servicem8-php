@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Badge implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -71,6 +74,8 @@ class Badge implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -212,14 +217,14 @@ class Badge implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['automaticallyAllocated'] = isset($data['automaticallyAllocated']) ? $data['automaticallyAllocated'] : null;
-        $this->container['fileName'] = isset($data['fileName']) ? $data['fileName'] : null;
-        $this->container['regardingFormUuid'] = isset($data['regardingFormUuid']) ? $data['regardingFormUuid'] : null;
-        $this->container['regardingAssetTypeUuid'] = isset($data['regardingAssetTypeUuid']) ? $data['regardingAssetTypeUuid'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['automaticallyAllocated'] = $data['automaticallyAllocated'] ?? null;
+        $this->container['fileName'] = $data['fileName'] ?? null;
+        $this->container['regardingFormUuid'] = $data['regardingFormUuid'] ?? null;
+        $this->container['regardingAssetTypeUuid'] = $data['regardingAssetTypeUuid'] ?? null;
     }
 
     /**
@@ -268,7 +273,7 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -292,7 +297,7 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -316,7 +321,7 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -340,7 +345,7 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param string $name Badge Name
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -368,7 +373,7 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param string|null $automaticallyAllocated automaticallyAllocated
      *
-     * @return $this
+     * @return self
      */
     public function setAutomaticallyAllocated($automaticallyAllocated)
     {
@@ -392,7 +397,7 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param string|null $fileName fileName
      *
-     * @return $this
+     * @return self
      */
     public function setFileName($fileName)
     {
@@ -416,7 +421,7 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param string|null $regardingFormUuid regardingFormUuid
      *
-     * @return $this
+     * @return self
      */
     public function setRegardingFormUuid($regardingFormUuid)
     {
@@ -440,7 +445,7 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param string|null $regardingAssetTypeUuid regardingAssetTypeUuid
      *
-     * @return $this
+     * @return self
      */
     public function setRegardingAssetTypeUuid($regardingAssetTypeUuid)
     {
@@ -465,18 +470,18 @@ class Badge implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

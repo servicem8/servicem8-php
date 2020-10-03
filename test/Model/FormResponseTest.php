@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class FormResponseTest extends TestCase
      */
     public function testFormResponse()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyFormUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyRegardingObject()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyRegardingObjectUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,6 +148,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyFieldData()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,6 +157,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -146,6 +166,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyFormByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -153,6 +175,8 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyDocumentAttachmentUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -160,5 +184,7 @@ class FormResponseTest extends TestCase
      */
     public function testPropertyAssetUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

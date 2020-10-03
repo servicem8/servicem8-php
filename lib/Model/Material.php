@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Material implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -77,6 +80,8 @@ class Material implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -242,20 +247,20 @@ class Material implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['itemNumber'] = isset($data['itemNumber']) ? $data['itemNumber'] : null;
-        $this->container['price'] = isset($data['price']) ? $data['price'] : null;
-        $this->container['cost'] = isset($data['cost']) ? $data['cost'] : null;
-        $this->container['itemDescription'] = isset($data['itemDescription']) ? $data['itemDescription'] : null;
-        $this->container['quantityInStock'] = isset($data['quantityInStock']) ? $data['quantityInStock'] : null;
-        $this->container['priceIncludesTaxes'] = isset($data['priceIncludesTaxes']) ? $data['priceIncludesTaxes'] : null;
-        $this->container['useDescriptionForInvoicing'] = isset($data['useDescriptionForInvoicing']) ? $data['useDescriptionForInvoicing'] : null;
-        $this->container['taxRateUuid'] = isset($data['taxRateUuid']) ? $data['taxRateUuid'] : null;
-        $this->container['barcode'] = isset($data['barcode']) ? $data['barcode'] : null;
-        $this->container['itemIsInventoried'] = isset($data['itemIsInventoried']) ? $data['itemIsInventoried'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['itemNumber'] = $data['itemNumber'] ?? null;
+        $this->container['price'] = $data['price'] ?? null;
+        $this->container['cost'] = $data['cost'] ?? null;
+        $this->container['itemDescription'] = $data['itemDescription'] ?? null;
+        $this->container['quantityInStock'] = $data['quantityInStock'] ?? null;
+        $this->container['priceIncludesTaxes'] = $data['priceIncludesTaxes'] ?? null;
+        $this->container['useDescriptionForInvoicing'] = $data['useDescriptionForInvoicing'] ?? null;
+        $this->container['taxRateUuid'] = $data['taxRateUuid'] ?? null;
+        $this->container['barcode'] = $data['barcode'] ?? null;
+        $this->container['itemIsInventoried'] = $data['itemIsInventoried'] ?? null;
     }
 
     /**
@@ -308,7 +313,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -332,7 +337,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -356,7 +361,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -380,7 +385,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string $name name
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -408,7 +413,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $itemNumber itemNumber
      *
-     * @return $this
+     * @return self
      */
     public function setItemNumber($itemNumber)
     {
@@ -436,7 +441,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $price price
      *
-     * @return $this
+     * @return self
      */
     public function setPrice($price)
     {
@@ -460,7 +465,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $cost cost
      *
-     * @return $this
+     * @return self
      */
     public function setCost($cost)
     {
@@ -484,7 +489,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $itemDescription itemDescription
      *
-     * @return $this
+     * @return self
      */
     public function setItemDescription($itemDescription)
     {
@@ -508,7 +513,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param float|null $quantityInStock quantityInStock
      *
-     * @return $this
+     * @return self
      */
     public function setQuantityInStock($quantityInStock)
     {
@@ -532,7 +537,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param float|null $priceIncludesTaxes Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setPriceIncludesTaxes($priceIncludesTaxes)
     {
@@ -556,7 +561,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $useDescriptionForInvoicing useDescriptionForInvoicing
      *
-     * @return $this
+     * @return self
      */
     public function setUseDescriptionForInvoicing($useDescriptionForInvoicing)
     {
@@ -580,7 +585,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $taxRateUuid taxRateUuid
      *
-     * @return $this
+     * @return self
      */
     public function setTaxRateUuid($taxRateUuid)
     {
@@ -604,7 +609,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param string|null $barcode barcode
      *
-     * @return $this
+     * @return self
      */
     public function setBarcode($barcode)
     {
@@ -628,7 +633,7 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param float|null $itemIsInventoried Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setItemIsInventoried($itemIsInventoried)
     {
@@ -653,18 +658,18 @@ class Material implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

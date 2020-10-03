@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class ResultTest extends TestCase
      */
     public function testResult()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class ResultTest extends TestCase
      */
     public function testPropertyErrorCode()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,5 +94,7 @@ class ResultTest extends TestCase
      */
     public function testPropertyMessage()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

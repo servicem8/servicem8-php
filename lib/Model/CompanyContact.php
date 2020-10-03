@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class CompanyContact implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -74,6 +77,8 @@ class CompanyContact implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -227,17 +232,17 @@ class CompanyContact implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['companyUuid'] = isset($data['companyUuid']) ? $data['companyUuid'] : null;
-        $this->container['first'] = isset($data['first']) ? $data['first'] : null;
-        $this->container['last'] = isset($data['last']) ? $data['last'] : null;
-        $this->container['phone'] = isset($data['phone']) ? $data['phone'] : null;
-        $this->container['mobile'] = isset($data['mobile']) ? $data['mobile'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
-        $this->container['isPrimaryContact'] = isset($data['isPrimaryContact']) ? $data['isPrimaryContact'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['companyUuid'] = $data['companyUuid'] ?? null;
+        $this->container['first'] = $data['first'] ?? null;
+        $this->container['last'] = $data['last'] ?? null;
+        $this->container['phone'] = $data['phone'] ?? null;
+        $this->container['mobile'] = $data['mobile'] ?? null;
+        $this->container['email'] = $data['email'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['isPrimaryContact'] = $data['isPrimaryContact'] ?? null;
     }
 
     /**
@@ -279,7 +284,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -303,7 +308,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -327,7 +332,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -351,7 +356,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $companyUuid companyUuid
      *
-     * @return $this
+     * @return self
      */
     public function setCompanyUuid($companyUuid)
     {
@@ -375,7 +380,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $first first
      *
-     * @return $this
+     * @return self
      */
     public function setFirst($first)
     {
@@ -399,7 +404,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $last last
      *
-     * @return $this
+     * @return self
      */
     public function setLast($last)
     {
@@ -423,7 +428,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $phone phone
      *
-     * @return $this
+     * @return self
      */
     public function setPhone($phone)
     {
@@ -447,7 +452,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $mobile mobile
      *
-     * @return $this
+     * @return self
      */
     public function setMobile($mobile)
     {
@@ -471,7 +476,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $email email
      *
-     * @return $this
+     * @return self
      */
     public function setEmail($email)
     {
@@ -495,7 +500,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $type type
      *
-     * @return $this
+     * @return self
      */
     public function setType($type)
     {
@@ -519,7 +524,7 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param string|null $isPrimaryContact isPrimaryContact
      *
-     * @return $this
+     * @return self
      */
     public function setIsPrimaryContact($isPrimaryContact)
     {
@@ -544,18 +549,18 @@ class CompanyContact implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class AssetFieldData implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -68,6 +71,8 @@ class AssetFieldData implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -197,11 +202,11 @@ class AssetFieldData implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['fieldType'] = isset($data['fieldType']) ? $data['fieldType'] : null;
-        $this->container['fieldName'] = isset($data['fieldName']) ? $data['fieldName'] : null;
-        $this->container['fieldValue'] = isset($data['fieldValue']) ? $data['fieldValue'] : null;
-        $this->container['sortOrder'] = isset($data['sortOrder']) ? $data['sortOrder'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['fieldType'] = $data['fieldType'] ?? null;
+        $this->container['fieldName'] = $data['fieldName'] ?? null;
+        $this->container['fieldValue'] = $data['fieldValue'] ?? null;
+        $this->container['sortOrder'] = $data['sortOrder'] ?? null;
     }
 
     /**
@@ -258,7 +263,7 @@ class AssetFieldData implements ModelInterface, ArrayAccess
      *
      * @param string $uuid Must be the UUID of an AssetTypeField
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -282,7 +287,7 @@ class AssetFieldData implements ModelInterface, ArrayAccess
      *
      * @param string $fieldType fieldType
      *
-     * @return $this
+     * @return self
      */
     public function setFieldType($fieldType)
     {
@@ -306,7 +311,7 @@ class AssetFieldData implements ModelInterface, ArrayAccess
      *
      * @param string $fieldName fieldName
      *
-     * @return $this
+     * @return self
      */
     public function setFieldName($fieldName)
     {
@@ -330,7 +335,7 @@ class AssetFieldData implements ModelInterface, ArrayAccess
      *
      * @param string $fieldValue Convert all values to string. Dates shall be in Y-m-d format.
      *
-     * @return $this
+     * @return self
      */
     public function setFieldValue($fieldValue)
     {
@@ -354,7 +359,7 @@ class AssetFieldData implements ModelInterface, ArrayAccess
      *
      * @param float $sortOrder sortOrder
      *
-     * @return $this
+     * @return self
      */
     public function setSortOrder($sortOrder)
     {
@@ -379,18 +384,18 @@ class AssetFieldData implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

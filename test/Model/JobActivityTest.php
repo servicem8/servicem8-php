@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class JobActivityTest extends TestCase
      */
     public function testJobActivity()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyJobUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyStartDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyEndDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,6 +148,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyActivityWasScheduled()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,6 +157,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyActivityWasRecorded()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -146,6 +166,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyHasBeenOpened()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -153,6 +175,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyHasBeenOpenedTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -160,6 +184,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyTravelTimeInSeconds()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -167,6 +193,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyTravelDistanceInMeters()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -174,6 +202,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyAllocatedByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -181,6 +211,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyAllocatedTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -188,6 +220,8 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyMaterialUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -195,5 +229,7 @@ class JobActivityTest extends TestCase
      */
     public function testPropertyEditByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

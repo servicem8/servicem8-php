@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class AssetTypeFieldFieldData implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -66,6 +69,8 @@ class AssetTypeFieldFieldData implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'fieldType' => null,
@@ -206,9 +211,9 @@ class AssetTypeFieldFieldData implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['fieldType'] = isset($data['fieldType']) ? $data['fieldType'] : null;
-        $this->container['mandatory'] = isset($data['mandatory']) ? $data['mandatory'] : null;
-        $this->container['choices'] = isset($data['choices']) ? $data['choices'] : null;
+        $this->container['fieldType'] = $data['fieldType'] ?? null;
+        $this->container['mandatory'] = $data['mandatory'] ?? null;
+        $this->container['choices'] = $data['choices'] ?? null;
     }
 
     /**
@@ -264,7 +269,7 @@ class AssetTypeFieldFieldData implements ModelInterface, ArrayAccess
      *
      * @param string $fieldType fieldType
      *
-     * @return $this
+     * @return self
      */
     public function setFieldType($fieldType)
     {
@@ -297,7 +302,7 @@ class AssetTypeFieldFieldData implements ModelInterface, ArrayAccess
      *
      * @param bool $mandatory mandatory
      *
-     * @return $this
+     * @return self
      */
     public function setMandatory($mandatory)
     {
@@ -321,7 +326,7 @@ class AssetTypeFieldFieldData implements ModelInterface, ArrayAccess
      *
      * @param string[]|null $choices choices
      *
-     * @return $this
+     * @return self
      */
     public function setChoices($choices)
     {
@@ -346,18 +351,18 @@ class AssetTypeFieldFieldData implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

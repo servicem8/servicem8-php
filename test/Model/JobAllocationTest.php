@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class JobAllocationTest extends TestCase
      */
     public function testJobAllocation()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyJobUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyQueueUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyAllocationDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,6 +148,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyAllocationWindowUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,6 +157,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyAllocatedByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -146,6 +166,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyAllocatedTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -153,6 +175,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyExpiryTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -160,6 +184,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyReadTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -167,6 +193,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyCompletionTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -174,6 +202,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyEstimatedDuration()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -181,6 +211,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyRevisedDuration()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -188,6 +220,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertySortPriority()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -195,6 +229,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyRequiresAcceptance()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,6 +238,8 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyAcceptanceStatus()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -209,5 +247,7 @@ class JobAllocationTest extends TestCase
      */
     public function testPropertyAcceptanceTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

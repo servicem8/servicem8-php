@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class AssetFieldDataTest extends TestCase
      */
     public function testAssetFieldData()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class AssetFieldDataTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class AssetFieldDataTest extends TestCase
      */
     public function testPropertyFieldType()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class AssetFieldDataTest extends TestCase
      */
     public function testPropertyFieldName()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class AssetFieldDataTest extends TestCase
      */
     public function testPropertyFieldValue()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,5 +121,7 @@ class AssetFieldDataTest extends TestCase
      */
     public function testPropertySortOrder()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

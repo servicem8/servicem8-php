@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Location implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -78,6 +81,8 @@ class Location implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -247,21 +252,21 @@ class Location implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['line1'] = isset($data['line1']) ? $data['line1'] : null;
-        $this->container['line2'] = isset($data['line2']) ? $data['line2'] : null;
-        $this->container['line3'] = isset($data['line3']) ? $data['line3'] : null;
-        $this->container['city'] = isset($data['city']) ? $data['city'] : null;
-        $this->container['country'] = isset($data['country']) ? $data['country'] : null;
-        $this->container['postCode'] = isset($data['postCode']) ? $data['postCode'] : null;
-        $this->container['phone1'] = isset($data['phone1']) ? $data['phone1'] : null;
-        $this->container['fax'] = isset($data['fax']) ? $data['fax'] : null;
-        $this->container['state'] = isset($data['state']) ? $data['state'] : null;
-        $this->container['lng'] = isset($data['lng']) ? $data['lng'] : null;
-        $this->container['lat'] = isset($data['lat']) ? $data['lat'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['line1'] = $data['line1'] ?? null;
+        $this->container['line2'] = $data['line2'] ?? null;
+        $this->container['line3'] = $data['line3'] ?? null;
+        $this->container['city'] = $data['city'] ?? null;
+        $this->container['country'] = $data['country'] ?? null;
+        $this->container['postCode'] = $data['postCode'] ?? null;
+        $this->container['phone1'] = $data['phone1'] ?? null;
+        $this->container['fax'] = $data['fax'] ?? null;
+        $this->container['state'] = $data['state'] ?? null;
+        $this->container['lng'] = $data['lng'] ?? null;
+        $this->container['lat'] = $data['lat'] ?? null;
     }
 
     /**
@@ -346,7 +351,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -370,7 +375,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -394,7 +399,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -418,7 +423,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string $name Location's name
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -446,7 +451,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $line1 line1
      *
-     * @return $this
+     * @return self
      */
     public function setLine1($line1)
     {
@@ -474,7 +479,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $line2 line2
      *
-     * @return $this
+     * @return self
      */
     public function setLine2($line2)
     {
@@ -502,7 +507,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $line3 line3
      *
-     * @return $this
+     * @return self
      */
     public function setLine3($line3)
     {
@@ -530,7 +535,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $city Email Address
      *
-     * @return $this
+     * @return self
      */
     public function setCity($city)
     {
@@ -558,7 +563,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $country Email Address
      *
-     * @return $this
+     * @return self
      */
     public function setCountry($country)
     {
@@ -586,7 +591,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $postCode Email Address
      *
-     * @return $this
+     * @return self
      */
     public function setPostCode($postCode)
     {
@@ -614,7 +619,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $phone1 phone1
      *
-     * @return $this
+     * @return self
      */
     public function setPhone1($phone1)
     {
@@ -642,7 +647,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $fax fax
      *
-     * @return $this
+     * @return self
      */
     public function setFax($fax)
     {
@@ -670,7 +675,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param string|null $state Address State
      *
-     * @return $this
+     * @return self
      */
     public function setState($state)
     {
@@ -698,7 +703,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param float|null $lng lng
      *
-     * @return $this
+     * @return self
      */
     public function setLng($lng)
     {
@@ -722,7 +727,7 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param float|null $lat lat
      *
-     * @return $this
+     * @return self
      */
     public function setLat($lat)
     {
@@ -747,18 +752,18 @@ class Location implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

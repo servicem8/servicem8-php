@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Task implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -79,6 +82,8 @@ class Task implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -252,22 +257,22 @@ class Task implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['dueDate'] = isset($data['dueDate']) ? $data['dueDate'] : null;
-        $this->container['taskDetails'] = isset($data['taskDetails']) ? $data['taskDetails'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['relatedObject'] = isset($data['relatedObject']) ? $data['relatedObject'] : null;
-        $this->container['relatedObjectUuid'] = isset($data['relatedObjectUuid']) ? $data['relatedObjectUuid'] : null;
-        $this->container['taskComplete'] = isset($data['taskComplete']) ? $data['taskComplete'] : null;
-        $this->container['completedTimestamp'] = isset($data['completedTimestamp']) ? $data['completedTimestamp'] : null;
-        $this->container['completedByStaffUuid'] = isset($data['completedByStaffUuid']) ? $data['completedByStaffUuid'] : null;
-        $this->container['assignedToStaffUuid'] = isset($data['assignedToStaffUuid']) ? $data['assignedToStaffUuid'] : null;
-        $this->container['lng'] = isset($data['lng']) ? $data['lng'] : null;
-        $this->container['lat'] = isset($data['lat']) ? $data['lat'] : null;
-        $this->container['createdByStaffUuid'] = isset($data['createdByStaffUuid']) ? $data['createdByStaffUuid'] : null;
-        $this->container['createDate'] = isset($data['createDate']) ? $data['createDate'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['dueDate'] = $data['dueDate'] ?? null;
+        $this->container['taskDetails'] = $data['taskDetails'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['relatedObject'] = $data['relatedObject'] ?? null;
+        $this->container['relatedObjectUuid'] = $data['relatedObjectUuid'] ?? null;
+        $this->container['taskComplete'] = $data['taskComplete'] ?? null;
+        $this->container['completedTimestamp'] = $data['completedTimestamp'] ?? null;
+        $this->container['completedByStaffUuid'] = $data['completedByStaffUuid'] ?? null;
+        $this->container['assignedToStaffUuid'] = $data['assignedToStaffUuid'] ?? null;
+        $this->container['lng'] = $data['lng'] ?? null;
+        $this->container['lat'] = $data['lat'] ?? null;
+        $this->container['createdByStaffUuid'] = $data['createdByStaffUuid'] ?? null;
+        $this->container['createDate'] = $data['createDate'] ?? null;
     }
 
     /**
@@ -312,7 +317,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -336,7 +341,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -360,7 +365,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -384,7 +389,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $dueDate dueDate
      *
-     * @return $this
+     * @return self
      */
     public function setDueDate($dueDate)
     {
@@ -408,7 +413,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $taskDetails taskDetails
      *
-     * @return $this
+     * @return self
      */
     public function setTaskDetails($taskDetails)
     {
@@ -432,7 +437,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string $name name
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -456,7 +461,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $relatedObject relatedObject
      *
-     * @return $this
+     * @return self
      */
     public function setRelatedObject($relatedObject)
     {
@@ -480,7 +485,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $relatedObjectUuid relatedObjectUuid
      *
-     * @return $this
+     * @return self
      */
     public function setRelatedObjectUuid($relatedObjectUuid)
     {
@@ -504,7 +509,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $taskComplete taskComplete
      *
-     * @return $this
+     * @return self
      */
     public function setTaskComplete($taskComplete)
     {
@@ -528,7 +533,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $completedTimestamp completedTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setCompletedTimestamp($completedTimestamp)
     {
@@ -552,7 +557,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $completedByStaffUuid completedByStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setCompletedByStaffUuid($completedByStaffUuid)
     {
@@ -576,7 +581,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $assignedToStaffUuid assignedToStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setAssignedToStaffUuid($assignedToStaffUuid)
     {
@@ -600,7 +605,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param float|null $lng lng
      *
-     * @return $this
+     * @return self
      */
     public function setLng($lng)
     {
@@ -624,7 +629,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param float|null $lat lat
      *
-     * @return $this
+     * @return self
      */
     public function setLat($lat)
     {
@@ -648,7 +653,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $createdByStaffUuid createdByStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedByStaffUuid($createdByStaffUuid)
     {
@@ -672,7 +677,7 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param string|null $createDate Record creation timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setCreateDate($createDate)
     {
@@ -697,18 +702,18 @@ class Task implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

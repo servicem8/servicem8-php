@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class StaffMessage implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -74,6 +77,8 @@ class StaffMessage implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -227,17 +232,17 @@ class StaffMessage implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['fromStaffUuid'] = isset($data['fromStaffUuid']) ? $data['fromStaffUuid'] : null;
-        $this->container['toStaffUuid'] = isset($data['toStaffUuid']) ? $data['toStaffUuid'] : null;
-        $this->container['sentTimestamp'] = isset($data['sentTimestamp']) ? $data['sentTimestamp'] : null;
-        $this->container['deliveredTimestamp'] = isset($data['deliveredTimestamp']) ? $data['deliveredTimestamp'] : null;
-        $this->container['readTimestamp'] = isset($data['readTimestamp']) ? $data['readTimestamp'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['regardingJobUuid'] = isset($data['regardingJobUuid']) ? $data['regardingJobUuid'] : null;
-        $this->container['attachedJson'] = isset($data['attachedJson']) ? $data['attachedJson'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['fromStaffUuid'] = $data['fromStaffUuid'] ?? null;
+        $this->container['toStaffUuid'] = $data['toStaffUuid'] ?? null;
+        $this->container['sentTimestamp'] = $data['sentTimestamp'] ?? null;
+        $this->container['deliveredTimestamp'] = $data['deliveredTimestamp'] ?? null;
+        $this->container['readTimestamp'] = $data['readTimestamp'] ?? null;
+        $this->container['message'] = $data['message'] ?? null;
+        $this->container['regardingJobUuid'] = $data['regardingJobUuid'] ?? null;
+        $this->container['attachedJson'] = $data['attachedJson'] ?? null;
     }
 
     /**
@@ -279,7 +284,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -303,7 +308,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -327,7 +332,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -351,7 +356,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $fromStaffUuid fromStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setFromStaffUuid($fromStaffUuid)
     {
@@ -375,7 +380,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $toStaffUuid toStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setToStaffUuid($toStaffUuid)
     {
@@ -399,7 +404,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $sentTimestamp sentTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setSentTimestamp($sentTimestamp)
     {
@@ -423,7 +428,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $deliveredTimestamp deliveredTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setDeliveredTimestamp($deliveredTimestamp)
     {
@@ -447,7 +452,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $readTimestamp readTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setReadTimestamp($readTimestamp)
     {
@@ -471,7 +476,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $message message
      *
-     * @return $this
+     * @return self
      */
     public function setMessage($message)
     {
@@ -495,7 +500,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $regardingJobUuid regardingJobUuid
      *
-     * @return $this
+     * @return self
      */
     public function setRegardingJobUuid($regardingJobUuid)
     {
@@ -519,7 +524,7 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param string|null $attachedJson attachedJson
      *
-     * @return $this
+     * @return self
      */
     public function setAttachedJson($attachedJson)
     {
@@ -544,18 +549,18 @@ class StaffMessage implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

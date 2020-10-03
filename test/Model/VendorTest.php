@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class VendorTest extends TestCase
      */
     public function testVendor()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyName()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyAbnNumber()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyWebsite()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyEmail()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,6 +148,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyEmailAccounts()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,6 +157,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyBillingAddress()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -146,6 +166,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyAcceptedPaymentMethods()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -153,6 +175,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyDefaultRegion()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -160,6 +184,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyCurrency()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -167,6 +193,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyOpeningTimeMonday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -174,6 +202,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyClosingTimeMonday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -181,6 +211,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyOpeningTimeTuesday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -188,6 +220,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyClosingTimeTuesday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -195,6 +229,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyOpeningTimeWednesday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,6 +238,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyClosingTimeWednesday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -209,6 +247,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyOpeningTimeThursday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -216,6 +256,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyClosingTimeThursday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -223,6 +265,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyOpeningTimeFriday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -230,6 +274,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyClosingTimeFriday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -237,6 +283,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyOpeningTimeSaturday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -244,6 +292,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyClosingTimeSaturday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -251,6 +301,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyOpeningTimeSunday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -258,6 +310,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyClosingTimeSunday()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -265,6 +319,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyTimezoneName()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -272,6 +328,8 @@ class VendorTest extends TestCase
      */
     public function testPropertyInvoiceTermsNumberOfDays()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -279,5 +337,7 @@ class VendorTest extends TestCase
      */
     public function testPropertyJobDefaultStatus()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

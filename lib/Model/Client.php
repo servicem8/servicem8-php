@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Client implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -81,6 +84,8 @@ class Client implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -262,24 +267,24 @@ class Client implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['website'] = isset($data['website']) ? $data['website'] : null;
-        $this->container['abnNumber'] = isset($data['abnNumber']) ? $data['abnNumber'] : null;
-        $this->container['isIndividual'] = isset($data['isIndividual']) ? $data['isIndividual'] : null;
-        $this->container['addressStreet'] = isset($data['addressStreet']) ? $data['addressStreet'] : null;
-        $this->container['addressCity'] = isset($data['addressCity']) ? $data['addressCity'] : null;
-        $this->container['addressState'] = isset($data['addressState']) ? $data['addressState'] : null;
-        $this->container['addressPostcode'] = isset($data['addressPostcode']) ? $data['addressPostcode'] : null;
-        $this->container['addressCountry'] = isset($data['addressCountry']) ? $data['addressCountry'] : null;
-        $this->container['faxNumber'] = isset($data['faxNumber']) ? $data['faxNumber'] : null;
-        $this->container['address'] = isset($data['address']) ? $data['address'] : null;
-        $this->container['billingAddress'] = isset($data['billingAddress']) ? $data['billingAddress'] : null;
-        $this->container['badges'] = isset($data['badges']) ? $data['badges'] : null;
-        $this->container['taxRateUuid'] = isset($data['taxRateUuid']) ? $data['taxRateUuid'] : null;
-        $this->container['paymentTerms'] = isset($data['paymentTerms']) ? $data['paymentTerms'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['website'] = $data['website'] ?? null;
+        $this->container['abnNumber'] = $data['abnNumber'] ?? null;
+        $this->container['isIndividual'] = $data['isIndividual'] ?? null;
+        $this->container['addressStreet'] = $data['addressStreet'] ?? null;
+        $this->container['addressCity'] = $data['addressCity'] ?? null;
+        $this->container['addressState'] = $data['addressState'] ?? null;
+        $this->container['addressPostcode'] = $data['addressPostcode'] ?? null;
+        $this->container['addressCountry'] = $data['addressCountry'] ?? null;
+        $this->container['faxNumber'] = $data['faxNumber'] ?? null;
+        $this->container['address'] = $data['address'] ?? null;
+        $this->container['billingAddress'] = $data['billingAddress'] ?? null;
+        $this->container['badges'] = $data['badges'] ?? null;
+        $this->container['taxRateUuid'] = $data['taxRateUuid'] ?? null;
+        $this->container['paymentTerms'] = $data['paymentTerms'] ?? null;
     }
 
     /**
@@ -340,7 +345,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -364,7 +369,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -388,7 +393,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -412,7 +417,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string $name Company Name
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -440,7 +445,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $website website
      *
-     * @return $this
+     * @return self
      */
     public function setWebsite($website)
     {
@@ -464,7 +469,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $abnNumber abnNumber
      *
-     * @return $this
+     * @return self
      */
     public function setAbnNumber($abnNumber)
     {
@@ -488,7 +493,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $isIndividual isIndividual
      *
-     * @return $this
+     * @return self
      */
     public function setIsIndividual($isIndividual)
     {
@@ -512,7 +517,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $addressStreet addressStreet
      *
-     * @return $this
+     * @return self
      */
     public function setAddressStreet($addressStreet)
     {
@@ -540,7 +545,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $addressCity addressCity
      *
-     * @return $this
+     * @return self
      */
     public function setAddressCity($addressCity)
     {
@@ -564,7 +569,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $addressState addressState
      *
-     * @return $this
+     * @return self
      */
     public function setAddressState($addressState)
     {
@@ -588,7 +593,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $addressPostcode addressPostcode
      *
-     * @return $this
+     * @return self
      */
     public function setAddressPostcode($addressPostcode)
     {
@@ -612,7 +617,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $addressCountry addressCountry
      *
-     * @return $this
+     * @return self
      */
     public function setAddressCountry($addressCountry)
     {
@@ -636,7 +641,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $faxNumber faxNumber
      *
-     * @return $this
+     * @return self
      */
     public function setFaxNumber($faxNumber)
     {
@@ -660,7 +665,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $address Password
      *
-     * @return $this
+     * @return self
      */
     public function setAddress($address)
     {
@@ -688,7 +693,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $billingAddress Confirm Password
      *
-     * @return $this
+     * @return self
      */
     public function setBillingAddress($billingAddress)
     {
@@ -716,7 +721,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $badges badges
      *
-     * @return $this
+     * @return self
      */
     public function setBadges($badges)
     {
@@ -740,7 +745,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $taxRateUuid taxRateUuid
      *
-     * @return $this
+     * @return self
      */
     public function setTaxRateUuid($taxRateUuid)
     {
@@ -764,7 +769,7 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentTerms paymentTerms
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentTerms($paymentTerms)
     {
@@ -789,18 +794,18 @@ class Client implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

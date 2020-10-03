@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Note implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -73,6 +76,8 @@ class Note implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -222,16 +227,16 @@ class Note implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['relatedObject'] = isset($data['relatedObject']) ? $data['relatedObject'] : null;
-        $this->container['relatedObjectUuid'] = isset($data['relatedObjectUuid']) ? $data['relatedObjectUuid'] : null;
-        $this->container['note'] = isset($data['note']) ? $data['note'] : null;
-        $this->container['actionRequired'] = isset($data['actionRequired']) ? $data['actionRequired'] : null;
-        $this->container['actionCompletedByStaffUuid'] = isset($data['actionCompletedByStaffUuid']) ? $data['actionCompletedByStaffUuid'] : null;
-        $this->container['editByStaffUuid'] = isset($data['editByStaffUuid']) ? $data['editByStaffUuid'] : null;
-        $this->container['createDate'] = isset($data['createDate']) ? $data['createDate'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['relatedObject'] = $data['relatedObject'] ?? null;
+        $this->container['relatedObjectUuid'] = $data['relatedObjectUuid'] ?? null;
+        $this->container['note'] = $data['note'] ?? null;
+        $this->container['actionRequired'] = $data['actionRequired'] ?? null;
+        $this->container['actionCompletedByStaffUuid'] = $data['actionCompletedByStaffUuid'] ?? null;
+        $this->container['editByStaffUuid'] = $data['editByStaffUuid'] ?? null;
+        $this->container['createDate'] = $data['createDate'] ?? null;
     }
 
     /**
@@ -273,7 +278,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -297,7 +302,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -321,7 +326,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -345,7 +350,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $relatedObject relatedObject
      *
-     * @return $this
+     * @return self
      */
     public function setRelatedObject($relatedObject)
     {
@@ -369,7 +374,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $relatedObjectUuid relatedObjectUuid
      *
-     * @return $this
+     * @return self
      */
     public function setRelatedObjectUuid($relatedObjectUuid)
     {
@@ -393,7 +398,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $note note
      *
-     * @return $this
+     * @return self
      */
     public function setNote($note)
     {
@@ -417,7 +422,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $actionRequired actionRequired
      *
-     * @return $this
+     * @return self
      */
     public function setActionRequired($actionRequired)
     {
@@ -441,7 +446,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $actionCompletedByStaffUuid actionCompletedByStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setActionCompletedByStaffUuid($actionCompletedByStaffUuid)
     {
@@ -465,7 +470,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $editByStaffUuid Staff Member who last modified record
      *
-     * @return $this
+     * @return self
      */
     public function setEditByStaffUuid($editByStaffUuid)
     {
@@ -489,7 +494,7 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param string|null $createDate Record creation timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setCreateDate($createDate)
     {
@@ -514,18 +519,18 @@ class Note implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

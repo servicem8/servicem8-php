@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class JobAllocation implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -82,6 +85,8 @@ class JobAllocation implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -267,25 +272,25 @@ class JobAllocation implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['jobUuid'] = isset($data['jobUuid']) ? $data['jobUuid'] : null;
-        $this->container['queueUuid'] = isset($data['queueUuid']) ? $data['queueUuid'] : null;
-        $this->container['staffUuid'] = isset($data['staffUuid']) ? $data['staffUuid'] : null;
-        $this->container['allocationDate'] = isset($data['allocationDate']) ? $data['allocationDate'] : null;
-        $this->container['allocationWindowUuid'] = isset($data['allocationWindowUuid']) ? $data['allocationWindowUuid'] : null;
-        $this->container['allocatedByStaffUuid'] = isset($data['allocatedByStaffUuid']) ? $data['allocatedByStaffUuid'] : null;
-        $this->container['allocatedTimestamp'] = isset($data['allocatedTimestamp']) ? $data['allocatedTimestamp'] : null;
-        $this->container['expiryTimestamp'] = isset($data['expiryTimestamp']) ? $data['expiryTimestamp'] : null;
-        $this->container['readTimestamp'] = isset($data['readTimestamp']) ? $data['readTimestamp'] : null;
-        $this->container['completionTimestamp'] = isset($data['completionTimestamp']) ? $data['completionTimestamp'] : null;
-        $this->container['estimatedDuration'] = isset($data['estimatedDuration']) ? $data['estimatedDuration'] : null;
-        $this->container['revisedDuration'] = isset($data['revisedDuration']) ? $data['revisedDuration'] : null;
-        $this->container['sortPriority'] = isset($data['sortPriority']) ? $data['sortPriority'] : null;
-        $this->container['requiresAcceptance'] = isset($data['requiresAcceptance']) ? $data['requiresAcceptance'] : null;
-        $this->container['acceptanceStatus'] = isset($data['acceptanceStatus']) ? $data['acceptanceStatus'] : null;
-        $this->container['acceptanceTimestamp'] = isset($data['acceptanceTimestamp']) ? $data['acceptanceTimestamp'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['jobUuid'] = $data['jobUuid'] ?? null;
+        $this->container['queueUuid'] = $data['queueUuid'] ?? null;
+        $this->container['staffUuid'] = $data['staffUuid'] ?? null;
+        $this->container['allocationDate'] = $data['allocationDate'] ?? null;
+        $this->container['allocationWindowUuid'] = $data['allocationWindowUuid'] ?? null;
+        $this->container['allocatedByStaffUuid'] = $data['allocatedByStaffUuid'] ?? null;
+        $this->container['allocatedTimestamp'] = $data['allocatedTimestamp'] ?? null;
+        $this->container['expiryTimestamp'] = $data['expiryTimestamp'] ?? null;
+        $this->container['readTimestamp'] = $data['readTimestamp'] ?? null;
+        $this->container['completionTimestamp'] = $data['completionTimestamp'] ?? null;
+        $this->container['estimatedDuration'] = $data['estimatedDuration'] ?? null;
+        $this->container['revisedDuration'] = $data['revisedDuration'] ?? null;
+        $this->container['sortPriority'] = $data['sortPriority'] ?? null;
+        $this->container['requiresAcceptance'] = $data['requiresAcceptance'] ?? null;
+        $this->container['acceptanceStatus'] = $data['acceptanceStatus'] ?? null;
+        $this->container['acceptanceTimestamp'] = $data['acceptanceTimestamp'] ?? null;
     }
 
     /**
@@ -327,7 +332,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -351,7 +356,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -375,7 +380,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -399,7 +404,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $jobUuid jobUuid
      *
-     * @return $this
+     * @return self
      */
     public function setJobUuid($jobUuid)
     {
@@ -423,7 +428,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $queueUuid queueUuid
      *
-     * @return $this
+     * @return self
      */
     public function setQueueUuid($queueUuid)
     {
@@ -447,7 +452,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $staffUuid staffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setStaffUuid($staffUuid)
     {
@@ -471,7 +476,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $allocationDate allocationDate
      *
-     * @return $this
+     * @return self
      */
     public function setAllocationDate($allocationDate)
     {
@@ -495,7 +500,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $allocationWindowUuid allocationWindowUuid
      *
-     * @return $this
+     * @return self
      */
     public function setAllocationWindowUuid($allocationWindowUuid)
     {
@@ -519,7 +524,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $allocatedByStaffUuid allocatedByStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setAllocatedByStaffUuid($allocatedByStaffUuid)
     {
@@ -543,7 +548,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $allocatedTimestamp allocatedTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setAllocatedTimestamp($allocatedTimestamp)
     {
@@ -567,7 +572,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $expiryTimestamp expiryTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setExpiryTimestamp($expiryTimestamp)
     {
@@ -591,7 +596,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $readTimestamp readTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setReadTimestamp($readTimestamp)
     {
@@ -615,7 +620,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $completionTimestamp completionTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setCompletionTimestamp($completionTimestamp)
     {
@@ -639,7 +644,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $estimatedDuration estimatedDuration
      *
-     * @return $this
+     * @return self
      */
     public function setEstimatedDuration($estimatedDuration)
     {
@@ -663,7 +668,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $revisedDuration revisedDuration
      *
-     * @return $this
+     * @return self
      */
     public function setRevisedDuration($revisedDuration)
     {
@@ -687,7 +692,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $sortPriority sortPriority
      *
-     * @return $this
+     * @return self
      */
     public function setSortPriority($sortPriority)
     {
@@ -711,7 +716,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $requiresAcceptance requiresAcceptance
      *
-     * @return $this
+     * @return self
      */
     public function setRequiresAcceptance($requiresAcceptance)
     {
@@ -735,7 +740,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $acceptanceStatus acceptanceStatus
      *
-     * @return $this
+     * @return self
      */
     public function setAcceptanceStatus($acceptanceStatus)
     {
@@ -759,7 +764,7 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param string|null $acceptanceTimestamp acceptanceTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setAcceptanceTimestamp($acceptanceTimestamp)
     {
@@ -784,18 +789,18 @@ class JobAllocation implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

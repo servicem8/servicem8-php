@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class StaffMember implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -84,6 +87,8 @@ class StaffMember implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -277,27 +282,27 @@ class StaffMember implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['first'] = isset($data['first']) ? $data['first'] : null;
-        $this->container['last'] = isset($data['last']) ? $data['last'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['mobile'] = isset($data['mobile']) ? $data['mobile'] : null;
-        $this->container['lng'] = isset($data['lng']) ? $data['lng'] : null;
-        $this->container['lat'] = isset($data['lat']) ? $data['lat'] : null;
-        $this->container['geoTimestamp'] = isset($data['geoTimestamp']) ? $data['geoTimestamp'] : null;
-        $this->container['jobTitle'] = isset($data['jobTitle']) ? $data['jobTitle'] : null;
-        $this->container['navigatingToJobUuid'] = isset($data['navigatingToJobUuid']) ? $data['navigatingToJobUuid'] : null;
-        $this->container['navigatingTimestamp'] = isset($data['navigatingTimestamp']) ? $data['navigatingTimestamp'] : null;
-        $this->container['navigatingExpiryTimestamp'] = isset($data['navigatingExpiryTimestamp']) ? $data['navigatingExpiryTimestamp'] : null;
-        $this->container['color'] = isset($data['color']) ? $data['color'] : null;
-        $this->container['customIconUrl'] = isset($data['customIconUrl']) ? $data['customIconUrl'] : null;
-        $this->container['statusMessage'] = isset($data['statusMessage']) ? $data['statusMessage'] : null;
-        $this->container['statusMessageTimestamp'] = isset($data['statusMessageTimestamp']) ? $data['statusMessageTimestamp'] : null;
-        $this->container['canReceivePushNotification'] = isset($data['canReceivePushNotification']) ? $data['canReceivePushNotification'] : null;
-        $this->container['hideFromSchedule'] = isset($data['hideFromSchedule']) ? $data['hideFromSchedule'] : null;
-        $this->container['securityRoleUuid'] = isset($data['securityRoleUuid']) ? $data['securityRoleUuid'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['first'] = $data['first'] ?? null;
+        $this->container['last'] = $data['last'] ?? null;
+        $this->container['email'] = $data['email'] ?? null;
+        $this->container['mobile'] = $data['mobile'] ?? null;
+        $this->container['lng'] = $data['lng'] ?? null;
+        $this->container['lat'] = $data['lat'] ?? null;
+        $this->container['geoTimestamp'] = $data['geoTimestamp'] ?? null;
+        $this->container['jobTitle'] = $data['jobTitle'] ?? null;
+        $this->container['navigatingToJobUuid'] = $data['navigatingToJobUuid'] ?? null;
+        $this->container['navigatingTimestamp'] = $data['navigatingTimestamp'] ?? null;
+        $this->container['navigatingExpiryTimestamp'] = $data['navigatingExpiryTimestamp'] ?? null;
+        $this->container['color'] = $data['color'] ?? null;
+        $this->container['customIconUrl'] = $data['customIconUrl'] ?? null;
+        $this->container['statusMessage'] = $data['statusMessage'] ?? null;
+        $this->container['statusMessageTimestamp'] = $data['statusMessageTimestamp'] ?? null;
+        $this->container['canReceivePushNotification'] = $data['canReceivePushNotification'] ?? null;
+        $this->container['hideFromSchedule'] = $data['hideFromSchedule'] ?? null;
+        $this->container['securityRoleUuid'] = $data['securityRoleUuid'] ?? null;
     }
 
     /**
@@ -356,7 +361,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -380,7 +385,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -404,7 +409,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -428,7 +433,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string $first Staff First Name
      *
-     * @return $this
+     * @return self
      */
     public function setFirst($first)
     {
@@ -456,7 +461,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string $last Staff Last Name
      *
-     * @return $this
+     * @return self
      */
     public function setLast($last)
     {
@@ -484,7 +489,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string $email Staff Email Address. This is also your login name.
      *
-     * @return $this
+     * @return self
      */
     public function setEmail($email)
     {
@@ -508,7 +513,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $mobile mobile
      *
-     * @return $this
+     * @return self
      */
     public function setMobile($mobile)
     {
@@ -532,7 +537,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param float|null $lng lng
      *
-     * @return $this
+     * @return self
      */
     public function setLng($lng)
     {
@@ -556,7 +561,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param float|null $lat lat
      *
-     * @return $this
+     * @return self
      */
     public function setLat($lat)
     {
@@ -580,7 +585,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoTimestamp geoTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setGeoTimestamp($geoTimestamp)
     {
@@ -604,7 +609,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $jobTitle jobTitle
      *
-     * @return $this
+     * @return self
      */
     public function setJobTitle($jobTitle)
     {
@@ -628,7 +633,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $navigatingToJobUuid navigatingToJobUuid
      *
-     * @return $this
+     * @return self
      */
     public function setNavigatingToJobUuid($navigatingToJobUuid)
     {
@@ -652,7 +657,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $navigatingTimestamp navigatingTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setNavigatingTimestamp($navigatingTimestamp)
     {
@@ -676,7 +681,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $navigatingExpiryTimestamp navigatingExpiryTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setNavigatingExpiryTimestamp($navigatingExpiryTimestamp)
     {
@@ -700,7 +705,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $color color
      *
-     * @return $this
+     * @return self
      */
     public function setColor($color)
     {
@@ -724,7 +729,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $customIconUrl customIconUrl
      *
-     * @return $this
+     * @return self
      */
     public function setCustomIconUrl($customIconUrl)
     {
@@ -748,7 +753,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $statusMessage statusMessage
      *
-     * @return $this
+     * @return self
      */
     public function setStatusMessage($statusMessage)
     {
@@ -772,7 +777,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $statusMessageTimestamp statusMessageTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setStatusMessageTimestamp($statusMessageTimestamp)
     {
@@ -796,7 +801,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $canReceivePushNotification canReceivePushNotification
      *
-     * @return $this
+     * @return self
      */
     public function setCanReceivePushNotification($canReceivePushNotification)
     {
@@ -820,7 +825,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param float|null $hideFromSchedule Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setHideFromSchedule($hideFromSchedule)
     {
@@ -844,7 +849,7 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param string|null $securityRoleUuid securityRoleUuid
      *
-     * @return $this
+     * @return self
      */
     public function setSecurityRoleUuid($securityRoleUuid)
     {
@@ -869,18 +874,18 @@ class StaffMember implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class StaffMemberTest extends TestCase
      */
     public function testStaffMember()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyFirst()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyLast()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyEmail()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyMobile()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,6 +148,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyLng()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,6 +157,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyLat()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -146,6 +166,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyGeoTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -153,6 +175,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyJobTitle()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -160,6 +184,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyNavigatingToJobUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -167,6 +193,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyNavigatingTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -174,6 +202,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyNavigatingExpiryTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -181,6 +211,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyColor()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -188,6 +220,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyCustomIconUrl()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -195,6 +229,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyStatusMessage()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,6 +238,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyStatusMessageTimestamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -209,6 +247,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyCanReceivePushNotification()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -216,6 +256,8 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertyHideFromSchedule()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -223,5 +265,7 @@ class StaffMemberTest extends TestCase
      */
     public function testPropertySecurityRoleUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

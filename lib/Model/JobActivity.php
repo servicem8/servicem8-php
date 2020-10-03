@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class JobActivity implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -80,6 +83,8 @@ class JobActivity implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -257,23 +262,23 @@ class JobActivity implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['jobUuid'] = isset($data['jobUuid']) ? $data['jobUuid'] : null;
-        $this->container['staffUuid'] = isset($data['staffUuid']) ? $data['staffUuid'] : null;
-        $this->container['startDate'] = isset($data['startDate']) ? $data['startDate'] : null;
-        $this->container['endDate'] = isset($data['endDate']) ? $data['endDate'] : null;
-        $this->container['activityWasScheduled'] = isset($data['activityWasScheduled']) ? $data['activityWasScheduled'] : null;
-        $this->container['activityWasRecorded'] = isset($data['activityWasRecorded']) ? $data['activityWasRecorded'] : null;
-        $this->container['hasBeenOpened'] = isset($data['hasBeenOpened']) ? $data['hasBeenOpened'] : null;
-        $this->container['hasBeenOpenedTimestamp'] = isset($data['hasBeenOpenedTimestamp']) ? $data['hasBeenOpenedTimestamp'] : null;
-        $this->container['travelTimeInSeconds'] = isset($data['travelTimeInSeconds']) ? $data['travelTimeInSeconds'] : null;
-        $this->container['travelDistanceInMeters'] = isset($data['travelDistanceInMeters']) ? $data['travelDistanceInMeters'] : null;
-        $this->container['allocatedByStaffUuid'] = isset($data['allocatedByStaffUuid']) ? $data['allocatedByStaffUuid'] : null;
-        $this->container['allocatedTimestamp'] = isset($data['allocatedTimestamp']) ? $data['allocatedTimestamp'] : null;
-        $this->container['materialUuid'] = isset($data['materialUuid']) ? $data['materialUuid'] : null;
-        $this->container['editByStaffUuid'] = isset($data['editByStaffUuid']) ? $data['editByStaffUuid'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['jobUuid'] = $data['jobUuid'] ?? null;
+        $this->container['staffUuid'] = $data['staffUuid'] ?? null;
+        $this->container['startDate'] = $data['startDate'] ?? null;
+        $this->container['endDate'] = $data['endDate'] ?? null;
+        $this->container['activityWasScheduled'] = $data['activityWasScheduled'] ?? null;
+        $this->container['activityWasRecorded'] = $data['activityWasRecorded'] ?? null;
+        $this->container['hasBeenOpened'] = $data['hasBeenOpened'] ?? null;
+        $this->container['hasBeenOpenedTimestamp'] = $data['hasBeenOpenedTimestamp'] ?? null;
+        $this->container['travelTimeInSeconds'] = $data['travelTimeInSeconds'] ?? null;
+        $this->container['travelDistanceInMeters'] = $data['travelDistanceInMeters'] ?? null;
+        $this->container['allocatedByStaffUuid'] = $data['allocatedByStaffUuid'] ?? null;
+        $this->container['allocatedTimestamp'] = $data['allocatedTimestamp'] ?? null;
+        $this->container['materialUuid'] = $data['materialUuid'] ?? null;
+        $this->container['editByStaffUuid'] = $data['editByStaffUuid'] ?? null;
     }
 
     /**
@@ -315,7 +320,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -339,7 +344,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -363,7 +368,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -387,7 +392,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $jobUuid jobUuid
      *
-     * @return $this
+     * @return self
      */
     public function setJobUuid($jobUuid)
     {
@@ -411,7 +416,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $staffUuid staffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setStaffUuid($staffUuid)
     {
@@ -435,7 +440,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $startDate startDate
      *
-     * @return $this
+     * @return self
      */
     public function setStartDate($startDate)
     {
@@ -459,7 +464,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $endDate endDate
      *
-     * @return $this
+     * @return self
      */
     public function setEndDate($endDate)
     {
@@ -483,7 +488,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $activityWasScheduled activityWasScheduled
      *
-     * @return $this
+     * @return self
      */
     public function setActivityWasScheduled($activityWasScheduled)
     {
@@ -507,7 +512,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $activityWasRecorded activityWasRecorded
      *
-     * @return $this
+     * @return self
      */
     public function setActivityWasRecorded($activityWasRecorded)
     {
@@ -531,7 +536,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $hasBeenOpened hasBeenOpened
      *
-     * @return $this
+     * @return self
      */
     public function setHasBeenOpened($hasBeenOpened)
     {
@@ -555,7 +560,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $hasBeenOpenedTimestamp hasBeenOpenedTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setHasBeenOpenedTimestamp($hasBeenOpenedTimestamp)
     {
@@ -579,7 +584,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $travelTimeInSeconds travelTimeInSeconds
      *
-     * @return $this
+     * @return self
      */
     public function setTravelTimeInSeconds($travelTimeInSeconds)
     {
@@ -603,7 +608,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $travelDistanceInMeters travelDistanceInMeters
      *
-     * @return $this
+     * @return self
      */
     public function setTravelDistanceInMeters($travelDistanceInMeters)
     {
@@ -627,7 +632,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $allocatedByStaffUuid allocatedByStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setAllocatedByStaffUuid($allocatedByStaffUuid)
     {
@@ -651,7 +656,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $allocatedTimestamp allocatedTimestamp
      *
-     * @return $this
+     * @return self
      */
     public function setAllocatedTimestamp($allocatedTimestamp)
     {
@@ -675,7 +680,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $materialUuid materialUuid
      *
-     * @return $this
+     * @return self
      */
     public function setMaterialUuid($materialUuid)
     {
@@ -699,7 +704,7 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param string|null $editByStaffUuid Staff Member who last modified record
      *
-     * @return $this
+     * @return self
      */
     public function setEditByStaffUuid($editByStaffUuid)
     {
@@ -724,18 +729,18 @@ class JobActivity implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

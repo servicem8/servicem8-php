@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Asset implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -75,6 +78,8 @@ class Asset implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -232,18 +237,18 @@ class Asset implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['companyUuid'] = isset($data['companyUuid']) ? $data['companyUuid'] : null;
-        $this->container['assetCode'] = isset($data['assetCode']) ? $data['assetCode'] : null;
-        $this->container['assetTypeUuid'] = isset($data['assetTypeUuid']) ? $data['assetTypeUuid'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['lat'] = isset($data['lat']) ? $data['lat'] : null;
-        $this->container['lng'] = isset($data['lng']) ? $data['lng'] : null;
-        $this->container['geoTimestamp'] = isset($data['geoTimestamp']) ? $data['geoTimestamp'] : null;
-        $this->container['altitude'] = isset($data['altitude']) ? $data['altitude'] : null;
-        $this->container['fieldData'] = isset($data['fieldData']) ? $data['fieldData'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['companyUuid'] = $data['companyUuid'] ?? null;
+        $this->container['assetCode'] = $data['assetCode'] ?? null;
+        $this->container['assetTypeUuid'] = $data['assetTypeUuid'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['lat'] = $data['lat'] ?? null;
+        $this->container['lng'] = $data['lng'] ?? null;
+        $this->container['geoTimestamp'] = $data['geoTimestamp'] ?? null;
+        $this->container['altitude'] = $data['altitude'] ?? null;
+        $this->container['fieldData'] = $data['fieldData'] ?? null;
     }
 
     /**
@@ -289,7 +294,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -313,7 +318,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -337,7 +342,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -361,7 +366,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param string|null $companyUuid UUID of the Client to which this Asset is attached
      *
-     * @return $this
+     * @return self
      */
     public function setCompanyUuid($companyUuid)
     {
@@ -385,7 +390,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param string|null $assetCode The unique code printed on this Asset's attached label (read only) (Read-only)
      *
-     * @return $this
+     * @return self
      */
     public function setAssetCode($assetCode)
     {
@@ -409,7 +414,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param string|null $assetTypeUuid UUID of an Asset Type which defines the fields that can be stored for this Asset (read only) (Read-only)
      *
-     * @return $this
+     * @return self
      */
     public function setAssetTypeUuid($assetTypeUuid)
     {
@@ -433,7 +438,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param string|null $name User-facing description of this asset
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -461,7 +466,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param float|null $lat Latitude component of the Asset's location in degrees
      *
-     * @return $this
+     * @return self
      */
     public function setLat($lat)
     {
@@ -485,7 +490,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param float|null $lng Longitude component of the Asset's location in degrees
      *
-     * @return $this
+     * @return self
      */
     public function setLng($lng)
     {
@@ -509,7 +514,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoTimestamp Timestamp at which the Asset's location was last updated
      *
-     * @return $this
+     * @return self
      */
     public function setGeoTimestamp($geoTimestamp)
     {
@@ -533,7 +538,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param float|null $altitude Altitude component of the Asset's location in metres
      *
-     * @return $this
+     * @return self
      */
     public function setAltitude($altitude)
     {
@@ -557,7 +562,7 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param \OpenAPI\Client\Model\AssetFieldData[]|null $fieldData fieldData
      *
-     * @return $this
+     * @return self
      */
     public function setFieldData($fieldData)
     {
@@ -582,18 +587,18 @@ class Asset implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

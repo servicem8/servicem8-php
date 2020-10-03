@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Vendor implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -92,6 +95,8 @@ class Vendor implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -317,35 +322,35 @@ class Vendor implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['name'] = isset($data['name']) ? $data['name'] : null;
-        $this->container['abnNumber'] = isset($data['abnNumber']) ? $data['abnNumber'] : null;
-        $this->container['website'] = isset($data['website']) ? $data['website'] : null;
-        $this->container['email'] = isset($data['email']) ? $data['email'] : null;
-        $this->container['emailAccounts'] = isset($data['emailAccounts']) ? $data['emailAccounts'] : null;
-        $this->container['billingAddress'] = isset($data['billingAddress']) ? $data['billingAddress'] : null;
-        $this->container['acceptedPaymentMethods'] = isset($data['acceptedPaymentMethods']) ? $data['acceptedPaymentMethods'] : null;
-        $this->container['defaultRegion'] = isset($data['defaultRegion']) ? $data['defaultRegion'] : null;
-        $this->container['currency'] = isset($data['currency']) ? $data['currency'] : null;
-        $this->container['openingTimeMonday'] = isset($data['openingTimeMonday']) ? $data['openingTimeMonday'] : null;
-        $this->container['closingTimeMonday'] = isset($data['closingTimeMonday']) ? $data['closingTimeMonday'] : null;
-        $this->container['openingTimeTuesday'] = isset($data['openingTimeTuesday']) ? $data['openingTimeTuesday'] : null;
-        $this->container['closingTimeTuesday'] = isset($data['closingTimeTuesday']) ? $data['closingTimeTuesday'] : null;
-        $this->container['openingTimeWednesday'] = isset($data['openingTimeWednesday']) ? $data['openingTimeWednesday'] : null;
-        $this->container['closingTimeWednesday'] = isset($data['closingTimeWednesday']) ? $data['closingTimeWednesday'] : null;
-        $this->container['openingTimeThursday'] = isset($data['openingTimeThursday']) ? $data['openingTimeThursday'] : null;
-        $this->container['closingTimeThursday'] = isset($data['closingTimeThursday']) ? $data['closingTimeThursday'] : null;
-        $this->container['openingTimeFriday'] = isset($data['openingTimeFriday']) ? $data['openingTimeFriday'] : null;
-        $this->container['closingTimeFriday'] = isset($data['closingTimeFriday']) ? $data['closingTimeFriday'] : null;
-        $this->container['openingTimeSaturday'] = isset($data['openingTimeSaturday']) ? $data['openingTimeSaturday'] : null;
-        $this->container['closingTimeSaturday'] = isset($data['closingTimeSaturday']) ? $data['closingTimeSaturday'] : null;
-        $this->container['openingTimeSunday'] = isset($data['openingTimeSunday']) ? $data['openingTimeSunday'] : null;
-        $this->container['closingTimeSunday'] = isset($data['closingTimeSunday']) ? $data['closingTimeSunday'] : null;
-        $this->container['timezoneName'] = isset($data['timezoneName']) ? $data['timezoneName'] : null;
-        $this->container['invoiceTermsNumberOfDays'] = isset($data['invoiceTermsNumberOfDays']) ? $data['invoiceTermsNumberOfDays'] : null;
-        $this->container['jobDefaultStatus'] = isset($data['jobDefaultStatus']) ? $data['jobDefaultStatus'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['name'] = $data['name'] ?? null;
+        $this->container['abnNumber'] = $data['abnNumber'] ?? null;
+        $this->container['website'] = $data['website'] ?? null;
+        $this->container['email'] = $data['email'] ?? null;
+        $this->container['emailAccounts'] = $data['emailAccounts'] ?? null;
+        $this->container['billingAddress'] = $data['billingAddress'] ?? null;
+        $this->container['acceptedPaymentMethods'] = $data['acceptedPaymentMethods'] ?? null;
+        $this->container['defaultRegion'] = $data['defaultRegion'] ?? null;
+        $this->container['currency'] = $data['currency'] ?? null;
+        $this->container['openingTimeMonday'] = $data['openingTimeMonday'] ?? null;
+        $this->container['closingTimeMonday'] = $data['closingTimeMonday'] ?? null;
+        $this->container['openingTimeTuesday'] = $data['openingTimeTuesday'] ?? null;
+        $this->container['closingTimeTuesday'] = $data['closingTimeTuesday'] ?? null;
+        $this->container['openingTimeWednesday'] = $data['openingTimeWednesday'] ?? null;
+        $this->container['closingTimeWednesday'] = $data['closingTimeWednesday'] ?? null;
+        $this->container['openingTimeThursday'] = $data['openingTimeThursday'] ?? null;
+        $this->container['closingTimeThursday'] = $data['closingTimeThursday'] ?? null;
+        $this->container['openingTimeFriday'] = $data['openingTimeFriday'] ?? null;
+        $this->container['closingTimeFriday'] = $data['closingTimeFriday'] ?? null;
+        $this->container['openingTimeSaturday'] = $data['openingTimeSaturday'] ?? null;
+        $this->container['closingTimeSaturday'] = $data['closingTimeSaturday'] ?? null;
+        $this->container['openingTimeSunday'] = $data['openingTimeSunday'] ?? null;
+        $this->container['closingTimeSunday'] = $data['closingTimeSunday'] ?? null;
+        $this->container['timezoneName'] = $data['timezoneName'] ?? null;
+        $this->container['invoiceTermsNumberOfDays'] = $data['invoiceTermsNumberOfDays'] ?? null;
+        $this->container['jobDefaultStatus'] = $data['jobDefaultStatus'] ?? null;
     }
 
     /**
@@ -398,7 +403,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -422,7 +427,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -446,7 +451,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -470,7 +475,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string $name Company Name
      *
-     * @return $this
+     * @return self
      */
     public function setName($name)
     {
@@ -498,7 +503,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $abnNumber Company ABN Number (Australian Accounts Only)
      *
-     * @return $this
+     * @return self
      */
     public function setAbnNumber($abnNumber)
     {
@@ -522,7 +527,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $website Company Website address
      *
-     * @return $this
+     * @return self
      */
     public function setWebsite($website)
     {
@@ -550,7 +555,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $email email
      *
-     * @return $this
+     * @return self
      */
     public function setEmail($email)
     {
@@ -574,7 +579,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $emailAccounts emailAccounts
      *
-     * @return $this
+     * @return self
      */
     public function setEmailAccounts($emailAccounts)
     {
@@ -598,7 +603,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $billingAddress billingAddress
      *
-     * @return $this
+     * @return self
      */
     public function setBillingAddress($billingAddress)
     {
@@ -622,7 +627,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $acceptedPaymentMethods acceptedPaymentMethods
      *
-     * @return $this
+     * @return self
      */
     public function setAcceptedPaymentMethods($acceptedPaymentMethods)
     {
@@ -646,7 +651,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $defaultRegion defaultRegion
      *
-     * @return $this
+     * @return self
      */
     public function setDefaultRegion($defaultRegion)
     {
@@ -670,7 +675,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $currency currency
      *
-     * @return $this
+     * @return self
      */
     public function setCurrency($currency)
     {
@@ -694,7 +699,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $openingTimeMonday openingTimeMonday
      *
-     * @return $this
+     * @return self
      */
     public function setOpeningTimeMonday($openingTimeMonday)
     {
@@ -718,7 +723,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $closingTimeMonday closingTimeMonday
      *
-     * @return $this
+     * @return self
      */
     public function setClosingTimeMonday($closingTimeMonday)
     {
@@ -742,7 +747,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $openingTimeTuesday openingTimeTuesday
      *
-     * @return $this
+     * @return self
      */
     public function setOpeningTimeTuesday($openingTimeTuesday)
     {
@@ -766,7 +771,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $closingTimeTuesday closingTimeTuesday
      *
-     * @return $this
+     * @return self
      */
     public function setClosingTimeTuesday($closingTimeTuesday)
     {
@@ -790,7 +795,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $openingTimeWednesday openingTimeWednesday
      *
-     * @return $this
+     * @return self
      */
     public function setOpeningTimeWednesday($openingTimeWednesday)
     {
@@ -814,7 +819,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $closingTimeWednesday closingTimeWednesday
      *
-     * @return $this
+     * @return self
      */
     public function setClosingTimeWednesday($closingTimeWednesday)
     {
@@ -838,7 +843,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $openingTimeThursday openingTimeThursday
      *
-     * @return $this
+     * @return self
      */
     public function setOpeningTimeThursday($openingTimeThursday)
     {
@@ -862,7 +867,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $closingTimeThursday closingTimeThursday
      *
-     * @return $this
+     * @return self
      */
     public function setClosingTimeThursday($closingTimeThursday)
     {
@@ -886,7 +891,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $openingTimeFriday openingTimeFriday
      *
-     * @return $this
+     * @return self
      */
     public function setOpeningTimeFriday($openingTimeFriday)
     {
@@ -910,7 +915,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $closingTimeFriday closingTimeFriday
      *
-     * @return $this
+     * @return self
      */
     public function setClosingTimeFriday($closingTimeFriday)
     {
@@ -934,7 +939,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $openingTimeSaturday openingTimeSaturday
      *
-     * @return $this
+     * @return self
      */
     public function setOpeningTimeSaturday($openingTimeSaturday)
     {
@@ -958,7 +963,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $closingTimeSaturday closingTimeSaturday
      *
-     * @return $this
+     * @return self
      */
     public function setClosingTimeSaturday($closingTimeSaturday)
     {
@@ -982,7 +987,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $openingTimeSunday openingTimeSunday
      *
-     * @return $this
+     * @return self
      */
     public function setOpeningTimeSunday($openingTimeSunday)
     {
@@ -1006,7 +1011,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $closingTimeSunday closingTimeSunday
      *
-     * @return $this
+     * @return self
      */
     public function setClosingTimeSunday($closingTimeSunday)
     {
@@ -1030,7 +1035,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $timezoneName timezoneName
      *
-     * @return $this
+     * @return self
      */
     public function setTimezoneName($timezoneName)
     {
@@ -1054,7 +1059,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $invoiceTermsNumberOfDays invoiceTermsNumberOfDays
      *
-     * @return $this
+     * @return self
      */
     public function setInvoiceTermsNumberOfDays($invoiceTermsNumberOfDays)
     {
@@ -1078,7 +1083,7 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param string|null $jobDefaultStatus jobDefaultStatus
      *
-     * @return $this
+     * @return self
      */
     public function setJobDefaultStatus($jobDefaultStatus)
     {
@@ -1103,18 +1108,18 @@ class Vendor implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */

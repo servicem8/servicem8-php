@@ -27,7 +27,7 @@
  * Please update the test case below to test the model.
  */
 
-namespace OpenAPI\Client;
+namespace OpenAPI\Client\Test\Model;
 
 use PHPUnit\Framework\TestCase;
 
@@ -76,6 +76,8 @@ class JobTest extends TestCase
      */
     public function testJob()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -83,6 +85,8 @@ class JobTest extends TestCase
      */
     public function testPropertyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -90,6 +94,8 @@ class JobTest extends TestCase
      */
     public function testPropertyActive()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -97,6 +103,8 @@ class JobTest extends TestCase
      */
     public function testPropertyEditDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -104,6 +112,8 @@ class JobTest extends TestCase
      */
     public function testPropertyCreatedByStaffUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -111,6 +121,8 @@ class JobTest extends TestCase
      */
     public function testPropertyDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -118,6 +130,8 @@ class JobTest extends TestCase
      */
     public function testPropertyCompanyUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -125,6 +139,8 @@ class JobTest extends TestCase
      */
     public function testPropertyJobAddress()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -132,6 +148,8 @@ class JobTest extends TestCase
      */
     public function testPropertyBillingAddress()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -139,6 +157,8 @@ class JobTest extends TestCase
      */
     public function testPropertyStatus()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -146,6 +166,8 @@ class JobTest extends TestCase
      */
     public function testPropertyJobDescription()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -153,6 +175,8 @@ class JobTest extends TestCase
      */
     public function testPropertyWorkDoneDescription()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -160,6 +184,8 @@ class JobTest extends TestCase
      */
     public function testPropertyLng()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -167,6 +193,8 @@ class JobTest extends TestCase
      */
     public function testPropertyLat()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -174,6 +202,8 @@ class JobTest extends TestCase
      */
     public function testPropertyGeneratedJobId()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -181,6 +211,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -188,6 +220,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentActionedByUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -195,6 +229,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentMethod()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -202,6 +238,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentAmount()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -209,6 +247,8 @@ class JobTest extends TestCase
      */
     public function testPropertyTotalInvoiceAmount()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -216,6 +256,8 @@ class JobTest extends TestCase
      */
     public function testPropertyCategoryUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -223,6 +265,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentNote()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -230,6 +274,8 @@ class JobTest extends TestCase
      */
     public function testPropertyGeoIsValid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -237,6 +283,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPurchaseOrderNumber()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -244,6 +292,8 @@ class JobTest extends TestCase
      */
     public function testPropertyInvoiceSent()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -251,6 +301,8 @@ class JobTest extends TestCase
      */
     public function testPropertyInvoiceSentStamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -258,6 +310,8 @@ class JobTest extends TestCase
      */
     public function testPropertyReadyToInvoice()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -265,6 +319,8 @@ class JobTest extends TestCase
      */
     public function testPropertyReadyToInvoiceStamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -272,6 +328,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentProcessed()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -279,6 +337,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentProcessedStamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -286,6 +346,8 @@ class JobTest extends TestCase
      */
     public function testPropertyGeoCountry()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -293,6 +355,8 @@ class JobTest extends TestCase
      */
     public function testPropertyGeoPostcode()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -300,6 +364,8 @@ class JobTest extends TestCase
      */
     public function testPropertyGeoState()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -307,6 +373,8 @@ class JobTest extends TestCase
      */
     public function testPropertyGeoCity()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -314,6 +382,8 @@ class JobTest extends TestCase
      */
     public function testPropertyGeoStreet()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -321,6 +391,8 @@ class JobTest extends TestCase
      */
     public function testPropertyGeoNumber()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -328,6 +400,8 @@ class JobTest extends TestCase
      */
     public function testPropertyQueueUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -335,6 +409,8 @@ class JobTest extends TestCase
      */
     public function testPropertyQueueExpiryDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -342,6 +418,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentReceived()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -349,6 +427,8 @@ class JobTest extends TestCase
      */
     public function testPropertyPaymentReceivedStamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -356,6 +436,8 @@ class JobTest extends TestCase
      */
     public function testPropertyBadges()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -363,6 +445,8 @@ class JobTest extends TestCase
      */
     public function testPropertyQuoteDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -370,6 +454,8 @@ class JobTest extends TestCase
      */
     public function testPropertyWorkOrderDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -377,6 +463,8 @@ class JobTest extends TestCase
      */
     public function testPropertyCompletionDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -384,6 +472,8 @@ class JobTest extends TestCase
      */
     public function testPropertyCompletionActionedByUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -391,6 +481,8 @@ class JobTest extends TestCase
      */
     public function testPropertyUnsuccessfulDate()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -398,6 +490,8 @@ class JobTest extends TestCase
      */
     public function testPropertyJobIsScheduledUntilStamp()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -405,6 +499,8 @@ class JobTest extends TestCase
      */
     public function testPropertyActiveNetworkRequestUuid()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 
     /**
@@ -412,5 +508,7 @@ class JobTest extends TestCase
      */
     public function testPropertyRelatedKnowledgeArticles()
     {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
     }
 }

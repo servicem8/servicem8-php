@@ -39,10 +39,13 @@ use \OpenAPI\Client\ObjectSerializer;
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
+ * @implements \ArrayAccess<TKey, TValue>
+ * @template TKey int|null
+ * @template TValue mixed|null  
  */
 class Job implements ModelInterface, ArrayAccess
 {
-    const DISCRIMINATOR = null;
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
@@ -111,6 +114,8 @@ class Job implements ModelInterface, ArrayAccess
       * Array of property to format mappings. Used for (de)serialization
       *
       * @var string[]
+      * @phpstan-var array<string, string|null>
+      * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
         'uuid' => 'uuid',
@@ -412,54 +417,54 @@ class Job implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = isset($data['uuid']) ? $data['uuid'] : null;
-        $this->container['active'] = isset($data['active']) ? $data['active'] : null;
-        $this->container['editDate'] = isset($data['editDate']) ? $data['editDate'] : null;
-        $this->container['createdByStaffUuid'] = isset($data['createdByStaffUuid']) ? $data['createdByStaffUuid'] : null;
-        $this->container['date'] = isset($data['date']) ? $data['date'] : null;
-        $this->container['companyUuid'] = isset($data['companyUuid']) ? $data['companyUuid'] : null;
-        $this->container['jobAddress'] = isset($data['jobAddress']) ? $data['jobAddress'] : null;
-        $this->container['billingAddress'] = isset($data['billingAddress']) ? $data['billingAddress'] : null;
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
-        $this->container['jobDescription'] = isset($data['jobDescription']) ? $data['jobDescription'] : null;
-        $this->container['workDoneDescription'] = isset($data['workDoneDescription']) ? $data['workDoneDescription'] : null;
-        $this->container['lng'] = isset($data['lng']) ? $data['lng'] : null;
-        $this->container['lat'] = isset($data['lat']) ? $data['lat'] : null;
-        $this->container['generatedJobId'] = isset($data['generatedJobId']) ? $data['generatedJobId'] : null;
-        $this->container['paymentDate'] = isset($data['paymentDate']) ? $data['paymentDate'] : null;
-        $this->container['paymentActionedByUuid'] = isset($data['paymentActionedByUuid']) ? $data['paymentActionedByUuid'] : null;
-        $this->container['paymentMethod'] = isset($data['paymentMethod']) ? $data['paymentMethod'] : null;
-        $this->container['paymentAmount'] = isset($data['paymentAmount']) ? $data['paymentAmount'] : null;
-        $this->container['totalInvoiceAmount'] = isset($data['totalInvoiceAmount']) ? $data['totalInvoiceAmount'] : null;
-        $this->container['categoryUuid'] = isset($data['categoryUuid']) ? $data['categoryUuid'] : null;
-        $this->container['paymentNote'] = isset($data['paymentNote']) ? $data['paymentNote'] : null;
-        $this->container['geoIsValid'] = isset($data['geoIsValid']) ? $data['geoIsValid'] : null;
-        $this->container['purchaseOrderNumber'] = isset($data['purchaseOrderNumber']) ? $data['purchaseOrderNumber'] : null;
-        $this->container['invoiceSent'] = isset($data['invoiceSent']) ? $data['invoiceSent'] : null;
-        $this->container['invoiceSentStamp'] = isset($data['invoiceSentStamp']) ? $data['invoiceSentStamp'] : null;
-        $this->container['readyToInvoice'] = isset($data['readyToInvoice']) ? $data['readyToInvoice'] : null;
-        $this->container['readyToInvoiceStamp'] = isset($data['readyToInvoiceStamp']) ? $data['readyToInvoiceStamp'] : null;
-        $this->container['paymentProcessed'] = isset($data['paymentProcessed']) ? $data['paymentProcessed'] : null;
-        $this->container['paymentProcessedStamp'] = isset($data['paymentProcessedStamp']) ? $data['paymentProcessedStamp'] : null;
-        $this->container['geoCountry'] = isset($data['geoCountry']) ? $data['geoCountry'] : null;
-        $this->container['geoPostcode'] = isset($data['geoPostcode']) ? $data['geoPostcode'] : null;
-        $this->container['geoState'] = isset($data['geoState']) ? $data['geoState'] : null;
-        $this->container['geoCity'] = isset($data['geoCity']) ? $data['geoCity'] : null;
-        $this->container['geoStreet'] = isset($data['geoStreet']) ? $data['geoStreet'] : null;
-        $this->container['geoNumber'] = isset($data['geoNumber']) ? $data['geoNumber'] : null;
-        $this->container['queueUuid'] = isset($data['queueUuid']) ? $data['queueUuid'] : null;
-        $this->container['queueExpiryDate'] = isset($data['queueExpiryDate']) ? $data['queueExpiryDate'] : null;
-        $this->container['paymentReceived'] = isset($data['paymentReceived']) ? $data['paymentReceived'] : null;
-        $this->container['paymentReceivedStamp'] = isset($data['paymentReceivedStamp']) ? $data['paymentReceivedStamp'] : null;
-        $this->container['badges'] = isset($data['badges']) ? $data['badges'] : null;
-        $this->container['quoteDate'] = isset($data['quoteDate']) ? $data['quoteDate'] : null;
-        $this->container['workOrderDate'] = isset($data['workOrderDate']) ? $data['workOrderDate'] : null;
-        $this->container['completionDate'] = isset($data['completionDate']) ? $data['completionDate'] : null;
-        $this->container['completionActionedByUuid'] = isset($data['completionActionedByUuid']) ? $data['completionActionedByUuid'] : null;
-        $this->container['unsuccessfulDate'] = isset($data['unsuccessfulDate']) ? $data['unsuccessfulDate'] : null;
-        $this->container['jobIsScheduledUntilStamp'] = isset($data['jobIsScheduledUntilStamp']) ? $data['jobIsScheduledUntilStamp'] : null;
-        $this->container['activeNetworkRequestUuid'] = isset($data['activeNetworkRequestUuid']) ? $data['activeNetworkRequestUuid'] : null;
-        $this->container['relatedKnowledgeArticles'] = isset($data['relatedKnowledgeArticles']) ? $data['relatedKnowledgeArticles'] : null;
+        $this->container['uuid'] = $data['uuid'] ?? null;
+        $this->container['active'] = $data['active'] ?? null;
+        $this->container['editDate'] = $data['editDate'] ?? null;
+        $this->container['createdByStaffUuid'] = $data['createdByStaffUuid'] ?? null;
+        $this->container['date'] = $data['date'] ?? null;
+        $this->container['companyUuid'] = $data['companyUuid'] ?? null;
+        $this->container['jobAddress'] = $data['jobAddress'] ?? null;
+        $this->container['billingAddress'] = $data['billingAddress'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['jobDescription'] = $data['jobDescription'] ?? null;
+        $this->container['workDoneDescription'] = $data['workDoneDescription'] ?? null;
+        $this->container['lng'] = $data['lng'] ?? null;
+        $this->container['lat'] = $data['lat'] ?? null;
+        $this->container['generatedJobId'] = $data['generatedJobId'] ?? null;
+        $this->container['paymentDate'] = $data['paymentDate'] ?? null;
+        $this->container['paymentActionedByUuid'] = $data['paymentActionedByUuid'] ?? null;
+        $this->container['paymentMethod'] = $data['paymentMethod'] ?? null;
+        $this->container['paymentAmount'] = $data['paymentAmount'] ?? null;
+        $this->container['totalInvoiceAmount'] = $data['totalInvoiceAmount'] ?? null;
+        $this->container['categoryUuid'] = $data['categoryUuid'] ?? null;
+        $this->container['paymentNote'] = $data['paymentNote'] ?? null;
+        $this->container['geoIsValid'] = $data['geoIsValid'] ?? null;
+        $this->container['purchaseOrderNumber'] = $data['purchaseOrderNumber'] ?? null;
+        $this->container['invoiceSent'] = $data['invoiceSent'] ?? null;
+        $this->container['invoiceSentStamp'] = $data['invoiceSentStamp'] ?? null;
+        $this->container['readyToInvoice'] = $data['readyToInvoice'] ?? null;
+        $this->container['readyToInvoiceStamp'] = $data['readyToInvoiceStamp'] ?? null;
+        $this->container['paymentProcessed'] = $data['paymentProcessed'] ?? null;
+        $this->container['paymentProcessedStamp'] = $data['paymentProcessedStamp'] ?? null;
+        $this->container['geoCountry'] = $data['geoCountry'] ?? null;
+        $this->container['geoPostcode'] = $data['geoPostcode'] ?? null;
+        $this->container['geoState'] = $data['geoState'] ?? null;
+        $this->container['geoCity'] = $data['geoCity'] ?? null;
+        $this->container['geoStreet'] = $data['geoStreet'] ?? null;
+        $this->container['geoNumber'] = $data['geoNumber'] ?? null;
+        $this->container['queueUuid'] = $data['queueUuid'] ?? null;
+        $this->container['queueExpiryDate'] = $data['queueExpiryDate'] ?? null;
+        $this->container['paymentReceived'] = $data['paymentReceived'] ?? null;
+        $this->container['paymentReceivedStamp'] = $data['paymentReceivedStamp'] ?? null;
+        $this->container['badges'] = $data['badges'] ?? null;
+        $this->container['quoteDate'] = $data['quoteDate'] ?? null;
+        $this->container['workOrderDate'] = $data['workOrderDate'] ?? null;
+        $this->container['completionDate'] = $data['completionDate'] ?? null;
+        $this->container['completionActionedByUuid'] = $data['completionActionedByUuid'] ?? null;
+        $this->container['unsuccessfulDate'] = $data['unsuccessfulDate'] ?? null;
+        $this->container['jobIsScheduledUntilStamp'] = $data['jobIsScheduledUntilStamp'] ?? null;
+        $this->container['activeNetworkRequestUuid'] = $data['activeNetworkRequestUuid'] ?? null;
+        $this->container['relatedKnowledgeArticles'] = $data['relatedKnowledgeArticles'] ?? null;
     }
 
     /**
@@ -520,7 +525,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $uuid Record UUID key
      *
-     * @return $this
+     * @return self
      */
     public function setUuid($uuid)
     {
@@ -544,7 +549,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param float|null $active Record active/deleted flag.   Valid values are [0,1]
      *
-     * @return $this
+     * @return self
      */
     public function setActive($active)
     {
@@ -568,7 +573,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $editDate Record last modified timestamp
      *
-     * @return $this
+     * @return self
      */
     public function setEditDate($editDate)
     {
@@ -592,7 +597,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $createdByStaffUuid createdByStaffUuid
      *
-     * @return $this
+     * @return self
      */
     public function setCreatedByStaffUuid($createdByStaffUuid)
     {
@@ -616,7 +621,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $date date
      *
-     * @return $this
+     * @return self
      */
     public function setDate($date)
     {
@@ -640,7 +645,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $companyUuid companyUuid
      *
-     * @return $this
+     * @return self
      */
     public function setCompanyUuid($companyUuid)
     {
@@ -664,7 +669,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $jobAddress jobAddress
      *
-     * @return $this
+     * @return self
      */
     public function setJobAddress($jobAddress)
     {
@@ -692,7 +697,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $billingAddress billingAddress
      *
-     * @return $this
+     * @return self
      */
     public function setBillingAddress($billingAddress)
     {
@@ -720,7 +725,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string $status status
      *
-     * @return $this
+     * @return self
      */
     public function setStatus($status)
     {
@@ -748,7 +753,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $jobDescription jobDescription
      *
-     * @return $this
+     * @return self
      */
     public function setJobDescription($jobDescription)
     {
@@ -772,7 +777,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $workDoneDescription Email Address
      *
-     * @return $this
+     * @return self
      */
     public function setWorkDoneDescription($workDoneDescription)
     {
@@ -796,7 +801,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param float|null $lng lng
      *
-     * @return $this
+     * @return self
      */
     public function setLng($lng)
     {
@@ -820,7 +825,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param float|null $lat lat
      *
-     * @return $this
+     * @return self
      */
     public function setLat($lat)
     {
@@ -844,7 +849,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $generatedJobId generatedJobId
      *
-     * @return $this
+     * @return self
      */
     public function setGeneratedJobId($generatedJobId)
     {
@@ -868,7 +873,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentDate paymentDate
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentDate($paymentDate)
     {
@@ -892,7 +897,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentActionedByUuid paymentActionedByUuid
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentActionedByUuid($paymentActionedByUuid)
     {
@@ -916,7 +921,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentMethod paymentMethod
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentMethod($paymentMethod)
     {
@@ -940,7 +945,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentAmount paymentAmount
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentAmount($paymentAmount)
     {
@@ -964,7 +969,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $totalInvoiceAmount totalInvoiceAmount
      *
-     * @return $this
+     * @return self
      */
     public function setTotalInvoiceAmount($totalInvoiceAmount)
     {
@@ -988,7 +993,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $categoryUuid categoryUuid
      *
-     * @return $this
+     * @return self
      */
     public function setCategoryUuid($categoryUuid)
     {
@@ -1012,7 +1017,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentNote paymentNote
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentNote($paymentNote)
     {
@@ -1036,7 +1041,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoIsValid geoIsValid
      *
-     * @return $this
+     * @return self
      */
     public function setGeoIsValid($geoIsValid)
     {
@@ -1060,7 +1065,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $purchaseOrderNumber purchaseOrderNumber
      *
-     * @return $this
+     * @return self
      */
     public function setPurchaseOrderNumber($purchaseOrderNumber)
     {
@@ -1088,7 +1093,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $invoiceSent invoiceSent
      *
-     * @return $this
+     * @return self
      */
     public function setInvoiceSent($invoiceSent)
     {
@@ -1112,7 +1117,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $invoiceSentStamp invoiceSentStamp
      *
-     * @return $this
+     * @return self
      */
     public function setInvoiceSentStamp($invoiceSentStamp)
     {
@@ -1136,7 +1141,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $readyToInvoice readyToInvoice
      *
-     * @return $this
+     * @return self
      */
     public function setReadyToInvoice($readyToInvoice)
     {
@@ -1160,7 +1165,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $readyToInvoiceStamp readyToInvoiceStamp
      *
-     * @return $this
+     * @return self
      */
     public function setReadyToInvoiceStamp($readyToInvoiceStamp)
     {
@@ -1184,7 +1189,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentProcessed paymentProcessed
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentProcessed($paymentProcessed)
     {
@@ -1208,7 +1213,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentProcessedStamp paymentProcessedStamp
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentProcessedStamp($paymentProcessedStamp)
     {
@@ -1232,7 +1237,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoCountry geoCountry
      *
-     * @return $this
+     * @return self
      */
     public function setGeoCountry($geoCountry)
     {
@@ -1256,7 +1261,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoPostcode geoPostcode
      *
-     * @return $this
+     * @return self
      */
     public function setGeoPostcode($geoPostcode)
     {
@@ -1280,7 +1285,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoState geoState
      *
-     * @return $this
+     * @return self
      */
     public function setGeoState($geoState)
     {
@@ -1304,7 +1309,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoCity geoCity
      *
-     * @return $this
+     * @return self
      */
     public function setGeoCity($geoCity)
     {
@@ -1328,7 +1333,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoStreet geoStreet
      *
-     * @return $this
+     * @return self
      */
     public function setGeoStreet($geoStreet)
     {
@@ -1352,7 +1357,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $geoNumber geoNumber
      *
-     * @return $this
+     * @return self
      */
     public function setGeoNumber($geoNumber)
     {
@@ -1376,7 +1381,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $queueUuid queueUuid
      *
-     * @return $this
+     * @return self
      */
     public function setQueueUuid($queueUuid)
     {
@@ -1400,7 +1405,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $queueExpiryDate queueExpiryDate
      *
-     * @return $this
+     * @return self
      */
     public function setQueueExpiryDate($queueExpiryDate)
     {
@@ -1424,7 +1429,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentReceived paymentReceived
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentReceived($paymentReceived)
     {
@@ -1448,7 +1453,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $paymentReceivedStamp paymentReceivedStamp
      *
-     * @return $this
+     * @return self
      */
     public function setPaymentReceivedStamp($paymentReceivedStamp)
     {
@@ -1472,7 +1477,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $badges badges
      *
-     * @return $this
+     * @return self
      */
     public function setBadges($badges)
     {
@@ -1496,7 +1501,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $quoteDate quoteDate
      *
-     * @return $this
+     * @return self
      */
     public function setQuoteDate($quoteDate)
     {
@@ -1520,7 +1525,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $workOrderDate workOrderDate
      *
-     * @return $this
+     * @return self
      */
     public function setWorkOrderDate($workOrderDate)
     {
@@ -1544,7 +1549,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $completionDate completionDate
      *
-     * @return $this
+     * @return self
      */
     public function setCompletionDate($completionDate)
     {
@@ -1568,7 +1573,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $completionActionedByUuid completionActionedByUuid
      *
-     * @return $this
+     * @return self
      */
     public function setCompletionActionedByUuid($completionActionedByUuid)
     {
@@ -1592,7 +1597,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $unsuccessfulDate unsuccessfulDate
      *
-     * @return $this
+     * @return self
      */
     public function setUnsuccessfulDate($unsuccessfulDate)
     {
@@ -1616,7 +1621,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $jobIsScheduledUntilStamp jobIsScheduledUntilStamp
      *
-     * @return $this
+     * @return self
      */
     public function setJobIsScheduledUntilStamp($jobIsScheduledUntilStamp)
     {
@@ -1640,7 +1645,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param string|null $activeNetworkRequestUuid activeNetworkRequestUuid
      *
-     * @return $this
+     * @return self
      */
     public function setActiveNetworkRequestUuid($activeNetworkRequestUuid)
     {
@@ -1664,7 +1669,7 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param \OpenAPI\Client\Model\JobRelatedKnowledgeArticles[]|null $relatedKnowledgeArticles relatedKnowledgeArticles
      *
-     * @return $this
+     * @return self
      */
     public function setRelatedKnowledgeArticles($relatedKnowledgeArticles)
     {
@@ -1689,18 +1694,18 @@ class Job implements ModelInterface, ArrayAccess
      *
      * @param integer $offset Offset
      *
-     * @return mixed
+     * @return mixed|null
      */
     public function offsetGet($offset)
     {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+        return $this->container[$offset] ?? null;
     }
 
     /**
      * Sets value based on offset.
      *
-     * @param integer $offset Offset
-     * @param mixed   $value  Value to be set
+     * @param int|null $offset Offset
+     * @param mixed    $value  Value to be set
      *
      * @return void
      */
