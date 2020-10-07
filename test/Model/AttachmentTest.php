@@ -196,4 +196,22 @@ class AttachmentTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "photoWidth"
+     */
+    public function testPropertyPhotoWidth()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "photoHeight"
+     */
+    public function testPropertyPhotoHeight()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

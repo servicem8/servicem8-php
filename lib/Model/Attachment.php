@@ -72,7 +72,9 @@ class Attachment implements ModelInterface, ArrayAccess
         'attachmentSource' => 'string',
         'tags' => 'string',
         'lng' => 'float',
-        'lat' => 'float'
+        'lat' => 'float',
+        'photoWidth' => 'float',
+        'photoHeight' => 'float'
     ];
 
     /**
@@ -95,7 +97,9 @@ class Attachment implements ModelInterface, ArrayAccess
         'attachmentSource' => null,
         'tags' => null,
         'lng' => 'float',
-        'lat' => 'float'
+        'lat' => 'float',
+        'photoWidth' => null,
+        'photoHeight' => null
     ];
 
     /**
@@ -137,7 +141,9 @@ class Attachment implements ModelInterface, ArrayAccess
         'attachmentSource' => 'attachment_source',
         'tags' => 'tags',
         'lng' => 'lng',
-        'lat' => 'lat'
+        'lat' => 'lat',
+        'photoWidth' => 'photo_width',
+        'photoHeight' => 'photo_height'
     ];
 
     /**
@@ -158,7 +164,9 @@ class Attachment implements ModelInterface, ArrayAccess
         'attachmentSource' => 'setAttachmentSource',
         'tags' => 'setTags',
         'lng' => 'setLng',
-        'lat' => 'setLat'
+        'lat' => 'setLat',
+        'photoWidth' => 'setPhotoWidth',
+        'photoHeight' => 'setPhotoHeight'
     ];
 
     /**
@@ -179,7 +187,9 @@ class Attachment implements ModelInterface, ArrayAccess
         'attachmentSource' => 'getAttachmentSource',
         'tags' => 'getTags',
         'lng' => 'getLng',
-        'lat' => 'getLat'
+        'lat' => 'getLat',
+        'photoWidth' => 'getPhotoWidth',
+        'photoHeight' => 'getPhotoHeight'
     ];
 
     /**
@@ -255,6 +265,8 @@ class Attachment implements ModelInterface, ArrayAccess
         $this->container['tags'] = $data['tags'] ?? null;
         $this->container['lng'] = $data['lng'] ?? null;
         $this->container['lat'] = $data['lat'] ?? null;
+        $this->container['photoWidth'] = $data['photoWidth'] ?? null;
+        $this->container['photoHeight'] = $data['photoHeight'] ?? null;
     }
 
     /**
@@ -605,6 +617,54 @@ class Attachment implements ModelInterface, ArrayAccess
     public function setLat($lat)
     {
         $this->container['lat'] = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Gets photoWidth
+     *
+     * @return float|null
+     */
+    public function getPhotoWidth()
+    {
+        return $this->container['photoWidth'];
+    }
+
+    /**
+     * Sets photoWidth
+     *
+     * @param float|null $photoWidth (Read-only)
+     *
+     * @return self
+     */
+    public function setPhotoWidth($photoWidth)
+    {
+        $this->container['photoWidth'] = $photoWidth;
+
+        return $this;
+    }
+
+    /**
+     * Gets photoHeight
+     *
+     * @return float|null
+     */
+    public function getPhotoHeight()
+    {
+        return $this->container['photoHeight'];
+    }
+
+    /**
+     * Sets photoHeight
+     *
+     * @param float|null $photoHeight (Read-only)
+     *
+     * @return self
+     */
+    public function setPhotoHeight($photoHeight)
+    {
+        $this->container['photoHeight'] = $photoHeight;
 
         return $this;
     }

@@ -17,6 +17,8 @@ Name | Type | Description | Notes
 **tags** | **string** |  | [optional] 
 **lng** | **float** |  | [optional] 
 **lat** | **float** |  | [optional] 
+**photoWidth** | **float** | (Read-only) | [optional] 
+**photoHeight** | **float** | (Read-only) | [optional] 
 
 [[Back to Model list]](../../README.md#documentation-for-models) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to README]](../../README.md)
 
