@@ -43,7 +43,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class AssetTypeField implements ModelInterface, ArrayAccess
+class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -65,8 +65,8 @@ class AssetTypeField implements ModelInterface, ArrayAccess
         'editDate' => 'string',
         'assetTypeUuid' => 'string',
         'name' => 'string',
-        'fieldData' => '\OpenAPI\Client\Model\AssetTypeFieldFieldData',
-        'sortOrder' => 'float'
+        'fieldData' => 'string',
+        'sortOrder' => 'string'
     ];
 
     /**
@@ -230,9 +230,6 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['name'] === null) {
-            $invalidProperties[] = "'name' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -333,7 +330,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     /**
      * Sets assetTypeUuid
      *
-     * @param string|null $assetTypeUuid (Read-only)
+     * @param string|null $assetTypeUuid assetTypeUuid
      *
      * @return self
      */
@@ -347,7 +344,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     /**
      * Gets name
      *
-     * @return string
+     * @return string|null
      */
     public function getName()
     {
@@ -357,7 +354,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string $name name
+     * @param string|null $name name
      *
      * @return self
      */
@@ -371,7 +368,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     /**
      * Gets fieldData
      *
-     * @return \OpenAPI\Client\Model\AssetTypeFieldFieldData|null
+     * @return string|null
      */
     public function getFieldData()
     {
@@ -381,7 +378,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     /**
      * Sets fieldData
      *
-     * @param \OpenAPI\Client\Model\AssetTypeFieldFieldData|null $fieldData fieldData
+     * @param string|null $fieldData fieldData
      *
      * @return self
      */
@@ -395,7 +392,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     /**
      * Gets sortOrder
      *
-     * @return float|null
+     * @return string|null
      */
     public function getSortOrder()
     {
@@ -405,7 +402,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     /**
      * Sets sortOrder
      *
-     * @param float|null $sortOrder sortOrder
+     * @param string|null $sortOrder sortOrder
      *
      * @return self
      */
@@ -466,6 +463,18 @@ class AssetTypeField implements ModelInterface, ArrayAccess
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

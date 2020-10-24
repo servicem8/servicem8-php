@@ -43,7 +43,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Asset implements ModelInterface, ArrayAccess
+class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -70,8 +70,8 @@ class Asset implements ModelInterface, ArrayAccess
         'lat' => 'float',
         'lng' => 'float',
         'geoTimestamp' => 'string',
-        'altitude' => 'float',
-        'fieldData' => '\OpenAPI\Client\Model\AssetFieldData[]'
+        'altitude' => 'string',
+        'fieldData' => 'string'
     ];
 
     /**
@@ -260,10 +260,6 @@ class Asset implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 100)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 100.";
-        }
-
         return $invalidProperties;
     }
 
@@ -364,7 +360,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets companyUuid
      *
-     * @param string|null $companyUuid UUID of the Client to which this Asset is attached
+     * @param string|null $companyUuid companyUuid
      *
      * @return self
      */
@@ -388,7 +384,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets assetCode
      *
-     * @param string|null $assetCode The unique code printed on this Asset's attached label (read only) (Read-only)
+     * @param string|null $assetCode assetCode
      *
      * @return self
      */
@@ -412,7 +408,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets assetTypeUuid
      *
-     * @param string|null $assetTypeUuid UUID of an Asset Type which defines the fields that can be stored for this Asset (read only) (Read-only)
+     * @param string|null $assetTypeUuid assetTypeUuid
      *
      * @return self
      */
@@ -436,16 +432,12 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets name
      *
-     * @param string|null $name User-facing description of this asset
+     * @param string|null $name name
      *
      * @return self
      */
     public function setName($name)
     {
-        if (!is_null($name) && (mb_strlen($name) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling Asset., must be smaller than or equal to 100.');
-        }
-
         $this->container['name'] = $name;
 
         return $this;
@@ -464,7 +456,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets lat
      *
-     * @param float|null $lat Latitude component of the Asset's location in degrees
+     * @param float|null $lat lat
      *
      * @return self
      */
@@ -488,7 +480,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets lng
      *
-     * @param float|null $lng Longitude component of the Asset's location in degrees
+     * @param float|null $lng lng
      *
      * @return self
      */
@@ -512,7 +504,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets geoTimestamp
      *
-     * @param string|null $geoTimestamp Timestamp at which the Asset's location was last updated
+     * @param string|null $geoTimestamp geoTimestamp
      *
      * @return self
      */
@@ -526,7 +518,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Gets altitude
      *
-     * @return float|null
+     * @return string|null
      */
     public function getAltitude()
     {
@@ -536,7 +528,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets altitude
      *
-     * @param float|null $altitude Altitude component of the Asset's location in metres
+     * @param string|null $altitude altitude
      *
      * @return self
      */
@@ -550,7 +542,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Gets fieldData
      *
-     * @return \OpenAPI\Client\Model\AssetFieldData[]|null
+     * @return string|null
      */
     public function getFieldData()
     {
@@ -560,7 +552,7 @@ class Asset implements ModelInterface, ArrayAccess
     /**
      * Sets fieldData
      *
-     * @param \OpenAPI\Client\Model\AssetFieldData[]|null $fieldData fieldData
+     * @param string|null $fieldData fieldData
      *
      * @return self
      */
@@ -621,6 +613,18 @@ class Asset implements ModelInterface, ArrayAccess
     public function offsetUnset($offset)
     {
         unset($this->container[$offset]);
+    }
+
+    /**
+     * Serializes the object to a value that can be serialized natively by json_encode().
+     * @link https://www.php.net/manual/en/jsonserializable.jsonserialize.php
+     *
+     * @return mixed Returns data which can be serialized by json_encode(), which is a value
+     * of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+       return ObjectSerializer::sanitizeForSerialization($this);
     }
 
     /**

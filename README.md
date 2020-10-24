@@ -271,10 +271,8 @@ Class | Method | HTTP request | Description
 
  - [AllocationWindow](docs/Model/AllocationWindow.md)
  - [Asset](docs/Model/Asset.md)
- - [AssetFieldData](docs/Model/AssetFieldData.md)
  - [AssetType](docs/Model/AssetType.md)
  - [AssetTypeField](docs/Model/AssetTypeField.md)
- - [AssetTypeFieldFieldData](docs/Model/AssetTypeFieldFieldData.md)
  - [Attachment](docs/Model/Attachment.md)
  - [Badge](docs/Model/Badge.md)
  - [Category](docs/Model/Category.md)
