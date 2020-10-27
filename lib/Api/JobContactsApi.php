@@ -337,7 +337,7 @@ class JobContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteJobContactSingleRequest($uuid)
+    public function deleteJobContactSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class JobContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getJobContactAllRequest()
+    public function getJobContactAllRequest()
     {
 
         $resourcePath = '/jobcontact.json';
@@ -948,7 +948,7 @@ class JobContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getJobContactSingleRequest($uuid)
+    public function getJobContactSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class JobContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postJobContactCreateRequest($jobContact)
+    public function postJobContactCreateRequest($jobContact)
     {
         // verify the required parameter 'jobContact' is set
         if ($jobContact === null || (is_array($jobContact) && count($jobContact) === 0)) {
@@ -1581,7 +1581,7 @@ class JobContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postJobContactSingleRequest($uuid, $jobContact)
+    public function postJobContactSingleRequest($uuid, $jobContact)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

@@ -337,7 +337,7 @@ class FormResponsesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteFormResponseSingleRequest($uuid)
+    public function deleteFormResponseSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class FormResponsesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFormResponseAllRequest()
+    public function getFormResponseAllRequest()
     {
 
         $resourcePath = '/formresponse.json';
@@ -948,7 +948,7 @@ class FormResponsesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFormResponseSingleRequest($uuid)
+    public function getFormResponseSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class FormResponsesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postFormResponseCreateRequest($formResponse)
+    public function postFormResponseCreateRequest($formResponse)
     {
         // verify the required parameter 'formResponse' is set
         if ($formResponse === null || (is_array($formResponse) && count($formResponse) === 0)) {
@@ -1581,7 +1581,7 @@ class FormResponsesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postFormResponseSingleRequest($uuid, $formResponse)
+    public function postFormResponseSingleRequest($uuid, $formResponse)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

@@ -337,7 +337,7 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteClientSingleRequest($uuid)
+    public function deleteClientSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getClientAllRequest()
+    public function getClientAllRequest()
     {
 
         $resourcePath = '/company.json';
@@ -948,7 +948,7 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getClientSingleRequest($uuid)
+    public function getClientSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postClientCreateRequest($client)
+    public function postClientCreateRequest($client)
     {
         // verify the required parameter 'client' is set
         if ($client === null || (is_array($client) && count($client) === 0)) {
@@ -1581,7 +1581,7 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postClientSingleRequest($uuid, $client)
+    public function postClientSingleRequest($uuid, $client)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

@@ -337,7 +337,7 @@ class AttachmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteAttachmentSingleRequest($uuid)
+    public function deleteAttachmentSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class AttachmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAttachmentAllRequest()
+    public function getAttachmentAllRequest()
     {
 
         $resourcePath = '/attachment.json';
@@ -948,7 +948,7 @@ class AttachmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAttachmentSingleRequest($uuid)
+    public function getAttachmentSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class AttachmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postAttachmentCreateRequest($attachment)
+    public function postAttachmentCreateRequest($attachment)
     {
         // verify the required parameter 'attachment' is set
         if ($attachment === null || (is_array($attachment) && count($attachment) === 0)) {
@@ -1581,7 +1581,7 @@ class AttachmentsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postAttachmentSingleRequest($uuid, $attachment)
+    public function postAttachmentSingleRequest($uuid, $attachment)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

@@ -337,7 +337,7 @@ class MaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteMaterialSingleRequest($uuid)
+    public function deleteMaterialSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class MaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getMaterialAllRequest()
+    public function getMaterialAllRequest()
     {
 
         $resourcePath = '/material.json';
@@ -948,7 +948,7 @@ class MaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getMaterialSingleRequest($uuid)
+    public function getMaterialSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class MaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postMaterialCreateRequest($material)
+    public function postMaterialCreateRequest($material)
     {
         // verify the required parameter 'material' is set
         if ($material === null || (is_array($material) && count($material) === 0)) {
@@ -1581,7 +1581,7 @@ class MaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postMaterialSingleRequest($uuid, $material)
+    public function postMaterialSingleRequest($uuid, $material)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

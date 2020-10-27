@@ -337,7 +337,7 @@ class JobActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteJobActivitySingleRequest($uuid)
+    public function deleteJobActivitySingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class JobActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getJobActivityAllRequest()
+    public function getJobActivityAllRequest()
     {
 
         $resourcePath = '/jobactivity.json';
@@ -948,7 +948,7 @@ class JobActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getJobActivitySingleRequest($uuid)
+    public function getJobActivitySingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class JobActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postJobActivityCreateRequest($jobActivity)
+    public function postJobActivityCreateRequest($jobActivity)
     {
         // verify the required parameter 'jobActivity' is set
         if ($jobActivity === null || (is_array($jobActivity) && count($jobActivity) === 0)) {
@@ -1581,7 +1581,7 @@ class JobActivitiesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postJobActivitySingleRequest($uuid, $jobActivity)
+    public function postJobActivitySingleRequest($uuid, $jobActivity)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

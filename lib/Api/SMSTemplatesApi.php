@@ -337,7 +337,7 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteSMSTemplateSingleRequest($uuid)
+    public function deleteSMSTemplateSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSMSTemplateAllRequest()
+    public function getSMSTemplateAllRequest()
     {
 
         $resourcePath = '/smstemplate.json';
@@ -948,7 +948,7 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSMSTemplateSingleRequest($uuid)
+    public function getSMSTemplateSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postSMSTemplateCreateRequest($sMSTemplate)
+    public function postSMSTemplateCreateRequest($sMSTemplate)
     {
         // verify the required parameter 'sMSTemplate' is set
         if ($sMSTemplate === null || (is_array($sMSTemplate) && count($sMSTemplate) === 0)) {
@@ -1581,7 +1581,7 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postSMSTemplateSingleRequest($uuid, $sMSTemplate)
+    public function postSMSTemplateSingleRequest($uuid, $sMSTemplate)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

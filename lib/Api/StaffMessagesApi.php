@@ -337,7 +337,7 @@ class StaffMessagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteStaffMessageSingleRequest($uuid)
+    public function deleteStaffMessageSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class StaffMessagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getStaffMessageAllRequest()
+    public function getStaffMessageAllRequest()
     {
 
         $resourcePath = '/staffmessage.json';
@@ -948,7 +948,7 @@ class StaffMessagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getStaffMessageSingleRequest($uuid)
+    public function getStaffMessageSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class StaffMessagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postStaffMessageCreateRequest($staffMessage)
+    public function postStaffMessageCreateRequest($staffMessage)
     {
         // verify the required parameter 'staffMessage' is set
         if ($staffMessage === null || (is_array($staffMessage) && count($staffMessage) === 0)) {
@@ -1581,7 +1581,7 @@ class StaffMessagesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postStaffMessageSingleRequest($uuid, $staffMessage)
+    public function postStaffMessageSingleRequest($uuid, $staffMessage)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

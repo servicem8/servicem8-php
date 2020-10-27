@@ -337,7 +337,7 @@ class CompanyContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteCompanyContactSingleRequest($uuid)
+    public function deleteCompanyContactSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class CompanyContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCompanyContactAllRequest()
+    public function getCompanyContactAllRequest()
     {
 
         $resourcePath = '/companycontact.json';
@@ -948,7 +948,7 @@ class CompanyContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCompanyContactSingleRequest($uuid)
+    public function getCompanyContactSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class CompanyContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postCompanyContactCreateRequest($companyContact)
+    public function postCompanyContactCreateRequest($companyContact)
     {
         // verify the required parameter 'companyContact' is set
         if ($companyContact === null || (is_array($companyContact) && count($companyContact) === 0)) {
@@ -1581,7 +1581,7 @@ class CompanyContactsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postCompanyContactSingleRequest($uuid, $companyContact)
+    public function postCompanyContactSingleRequest($uuid, $companyContact)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

@@ -337,7 +337,7 @@ class CategoriesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteCategorySingleRequest($uuid)
+    public function deleteCategorySingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class CategoriesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCategoryAllRequest()
+    public function getCategoryAllRequest()
     {
 
         $resourcePath = '/category.json';
@@ -948,7 +948,7 @@ class CategoriesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getCategorySingleRequest($uuid)
+    public function getCategorySingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class CategoriesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postCategoryCreateRequest($category)
+    public function postCategoryCreateRequest($category)
     {
         // verify the required parameter 'category' is set
         if ($category === null || (is_array($category) && count($category) === 0)) {
@@ -1581,7 +1581,7 @@ class CategoriesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postCategorySingleRequest($uuid, $category)
+    public function postCategorySingleRequest($uuid, $category)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

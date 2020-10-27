@@ -337,7 +337,7 @@ class BadgesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteBadgeSingleRequest($uuid)
+    public function deleteBadgeSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class BadgesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getBadgeAllRequest()
+    public function getBadgeAllRequest()
     {
 
         $resourcePath = '/badge.json';
@@ -948,7 +948,7 @@ class BadgesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getBadgeSingleRequest($uuid)
+    public function getBadgeSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class BadgesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postBadgeCreateRequest($badge)
+    public function postBadgeCreateRequest($badge)
     {
         // verify the required parameter 'badge' is set
         if ($badge === null || (is_array($badge) && count($badge) === 0)) {
@@ -1581,7 +1581,7 @@ class BadgesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postBadgeSingleRequest($uuid, $badge)
+    public function postBadgeSingleRequest($uuid, $badge)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

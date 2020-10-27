@@ -337,7 +337,7 @@ class AssetTypeFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteAssetTypeFieldSingleRequest($uuid)
+    public function deleteAssetTypeFieldSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class AssetTypeFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAssetTypeFieldAllRequest()
+    public function getAssetTypeFieldAllRequest()
     {
 
         $resourcePath = '/assettypefield.json';
@@ -948,7 +948,7 @@ class AssetTypeFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAssetTypeFieldSingleRequest($uuid)
+    public function getAssetTypeFieldSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class AssetTypeFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postAssetTypeFieldCreateRequest($assetTypeField)
+    public function postAssetTypeFieldCreateRequest($assetTypeField)
     {
         // verify the required parameter 'assetTypeField' is set
         if ($assetTypeField === null || (is_array($assetTypeField) && count($assetTypeField) === 0)) {
@@ -1581,7 +1581,7 @@ class AssetTypeFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postAssetTypeFieldSingleRequest($uuid, $assetTypeField)
+    public function postAssetTypeFieldSingleRequest($uuid, $assetTypeField)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

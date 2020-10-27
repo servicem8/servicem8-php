@@ -337,7 +337,7 @@ class FeedbackApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteFeedbackSingleRequest($uuid)
+    public function deleteFeedbackSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class FeedbackApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFeedbackAllRequest()
+    public function getFeedbackAllRequest()
     {
 
         $resourcePath = '/feedback.json';
@@ -948,7 +948,7 @@ class FeedbackApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFeedbackSingleRequest($uuid)
+    public function getFeedbackSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class FeedbackApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postFeedbackCreateRequest($feedback)
+    public function postFeedbackCreateRequest($feedback)
     {
         // verify the required parameter 'feedback' is set
         if ($feedback === null || (is_array($feedback) && count($feedback) === 0)) {
@@ -1581,7 +1581,7 @@ class FeedbackApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postFeedbackSingleRequest($uuid, $feedback)
+    public function postFeedbackSingleRequest($uuid, $feedback)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

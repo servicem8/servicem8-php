@@ -332,7 +332,7 @@ class VendorsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getVendorAllRequest()
+    public function getVendorAllRequest()
     {
 
         $resourcePath = '/vendor.json';
@@ -633,7 +633,7 @@ class VendorsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getVendorSingleRequest($uuid)
+    public function getVendorSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -953,7 +953,7 @@ class VendorsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postVendorSingleRequest($uuid, $vendor)
+    public function postVendorSingleRequest($uuid, $vendor)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

@@ -337,7 +337,7 @@ class NotesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteNoteSingleRequest($uuid)
+    public function deleteNoteSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class NotesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getNoteAllRequest()
+    public function getNoteAllRequest()
     {
 
         $resourcePath = '/note.json';
@@ -948,7 +948,7 @@ class NotesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getNoteSingleRequest($uuid)
+    public function getNoteSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class NotesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postNoteCreateRequest($note)
+    public function postNoteCreateRequest($note)
     {
         // verify the required parameter 'note' is set
         if ($note === null || (is_array($note) && count($note) === 0)) {
@@ -1581,7 +1581,7 @@ class NotesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postNoteSingleRequest($uuid, $note)
+    public function postNoteSingleRequest($uuid, $note)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

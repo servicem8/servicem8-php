@@ -337,7 +337,7 @@ class SecurityRolesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteSecurityRoleSingleRequest($uuid)
+    public function deleteSecurityRoleSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class SecurityRolesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSecurityRoleAllRequest()
+    public function getSecurityRoleAllRequest()
     {
 
         $resourcePath = '/securityrole.json';
@@ -948,7 +948,7 @@ class SecurityRolesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getSecurityRoleSingleRequest($uuid)
+    public function getSecurityRoleSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class SecurityRolesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postSecurityRoleCreateRequest($securityRole)
+    public function postSecurityRoleCreateRequest($securityRole)
     {
         // verify the required parameter 'securityRole' is set
         if ($securityRole === null || (is_array($securityRole) && count($securityRole) === 0)) {
@@ -1581,7 +1581,7 @@ class SecurityRolesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postSecurityRoleSingleRequest($uuid, $securityRole)
+    public function postSecurityRoleSingleRequest($uuid, $securityRole)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

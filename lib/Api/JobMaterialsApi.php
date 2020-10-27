@@ -337,7 +337,7 @@ class JobMaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteJobMaterialSingleRequest($uuid)
+    public function deleteJobMaterialSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class JobMaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getJobMaterialAllRequest()
+    public function getJobMaterialAllRequest()
     {
 
         $resourcePath = '/jobmaterial.json';
@@ -948,7 +948,7 @@ class JobMaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getJobMaterialSingleRequest($uuid)
+    public function getJobMaterialSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class JobMaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postJobMaterialCreateRequest($jobMaterial)
+    public function postJobMaterialCreateRequest($jobMaterial)
     {
         // verify the required parameter 'jobMaterial' is set
         if ($jobMaterial === null || (is_array($jobMaterial) && count($jobMaterial) === 0)) {
@@ -1581,7 +1581,7 @@ class JobMaterialsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postJobMaterialSingleRequest($uuid, $jobMaterial)
+    public function postJobMaterialSingleRequest($uuid, $jobMaterial)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

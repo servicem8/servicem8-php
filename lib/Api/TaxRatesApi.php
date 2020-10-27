@@ -337,7 +337,7 @@ class TaxRatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteTaxRateSingleRequest($uuid)
+    public function deleteTaxRateSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class TaxRatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getTaxRateAllRequest()
+    public function getTaxRateAllRequest()
     {
 
         $resourcePath = '/taxrate.json';
@@ -948,7 +948,7 @@ class TaxRatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getTaxRateSingleRequest($uuid)
+    public function getTaxRateSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class TaxRatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postTaxRateCreateRequest($taxRate)
+    public function postTaxRateCreateRequest($taxRate)
     {
         // verify the required parameter 'taxRate' is set
         if ($taxRate === null || (is_array($taxRate) && count($taxRate) === 0)) {
@@ -1581,7 +1581,7 @@ class TaxRatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postTaxRateSingleRequest($uuid, $taxRate)
+    public function postTaxRateSingleRequest($uuid, $taxRate)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

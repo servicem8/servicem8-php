@@ -337,7 +337,7 @@ class LocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteLocationSingleRequest($uuid)
+    public function deleteLocationSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class LocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getLocationAllRequest()
+    public function getLocationAllRequest()
     {
 
         $resourcePath = '/location.json';
@@ -948,7 +948,7 @@ class LocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getLocationSingleRequest($uuid)
+    public function getLocationSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class LocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postLocationCreateRequest($location)
+    public function postLocationCreateRequest($location)
     {
         // verify the required parameter 'location' is set
         if ($location === null || (is_array($location) && count($location) === 0)) {
@@ -1581,7 +1581,7 @@ class LocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postLocationSingleRequest($uuid, $location)
+    public function postLocationSingleRequest($uuid, $location)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

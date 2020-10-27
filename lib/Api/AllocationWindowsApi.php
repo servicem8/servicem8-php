@@ -337,7 +337,7 @@ class AllocationWindowsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteAllocationWindowSingleRequest($uuid)
+    public function deleteAllocationWindowSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class AllocationWindowsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAllocationWindowAllRequest()
+    public function getAllocationWindowAllRequest()
     {
 
         $resourcePath = '/allocationwindow.json';
@@ -948,7 +948,7 @@ class AllocationWindowsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAllocationWindowSingleRequest($uuid)
+    public function getAllocationWindowSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class AllocationWindowsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postAllocationWindowCreateRequest($allocationWindow)
+    public function postAllocationWindowCreateRequest($allocationWindow)
     {
         // verify the required parameter 'allocationWindow' is set
         if ($allocationWindow === null || (is_array($allocationWindow) && count($allocationWindow) === 0)) {
@@ -1581,7 +1581,7 @@ class AllocationWindowsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postAllocationWindowSingleRequest($uuid, $allocationWindow)
+    public function postAllocationWindowSingleRequest($uuid, $allocationWindow)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

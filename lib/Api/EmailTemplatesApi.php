@@ -337,7 +337,7 @@ class EmailTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteEmailTemplateSingleRequest($uuid)
+    public function deleteEmailTemplateSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class EmailTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getEmailTemplateAllRequest()
+    public function getEmailTemplateAllRequest()
     {
 
         $resourcePath = '/emailtemplate.json';
@@ -948,7 +948,7 @@ class EmailTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getEmailTemplateSingleRequest($uuid)
+    public function getEmailTemplateSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class EmailTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postEmailTemplateCreateRequest($emailTemplate)
+    public function postEmailTemplateCreateRequest($emailTemplate)
     {
         // verify the required parameter 'emailTemplate' is set
         if ($emailTemplate === null || (is_array($emailTemplate) && count($emailTemplate) === 0)) {
@@ -1581,7 +1581,7 @@ class EmailTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postEmailTemplateSingleRequest($uuid, $emailTemplate)
+    public function postEmailTemplateSingleRequest($uuid, $emailTemplate)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

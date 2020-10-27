@@ -337,7 +337,7 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteFormFieldSingleRequest($uuid)
+    public function deleteFormFieldSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFormFieldAllRequest()
+    public function getFormFieldAllRequest()
     {
 
         $resourcePath = '/formfield.json';
@@ -948,7 +948,7 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getFormFieldSingleRequest($uuid)
+    public function getFormFieldSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postFormFieldCreateRequest($formField)
+    public function postFormFieldCreateRequest($formField)
     {
         // verify the required parameter 'formField' is set
         if ($formField === null || (is_array($formField) && count($formField) === 0)) {
@@ -1581,7 +1581,7 @@ class FormFieldsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postFormFieldSingleRequest($uuid, $formField)
+    public function postFormFieldSingleRequest($uuid, $formField)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

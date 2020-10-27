@@ -337,7 +337,7 @@ class AssetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteAssetSingleRequest($uuid)
+    public function deleteAssetSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class AssetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAssetAllRequest()
+    public function getAssetAllRequest()
     {
 
         $resourcePath = '/asset.json';
@@ -948,7 +948,7 @@ class AssetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getAssetSingleRequest($uuid)
+    public function getAssetSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1268,7 +1268,7 @@ class AssetsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postAssetSingleRequest($uuid, $asset)
+    public function postAssetSingleRequest($uuid, $asset)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

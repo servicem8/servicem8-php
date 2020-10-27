@@ -337,7 +337,7 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteStaffMemberSingleRequest($uuid)
+    public function deleteStaffMemberSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getStaffMemberAllRequest()
+    public function getStaffMemberAllRequest()
     {
 
         $resourcePath = '/staff.json';
@@ -948,7 +948,7 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getStaffMemberSingleRequest($uuid)
+    public function getStaffMemberSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postStaffMemberCreateRequest($staffMember)
+    public function postStaffMemberCreateRequest($staffMember)
     {
         // verify the required parameter 'staffMember' is set
         if ($staffMember === null || (is_array($staffMember) && count($staffMember) === 0)) {
@@ -1581,7 +1581,7 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postStaffMemberSingleRequest($uuid, $staffMember)
+    public function postStaffMemberSingleRequest($uuid, $staffMember)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

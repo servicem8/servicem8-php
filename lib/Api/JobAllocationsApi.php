@@ -337,7 +337,7 @@ class JobAllocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteJobAllocationSingleRequest($uuid)
+    public function deleteJobAllocationSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class JobAllocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getJobAllocationAllRequest()
+    public function getJobAllocationAllRequest()
     {
 
         $resourcePath = '/joballocation.json';
@@ -948,7 +948,7 @@ class JobAllocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getJobAllocationSingleRequest($uuid)
+    public function getJobAllocationSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class JobAllocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postJobAllocationCreateRequest($jobAllocation)
+    public function postJobAllocationCreateRequest($jobAllocation)
     {
         // verify the required parameter 'jobAllocation' is set
         if ($jobAllocation === null || (is_array($jobAllocation) && count($jobAllocation) === 0)) {
@@ -1581,7 +1581,7 @@ class JobAllocationsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postJobAllocationSingleRequest($uuid, $jobAllocation)
+    public function postJobAllocationSingleRequest($uuid, $jobAllocation)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

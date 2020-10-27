@@ -337,7 +337,7 @@ class KnowledgeArticlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteKnowledgeArticleSingleRequest($uuid)
+    public function deleteKnowledgeArticleSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class KnowledgeArticlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getKnowledgeArticleAllRequest()
+    public function getKnowledgeArticleAllRequest()
     {
 
         $resourcePath = '/knowledgearticle.json';
@@ -948,7 +948,7 @@ class KnowledgeArticlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getKnowledgeArticleSingleRequest($uuid)
+    public function getKnowledgeArticleSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class KnowledgeArticlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postKnowledgeArticleCreateRequest($knowledgeArticle)
+    public function postKnowledgeArticleCreateRequest($knowledgeArticle)
     {
         // verify the required parameter 'knowledgeArticle' is set
         if ($knowledgeArticle === null || (is_array($knowledgeArticle) && count($knowledgeArticle) === 0)) {
@@ -1581,7 +1581,7 @@ class KnowledgeArticlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postKnowledgeArticleSingleRequest($uuid, $knowledgeArticle)
+    public function postKnowledgeArticleSingleRequest($uuid, $knowledgeArticle)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {

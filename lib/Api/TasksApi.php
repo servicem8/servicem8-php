@@ -337,7 +337,7 @@ class TasksApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteTaskSingleRequest($uuid)
+    public function deleteTaskSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -647,7 +647,7 @@ class TasksApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getTaskAllRequest()
+    public function getTaskAllRequest()
     {
 
         $resourcePath = '/task.json';
@@ -948,7 +948,7 @@ class TasksApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function getTaskSingleRequest($uuid)
+    public function getTaskSingleRequest($uuid)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
@@ -1263,7 +1263,7 @@ class TasksApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postTaskCreateRequest($task)
+    public function postTaskCreateRequest($task)
     {
         // verify the required parameter 'task' is set
         if ($task === null || (is_array($task) && count($task) === 0)) {
@@ -1581,7 +1581,7 @@ class TasksApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postTaskSingleRequest($uuid, $task)
+    public function postTaskSingleRequest($uuid, $task)
     {
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
