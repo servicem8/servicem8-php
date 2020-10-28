@@ -1,20 +1,21 @@
 # OpenAPI\Client\TasksApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteTaskSingle**](TasksApi.md#deleteTaskSingle) | **DELETE** /task/{uuid}.json | Delete a Task
-[**getTaskAll**](TasksApi.md#getTaskAll) | **GET** /task.json | List all Tasks
-[**getTaskSingle**](TasksApi.md#getTaskSingle) | **GET** /task/{uuid}.json | Retrieve a Task
-[**postTaskCreate**](TasksApi.md#postTaskCreate) | **POST** /task.json | Create a new Task
-[**postTaskSingle**](TasksApi.md#postTaskSingle) | **POST** /task/{uuid}.json | Update a Task
+[**deleteTaskSingle()**](TasksApi.md#deleteTaskSingle) | **DELETE** /task/{uuid}.json | Delete a Task
+[**getTaskAll()**](TasksApi.md#getTaskAll) | **GET** /task.json | List all Tasks
+[**getTaskSingle()**](TasksApi.md#getTaskSingle) | **GET** /task/{uuid}.json | Retrieve a Task
+[**postTaskCreate()**](TasksApi.md#postTaskCreate) | **POST** /task.json | Create a new Task
+[**postTaskSingle()**](TasksApi.md#postTaskSingle) | **POST** /task/{uuid}.json | Update a Task
 
 
+## `deleteTaskSingle()`
 
-## deleteTaskSingle
-
-> \OpenAPI\Client\Model\Result deleteTaskSingle($uuid)
+```php
+deleteTaskSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Task
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TasksApi->deleteTaskSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getTaskAll()`
 
-## getTaskAll
-
-> \OpenAPI\Client\Model\Task[] getTaskAll()
+```php
+getTaskAll(): \OpenAPI\Client\Model\Task[]
+```
 
 List all Tasks
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TasksApi->getTaskAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getTaskSingle()`
 
-## getTaskSingle
-
-> \OpenAPI\Client\Model\Task getTaskSingle($uuid)
+```php
+getTaskSingle($uuid): \OpenAPI\Client\Model\Task
+```
 
 Retrieve a Task
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TasksApi->getTaskSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postTaskCreate()`
 
-## postTaskCreate
-
-> \OpenAPI\Client\Model\Result postTaskCreate($task)
+```php
+postTaskCreate($task): \OpenAPI\Client\Model\Result
+```
 
 Create a new Task
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TasksApi->postTaskCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postTaskSingle()`
 
-## postTaskSingle
-
-> \OpenAPI\Client\Model\Result postTaskSingle($uuid, $task)
+```php
+postTaskSingle($uuid, $task): \OpenAPI\Client\Model\Result
+```
 
 Update a Task
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TasksApi->postTaskSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

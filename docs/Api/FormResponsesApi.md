@@ -1,20 +1,21 @@
 # OpenAPI\Client\FormResponsesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteFormResponseSingle**](FormResponsesApi.md#deleteFormResponseSingle) | **DELETE** /formresponse/{uuid}.json | Delete a Form Response
-[**getFormResponseAll**](FormResponsesApi.md#getFormResponseAll) | **GET** /formresponse.json | List all Form Responses
-[**getFormResponseSingle**](FormResponsesApi.md#getFormResponseSingle) | **GET** /formresponse/{uuid}.json | Retrieve a Form Response
-[**postFormResponseCreate**](FormResponsesApi.md#postFormResponseCreate) | **POST** /formresponse.json | Create a new Form Response
-[**postFormResponseSingle**](FormResponsesApi.md#postFormResponseSingle) | **POST** /formresponse/{uuid}.json | Update a Form Response
+[**deleteFormResponseSingle()**](FormResponsesApi.md#deleteFormResponseSingle) | **DELETE** /formresponse/{uuid}.json | Delete a Form Response
+[**getFormResponseAll()**](FormResponsesApi.md#getFormResponseAll) | **GET** /formresponse.json | List all Form Responses
+[**getFormResponseSingle()**](FormResponsesApi.md#getFormResponseSingle) | **GET** /formresponse/{uuid}.json | Retrieve a Form Response
+[**postFormResponseCreate()**](FormResponsesApi.md#postFormResponseCreate) | **POST** /formresponse.json | Create a new Form Response
+[**postFormResponseSingle()**](FormResponsesApi.md#postFormResponseSingle) | **POST** /formresponse/{uuid}.json | Update a Form Response
 
 
+## `deleteFormResponseSingle()`
 
-## deleteFormResponseSingle
-
-> \OpenAPI\Client\Model\Result deleteFormResponseSingle($uuid)
+```php
+deleteFormResponseSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Form Response
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormResponsesApi->deleteFormResponseSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getFormResponseAll()`
 
-## getFormResponseAll
-
-> \OpenAPI\Client\Model\FormResponse[] getFormResponseAll()
+```php
+getFormResponseAll(): \OpenAPI\Client\Model\FormResponse[]
+```
 
 List all Form Responses
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormResponsesApi->getFormResponseAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getFormResponseSingle()`
 
-## getFormResponseSingle
-
-> \OpenAPI\Client\Model\FormResponse getFormResponseSingle($uuid)
+```php
+getFormResponseSingle($uuid): \OpenAPI\Client\Model\FormResponse
+```
 
 Retrieve a Form Response
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormResponsesApi->getFormResponseSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postFormResponseCreate()`
 
-## postFormResponseCreate
-
-> \OpenAPI\Client\Model\Result postFormResponseCreate($formResponse)
+```php
+postFormResponseCreate($formResponse): \OpenAPI\Client\Model\Result
+```
 
 Create a new Form Response
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormResponsesApi->postFormResponseCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postFormResponseSingle()`
 
-## postFormResponseSingle
-
-> \OpenAPI\Client\Model\Result postFormResponseSingle($uuid, $formResponse)
+```php
+postFormResponseSingle($uuid, $formResponse): \OpenAPI\Client\Model\Result
+```
 
 Update a Form Response
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormResponsesApi->postFormResponseSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

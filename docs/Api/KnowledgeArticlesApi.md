@@ -1,20 +1,21 @@
 # OpenAPI\Client\KnowledgeArticlesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteKnowledgeArticleSingle**](KnowledgeArticlesApi.md#deleteKnowledgeArticleSingle) | **DELETE** /knowledgearticle/{uuid}.json | Delete a Knowledge Article
-[**getKnowledgeArticleAll**](KnowledgeArticlesApi.md#getKnowledgeArticleAll) | **GET** /knowledgearticle.json | List all Knowledge Articles
-[**getKnowledgeArticleSingle**](KnowledgeArticlesApi.md#getKnowledgeArticleSingle) | **GET** /knowledgearticle/{uuid}.json | Retrieve a Knowledge Article
-[**postKnowledgeArticleCreate**](KnowledgeArticlesApi.md#postKnowledgeArticleCreate) | **POST** /knowledgearticle.json | Create a new Knowledge Article
-[**postKnowledgeArticleSingle**](KnowledgeArticlesApi.md#postKnowledgeArticleSingle) | **POST** /knowledgearticle/{uuid}.json | Update a Knowledge Article
+[**deleteKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#deleteKnowledgeArticleSingle) | **DELETE** /knowledgearticle/{uuid}.json | Delete a Knowledge Article
+[**getKnowledgeArticleAll()**](KnowledgeArticlesApi.md#getKnowledgeArticleAll) | **GET** /knowledgearticle.json | List all Knowledge Articles
+[**getKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#getKnowledgeArticleSingle) | **GET** /knowledgearticle/{uuid}.json | Retrieve a Knowledge Article
+[**postKnowledgeArticleCreate()**](KnowledgeArticlesApi.md#postKnowledgeArticleCreate) | **POST** /knowledgearticle.json | Create a new Knowledge Article
+[**postKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#postKnowledgeArticleSingle) | **POST** /knowledgearticle/{uuid}.json | Update a Knowledge Article
 
 
+## `deleteKnowledgeArticleSingle()`
 
-## deleteKnowledgeArticleSingle
-
-> \OpenAPI\Client\Model\Result deleteKnowledgeArticleSingle($uuid)
+```php
+deleteKnowledgeArticleSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Knowledge Article
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling KnowledgeArticlesApi->deleteKnowledgeArticleSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getKnowledgeArticleAll()`
 
-## getKnowledgeArticleAll
-
-> \OpenAPI\Client\Model\KnowledgeArticle[] getKnowledgeArticleAll()
+```php
+getKnowledgeArticleAll(): \OpenAPI\Client\Model\KnowledgeArticle[]
+```
 
 List all Knowledge Articles
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling KnowledgeArticlesApi->getKnowledgeArticleAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getKnowledgeArticleSingle()`
 
-## getKnowledgeArticleSingle
-
-> \OpenAPI\Client\Model\KnowledgeArticle getKnowledgeArticleSingle($uuid)
+```php
+getKnowledgeArticleSingle($uuid): \OpenAPI\Client\Model\KnowledgeArticle
+```
 
 Retrieve a Knowledge Article
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling KnowledgeArticlesApi->getKnowledgeArticleSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postKnowledgeArticleCreate()`
 
-## postKnowledgeArticleCreate
-
-> \OpenAPI\Client\Model\Result postKnowledgeArticleCreate($knowledgeArticle)
+```php
+postKnowledgeArticleCreate($knowledgeArticle): \OpenAPI\Client\Model\Result
+```
 
 Create a new Knowledge Article
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling KnowledgeArticlesApi->postKnowledgeArticleCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postKnowledgeArticleSingle()`
 
-## postKnowledgeArticleSingle
-
-> \OpenAPI\Client\Model\Result postKnowledgeArticleSingle($uuid, $knowledgeArticle)
+```php
+postKnowledgeArticleSingle($uuid, $knowledgeArticle): \OpenAPI\Client\Model\Result
+```
 
 Update a Knowledge Article
 
@@ -309,11 +307,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling KnowledgeArticlesApi->postKnowledgeArticleSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -330,10 +326,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

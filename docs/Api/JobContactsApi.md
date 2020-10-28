@@ -1,20 +1,21 @@
 # OpenAPI\Client\JobContactsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteJobContactSingle**](JobContactsApi.md#deleteJobContactSingle) | **DELETE** /jobcontact/{uuid}.json | Delete a Job Contact
-[**getJobContactAll**](JobContactsApi.md#getJobContactAll) | **GET** /jobcontact.json | List all Job Contacts
-[**getJobContactSingle**](JobContactsApi.md#getJobContactSingle) | **GET** /jobcontact/{uuid}.json | Retrieve a Job Contact
-[**postJobContactCreate**](JobContactsApi.md#postJobContactCreate) | **POST** /jobcontact.json | Create a new Job Contact
-[**postJobContactSingle**](JobContactsApi.md#postJobContactSingle) | **POST** /jobcontact/{uuid}.json | Update a Job Contact
+[**deleteJobContactSingle()**](JobContactsApi.md#deleteJobContactSingle) | **DELETE** /jobcontact/{uuid}.json | Delete a Job Contact
+[**getJobContactAll()**](JobContactsApi.md#getJobContactAll) | **GET** /jobcontact.json | List all Job Contacts
+[**getJobContactSingle()**](JobContactsApi.md#getJobContactSingle) | **GET** /jobcontact/{uuid}.json | Retrieve a Job Contact
+[**postJobContactCreate()**](JobContactsApi.md#postJobContactCreate) | **POST** /jobcontact.json | Create a new Job Contact
+[**postJobContactSingle()**](JobContactsApi.md#postJobContactSingle) | **POST** /jobcontact/{uuid}.json | Update a Job Contact
 
 
+## `deleteJobContactSingle()`
 
-## deleteJobContactSingle
-
-> \OpenAPI\Client\Model\Result deleteJobContactSingle($uuid)
+```php
+deleteJobContactSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Job Contact
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobContactsApi->deleteJobContactSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobContactAll()`
 
-## getJobContactAll
-
-> \OpenAPI\Client\Model\JobContact[] getJobContactAll()
+```php
+getJobContactAll(): \OpenAPI\Client\Model\JobContact[]
+```
 
 List all Job Contacts
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobContactsApi->getJobContactAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobContactSingle()`
 
-## getJobContactSingle
-
-> \OpenAPI\Client\Model\JobContact getJobContactSingle($uuid)
+```php
+getJobContactSingle($uuid): \OpenAPI\Client\Model\JobContact
+```
 
 Retrieve a Job Contact
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobContactsApi->getJobContactSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobContactCreate()`
 
-## postJobContactCreate
-
-> \OpenAPI\Client\Model\Result postJobContactCreate($jobContact)
+```php
+postJobContactCreate($jobContact): \OpenAPI\Client\Model\Result
+```
 
 Create a new Job Contact
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobContactsApi->postJobContactCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobContactSingle()`
 
-## postJobContactSingle
-
-> \OpenAPI\Client\Model\Result postJobContactSingle($uuid, $jobContact)
+```php
+postJobContactSingle($uuid, $jobContact): \OpenAPI\Client\Model\Result
+```
 
 Update a Job Contact
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobContactsApi->postJobContactSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

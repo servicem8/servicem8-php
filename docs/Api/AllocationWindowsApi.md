@@ -1,20 +1,21 @@
 # OpenAPI\Client\AllocationWindowsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteAllocationWindowSingle**](AllocationWindowsApi.md#deleteAllocationWindowSingle) | **DELETE** /allocationwindow/{uuid}.json | Delete an Allocation Window
-[**getAllocationWindowAll**](AllocationWindowsApi.md#getAllocationWindowAll) | **GET** /allocationwindow.json | List all Allocation Windows
-[**getAllocationWindowSingle**](AllocationWindowsApi.md#getAllocationWindowSingle) | **GET** /allocationwindow/{uuid}.json | Retrieve an Allocation Window
-[**postAllocationWindowCreate**](AllocationWindowsApi.md#postAllocationWindowCreate) | **POST** /allocationwindow.json | Create a new Allocation Window
-[**postAllocationWindowSingle**](AllocationWindowsApi.md#postAllocationWindowSingle) | **POST** /allocationwindow/{uuid}.json | Update an Allocation Window
+[**deleteAllocationWindowSingle()**](AllocationWindowsApi.md#deleteAllocationWindowSingle) | **DELETE** /allocationwindow/{uuid}.json | Delete an Allocation Window
+[**getAllocationWindowAll()**](AllocationWindowsApi.md#getAllocationWindowAll) | **GET** /allocationwindow.json | List all Allocation Windows
+[**getAllocationWindowSingle()**](AllocationWindowsApi.md#getAllocationWindowSingle) | **GET** /allocationwindow/{uuid}.json | Retrieve an Allocation Window
+[**postAllocationWindowCreate()**](AllocationWindowsApi.md#postAllocationWindowCreate) | **POST** /allocationwindow.json | Create a new Allocation Window
+[**postAllocationWindowSingle()**](AllocationWindowsApi.md#postAllocationWindowSingle) | **POST** /allocationwindow/{uuid}.json | Update an Allocation Window
 
 
+## `deleteAllocationWindowSingle()`
 
-## deleteAllocationWindowSingle
-
-> \OpenAPI\Client\Model\Result deleteAllocationWindowSingle($uuid)
+```php
+deleteAllocationWindowSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete an Allocation Window
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AllocationWindowsApi->deleteAllocationWindowSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAllocationWindowAll()`
 
-## getAllocationWindowAll
-
-> \OpenAPI\Client\Model\AllocationWindow[] getAllocationWindowAll()
+```php
+getAllocationWindowAll(): \OpenAPI\Client\Model\AllocationWindow[]
+```
 
 List all Allocation Windows
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AllocationWindowsApi->getAllocationWindowAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAllocationWindowSingle()`
 
-## getAllocationWindowSingle
-
-> \OpenAPI\Client\Model\AllocationWindow getAllocationWindowSingle($uuid)
+```php
+getAllocationWindowSingle($uuid): \OpenAPI\Client\Model\AllocationWindow
+```
 
 Retrieve an Allocation Window
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AllocationWindowsApi->getAllocationWindowSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAllocationWindowCreate()`
 
-## postAllocationWindowCreate
-
-> \OpenAPI\Client\Model\Result postAllocationWindowCreate($allocationWindow)
+```php
+postAllocationWindowCreate($allocationWindow): \OpenAPI\Client\Model\Result
+```
 
 Create a new Allocation Window
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AllocationWindowsApi->postAllocationWindowCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAllocationWindowSingle()`
 
-## postAllocationWindowSingle
-
-> \OpenAPI\Client\Model\Result postAllocationWindowSingle($uuid, $allocationWindow)
+```php
+postAllocationWindowSingle($uuid, $allocationWindow): \OpenAPI\Client\Model\Result
+```
 
 Update an Allocation Window
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AllocationWindowsApi->postAllocationWindowSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

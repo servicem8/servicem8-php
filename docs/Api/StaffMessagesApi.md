@@ -1,20 +1,21 @@
 # OpenAPI\Client\StaffMessagesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteStaffMessageSingle**](StaffMessagesApi.md#deleteStaffMessageSingle) | **DELETE** /staffmessage/{uuid}.json | Delete a Staff Message
-[**getStaffMessageAll**](StaffMessagesApi.md#getStaffMessageAll) | **GET** /staffmessage.json | List all Staff Messages
-[**getStaffMessageSingle**](StaffMessagesApi.md#getStaffMessageSingle) | **GET** /staffmessage/{uuid}.json | Retrieve a Staff Message
-[**postStaffMessageCreate**](StaffMessagesApi.md#postStaffMessageCreate) | **POST** /staffmessage.json | Create a new Staff Message
-[**postStaffMessageSingle**](StaffMessagesApi.md#postStaffMessageSingle) | **POST** /staffmessage/{uuid}.json | Update a Staff Message
+[**deleteStaffMessageSingle()**](StaffMessagesApi.md#deleteStaffMessageSingle) | **DELETE** /staffmessage/{uuid}.json | Delete a Staff Message
+[**getStaffMessageAll()**](StaffMessagesApi.md#getStaffMessageAll) | **GET** /staffmessage.json | List all Staff Messages
+[**getStaffMessageSingle()**](StaffMessagesApi.md#getStaffMessageSingle) | **GET** /staffmessage/{uuid}.json | Retrieve a Staff Message
+[**postStaffMessageCreate()**](StaffMessagesApi.md#postStaffMessageCreate) | **POST** /staffmessage.json | Create a new Staff Message
+[**postStaffMessageSingle()**](StaffMessagesApi.md#postStaffMessageSingle) | **POST** /staffmessage/{uuid}.json | Update a Staff Message
 
 
+## `deleteStaffMessageSingle()`
 
-## deleteStaffMessageSingle
-
-> \OpenAPI\Client\Model\Result deleteStaffMessageSingle($uuid)
+```php
+deleteStaffMessageSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Staff Message
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling StaffMessagesApi->deleteStaffMessageSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getStaffMessageAll()`
 
-## getStaffMessageAll
-
-> \OpenAPI\Client\Model\StaffMessage[] getStaffMessageAll()
+```php
+getStaffMessageAll(): \OpenAPI\Client\Model\StaffMessage[]
+```
 
 List all Staff Messages
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling StaffMessagesApi->getStaffMessageAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getStaffMessageSingle()`
 
-## getStaffMessageSingle
-
-> \OpenAPI\Client\Model\StaffMessage getStaffMessageSingle($uuid)
+```php
+getStaffMessageSingle($uuid): \OpenAPI\Client\Model\StaffMessage
+```
 
 Retrieve a Staff Message
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling StaffMessagesApi->getStaffMessageSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postStaffMessageCreate()`
 
-## postStaffMessageCreate
-
-> \OpenAPI\Client\Model\Result postStaffMessageCreate($staffMessage)
+```php
+postStaffMessageCreate($staffMessage): \OpenAPI\Client\Model\Result
+```
 
 Create a new Staff Message
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling StaffMessagesApi->postStaffMessageCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postStaffMessageSingle()`
 
-## postStaffMessageSingle
-
-> \OpenAPI\Client\Model\Result postStaffMessageSingle($uuid, $staffMessage)
+```php
+postStaffMessageSingle($uuid, $staffMessage): \OpenAPI\Client\Model\Result
+```
 
 Update a Staff Message
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling StaffMessagesApi->postStaffMessageSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

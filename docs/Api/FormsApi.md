@@ -1,20 +1,21 @@
 # OpenAPI\Client\FormsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteFormSingle**](FormsApi.md#deleteFormSingle) | **DELETE** /form/{uuid}.json | Delete a Form
-[**getFormAll**](FormsApi.md#getFormAll) | **GET** /form.json | List all Forms
-[**getFormSingle**](FormsApi.md#getFormSingle) | **GET** /form/{uuid}.json | Retrieve a Form
-[**postFormCreate**](FormsApi.md#postFormCreate) | **POST** /form.json | Create a new Form
-[**postFormSingle**](FormsApi.md#postFormSingle) | **POST** /form/{uuid}.json | Update a Form
+[**deleteFormSingle()**](FormsApi.md#deleteFormSingle) | **DELETE** /form/{uuid}.json | Delete a Form
+[**getFormAll()**](FormsApi.md#getFormAll) | **GET** /form.json | List all Forms
+[**getFormSingle()**](FormsApi.md#getFormSingle) | **GET** /form/{uuid}.json | Retrieve a Form
+[**postFormCreate()**](FormsApi.md#postFormCreate) | **POST** /form.json | Create a new Form
+[**postFormSingle()**](FormsApi.md#postFormSingle) | **POST** /form/{uuid}.json | Update a Form
 
 
+## `deleteFormSingle()`
 
-## deleteFormSingle
-
-> \OpenAPI\Client\Model\Result deleteFormSingle($uuid)
+```php
+deleteFormSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Form
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->deleteFormSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getFormAll()`
 
-## getFormAll
-
-> \OpenAPI\Client\Model\Form[] getFormAll()
+```php
+getFormAll(): \OpenAPI\Client\Model\Form[]
+```
 
 List all Forms
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->getFormAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getFormSingle()`
 
-## getFormSingle
-
-> \OpenAPI\Client\Model\Form getFormSingle($uuid)
+```php
+getFormSingle($uuid): \OpenAPI\Client\Model\Form
+```
 
 Retrieve a Form
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->getFormSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postFormCreate()`
 
-## postFormCreate
-
-> \OpenAPI\Client\Model\Result postFormCreate($form)
+```php
+postFormCreate($form): \OpenAPI\Client\Model\Result
+```
 
 Create a new Form
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->postFormCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postFormSingle()`
 
-## postFormSingle
-
-> \OpenAPI\Client\Model\Result postFormSingle($uuid, $form)
+```php
+postFormSingle($uuid, $form): \OpenAPI\Client\Model\Result
+```
 
 Update a Form
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormsApi->postFormSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

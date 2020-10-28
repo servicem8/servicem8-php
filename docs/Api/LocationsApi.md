@@ -1,20 +1,21 @@
 # OpenAPI\Client\LocationsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteLocationSingle**](LocationsApi.md#deleteLocationSingle) | **DELETE** /location/{uuid}.json | Delete a Location
-[**getLocationAll**](LocationsApi.md#getLocationAll) | **GET** /location.json | List all Locations
-[**getLocationSingle**](LocationsApi.md#getLocationSingle) | **GET** /location/{uuid}.json | Retrieve a Location
-[**postLocationCreate**](LocationsApi.md#postLocationCreate) | **POST** /location.json | Create a new Location
-[**postLocationSingle**](LocationsApi.md#postLocationSingle) | **POST** /location/{uuid}.json | Update a Location
+[**deleteLocationSingle()**](LocationsApi.md#deleteLocationSingle) | **DELETE** /location/{uuid}.json | Delete a Location
+[**getLocationAll()**](LocationsApi.md#getLocationAll) | **GET** /location.json | List all Locations
+[**getLocationSingle()**](LocationsApi.md#getLocationSingle) | **GET** /location/{uuid}.json | Retrieve a Location
+[**postLocationCreate()**](LocationsApi.md#postLocationCreate) | **POST** /location.json | Create a new Location
+[**postLocationSingle()**](LocationsApi.md#postLocationSingle) | **POST** /location/{uuid}.json | Update a Location
 
 
+## `deleteLocationSingle()`
 
-## deleteLocationSingle
-
-> \OpenAPI\Client\Model\Result deleteLocationSingle($uuid)
+```php
+deleteLocationSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Location
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling LocationsApi->deleteLocationSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getLocationAll()`
 
-## getLocationAll
-
-> \OpenAPI\Client\Model\Location[] getLocationAll()
+```php
+getLocationAll(): \OpenAPI\Client\Model\Location[]
+```
 
 List all Locations
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling LocationsApi->getLocationAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getLocationSingle()`
 
-## getLocationSingle
-
-> \OpenAPI\Client\Model\Location getLocationSingle($uuid)
+```php
+getLocationSingle($uuid): \OpenAPI\Client\Model\Location
+```
 
 Retrieve a Location
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling LocationsApi->getLocationSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postLocationCreate()`
 
-## postLocationCreate
-
-> \OpenAPI\Client\Model\Result postLocationCreate($location)
+```php
+postLocationCreate($location): \OpenAPI\Client\Model\Result
+```
 
 Create a new Location
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling LocationsApi->postLocationCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postLocationSingle()`
 
-## postLocationSingle
-
-> \OpenAPI\Client\Model\Result postLocationSingle($uuid, $location)
+```php
+postLocationSingle($uuid, $location): \OpenAPI\Client\Model\Result
+```
 
 Update a Location
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling LocationsApi->postLocationSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

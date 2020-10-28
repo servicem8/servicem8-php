@@ -1,18 +1,19 @@
 # OpenAPI\Client\VendorsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getVendorAll**](VendorsApi.md#getVendorAll) | **GET** /vendor.json | List all Vendors
-[**getVendorSingle**](VendorsApi.md#getVendorSingle) | **GET** /vendor/{uuid}.json | Retrieve a Vendor
-[**postVendorSingle**](VendorsApi.md#postVendorSingle) | **POST** /vendor/{uuid}.json | Update a Vendor
+[**getVendorAll()**](VendorsApi.md#getVendorAll) | **GET** /vendor.json | List all Vendors
+[**getVendorSingle()**](VendorsApi.md#getVendorSingle) | **GET** /vendor/{uuid}.json | Retrieve a Vendor
+[**postVendorSingle()**](VendorsApi.md#postVendorSingle) | **POST** /vendor/{uuid}.json | Update a Vendor
 
 
+## `getVendorAll()`
 
-## getVendorAll
-
-> \OpenAPI\Client\Model\Vendor[] getVendorAll()
+```php
+getVendorAll(): \OpenAPI\Client\Model\Vendor[]
+```
 
 List all Vendors
 
@@ -47,7 +48,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling VendorsApi->getVendorAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -65,16 +65,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getVendorSingle()`
 
-## getVendorSingle
-
-> \OpenAPI\Client\Model\Vendor getVendorSingle($uuid)
+```php
+getVendorSingle($uuid): \OpenAPI\Client\Model\Vendor
+```
 
 Retrieve a Vendor
 
@@ -110,11 +111,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling VendorsApi->getVendorSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -131,16 +130,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postVendorSingle()`
 
-## postVendorSingle
-
-> \OpenAPI\Client\Model\Result postVendorSingle($uuid, $vendor)
+```php
+postVendorSingle($uuid, $vendor): \OpenAPI\Client\Model\Result
+```
 
 Update a Vendor
 
@@ -175,11 +175,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling VendorsApi->postVendorSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -196,10 +194,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

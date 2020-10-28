@@ -1,19 +1,20 @@
 # OpenAPI\Client\AssetsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteAssetSingle**](AssetsApi.md#deleteAssetSingle) | **DELETE** /asset/{uuid}.json | Delete an Asset
-[**getAssetAll**](AssetsApi.md#getAssetAll) | **GET** /asset.json | List all Assets
-[**getAssetSingle**](AssetsApi.md#getAssetSingle) | **GET** /asset/{uuid}.json | Retrieve an Asset
-[**postAssetSingle**](AssetsApi.md#postAssetSingle) | **POST** /asset/{uuid}.json | Update an Asset
+[**deleteAssetSingle()**](AssetsApi.md#deleteAssetSingle) | **DELETE** /asset/{uuid}.json | Delete an Asset
+[**getAssetAll()**](AssetsApi.md#getAssetAll) | **GET** /asset.json | List all Assets
+[**getAssetSingle()**](AssetsApi.md#getAssetSingle) | **GET** /asset/{uuid}.json | Retrieve an Asset
+[**postAssetSingle()**](AssetsApi.md#postAssetSingle) | **POST** /asset/{uuid}.json | Update an Asset
 
 
+## `deleteAssetSingle()`
 
-## deleteAssetSingle
-
-> \OpenAPI\Client\Model\Result deleteAssetSingle($uuid)
+```php
+deleteAssetSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete an Asset
 
@@ -49,11 +50,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetsApi->deleteAssetSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -70,16 +69,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAssetAll()`
 
-## getAssetAll
-
-> \OpenAPI\Client\Model\Asset[] getAssetAll()
+```php
+getAssetAll(): \OpenAPI\Client\Model\Asset[]
+```
 
 List all Assets
 
@@ -114,7 +114,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetsApi->getAssetAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -132,16 +131,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAssetSingle()`
 
-## getAssetSingle
-
-> \OpenAPI\Client\Model\Asset getAssetSingle($uuid)
+```php
+getAssetSingle($uuid): \OpenAPI\Client\Model\Asset
+```
 
 Retrieve an Asset
 
@@ -177,11 +177,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetsApi->getAssetSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -198,16 +196,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAssetSingle()`
 
-## postAssetSingle
-
-> \OpenAPI\Client\Model\Result postAssetSingle($uuid, $asset)
+```php
+postAssetSingle($uuid, $asset): \OpenAPI\Client\Model\Result
+```
 
 Update an Asset
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetsApi->postAssetSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -263,10 +260,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

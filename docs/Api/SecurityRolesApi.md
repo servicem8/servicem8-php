@@ -1,20 +1,21 @@
 # OpenAPI\Client\SecurityRolesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteSecurityRoleSingle**](SecurityRolesApi.md#deleteSecurityRoleSingle) | **DELETE** /securityrole/{uuid}.json | Delete a Security Role
-[**getSecurityRoleAll**](SecurityRolesApi.md#getSecurityRoleAll) | **GET** /securityrole.json | List all Security Roles
-[**getSecurityRoleSingle**](SecurityRolesApi.md#getSecurityRoleSingle) | **GET** /securityrole/{uuid}.json | Retrieve a Security Role
-[**postSecurityRoleCreate**](SecurityRolesApi.md#postSecurityRoleCreate) | **POST** /securityrole.json | Create a new Security Role
-[**postSecurityRoleSingle**](SecurityRolesApi.md#postSecurityRoleSingle) | **POST** /securityrole/{uuid}.json | Update a Security Role
+[**deleteSecurityRoleSingle()**](SecurityRolesApi.md#deleteSecurityRoleSingle) | **DELETE** /securityrole/{uuid}.json | Delete a Security Role
+[**getSecurityRoleAll()**](SecurityRolesApi.md#getSecurityRoleAll) | **GET** /securityrole.json | List all Security Roles
+[**getSecurityRoleSingle()**](SecurityRolesApi.md#getSecurityRoleSingle) | **GET** /securityrole/{uuid}.json | Retrieve a Security Role
+[**postSecurityRoleCreate()**](SecurityRolesApi.md#postSecurityRoleCreate) | **POST** /securityrole.json | Create a new Security Role
+[**postSecurityRoleSingle()**](SecurityRolesApi.md#postSecurityRoleSingle) | **POST** /securityrole/{uuid}.json | Update a Security Role
 
 
+## `deleteSecurityRoleSingle()`
 
-## deleteSecurityRoleSingle
-
-> \OpenAPI\Client\Model\Result deleteSecurityRoleSingle($uuid)
+```php
+deleteSecurityRoleSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Security Role
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SecurityRolesApi->deleteSecurityRoleSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSecurityRoleAll()`
 
-## getSecurityRoleAll
-
-> \OpenAPI\Client\Model\SecurityRole[] getSecurityRoleAll()
+```php
+getSecurityRoleAll(): \OpenAPI\Client\Model\SecurityRole[]
+```
 
 List all Security Roles
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SecurityRolesApi->getSecurityRoleAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSecurityRoleSingle()`
 
-## getSecurityRoleSingle
-
-> \OpenAPI\Client\Model\SecurityRole getSecurityRoleSingle($uuid)
+```php
+getSecurityRoleSingle($uuid): \OpenAPI\Client\Model\SecurityRole
+```
 
 Retrieve a Security Role
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SecurityRolesApi->getSecurityRoleSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postSecurityRoleCreate()`
 
-## postSecurityRoleCreate
-
-> \OpenAPI\Client\Model\Result postSecurityRoleCreate($securityRole)
+```php
+postSecurityRoleCreate($securityRole): \OpenAPI\Client\Model\Result
+```
 
 Create a new Security Role
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SecurityRolesApi->postSecurityRoleCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postSecurityRoleSingle()`
 
-## postSecurityRoleSingle
-
-> \OpenAPI\Client\Model\Result postSecurityRoleSingle($uuid, $securityRole)
+```php
+postSecurityRoleSingle($uuid, $securityRole): \OpenAPI\Client\Model\Result
+```
 
 Update a Security Role
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SecurityRolesApi->postSecurityRoleSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

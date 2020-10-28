@@ -1,20 +1,21 @@
 # OpenAPI\Client\ClientsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteClientSingle**](ClientsApi.md#deleteClientSingle) | **DELETE** /company/{uuid}.json | Delete a Client
-[**getClientAll**](ClientsApi.md#getClientAll) | **GET** /company.json | List all Clients
-[**getClientSingle**](ClientsApi.md#getClientSingle) | **GET** /company/{uuid}.json | Retrieve a Client
-[**postClientCreate**](ClientsApi.md#postClientCreate) | **POST** /company.json | Create a new Client
-[**postClientSingle**](ClientsApi.md#postClientSingle) | **POST** /company/{uuid}.json | Update a Client
+[**deleteClientSingle()**](ClientsApi.md#deleteClientSingle) | **DELETE** /company/{uuid}.json | Delete a Client
+[**getClientAll()**](ClientsApi.md#getClientAll) | **GET** /company.json | List all Clients
+[**getClientSingle()**](ClientsApi.md#getClientSingle) | **GET** /company/{uuid}.json | Retrieve a Client
+[**postClientCreate()**](ClientsApi.md#postClientCreate) | **POST** /company.json | Create a new Client
+[**postClientSingle()**](ClientsApi.md#postClientSingle) | **POST** /company/{uuid}.json | Update a Client
 
 
+## `deleteClientSingle()`
 
-## deleteClientSingle
-
-> \OpenAPI\Client\Model\Result deleteClientSingle($uuid)
+```php
+deleteClientSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Client
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ClientsApi->deleteClientSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getClientAll()`
 
-## getClientAll
-
-> \OpenAPI\Client\Model\Client[] getClientAll()
+```php
+getClientAll(): \OpenAPI\Client\Model\Client[]
+```
 
 List all Clients
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ClientsApi->getClientAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getClientSingle()`
 
-## getClientSingle
-
-> \OpenAPI\Client\Model\Client getClientSingle($uuid)
+```php
+getClientSingle($uuid): \OpenAPI\Client\Model\Client
+```
 
 Retrieve a Client
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ClientsApi->getClientSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postClientCreate()`
 
-## postClientCreate
-
-> \OpenAPI\Client\Model\Result postClientCreate($client)
+```php
+postClientCreate($client): \OpenAPI\Client\Model\Result
+```
 
 Create a new Client
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ClientsApi->postClientCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postClientSingle()`
 
-## postClientSingle
-
-> \OpenAPI\Client\Model\Result postClientSingle($uuid, $client)
+```php
+postClientSingle($uuid, $client): \OpenAPI\Client\Model\Result
+```
 
 Update a Client
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling ClientsApi->postClientSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

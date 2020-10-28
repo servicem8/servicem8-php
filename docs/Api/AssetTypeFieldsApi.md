@@ -1,20 +1,21 @@
 # OpenAPI\Client\AssetTypeFieldsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteAssetTypeFieldSingle**](AssetTypeFieldsApi.md#deleteAssetTypeFieldSingle) | **DELETE** /assettypefield/{uuid}.json | Delete an Asset Type Field
-[**getAssetTypeFieldAll**](AssetTypeFieldsApi.md#getAssetTypeFieldAll) | **GET** /assettypefield.json | List all Asset Type Fields
-[**getAssetTypeFieldSingle**](AssetTypeFieldsApi.md#getAssetTypeFieldSingle) | **GET** /assettypefield/{uuid}.json | Retrieve an Asset Type Field
-[**postAssetTypeFieldCreate**](AssetTypeFieldsApi.md#postAssetTypeFieldCreate) | **POST** /assettypefield.json | Create a new Asset Type Field
-[**postAssetTypeFieldSingle**](AssetTypeFieldsApi.md#postAssetTypeFieldSingle) | **POST** /assettypefield/{uuid}.json | Update an Asset Type Field
+[**deleteAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#deleteAssetTypeFieldSingle) | **DELETE** /assettypefield/{uuid}.json | Delete an Asset Type Field
+[**getAssetTypeFieldAll()**](AssetTypeFieldsApi.md#getAssetTypeFieldAll) | **GET** /assettypefield.json | List all Asset Type Fields
+[**getAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#getAssetTypeFieldSingle) | **GET** /assettypefield/{uuid}.json | Retrieve an Asset Type Field
+[**postAssetTypeFieldCreate()**](AssetTypeFieldsApi.md#postAssetTypeFieldCreate) | **POST** /assettypefield.json | Create a new Asset Type Field
+[**postAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#postAssetTypeFieldSingle) | **POST** /assettypefield/{uuid}.json | Update an Asset Type Field
 
 
+## `deleteAssetTypeFieldSingle()`
 
-## deleteAssetTypeFieldSingle
-
-> \OpenAPI\Client\Model\Result deleteAssetTypeFieldSingle($uuid)
+```php
+deleteAssetTypeFieldSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete an Asset Type Field
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypeFieldsApi->deleteAssetTypeFieldSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAssetTypeFieldAll()`
 
-## getAssetTypeFieldAll
-
-> \OpenAPI\Client\Model\AssetTypeField[] getAssetTypeFieldAll()
+```php
+getAssetTypeFieldAll(): \OpenAPI\Client\Model\AssetTypeField[]
+```
 
 List all Asset Type Fields
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypeFieldsApi->getAssetTypeFieldAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAssetTypeFieldSingle()`
 
-## getAssetTypeFieldSingle
-
-> \OpenAPI\Client\Model\AssetTypeField getAssetTypeFieldSingle($uuid)
+```php
+getAssetTypeFieldSingle($uuid): \OpenAPI\Client\Model\AssetTypeField
+```
 
 Retrieve an Asset Type Field
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypeFieldsApi->getAssetTypeFieldSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAssetTypeFieldCreate()`
 
-## postAssetTypeFieldCreate
-
-> \OpenAPI\Client\Model\Result postAssetTypeFieldCreate($assetTypeField)
+```php
+postAssetTypeFieldCreate($assetTypeField): \OpenAPI\Client\Model\Result
+```
 
 Create a new Asset Type Field
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypeFieldsApi->postAssetTypeFieldCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAssetTypeFieldSingle()`
 
-## postAssetTypeFieldSingle
-
-> \OpenAPI\Client\Model\Result postAssetTypeFieldSingle($uuid, $assetTypeField)
+```php
+postAssetTypeFieldSingle($uuid, $assetTypeField): \OpenAPI\Client\Model\Result
+```
 
 Update an Asset Type Field
 
@@ -309,11 +307,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypeFieldsApi->postAssetTypeFieldSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -330,10 +326,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

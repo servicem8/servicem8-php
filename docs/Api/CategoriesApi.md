@@ -1,20 +1,21 @@
 # OpenAPI\Client\CategoriesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteCategorySingle**](CategoriesApi.md#deleteCategorySingle) | **DELETE** /category/{uuid}.json | Delete a Category
-[**getCategoryAll**](CategoriesApi.md#getCategoryAll) | **GET** /category.json | List all Categories
-[**getCategorySingle**](CategoriesApi.md#getCategorySingle) | **GET** /category/{uuid}.json | Retrieve a Category
-[**postCategoryCreate**](CategoriesApi.md#postCategoryCreate) | **POST** /category.json | Create a new Category
-[**postCategorySingle**](CategoriesApi.md#postCategorySingle) | **POST** /category/{uuid}.json | Update a Category
+[**deleteCategorySingle()**](CategoriesApi.md#deleteCategorySingle) | **DELETE** /category/{uuid}.json | Delete a Category
+[**getCategoryAll()**](CategoriesApi.md#getCategoryAll) | **GET** /category.json | List all Categories
+[**getCategorySingle()**](CategoriesApi.md#getCategorySingle) | **GET** /category/{uuid}.json | Retrieve a Category
+[**postCategoryCreate()**](CategoriesApi.md#postCategoryCreate) | **POST** /category.json | Create a new Category
+[**postCategorySingle()**](CategoriesApi.md#postCategorySingle) | **POST** /category/{uuid}.json | Update a Category
 
 
+## `deleteCategorySingle()`
 
-## deleteCategorySingle
-
-> \OpenAPI\Client\Model\Result deleteCategorySingle($uuid)
+```php
+deleteCategorySingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Category
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CategoriesApi->deleteCategorySingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getCategoryAll()`
 
-## getCategoryAll
-
-> \OpenAPI\Client\Model\Category[] getCategoryAll()
+```php
+getCategoryAll(): \OpenAPI\Client\Model\Category[]
+```
 
 List all Categories
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CategoriesApi->getCategoryAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getCategorySingle()`
 
-## getCategorySingle
-
-> \OpenAPI\Client\Model\Category getCategorySingle($uuid)
+```php
+getCategorySingle($uuid): \OpenAPI\Client\Model\Category
+```
 
 Retrieve a Category
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CategoriesApi->getCategorySingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postCategoryCreate()`
 
-## postCategoryCreate
-
-> \OpenAPI\Client\Model\Result postCategoryCreate($category)
+```php
+postCategoryCreate($category): \OpenAPI\Client\Model\Result
+```
 
 Create a new Category
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CategoriesApi->postCategoryCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postCategorySingle()`
 
-## postCategorySingle
-
-> \OpenAPI\Client\Model\Result postCategorySingle($uuid, $category)
+```php
+postCategorySingle($uuid, $category): \OpenAPI\Client\Model\Result
+```
 
 Update a Category
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CategoriesApi->postCategorySingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

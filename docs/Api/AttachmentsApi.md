@@ -1,20 +1,21 @@
 # OpenAPI\Client\AttachmentsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteAttachmentSingle**](AttachmentsApi.md#deleteAttachmentSingle) | **DELETE** /attachment/{uuid}.json | Delete an Attachment
-[**getAttachmentAll**](AttachmentsApi.md#getAttachmentAll) | **GET** /attachment.json | List all Attachments
-[**getAttachmentSingle**](AttachmentsApi.md#getAttachmentSingle) | **GET** /attachment/{uuid}.json | Retrieve an Attachment
-[**postAttachmentCreate**](AttachmentsApi.md#postAttachmentCreate) | **POST** /attachment.json | Create a new Attachment
-[**postAttachmentSingle**](AttachmentsApi.md#postAttachmentSingle) | **POST** /attachment/{uuid}.json | Update an Attachment
+[**deleteAttachmentSingle()**](AttachmentsApi.md#deleteAttachmentSingle) | **DELETE** /attachment/{uuid}.json | Delete an Attachment
+[**getAttachmentAll()**](AttachmentsApi.md#getAttachmentAll) | **GET** /attachment.json | List all Attachments
+[**getAttachmentSingle()**](AttachmentsApi.md#getAttachmentSingle) | **GET** /attachment/{uuid}.json | Retrieve an Attachment
+[**postAttachmentCreate()**](AttachmentsApi.md#postAttachmentCreate) | **POST** /attachment.json | Create a new Attachment
+[**postAttachmentSingle()**](AttachmentsApi.md#postAttachmentSingle) | **POST** /attachment/{uuid}.json | Update an Attachment
 
 
+## `deleteAttachmentSingle()`
 
-## deleteAttachmentSingle
-
-> \OpenAPI\Client\Model\Result deleteAttachmentSingle($uuid)
+```php
+deleteAttachmentSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete an Attachment
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AttachmentsApi->deleteAttachmentSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAttachmentAll()`
 
-## getAttachmentAll
-
-> \OpenAPI\Client\Model\Attachment[] getAttachmentAll()
+```php
+getAttachmentAll(): \OpenAPI\Client\Model\Attachment[]
+```
 
 List all Attachments
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AttachmentsApi->getAttachmentAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAttachmentSingle()`
 
-## getAttachmentSingle
-
-> \OpenAPI\Client\Model\Attachment getAttachmentSingle($uuid)
+```php
+getAttachmentSingle($uuid): \OpenAPI\Client\Model\Attachment
+```
 
 Retrieve an Attachment
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AttachmentsApi->getAttachmentSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAttachmentCreate()`
 
-## postAttachmentCreate
-
-> \OpenAPI\Client\Model\Result postAttachmentCreate($attachment)
+```php
+postAttachmentCreate($attachment): \OpenAPI\Client\Model\Result
+```
 
 Create a new Attachment
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AttachmentsApi->postAttachmentCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAttachmentSingle()`
 
-## postAttachmentSingle
-
-> \OpenAPI\Client\Model\Result postAttachmentSingle($uuid, $attachment)
+```php
+postAttachmentSingle($uuid, $attachment): \OpenAPI\Client\Model\Result
+```
 
 Update an Attachment
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AttachmentsApi->postAttachmentSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

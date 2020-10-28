@@ -1,20 +1,21 @@
 # OpenAPI\Client\FeedbackApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteFeedbackSingle**](FeedbackApi.md#deleteFeedbackSingle) | **DELETE** /feedback/{uuid}.json | Delete a Feedback
-[**getFeedbackAll**](FeedbackApi.md#getFeedbackAll) | **GET** /feedback.json | List all Feedback
-[**getFeedbackSingle**](FeedbackApi.md#getFeedbackSingle) | **GET** /feedback/{uuid}.json | Retrieve a Feedback
-[**postFeedbackCreate**](FeedbackApi.md#postFeedbackCreate) | **POST** /feedback.json | Create a new Feedback
-[**postFeedbackSingle**](FeedbackApi.md#postFeedbackSingle) | **POST** /feedback/{uuid}.json | Update a Feedback
+[**deleteFeedbackSingle()**](FeedbackApi.md#deleteFeedbackSingle) | **DELETE** /feedback/{uuid}.json | Delete a Feedback
+[**getFeedbackAll()**](FeedbackApi.md#getFeedbackAll) | **GET** /feedback.json | List all Feedback
+[**getFeedbackSingle()**](FeedbackApi.md#getFeedbackSingle) | **GET** /feedback/{uuid}.json | Retrieve a Feedback
+[**postFeedbackCreate()**](FeedbackApi.md#postFeedbackCreate) | **POST** /feedback.json | Create a new Feedback
+[**postFeedbackSingle()**](FeedbackApi.md#postFeedbackSingle) | **POST** /feedback/{uuid}.json | Update a Feedback
 
 
+## `deleteFeedbackSingle()`
 
-## deleteFeedbackSingle
-
-> \OpenAPI\Client\Model\Result deleteFeedbackSingle($uuid)
+```php
+deleteFeedbackSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Feedback
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FeedbackApi->deleteFeedbackSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getFeedbackAll()`
 
-## getFeedbackAll
-
-> \OpenAPI\Client\Model\Feedback[] getFeedbackAll()
+```php
+getFeedbackAll(): \OpenAPI\Client\Model\Feedback[]
+```
 
 List all Feedback
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FeedbackApi->getFeedbackAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getFeedbackSingle()`
 
-## getFeedbackSingle
-
-> \OpenAPI\Client\Model\Feedback getFeedbackSingle($uuid)
+```php
+getFeedbackSingle($uuid): \OpenAPI\Client\Model\Feedback
+```
 
 Retrieve a Feedback
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FeedbackApi->getFeedbackSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postFeedbackCreate()`
 
-## postFeedbackCreate
-
-> \OpenAPI\Client\Model\Result postFeedbackCreate($feedback)
+```php
+postFeedbackCreate($feedback): \OpenAPI\Client\Model\Result
+```
 
 Create a new Feedback
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FeedbackApi->postFeedbackCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postFeedbackSingle()`
 
-## postFeedbackSingle
-
-> \OpenAPI\Client\Model\Result postFeedbackSingle($uuid, $feedback)
+```php
+postFeedbackSingle($uuid, $feedback): \OpenAPI\Client\Model\Result
+```
 
 Update a Feedback
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FeedbackApi->postFeedbackSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

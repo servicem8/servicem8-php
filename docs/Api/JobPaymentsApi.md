@@ -1,20 +1,21 @@
 # OpenAPI\Client\JobPaymentsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteJobPaymentSingle**](JobPaymentsApi.md#deleteJobPaymentSingle) | **DELETE** /jobpayment/{uuid}.json | Delete a Job Payment
-[**getJobPaymentAll**](JobPaymentsApi.md#getJobPaymentAll) | **GET** /jobpayment.json | List all Job Payments
-[**getJobPaymentSingle**](JobPaymentsApi.md#getJobPaymentSingle) | **GET** /jobpayment/{uuid}.json | Retrieve a Job Payment
-[**postJobPaymentCreate**](JobPaymentsApi.md#postJobPaymentCreate) | **POST** /jobpayment.json | Create a new Job Payment
-[**postJobPaymentSingle**](JobPaymentsApi.md#postJobPaymentSingle) | **POST** /jobpayment/{uuid}.json | Update a Job Payment
+[**deleteJobPaymentSingle()**](JobPaymentsApi.md#deleteJobPaymentSingle) | **DELETE** /jobpayment/{uuid}.json | Delete a Job Payment
+[**getJobPaymentAll()**](JobPaymentsApi.md#getJobPaymentAll) | **GET** /jobpayment.json | List all Job Payments
+[**getJobPaymentSingle()**](JobPaymentsApi.md#getJobPaymentSingle) | **GET** /jobpayment/{uuid}.json | Retrieve a Job Payment
+[**postJobPaymentCreate()**](JobPaymentsApi.md#postJobPaymentCreate) | **POST** /jobpayment.json | Create a new Job Payment
+[**postJobPaymentSingle()**](JobPaymentsApi.md#postJobPaymentSingle) | **POST** /jobpayment/{uuid}.json | Update a Job Payment
 
 
+## `deleteJobPaymentSingle()`
 
-## deleteJobPaymentSingle
-
-> \OpenAPI\Client\Model\Result deleteJobPaymentSingle($uuid)
+```php
+deleteJobPaymentSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Job Payment
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobPaymentsApi->deleteJobPaymentSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobPaymentAll()`
 
-## getJobPaymentAll
-
-> \OpenAPI\Client\Model\JobPayment[] getJobPaymentAll()
+```php
+getJobPaymentAll(): \OpenAPI\Client\Model\JobPayment[]
+```
 
 List all Job Payments
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobPaymentsApi->getJobPaymentAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobPaymentSingle()`
 
-## getJobPaymentSingle
-
-> \OpenAPI\Client\Model\JobPayment getJobPaymentSingle($uuid)
+```php
+getJobPaymentSingle($uuid): \OpenAPI\Client\Model\JobPayment
+```
 
 Retrieve a Job Payment
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobPaymentsApi->getJobPaymentSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobPaymentCreate()`
 
-## postJobPaymentCreate
-
-> \OpenAPI\Client\Model\Result postJobPaymentCreate($jobPayment)
+```php
+postJobPaymentCreate($jobPayment): \OpenAPI\Client\Model\Result
+```
 
 Create a new Job Payment
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobPaymentsApi->postJobPaymentCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobPaymentSingle()`
 
-## postJobPaymentSingle
-
-> \OpenAPI\Client\Model\Result postJobPaymentSingle($uuid, $jobPayment)
+```php
+postJobPaymentSingle($uuid, $jobPayment): \OpenAPI\Client\Model\Result
+```
 
 Update a Job Payment
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobPaymentsApi->postJobPaymentSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

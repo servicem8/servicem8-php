@@ -1,20 +1,21 @@
 # OpenAPI\Client\SMSTemplatesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteSMSTemplateSingle**](SMSTemplatesApi.md#deleteSMSTemplateSingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template
-[**getSMSTemplateAll**](SMSTemplatesApi.md#getSMSTemplateAll) | **GET** /smstemplate.json | List all SMS Templates
-[**getSMSTemplateSingle**](SMSTemplatesApi.md#getSMSTemplateSingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template
-[**postSMSTemplateCreate**](SMSTemplatesApi.md#postSMSTemplateCreate) | **POST** /smstemplate.json | Create a new SMS Template
-[**postSMSTemplateSingle**](SMSTemplatesApi.md#postSMSTemplateSingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template
+[**deleteSMSTemplateSingle()**](SMSTemplatesApi.md#deleteSMSTemplateSingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template
+[**getSMSTemplateAll()**](SMSTemplatesApi.md#getSMSTemplateAll) | **GET** /smstemplate.json | List all SMS Templates
+[**getSMSTemplateSingle()**](SMSTemplatesApi.md#getSMSTemplateSingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template
+[**postSMSTemplateCreate()**](SMSTemplatesApi.md#postSMSTemplateCreate) | **POST** /smstemplate.json | Create a new SMS Template
+[**postSMSTemplateSingle()**](SMSTemplatesApi.md#postSMSTemplateSingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template
 
 
+## `deleteSMSTemplateSingle()`
 
-## deleteSMSTemplateSingle
-
-> \OpenAPI\Client\Model\Result deleteSMSTemplateSingle($uuid)
+```php
+deleteSMSTemplateSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a SMS Template
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SMSTemplatesApi->deleteSMSTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSMSTemplateAll()`
 
-## getSMSTemplateAll
-
-> \OpenAPI\Client\Model\SMSTemplate[] getSMSTemplateAll()
+```php
+getSMSTemplateAll(): \OpenAPI\Client\Model\SMSTemplate[]
+```
 
 List all SMS Templates
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SMSTemplatesApi->getSMSTemplateAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getSMSTemplateSingle()`
 
-## getSMSTemplateSingle
-
-> \OpenAPI\Client\Model\SMSTemplate getSMSTemplateSingle($uuid)
+```php
+getSMSTemplateSingle($uuid): \OpenAPI\Client\Model\SMSTemplate
+```
 
 Retrieve a SMS Template
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SMSTemplatesApi->getSMSTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postSMSTemplateCreate()`
 
-## postSMSTemplateCreate
-
-> \OpenAPI\Client\Model\Result postSMSTemplateCreate($sMSTemplate)
+```php
+postSMSTemplateCreate($sMSTemplate): \OpenAPI\Client\Model\Result
+```
 
 Create a new SMS Template
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SMSTemplatesApi->postSMSTemplateCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postSMSTemplateSingle()`
 
-## postSMSTemplateSingle
-
-> \OpenAPI\Client\Model\Result postSMSTemplateSingle($uuid, $sMSTemplate)
+```php
+postSMSTemplateSingle($uuid, $sMSTemplate): \OpenAPI\Client\Model\Result
+```
 
 Update a SMS Template
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling SMSTemplatesApi->postSMSTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

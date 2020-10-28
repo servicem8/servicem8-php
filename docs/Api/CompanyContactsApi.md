@@ -1,20 +1,21 @@
 # OpenAPI\Client\CompanyContactsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteCompanyContactSingle**](CompanyContactsApi.md#deleteCompanyContactSingle) | **DELETE** /companycontact/{uuid}.json | Delete a Company Contact
-[**getCompanyContactAll**](CompanyContactsApi.md#getCompanyContactAll) | **GET** /companycontact.json | List all Company Contacts
-[**getCompanyContactSingle**](CompanyContactsApi.md#getCompanyContactSingle) | **GET** /companycontact/{uuid}.json | Retrieve a Company Contact
-[**postCompanyContactCreate**](CompanyContactsApi.md#postCompanyContactCreate) | **POST** /companycontact.json | Create a new Company Contact
-[**postCompanyContactSingle**](CompanyContactsApi.md#postCompanyContactSingle) | **POST** /companycontact/{uuid}.json | Update a Company Contact
+[**deleteCompanyContactSingle()**](CompanyContactsApi.md#deleteCompanyContactSingle) | **DELETE** /companycontact/{uuid}.json | Delete a Company Contact
+[**getCompanyContactAll()**](CompanyContactsApi.md#getCompanyContactAll) | **GET** /companycontact.json | List all Company Contacts
+[**getCompanyContactSingle()**](CompanyContactsApi.md#getCompanyContactSingle) | **GET** /companycontact/{uuid}.json | Retrieve a Company Contact
+[**postCompanyContactCreate()**](CompanyContactsApi.md#postCompanyContactCreate) | **POST** /companycontact.json | Create a new Company Contact
+[**postCompanyContactSingle()**](CompanyContactsApi.md#postCompanyContactSingle) | **POST** /companycontact/{uuid}.json | Update a Company Contact
 
 
+## `deleteCompanyContactSingle()`
 
-## deleteCompanyContactSingle
-
-> \OpenAPI\Client\Model\Result deleteCompanyContactSingle($uuid)
+```php
+deleteCompanyContactSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Company Contact
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompanyContactsApi->deleteCompanyContactSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getCompanyContactAll()`
 
-## getCompanyContactAll
-
-> \OpenAPI\Client\Model\CompanyContact[] getCompanyContactAll()
+```php
+getCompanyContactAll(): \OpenAPI\Client\Model\CompanyContact[]
+```
 
 List all Company Contacts
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompanyContactsApi->getCompanyContactAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getCompanyContactSingle()`
 
-## getCompanyContactSingle
-
-> \OpenAPI\Client\Model\CompanyContact getCompanyContactSingle($uuid)
+```php
+getCompanyContactSingle($uuid): \OpenAPI\Client\Model\CompanyContact
+```
 
 Retrieve a Company Contact
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompanyContactsApi->getCompanyContactSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postCompanyContactCreate()`
 
-## postCompanyContactCreate
-
-> \OpenAPI\Client\Model\Result postCompanyContactCreate($companyContact)
+```php
+postCompanyContactCreate($companyContact): \OpenAPI\Client\Model\Result
+```
 
 Create a new Company Contact
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompanyContactsApi->postCompanyContactCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postCompanyContactSingle()`
 
-## postCompanyContactSingle
-
-> \OpenAPI\Client\Model\Result postCompanyContactSingle($uuid, $companyContact)
+```php
+postCompanyContactSingle($uuid, $companyContact): \OpenAPI\Client\Model\Result
+```
 
 Update a Company Contact
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling CompanyContactsApi->postCompanyContactSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

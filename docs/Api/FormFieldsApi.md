@@ -1,20 +1,21 @@
 # OpenAPI\Client\FormFieldsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteFormFieldSingle**](FormFieldsApi.md#deleteFormFieldSingle) | **DELETE** /formfield/{uuid}.json | Delete a Form Field
-[**getFormFieldAll**](FormFieldsApi.md#getFormFieldAll) | **GET** /formfield.json | List all Form Fields
-[**getFormFieldSingle**](FormFieldsApi.md#getFormFieldSingle) | **GET** /formfield/{uuid}.json | Retrieve a Form Field
-[**postFormFieldCreate**](FormFieldsApi.md#postFormFieldCreate) | **POST** /formfield.json | Create a new Form Field
-[**postFormFieldSingle**](FormFieldsApi.md#postFormFieldSingle) | **POST** /formfield/{uuid}.json | Update a Form Field
+[**deleteFormFieldSingle()**](FormFieldsApi.md#deleteFormFieldSingle) | **DELETE** /formfield/{uuid}.json | Delete a Form Field
+[**getFormFieldAll()**](FormFieldsApi.md#getFormFieldAll) | **GET** /formfield.json | List all Form Fields
+[**getFormFieldSingle()**](FormFieldsApi.md#getFormFieldSingle) | **GET** /formfield/{uuid}.json | Retrieve a Form Field
+[**postFormFieldCreate()**](FormFieldsApi.md#postFormFieldCreate) | **POST** /formfield.json | Create a new Form Field
+[**postFormFieldSingle()**](FormFieldsApi.md#postFormFieldSingle) | **POST** /formfield/{uuid}.json | Update a Form Field
 
 
+## `deleteFormFieldSingle()`
 
-## deleteFormFieldSingle
-
-> \OpenAPI\Client\Model\Result deleteFormFieldSingle($uuid)
+```php
+deleteFormFieldSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Form Field
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->deleteFormFieldSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getFormFieldAll()`
 
-## getFormFieldAll
-
-> \OpenAPI\Client\Model\FormField[] getFormFieldAll()
+```php
+getFormFieldAll(): \OpenAPI\Client\Model\FormField[]
+```
 
 List all Form Fields
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->getFormFieldAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getFormFieldSingle()`
 
-## getFormFieldSingle
-
-> \OpenAPI\Client\Model\FormField getFormFieldSingle($uuid)
+```php
+getFormFieldSingle($uuid): \OpenAPI\Client\Model\FormField
+```
 
 Retrieve a Form Field
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->getFormFieldSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postFormFieldCreate()`
 
-## postFormFieldCreate
-
-> \OpenAPI\Client\Model\Result postFormFieldCreate($formField)
+```php
+postFormFieldCreate($formField): \OpenAPI\Client\Model\Result
+```
 
 Create a new Form Field
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->postFormFieldCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postFormFieldSingle()`
 
-## postFormFieldSingle
-
-> \OpenAPI\Client\Model\Result postFormFieldSingle($uuid, $formField)
+```php
+postFormFieldSingle($uuid, $formField): \OpenAPI\Client\Model\Result
+```
 
 Update a Form Field
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling FormFieldsApi->postFormFieldSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

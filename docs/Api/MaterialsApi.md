@@ -1,20 +1,21 @@
 # OpenAPI\Client\MaterialsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteMaterialSingle**](MaterialsApi.md#deleteMaterialSingle) | **DELETE** /material/{uuid}.json | Delete a Material
-[**getMaterialAll**](MaterialsApi.md#getMaterialAll) | **GET** /material.json | List all Materials
-[**getMaterialSingle**](MaterialsApi.md#getMaterialSingle) | **GET** /material/{uuid}.json | Retrieve a Material
-[**postMaterialCreate**](MaterialsApi.md#postMaterialCreate) | **POST** /material.json | Create a new Material
-[**postMaterialSingle**](MaterialsApi.md#postMaterialSingle) | **POST** /material/{uuid}.json | Update a Material
+[**deleteMaterialSingle()**](MaterialsApi.md#deleteMaterialSingle) | **DELETE** /material/{uuid}.json | Delete a Material
+[**getMaterialAll()**](MaterialsApi.md#getMaterialAll) | **GET** /material.json | List all Materials
+[**getMaterialSingle()**](MaterialsApi.md#getMaterialSingle) | **GET** /material/{uuid}.json | Retrieve a Material
+[**postMaterialCreate()**](MaterialsApi.md#postMaterialCreate) | **POST** /material.json | Create a new Material
+[**postMaterialSingle()**](MaterialsApi.md#postMaterialSingle) | **POST** /material/{uuid}.json | Update a Material
 
 
+## `deleteMaterialSingle()`
 
-## deleteMaterialSingle
-
-> \OpenAPI\Client\Model\Result deleteMaterialSingle($uuid)
+```php
+deleteMaterialSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Material
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling MaterialsApi->deleteMaterialSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getMaterialAll()`
 
-## getMaterialAll
-
-> \OpenAPI\Client\Model\Material[] getMaterialAll()
+```php
+getMaterialAll(): \OpenAPI\Client\Model\Material[]
+```
 
 List all Materials
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling MaterialsApi->getMaterialAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getMaterialSingle()`
 
-## getMaterialSingle
-
-> \OpenAPI\Client\Model\Material getMaterialSingle($uuid)
+```php
+getMaterialSingle($uuid): \OpenAPI\Client\Model\Material
+```
 
 Retrieve a Material
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling MaterialsApi->getMaterialSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postMaterialCreate()`
 
-## postMaterialCreate
-
-> \OpenAPI\Client\Model\Result postMaterialCreate($material)
+```php
+postMaterialCreate($material): \OpenAPI\Client\Model\Result
+```
 
 Create a new Material
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling MaterialsApi->postMaterialCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postMaterialSingle()`
 
-## postMaterialSingle
-
-> \OpenAPI\Client\Model\Result postMaterialSingle($uuid, $material)
+```php
+postMaterialSingle($uuid, $material): \OpenAPI\Client\Model\Result
+```
 
 Update a Material
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling MaterialsApi->postMaterialSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

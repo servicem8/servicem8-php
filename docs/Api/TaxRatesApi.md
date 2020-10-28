@@ -1,20 +1,21 @@
 # OpenAPI\Client\TaxRatesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteTaxRateSingle**](TaxRatesApi.md#deleteTaxRateSingle) | **DELETE** /taxrate/{uuid}.json | Delete a Tax Rate
-[**getTaxRateAll**](TaxRatesApi.md#getTaxRateAll) | **GET** /taxrate.json | List all Tax Rates
-[**getTaxRateSingle**](TaxRatesApi.md#getTaxRateSingle) | **GET** /taxrate/{uuid}.json | Retrieve a Tax Rate
-[**postTaxRateCreate**](TaxRatesApi.md#postTaxRateCreate) | **POST** /taxrate.json | Create a new Tax Rate
-[**postTaxRateSingle**](TaxRatesApi.md#postTaxRateSingle) | **POST** /taxrate/{uuid}.json | Update a Tax Rate
+[**deleteTaxRateSingle()**](TaxRatesApi.md#deleteTaxRateSingle) | **DELETE** /taxrate/{uuid}.json | Delete a Tax Rate
+[**getTaxRateAll()**](TaxRatesApi.md#getTaxRateAll) | **GET** /taxrate.json | List all Tax Rates
+[**getTaxRateSingle()**](TaxRatesApi.md#getTaxRateSingle) | **GET** /taxrate/{uuid}.json | Retrieve a Tax Rate
+[**postTaxRateCreate()**](TaxRatesApi.md#postTaxRateCreate) | **POST** /taxrate.json | Create a new Tax Rate
+[**postTaxRateSingle()**](TaxRatesApi.md#postTaxRateSingle) | **POST** /taxrate/{uuid}.json | Update a Tax Rate
 
 
+## `deleteTaxRateSingle()`
 
-## deleteTaxRateSingle
-
-> \OpenAPI\Client\Model\Result deleteTaxRateSingle($uuid)
+```php
+deleteTaxRateSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Tax Rate
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TaxRatesApi->deleteTaxRateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getTaxRateAll()`
 
-## getTaxRateAll
-
-> \OpenAPI\Client\Model\TaxRate[] getTaxRateAll()
+```php
+getTaxRateAll(): \OpenAPI\Client\Model\TaxRate[]
+```
 
 List all Tax Rates
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TaxRatesApi->getTaxRateAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getTaxRateSingle()`
 
-## getTaxRateSingle
-
-> \OpenAPI\Client\Model\TaxRate getTaxRateSingle($uuid)
+```php
+getTaxRateSingle($uuid): \OpenAPI\Client\Model\TaxRate
+```
 
 Retrieve a Tax Rate
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TaxRatesApi->getTaxRateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postTaxRateCreate()`
 
-## postTaxRateCreate
-
-> \OpenAPI\Client\Model\Result postTaxRateCreate($taxRate)
+```php
+postTaxRateCreate($taxRate): \OpenAPI\Client\Model\Result
+```
 
 Create a new Tax Rate
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TaxRatesApi->postTaxRateCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postTaxRateSingle()`
 
-## postTaxRateSingle
-
-> \OpenAPI\Client\Model\Result postTaxRateSingle($uuid, $taxRate)
+```php
+postTaxRateSingle($uuid, $taxRate): \OpenAPI\Client\Model\Result
+```
 
 Update a Tax Rate
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling TaxRatesApi->postTaxRateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

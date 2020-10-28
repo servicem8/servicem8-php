@@ -1,20 +1,21 @@
 # OpenAPI\Client\NotesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteNoteSingle**](NotesApi.md#deleteNoteSingle) | **DELETE** /note/{uuid}.json | Delete a Note
-[**getNoteAll**](NotesApi.md#getNoteAll) | **GET** /note.json | List all Notes
-[**getNoteSingle**](NotesApi.md#getNoteSingle) | **GET** /note/{uuid}.json | Retrieve a Note
-[**postNoteCreate**](NotesApi.md#postNoteCreate) | **POST** /note.json | Create a new Note
-[**postNoteSingle**](NotesApi.md#postNoteSingle) | **POST** /note/{uuid}.json | Update a Note
+[**deleteNoteSingle()**](NotesApi.md#deleteNoteSingle) | **DELETE** /note/{uuid}.json | Delete a Note
+[**getNoteAll()**](NotesApi.md#getNoteAll) | **GET** /note.json | List all Notes
+[**getNoteSingle()**](NotesApi.md#getNoteSingle) | **GET** /note/{uuid}.json | Retrieve a Note
+[**postNoteCreate()**](NotesApi.md#postNoteCreate) | **POST** /note.json | Create a new Note
+[**postNoteSingle()**](NotesApi.md#postNoteSingle) | **POST** /note/{uuid}.json | Update a Note
 
 
+## `deleteNoteSingle()`
 
-## deleteNoteSingle
-
-> \OpenAPI\Client\Model\Result deleteNoteSingle($uuid)
+```php
+deleteNoteSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Note
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NotesApi->deleteNoteSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getNoteAll()`
 
-## getNoteAll
-
-> \OpenAPI\Client\Model\Note[] getNoteAll()
+```php
+getNoteAll(): \OpenAPI\Client\Model\Note[]
+```
 
 List all Notes
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NotesApi->getNoteAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getNoteSingle()`
 
-## getNoteSingle
-
-> \OpenAPI\Client\Model\Note getNoteSingle($uuid)
+```php
+getNoteSingle($uuid): \OpenAPI\Client\Model\Note
+```
 
 Retrieve a Note
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NotesApi->getNoteSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postNoteCreate()`
 
-## postNoteCreate
-
-> \OpenAPI\Client\Model\Result postNoteCreate($note)
+```php
+postNoteCreate($note): \OpenAPI\Client\Model\Result
+```
 
 Create a new Note
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NotesApi->postNoteCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postNoteSingle()`
 
-## postNoteSingle
-
-> \OpenAPI\Client\Model\Result postNoteSingle($uuid, $note)
+```php
+postNoteSingle($uuid, $note): \OpenAPI\Client\Model\Result
+```
 
 Update a Note
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling NotesApi->postNoteSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

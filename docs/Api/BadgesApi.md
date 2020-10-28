@@ -1,20 +1,21 @@
 # OpenAPI\Client\BadgesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteBadgeSingle**](BadgesApi.md#deleteBadgeSingle) | **DELETE** /badge/{uuid}.json | Delete a Badge
-[**getBadgeAll**](BadgesApi.md#getBadgeAll) | **GET** /badge.json | List all Badges
-[**getBadgeSingle**](BadgesApi.md#getBadgeSingle) | **GET** /badge/{uuid}.json | Retrieve a Badge
-[**postBadgeCreate**](BadgesApi.md#postBadgeCreate) | **POST** /badge.json | Create a new Badge
-[**postBadgeSingle**](BadgesApi.md#postBadgeSingle) | **POST** /badge/{uuid}.json | Update a Badge
+[**deleteBadgeSingle()**](BadgesApi.md#deleteBadgeSingle) | **DELETE** /badge/{uuid}.json | Delete a Badge
+[**getBadgeAll()**](BadgesApi.md#getBadgeAll) | **GET** /badge.json | List all Badges
+[**getBadgeSingle()**](BadgesApi.md#getBadgeSingle) | **GET** /badge/{uuid}.json | Retrieve a Badge
+[**postBadgeCreate()**](BadgesApi.md#postBadgeCreate) | **POST** /badge.json | Create a new Badge
+[**postBadgeSingle()**](BadgesApi.md#postBadgeSingle) | **POST** /badge/{uuid}.json | Update a Badge
 
 
+## `deleteBadgeSingle()`
 
-## deleteBadgeSingle
-
-> \OpenAPI\Client\Model\Result deleteBadgeSingle($uuid)
+```php
+deleteBadgeSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Badge
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BadgesApi->deleteBadgeSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getBadgeAll()`
 
-## getBadgeAll
-
-> \OpenAPI\Client\Model\Badge[] getBadgeAll()
+```php
+getBadgeAll(): \OpenAPI\Client\Model\Badge[]
+```
 
 List all Badges
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BadgesApi->getBadgeAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getBadgeSingle()`
 
-## getBadgeSingle
-
-> \OpenAPI\Client\Model\Badge getBadgeSingle($uuid)
+```php
+getBadgeSingle($uuid): \OpenAPI\Client\Model\Badge
+```
 
 Retrieve a Badge
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BadgesApi->getBadgeSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postBadgeCreate()`
 
-## postBadgeCreate
-
-> \OpenAPI\Client\Model\Result postBadgeCreate($badge)
+```php
+postBadgeCreate($badge): \OpenAPI\Client\Model\Result
+```
 
 Create a new Badge
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BadgesApi->postBadgeCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postBadgeSingle()`
 
-## postBadgeSingle
-
-> \OpenAPI\Client\Model\Result postBadgeSingle($uuid, $badge)
+```php
+postBadgeSingle($uuid, $badge): \OpenAPI\Client\Model\Result
+```
 
 Update a Badge
 
@@ -309,11 +307,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling BadgesApi->postBadgeSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -330,10 +326,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

@@ -1,20 +1,21 @@
 # OpenAPI\Client\JobsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteJobSingle**](JobsApi.md#deleteJobSingle) | **DELETE** /job/{uuid}.json | Delete a Job
-[**getJobAll**](JobsApi.md#getJobAll) | **GET** /job.json | List all Jobs
-[**getJobSingle**](JobsApi.md#getJobSingle) | **GET** /job/{uuid}.json | Retrieve a Job
-[**postJobCreate**](JobsApi.md#postJobCreate) | **POST** /job.json | Create a new Job
-[**postJobSingle**](JobsApi.md#postJobSingle) | **POST** /job/{uuid}.json | Update a Job
+[**deleteJobSingle()**](JobsApi.md#deleteJobSingle) | **DELETE** /job/{uuid}.json | Delete a Job
+[**getJobAll()**](JobsApi.md#getJobAll) | **GET** /job.json | List all Jobs
+[**getJobSingle()**](JobsApi.md#getJobSingle) | **GET** /job/{uuid}.json | Retrieve a Job
+[**postJobCreate()**](JobsApi.md#postJobCreate) | **POST** /job.json | Create a new Job
+[**postJobSingle()**](JobsApi.md#postJobSingle) | **POST** /job/{uuid}.json | Update a Job
 
 
+## `deleteJobSingle()`
 
-## deleteJobSingle
-
-> \OpenAPI\Client\Model\Result deleteJobSingle($uuid)
+```php
+deleteJobSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Job
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobsApi->deleteJobSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobAll()`
 
-## getJobAll
-
-> \OpenAPI\Client\Model\Job[] getJobAll()
+```php
+getJobAll(): \OpenAPI\Client\Model\Job[]
+```
 
 List all Jobs
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobsApi->getJobAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobSingle()`
 
-## getJobSingle
-
-> \OpenAPI\Client\Model\Job getJobSingle($uuid)
+```php
+getJobSingle($uuid): \OpenAPI\Client\Model\Job
+```
 
 Retrieve a Job
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobsApi->getJobSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobCreate()`
 
-## postJobCreate
-
-> \OpenAPI\Client\Model\Result postJobCreate($job)
+```php
+postJobCreate($job): \OpenAPI\Client\Model\Result
+```
 
 Create a new Job
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobsApi->postJobCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobSingle()`
 
-## postJobSingle
-
-> \OpenAPI\Client\Model\Result postJobSingle($uuid, $job)
+```php
+postJobSingle($uuid, $job): \OpenAPI\Client\Model\Result
+```
 
 Update a Job
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobsApi->postJobSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

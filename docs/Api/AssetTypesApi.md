@@ -1,20 +1,21 @@
 # OpenAPI\Client\AssetTypesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteAssetTypeSingle**](AssetTypesApi.md#deleteAssetTypeSingle) | **DELETE** /assettype/{uuid}.json | Delete an Asset Type
-[**getAssetTypeAll**](AssetTypesApi.md#getAssetTypeAll) | **GET** /assettype.json | List all Asset Types
-[**getAssetTypeSingle**](AssetTypesApi.md#getAssetTypeSingle) | **GET** /assettype/{uuid}.json | Retrieve an Asset Type
-[**postAssetTypeCreate**](AssetTypesApi.md#postAssetTypeCreate) | **POST** /assettype.json | Create a new Asset Type
-[**postAssetTypeSingle**](AssetTypesApi.md#postAssetTypeSingle) | **POST** /assettype/{uuid}.json | Update an Asset Type
+[**deleteAssetTypeSingle()**](AssetTypesApi.md#deleteAssetTypeSingle) | **DELETE** /assettype/{uuid}.json | Delete an Asset Type
+[**getAssetTypeAll()**](AssetTypesApi.md#getAssetTypeAll) | **GET** /assettype.json | List all Asset Types
+[**getAssetTypeSingle()**](AssetTypesApi.md#getAssetTypeSingle) | **GET** /assettype/{uuid}.json | Retrieve an Asset Type
+[**postAssetTypeCreate()**](AssetTypesApi.md#postAssetTypeCreate) | **POST** /assettype.json | Create a new Asset Type
+[**postAssetTypeSingle()**](AssetTypesApi.md#postAssetTypeSingle) | **POST** /assettype/{uuid}.json | Update an Asset Type
 
 
+## `deleteAssetTypeSingle()`
 
-## deleteAssetTypeSingle
-
-> \OpenAPI\Client\Model\Result deleteAssetTypeSingle($uuid)
+```php
+deleteAssetTypeSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete an Asset Type
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypesApi->deleteAssetTypeSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAssetTypeAll()`
 
-## getAssetTypeAll
-
-> \OpenAPI\Client\Model\AssetType[] getAssetTypeAll()
+```php
+getAssetTypeAll(): \OpenAPI\Client\Model\AssetType[]
+```
 
 List all Asset Types
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypesApi->getAssetTypeAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getAssetTypeSingle()`
 
-## getAssetTypeSingle
-
-> \OpenAPI\Client\Model\AssetType getAssetTypeSingle($uuid)
+```php
+getAssetTypeSingle($uuid): \OpenAPI\Client\Model\AssetType
+```
 
 Retrieve an Asset Type
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypesApi->getAssetTypeSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAssetTypeCreate()`
 
-## postAssetTypeCreate
-
-> \OpenAPI\Client\Model\Result postAssetTypeCreate($assetType)
+```php
+postAssetTypeCreate($assetType): \OpenAPI\Client\Model\Result
+```
 
 Create a new Asset Type
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypesApi->postAssetTypeCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postAssetTypeSingle()`
 
-## postAssetTypeSingle
-
-> \OpenAPI\Client\Model\Result postAssetTypeSingle($uuid, $assetType)
+```php
+postAssetTypeSingle($uuid, $assetType): \OpenAPI\Client\Model\Result
+```
 
 Update an Asset Type
 
@@ -309,11 +307,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling AssetTypesApi->postAssetTypeSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -330,10 +326,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

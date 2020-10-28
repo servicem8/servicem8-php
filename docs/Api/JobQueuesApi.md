@@ -1,20 +1,21 @@
 # OpenAPI\Client\JobQueuesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteJobQueueSingle**](JobQueuesApi.md#deleteJobQueueSingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue
-[**getJobQueueAll**](JobQueuesApi.md#getJobQueueAll) | **GET** /queue.json | List all Job Queues
-[**getJobQueueSingle**](JobQueuesApi.md#getJobQueueSingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue
-[**postJobQueueCreate**](JobQueuesApi.md#postJobQueueCreate) | **POST** /queue.json | Create a new Job Queue
-[**postJobQueueSingle**](JobQueuesApi.md#postJobQueueSingle) | **POST** /queue/{uuid}.json | Update a Job Queue
+[**deleteJobQueueSingle()**](JobQueuesApi.md#deleteJobQueueSingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue
+[**getJobQueueAll()**](JobQueuesApi.md#getJobQueueAll) | **GET** /queue.json | List all Job Queues
+[**getJobQueueSingle()**](JobQueuesApi.md#getJobQueueSingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue
+[**postJobQueueCreate()**](JobQueuesApi.md#postJobQueueCreate) | **POST** /queue.json | Create a new Job Queue
+[**postJobQueueSingle()**](JobQueuesApi.md#postJobQueueSingle) | **POST** /queue/{uuid}.json | Update a Job Queue
 
 
+## `deleteJobQueueSingle()`
 
-## deleteJobQueueSingle
-
-> \OpenAPI\Client\Model\Result deleteJobQueueSingle($uuid)
+```php
+deleteJobQueueSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Job Queue
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobQueuesApi->deleteJobQueueSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobQueueAll()`
 
-## getJobQueueAll
-
-> \OpenAPI\Client\Model\JobQueue[] getJobQueueAll()
+```php
+getJobQueueAll(): \OpenAPI\Client\Model\JobQueue[]
+```
 
 List all Job Queues
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobQueuesApi->getJobQueueAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobQueueSingle()`
 
-## getJobQueueSingle
-
-> \OpenAPI\Client\Model\JobQueue getJobQueueSingle($uuid)
+```php
+getJobQueueSingle($uuid): \OpenAPI\Client\Model\JobQueue
+```
 
 Retrieve a Job Queue
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobQueuesApi->getJobQueueSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobQueueCreate()`
 
-## postJobQueueCreate
-
-> \OpenAPI\Client\Model\Result postJobQueueCreate($jobQueue)
+```php
+postJobQueueCreate($jobQueue): \OpenAPI\Client\Model\Result
+```
 
 Create a new Job Queue
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobQueuesApi->postJobQueueCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobQueueSingle()`
 
-## postJobQueueSingle
-
-> \OpenAPI\Client\Model\Result postJobQueueSingle($uuid, $jobQueue)
+```php
+postJobQueueSingle($uuid, $jobQueue): \OpenAPI\Client\Model\Result
+```
 
 Update a Job Queue
 
@@ -311,11 +309,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobQueuesApi->postJobQueueSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -332,10 +328,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

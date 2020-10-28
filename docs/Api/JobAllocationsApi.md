@@ -1,20 +1,21 @@
 # OpenAPI\Client\JobAllocationsApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteJobAllocationSingle**](JobAllocationsApi.md#deleteJobAllocationSingle) | **DELETE** /joballocation/{uuid}.json | Delete a Job Allocation
-[**getJobAllocationAll**](JobAllocationsApi.md#getJobAllocationAll) | **GET** /joballocation.json | List all Job Allocations
-[**getJobAllocationSingle**](JobAllocationsApi.md#getJobAllocationSingle) | **GET** /joballocation/{uuid}.json | Retrieve a Job Allocation
-[**postJobAllocationCreate**](JobAllocationsApi.md#postJobAllocationCreate) | **POST** /joballocation.json | Create a new Job Allocation
-[**postJobAllocationSingle**](JobAllocationsApi.md#postJobAllocationSingle) | **POST** /joballocation/{uuid}.json | Update a Job Allocation
+[**deleteJobAllocationSingle()**](JobAllocationsApi.md#deleteJobAllocationSingle) | **DELETE** /joballocation/{uuid}.json | Delete a Job Allocation
+[**getJobAllocationAll()**](JobAllocationsApi.md#getJobAllocationAll) | **GET** /joballocation.json | List all Job Allocations
+[**getJobAllocationSingle()**](JobAllocationsApi.md#getJobAllocationSingle) | **GET** /joballocation/{uuid}.json | Retrieve a Job Allocation
+[**postJobAllocationCreate()**](JobAllocationsApi.md#postJobAllocationCreate) | **POST** /joballocation.json | Create a new Job Allocation
+[**postJobAllocationSingle()**](JobAllocationsApi.md#postJobAllocationSingle) | **POST** /joballocation/{uuid}.json | Update a Job Allocation
 
 
+## `deleteJobAllocationSingle()`
 
-## deleteJobAllocationSingle
-
-> \OpenAPI\Client\Model\Result deleteJobAllocationSingle($uuid)
+```php
+deleteJobAllocationSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete a Job Allocation
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobAllocationsApi->deleteJobAllocationSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobAllocationAll()`
 
-## getJobAllocationAll
-
-> \OpenAPI\Client\Model\JobAllocation[] getJobAllocationAll()
+```php
+getJobAllocationAll(): \OpenAPI\Client\Model\JobAllocation[]
+```
 
 List all Job Allocations
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobAllocationsApi->getJobAllocationAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getJobAllocationSingle()`
 
-## getJobAllocationSingle
-
-> \OpenAPI\Client\Model\JobAllocation getJobAllocationSingle($uuid)
+```php
+getJobAllocationSingle($uuid): \OpenAPI\Client\Model\JobAllocation
+```
 
 Retrieve a Job Allocation
 
@@ -178,11 +178,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobAllocationsApi->getJobAllocationSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -199,16 +197,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobAllocationCreate()`
 
-## postJobAllocationCreate
-
-> \OpenAPI\Client\Model\Result postJobAllocationCreate($jobAllocation)
+```php
+postJobAllocationCreate($jobAllocation): \OpenAPI\Client\Model\Result
+```
 
 Create a new Job Allocation
 
@@ -244,11 +243,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobAllocationsApi->postJobAllocationCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -264,17 +261,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postJobAllocationSingle()`
 
-## postJobAllocationSingle
-
-> \OpenAPI\Client\Model\Result postJobAllocationSingle($uuid, $jobAllocation)
+```php
+postJobAllocationSingle($uuid, $jobAllocation): \OpenAPI\Client\Model\Result
+```
 
 Update a Job Allocation
 
@@ -309,11 +307,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling JobAllocationsApi->postJobAllocationSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -330,10 +326,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-

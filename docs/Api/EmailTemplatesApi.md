@@ -1,20 +1,21 @@
 # OpenAPI\Client\EmailTemplatesApi
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+All URIs are relative to https://api.servicem8.com/api_1.0.
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**deleteEmailTemplateSingle**](EmailTemplatesApi.md#deleteEmailTemplateSingle) | **DELETE** /emailtemplate/{uuid}.json | Delete an Email Template
-[**getEmailTemplateAll**](EmailTemplatesApi.md#getEmailTemplateAll) | **GET** /emailtemplate.json | List all Email Templates
-[**getEmailTemplateSingle**](EmailTemplatesApi.md#getEmailTemplateSingle) | **GET** /emailtemplate/{uuid}.json | Retrieve an Email Template
-[**postEmailTemplateCreate**](EmailTemplatesApi.md#postEmailTemplateCreate) | **POST** /emailtemplate.json | Create a new Email Template
-[**postEmailTemplateSingle**](EmailTemplatesApi.md#postEmailTemplateSingle) | **POST** /emailtemplate/{uuid}.json | Update an Email Template
+[**deleteEmailTemplateSingle()**](EmailTemplatesApi.md#deleteEmailTemplateSingle) | **DELETE** /emailtemplate/{uuid}.json | Delete an Email Template
+[**getEmailTemplateAll()**](EmailTemplatesApi.md#getEmailTemplateAll) | **GET** /emailtemplate.json | List all Email Templates
+[**getEmailTemplateSingle()**](EmailTemplatesApi.md#getEmailTemplateSingle) | **GET** /emailtemplate/{uuid}.json | Retrieve an Email Template
+[**postEmailTemplateCreate()**](EmailTemplatesApi.md#postEmailTemplateCreate) | **POST** /emailtemplate.json | Create a new Email Template
+[**postEmailTemplateSingle()**](EmailTemplatesApi.md#postEmailTemplateSingle) | **POST** /emailtemplate/{uuid}.json | Update an Email Template
 
 
+## `deleteEmailTemplateSingle()`
 
-## deleteEmailTemplateSingle
-
-> \OpenAPI\Client\Model\Result deleteEmailTemplateSingle($uuid)
+```php
+deleteEmailTemplateSingle($uuid): \OpenAPI\Client\Model\Result
+```
 
 Delete an Email Template
 
@@ -50,11 +51,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->deleteEmailTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -71,16 +70,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getEmailTemplateAll()`
 
-## getEmailTemplateAll
-
-> \OpenAPI\Client\Model\EmailTemplate[] getEmailTemplateAll()
+```php
+getEmailTemplateAll(): \OpenAPI\Client\Model\EmailTemplate[]
+```
 
 List all Email Templates
 
@@ -115,7 +115,6 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->getEmailTemplateAll: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
@@ -133,16 +132,17 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `getEmailTemplateSingle()`
 
-## getEmailTemplateSingle
-
-> \OpenAPI\Client\Model\EmailTemplate getEmailTemplateSingle($uuid)
+```php
+getEmailTemplateSingle($uuid): \OpenAPI\Client\Model\EmailTemplate
+```
 
 Retrieve an Email Template
 
@@ -176,11 +176,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->getEmailTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -197,16 +195,17 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postEmailTemplateCreate()`
 
-## postEmailTemplateCreate
-
-> \OpenAPI\Client\Model\Result postEmailTemplateCreate($emailTemplate)
+```php
+postEmailTemplateCreate($emailTemplate): \OpenAPI\Client\Model\Result
+```
 
 Create a new Email Template
 
@@ -242,11 +241,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->postEmailTemplateCreate: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -262,17 +259,18 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
+## `postEmailTemplateSingle()`
 
-## postEmailTemplateSingle
-
-> \OpenAPI\Client\Model\Result postEmailTemplateSingle($uuid, $emailTemplate)
+```php
+postEmailTemplateSingle($uuid, $emailTemplate): \OpenAPI\Client\Model\Result
+```
 
 Update an Email Template
 
@@ -307,11 +305,9 @@ try {
 } catch (Exception $e) {
     echo 'Exception when calling EmailTemplatesApi->postEmailTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
-?>
 ```
 
 ### Parameters
-
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -328,10 +324,9 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
-- **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
-[[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../../README.md#documentation-for-models)
+[[Back to top]](#) [[Back to API list]](../../README.md#endpoints)
+[[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
-
