@@ -73,8 +73,8 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
         'tags' => 'string',
         'lng' => 'float',
         'lat' => 'float',
-        'photoWidth' => 'float',
-        'photoHeight' => 'float'
+        'photoWidth' => 'string',
+        'photoHeight' => 'string'
     ];
 
     /**
@@ -624,7 +624,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets photoWidth
      *
-     * @return float|null
+     * @return string|null
      */
     public function getPhotoWidth()
     {
@@ -634,7 +634,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets photoWidth
      *
-     * @param float|null $photoWidth (Read-only)
+     * @param string|null $photoWidth photoWidth
      *
      * @return self
      */
@@ -648,7 +648,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets photoHeight
      *
-     * @return float|null
+     * @return string|null
      */
     public function getPhotoHeight()
     {
@@ -658,7 +658,7 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets photoHeight
      *
-     * @param float|null $photoHeight (Read-only)
+     * @param string|null $photoHeight photoHeight
      *
      * @return self
      */
