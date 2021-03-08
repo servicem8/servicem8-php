@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **openingTimeSunday** | **string** |  | [optional]
 **closingTimeSunday** | **string** |  | [optional]
 **timezoneName** | **string** |  | [optional]
-**invoiceTermsNumberOfDays** | **string** |  | [optional]
+**invoiceTerms** | **string** |  | [optional]
 **jobDefaultStatus** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
