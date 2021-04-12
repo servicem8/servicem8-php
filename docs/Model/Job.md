@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **workDoneDescription** | **string** | Email Address | [optional]
 **lng** | **float** |  | [optional]
 **lat** | **float** |  | [optional]
-**generatedJobId** | **string** |  | [optional]
+**generatedJobId** | **string** | (Read-only) | [optional]
 **paymentDate** | **string** |  | [optional]
 **paymentActionedByUuid** | **string** |  | [optional]
 **paymentMethod** | **string** |  | [optional]

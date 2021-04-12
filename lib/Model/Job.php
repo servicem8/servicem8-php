@@ -843,7 +843,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets generatedJobId
      *
-     * @param string|null $generatedJobId generatedJobId
+     * @param string|null $generatedJobId (Read-only)
      *
      * @return self
      */
