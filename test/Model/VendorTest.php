@@ -125,6 +125,15 @@ class VendorTest extends TestCase
     }
 
     /**
+     * Test attribute "businessNumber"
+     */
+    public function testPropertyBusinessNumber()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "website"
      */
     public function testPropertyWebsite()

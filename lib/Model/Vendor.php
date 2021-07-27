@@ -64,6 +64,7 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => 'string',
         'name' => 'string',
         'abnNumber' => 'string',
+        'businessNumber' => 'string',
         'website' => 'string',
         'email' => 'string',
         'emailAccounts' => 'string',
@@ -103,6 +104,7 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => null,
         'name' => null,
         'abnNumber' => null,
+        'businessNumber' => null,
         'website' => null,
         'email' => 'email',
         'emailAccounts' => null,
@@ -161,6 +163,7 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => 'edit_date',
         'name' => 'name',
         'abnNumber' => 'abn_number',
+        'businessNumber' => 'business_number',
         'website' => 'website',
         'email' => 'email',
         'emailAccounts' => 'email_accounts',
@@ -198,6 +201,7 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => 'setEditDate',
         'name' => 'setName',
         'abnNumber' => 'setAbnNumber',
+        'businessNumber' => 'setBusinessNumber',
         'website' => 'setWebsite',
         'email' => 'setEmail',
         'emailAccounts' => 'setEmailAccounts',
@@ -235,6 +239,7 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => 'getEditDate',
         'name' => 'getName',
         'abnNumber' => 'getAbnNumber',
+        'businessNumber' => 'getBusinessNumber',
         'website' => 'getWebsite',
         'email' => 'getEmail',
         'emailAccounts' => 'getEmailAccounts',
@@ -323,6 +328,7 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['editDate'] = $data['editDate'] ?? null;
         $this->container['name'] = $data['name'] ?? null;
         $this->container['abnNumber'] = $data['abnNumber'] ?? null;
+        $this->container['businessNumber'] = $data['businessNumber'] ?? null;
         $this->container['website'] = $data['website'] ?? null;
         $this->container['email'] = $data['email'] ?? null;
         $this->container['emailAccounts'] = $data['emailAccounts'] ?? null;
@@ -504,6 +510,30 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setAbnNumber($abnNumber)
     {
         $this->container['abnNumber'] = $abnNumber;
+
+        return $this;
+    }
+
+    /**
+     * Gets businessNumber
+     *
+     * @return string|null
+     */
+    public function getBusinessNumber()
+    {
+        return $this->container['businessNumber'];
+    }
+
+    /**
+     * Sets businessNumber
+     *
+     * @param string|null $businessNumber businessNumber
+     *
+     * @return self
+     */
+    public function setBusinessNumber($businessNumber)
+    {
+        $this->container['businessNumber'] = $businessNumber;
 
         return $this;
     }

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **editDate** | **string** | Record last modified timestamp | [optional] [readonly]
 **name** | **string** | Company Name |
 **abnNumber** | **string** | Company ABN Number (Australian Accounts Only) | [optional]
+**businessNumber** | **string** |  | [optional]
 **website** | **string** | Company Website address | [optional]
 **email** | **string** |  | [optional]
 **emailAccounts** | **string** |  | [optional]
