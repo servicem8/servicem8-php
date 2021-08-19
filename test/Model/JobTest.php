@@ -413,6 +413,15 @@ class JobTest extends TestCase
     }
 
     /**
+     * Test attribute "queueAssignedStaffUuid"
+     */
+    public function testPropertyQueueAssignedStaffUuid()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "paymentReceived"
      */
     public function testPropertyPaymentReceived()

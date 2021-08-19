@@ -132,4 +132,13 @@ class JobQueueTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "requiresAssignment"
+     */
+    public function testPropertyRequiresAssignment()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }

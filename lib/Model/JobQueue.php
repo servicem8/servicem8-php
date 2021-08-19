@@ -64,7 +64,8 @@ class JobQueue implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => 'string',
         'name' => 'string',
         'defaultTimeframe' => 'float',
-        'subscribedStaff' => 'string'
+        'subscribedStaff' => 'string',
+        'requiresAssignment' => 'string'
     ];
 
     /**
@@ -80,7 +81,8 @@ class JobQueue implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => null,
         'name' => null,
         'defaultTimeframe' => null,
-        'subscribedStaff' => null
+        'subscribedStaff' => null,
+        'requiresAssignment' => null
     ];
 
     /**
@@ -115,7 +117,8 @@ class JobQueue implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => 'edit_date',
         'name' => 'name',
         'defaultTimeframe' => 'default_timeframe',
-        'subscribedStaff' => 'subscribed_staff'
+        'subscribedStaff' => 'subscribed_staff',
+        'requiresAssignment' => 'requires_assignment'
     ];
 
     /**
@@ -129,7 +132,8 @@ class JobQueue implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => 'setEditDate',
         'name' => 'setName',
         'defaultTimeframe' => 'setDefaultTimeframe',
-        'subscribedStaff' => 'setSubscribedStaff'
+        'subscribedStaff' => 'setSubscribedStaff',
+        'requiresAssignment' => 'setRequiresAssignment'
     ];
 
     /**
@@ -143,7 +147,8 @@ class JobQueue implements ModelInterface, ArrayAccess, \JsonSerializable
         'editDate' => 'getEditDate',
         'name' => 'getName',
         'defaultTimeframe' => 'getDefaultTimeframe',
-        'subscribedStaff' => 'getSubscribedStaff'
+        'subscribedStaff' => 'getSubscribedStaff',
+        'requiresAssignment' => 'getRequiresAssignment'
     ];
 
     /**
@@ -209,6 +214,7 @@ class JobQueue implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['name'] = $data['name'] ?? null;
         $this->container['defaultTimeframe'] = $data['defaultTimeframe'] ?? null;
         $this->container['subscribedStaff'] = $data['subscribedStaff'] ?? null;
+        $this->container['requiresAssignment'] = $data['requiresAssignment'] ?? null;
     }
 
     /**
@@ -375,6 +381,30 @@ class JobQueue implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setSubscribedStaff($subscribedStaff)
     {
         $this->container['subscribedStaff'] = $subscribedStaff;
+
+        return $this;
+    }
+
+    /**
+     * Gets requiresAssignment
+     *
+     * @return string|null
+     */
+    public function getRequiresAssignment()
+    {
+        return $this->container['requiresAssignment'];
+    }
+
+    /**
+     * Sets requiresAssignment
+     *
+     * @param string|null $requiresAssignment requiresAssignment
+     *
+     * @return self
+     */
+    public function setRequiresAssignment($requiresAssignment)
+    {
+        $this->container['requiresAssignment'] = $requiresAssignment;
 
         return $this;
     }

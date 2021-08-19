@@ -96,6 +96,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'geoNumber' => 'string',
         'queueUuid' => 'string',
         'queueExpiryDate' => 'string',
+        'queueAssignedStaffUuid' => 'string',
         'paymentReceived' => 'string',
         'paymentReceivedStamp' => 'string',
         'badges' => 'string',
@@ -154,6 +155,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'geoNumber' => null,
         'queueUuid' => 'uuid',
         'queueExpiryDate' => null,
+        'queueAssignedStaffUuid' => 'uuid',
         'paymentReceived' => null,
         'paymentReceivedStamp' => null,
         'badges' => null,
@@ -231,6 +233,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'geoNumber' => 'geo_number',
         'queueUuid' => 'queue_uuid',
         'queueExpiryDate' => 'queue_expiry_date',
+        'queueAssignedStaffUuid' => 'queue_assigned_staff_uuid',
         'paymentReceived' => 'payment_received',
         'paymentReceivedStamp' => 'payment_received_stamp',
         'badges' => 'badges',
@@ -287,6 +290,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'geoNumber' => 'setGeoNumber',
         'queueUuid' => 'setQueueUuid',
         'queueExpiryDate' => 'setQueueExpiryDate',
+        'queueAssignedStaffUuid' => 'setQueueAssignedStaffUuid',
         'paymentReceived' => 'setPaymentReceived',
         'paymentReceivedStamp' => 'setPaymentReceivedStamp',
         'badges' => 'setBadges',
@@ -343,6 +347,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'geoNumber' => 'getGeoNumber',
         'queueUuid' => 'getQueueUuid',
         'queueExpiryDate' => 'getQueueExpiryDate',
+        'queueAssignedStaffUuid' => 'getQueueAssignedStaffUuid',
         'paymentReceived' => 'getPaymentReceived',
         'paymentReceivedStamp' => 'getPaymentReceivedStamp',
         'badges' => 'getBadges',
@@ -450,6 +455,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['geoNumber'] = $data['geoNumber'] ?? null;
         $this->container['queueUuid'] = $data['queueUuid'] ?? null;
         $this->container['queueExpiryDate'] = $data['queueExpiryDate'] ?? null;
+        $this->container['queueAssignedStaffUuid'] = $data['queueAssignedStaffUuid'] ?? null;
         $this->container['paymentReceived'] = $data['paymentReceived'] ?? null;
         $this->container['paymentReceivedStamp'] = $data['paymentReceivedStamp'] ?? null;
         $this->container['badges'] = $data['badges'] ?? null;
@@ -1406,6 +1412,30 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setQueueExpiryDate($queueExpiryDate)
     {
         $this->container['queueExpiryDate'] = $queueExpiryDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets queueAssignedStaffUuid
+     *
+     * @return string|null
+     */
+    public function getQueueAssignedStaffUuid()
+    {
+        return $this->container['queueAssignedStaffUuid'];
+    }
+
+    /**
+     * Sets queueAssignedStaffUuid
+     *
+     * @param string|null $queueAssignedStaffUuid queueAssignedStaffUuid
+     *
+     * @return self
+     */
+    public function setQueueAssignedStaffUuid($queueAssignedStaffUuid)
+    {
+        $this->container['queueAssignedStaffUuid'] = $queueAssignedStaffUuid;
 
         return $this;
     }

@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **geoNumber** | **string** |  | [optional]
 **queueUuid** | **string** |  | [optional]
 **queueExpiryDate** | **string** |  | [optional]
+**queueAssignedStaffUuid** | **string** |  | [optional]
 **paymentReceived** | **string** |  | [optional]
 **paymentReceivedStamp** | **string** |  | [optional]
 **badges** | **string** |  | [optional]
