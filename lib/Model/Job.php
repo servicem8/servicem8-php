@@ -101,6 +101,8 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentReceivedStamp' => 'string',
         'badges' => 'string',
         'quoteDate' => 'string',
+        'quoteSent' => 'string',
+        'quoteSentStamp' => 'string',
         'workOrderDate' => 'string',
         'completionDate' => 'string',
         'completionActionedByUuid' => 'string',
@@ -160,6 +162,8 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentReceivedStamp' => null,
         'badges' => null,
         'quoteDate' => null,
+        'quoteSent' => null,
+        'quoteSentStamp' => null,
         'workOrderDate' => null,
         'completionDate' => null,
         'completionActionedByUuid' => 'uuid',
@@ -238,6 +242,8 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentReceivedStamp' => 'payment_received_stamp',
         'badges' => 'badges',
         'quoteDate' => 'quote_date',
+        'quoteSent' => 'quote_sent',
+        'quoteSentStamp' => 'quote_sent_stamp',
         'workOrderDate' => 'work_order_date',
         'completionDate' => 'completion_date',
         'completionActionedByUuid' => 'completion_actioned_by_uuid',
@@ -295,6 +301,8 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentReceivedStamp' => 'setPaymentReceivedStamp',
         'badges' => 'setBadges',
         'quoteDate' => 'setQuoteDate',
+        'quoteSent' => 'setQuoteSent',
+        'quoteSentStamp' => 'setQuoteSentStamp',
         'workOrderDate' => 'setWorkOrderDate',
         'completionDate' => 'setCompletionDate',
         'completionActionedByUuid' => 'setCompletionActionedByUuid',
@@ -352,6 +360,8 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'paymentReceivedStamp' => 'getPaymentReceivedStamp',
         'badges' => 'getBadges',
         'quoteDate' => 'getQuoteDate',
+        'quoteSent' => 'getQuoteSent',
+        'quoteSentStamp' => 'getQuoteSentStamp',
         'workOrderDate' => 'getWorkOrderDate',
         'completionDate' => 'getCompletionDate',
         'completionActionedByUuid' => 'getCompletionActionedByUuid',
@@ -460,6 +470,8 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['paymentReceivedStamp'] = $data['paymentReceivedStamp'] ?? null;
         $this->container['badges'] = $data['badges'] ?? null;
         $this->container['quoteDate'] = $data['quoteDate'] ?? null;
+        $this->container['quoteSent'] = $data['quoteSent'] ?? null;
+        $this->container['quoteSentStamp'] = $data['quoteSentStamp'] ?? null;
         $this->container['workOrderDate'] = $data['workOrderDate'] ?? null;
         $this->container['completionDate'] = $data['completionDate'] ?? null;
         $this->container['completionActionedByUuid'] = $data['completionActionedByUuid'] ?? null;
@@ -1532,6 +1544,54 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setQuoteDate($quoteDate)
     {
         $this->container['quoteDate'] = $quoteDate;
+
+        return $this;
+    }
+
+    /**
+     * Gets quoteSent
+     *
+     * @return string|null
+     */
+    public function getQuoteSent()
+    {
+        return $this->container['quoteSent'];
+    }
+
+    /**
+     * Sets quoteSent
+     *
+     * @param string|null $quoteSent quoteSent
+     *
+     * @return self
+     */
+    public function setQuoteSent($quoteSent)
+    {
+        $this->container['quoteSent'] = $quoteSent;
+
+        return $this;
+    }
+
+    /**
+     * Gets quoteSentStamp
+     *
+     * @return string|null
+     */
+    public function getQuoteSentStamp()
+    {
+        return $this->container['quoteSentStamp'];
+    }
+
+    /**
+     * Sets quoteSentStamp
+     *
+     * @param string|null $quoteSentStamp quoteSentStamp
+     *
+     * @return self
+     */
+    public function setQuoteSentStamp($quoteSentStamp)
+    {
+        $this->container['quoteSentStamp'] = $quoteSentStamp;
 
         return $this;
     }

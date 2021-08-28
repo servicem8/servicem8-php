@@ -458,6 +458,24 @@ class JobTest extends TestCase
     }
 
     /**
+     * Test attribute "quoteSent"
+     */
+    public function testPropertyQuoteSent()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "quoteSentStamp"
+     */
+    public function testPropertyQuoteSentStamp()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "workOrderDate"
      */
     public function testPropertyWorkOrderDate()

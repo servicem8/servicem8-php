@@ -46,6 +46,8 @@ Name | Type | Description | Notes
 **paymentReceivedStamp** | **string** |  | [optional]
 **badges** | **string** |  | [optional]
 **quoteDate** | **string** |  | [optional]
+**quoteSent** | **string** |  | [optional]
+**quoteSentStamp** | **string** |  | [optional]
 **workOrderDate** | **string** |  | [optional]
 **completionDate** | **string** |  | [optional]
 **completionActionedByUuid** | **string** |  | [optional]
