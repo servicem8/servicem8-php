@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Location |
+ **uuid** | **string**| UUID of the Location |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Location |
+ **uuid** | **string**| UUID of the Location |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Location |
+ **uuid** | **string**| UUID of the Location |
  **location** | [**\OpenAPI\Client\Model\Location**](../Model/Location.md)| Location fields to update |
 
 ### Return type

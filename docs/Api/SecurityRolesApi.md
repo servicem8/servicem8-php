@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Security Role |
+ **uuid** | **string**| UUID of the Security Role |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Security Role |
+ **uuid** | **string**| UUID of the Security Role |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Security Role |
+ **uuid** | **string**| UUID of the Security Role |
  **securityRole** | [**\OpenAPI\Client\Model\SecurityRole**](../Model/SecurityRole.md)| Security Role fields to update |
 
 ### Return type

@@ -117,7 +117,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Vendor |
+ **uuid** | **string**| UUID of the Vendor |
 
 ### Return type
 
@@ -181,7 +181,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Vendor |
+ **uuid** | **string**| UUID of the Vendor |
  **vendor** | [**\OpenAPI\Client\Model\Vendor**](../Model/Vendor.md)| Vendor fields to update |
 
 ### Return type

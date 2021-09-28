@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Activity |
+ **uuid** | **string**| UUID of the Job Activity |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Activity |
+ **uuid** | **string**| UUID of the Job Activity |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Activity |
+ **uuid** | **string**| UUID of the Job Activity |
  **jobActivity** | [**\OpenAPI\Client\Model\JobActivity**](../Model/JobActivity.md)| Job Activity fields to update |
 
 ### Return type

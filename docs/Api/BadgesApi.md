@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Badge |
+ **uuid** | **string**| UUID of the Badge |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Badge |
+ **uuid** | **string**| UUID of the Badge |
 
 ### Return type
 
@@ -313,7 +313,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Badge |
+ **uuid** | **string**| UUID of the Badge |
  **badge** | [**\OpenAPI\Client\Model\Badge**](../Model/Badge.md)| Badge fields to update |
 
 ### Return type

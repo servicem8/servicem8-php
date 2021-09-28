@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Task |
+ **uuid** | **string**| UUID of the Task |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Task |
+ **uuid** | **string**| UUID of the Task |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Task |
+ **uuid** | **string**| UUID of the Task |
  **task** | [**\OpenAPI\Client\Model\Task**](../Model/Task.md)| Task fields to update |
 
 ### Return type

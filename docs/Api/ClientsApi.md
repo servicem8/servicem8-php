@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Client |
+ **uuid** | **string**| UUID of the Client |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Client |
+ **uuid** | **string**| UUID of the Client |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Client |
+ **uuid** | **string**| UUID of the Client |
  **client** | [**\OpenAPI\Client\Model\Client**](../Model/Client.md)| Client fields to update |
 
 ### Return type

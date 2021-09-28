@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Material |
+ **uuid** | **string**| UUID of the Material |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Material |
+ **uuid** | **string**| UUID of the Material |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Material |
+ **uuid** | **string**| UUID of the Material |
  **material** | [**\OpenAPI\Client\Model\Material**](../Model/Material.md)| Material fields to update |
 
 ### Return type

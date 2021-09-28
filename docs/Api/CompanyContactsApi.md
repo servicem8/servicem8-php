@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Company Contact |
+ **uuid** | **string**| UUID of the Company Contact |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Company Contact |
+ **uuid** | **string**| UUID of the Company Contact |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Company Contact |
+ **uuid** | **string**| UUID of the Company Contact |
  **companyContact** | [**\OpenAPI\Client\Model\CompanyContact**](../Model/CompanyContact.md)| Company Contact fields to update |
 
 ### Return type

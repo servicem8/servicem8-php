@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Attachment |
+ **uuid** | **string**| UUID of the Attachment |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Attachment |
+ **uuid** | **string**| UUID of the Attachment |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Attachment |
+ **uuid** | **string**| UUID of the Attachment |
  **attachment** | [**\OpenAPI\Client\Model\Attachment**](../Model/Attachment.md)| Attachment fields to update |
 
 ### Return type

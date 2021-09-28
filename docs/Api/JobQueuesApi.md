@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Queue |
+ **uuid** | **string**| UUID of the Job Queue |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Queue |
+ **uuid** | **string**| UUID of the Job Queue |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Queue |
+ **uuid** | **string**| UUID of the Job Queue |
  **jobQueue** | [**\OpenAPI\Client\Model\JobQueue**](../Model/JobQueue.md)| Job Queue fields to update |
 
 ### Return type

@@ -56,7 +56,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Asset |
+ **uuid** | **string**| UUID of the Asset |
 
 ### Return type
 
@@ -183,7 +183,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Asset |
+ **uuid** | **string**| UUID of the Asset |
 
 ### Return type
 
@@ -247,7 +247,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Asset |
+ **uuid** | **string**| UUID of the Asset |
  **asset** | [**\OpenAPI\Client\Model\Asset**](../Model/Asset.md)| Asset fields to update |
 
 ### Return type

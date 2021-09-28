@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Staff Message |
+ **uuid** | **string**| UUID of the Staff Message |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Staff Message |
+ **uuid** | **string**| UUID of the Staff Message |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Staff Message |
+ **uuid** | **string**| UUID of the Staff Message |
  **staffMessage** | [**\OpenAPI\Client\Model\StaffMessage**](../Model/StaffMessage.md)| Staff Message fields to update |
 
 ### Return type

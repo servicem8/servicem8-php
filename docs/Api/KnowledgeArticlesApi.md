@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Knowledge Article |
+ **uuid** | **string**| UUID of the Knowledge Article |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Knowledge Article |
+ **uuid** | **string**| UUID of the Knowledge Article |
 
 ### Return type
 
@@ -313,7 +313,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Knowledge Article |
+ **uuid** | **string**| UUID of the Knowledge Article |
  **knowledgeArticle** | [**\OpenAPI\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article fields to update |
 
 ### Return type

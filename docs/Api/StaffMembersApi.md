@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Staff Member |
+ **uuid** | **string**| UUID of the Staff Member |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Staff Member |
+ **uuid** | **string**| UUID of the Staff Member |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Staff Member |
+ **uuid** | **string**| UUID of the Staff Member |
  **staffMember** | [**\OpenAPI\Client\Model\StaffMember**](../Model/StaffMember.md)| Staff Member fields to update |
 
 ### Return type

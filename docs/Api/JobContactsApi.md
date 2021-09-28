@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Contact |
+ **uuid** | **string**| UUID of the Job Contact |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Contact |
+ **uuid** | **string**| UUID of the Job Contact |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Contact |
+ **uuid** | **string**| UUID of the Job Contact |
  **jobContact** | [**\OpenAPI\Client\Model\JobContact**](../Model/JobContact.md)| Job Contact fields to update |
 
 ### Return type

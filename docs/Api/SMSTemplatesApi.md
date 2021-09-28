@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the SMS Template |
+ **uuid** | **string**| UUID of the SMS Template |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the SMS Template |
+ **uuid** | **string**| UUID of the SMS Template |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the SMS Template |
+ **uuid** | **string**| UUID of the SMS Template |
  **sMSTemplate** | [**\OpenAPI\Client\Model\SMSTemplate**](../Model/SMSTemplate.md)| SMS Template fields to update |
 
 ### Return type

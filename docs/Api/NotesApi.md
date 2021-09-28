@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Note |
+ **uuid** | **string**| UUID of the Note |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Note |
+ **uuid** | **string**| UUID of the Note |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Note |
+ **uuid** | **string**| UUID of the Note |
  **note** | [**\OpenAPI\Client\Model\Note**](../Model/Note.md)| Note fields to update |
 
 ### Return type

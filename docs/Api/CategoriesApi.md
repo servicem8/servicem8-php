@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Category |
+ **uuid** | **string**| UUID of the Category |
 
 ### Return type
 
@@ -184,7 +184,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Category |
+ **uuid** | **string**| UUID of the Category |
 
 ### Return type
 
@@ -315,7 +315,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Category |
+ **uuid** | **string**| UUID of the Category |
  **category** | [**\OpenAPI\Client\Model\Category**](../Model/Category.md)| Category fields to update |
 
 ### Return type

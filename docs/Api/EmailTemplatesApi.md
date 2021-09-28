@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Email Template |
+ **uuid** | **string**| UUID of the Email Template |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Email Template |
+ **uuid** | **string**| UUID of the Email Template |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Email Template |
+ **uuid** | **string**| UUID of the Email Template |
  **emailTemplate** | [**\OpenAPI\Client\Model\EmailTemplate**](../Model/EmailTemplate.md)| Email Template fields to update |
 
 ### Return type

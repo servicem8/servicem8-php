@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Payment |
+ **uuid** | **string**| UUID of the Job Payment |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Payment |
+ **uuid** | **string**| UUID of the Job Payment |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Job Payment |
+ **uuid** | **string**| UUID of the Job Payment |
  **jobPayment** | [**\OpenAPI\Client\Model\JobPayment**](../Model/JobPayment.md)| Job Payment fields to update |
 
 ### Return type

@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Form |
+ **uuid** | **string**| UUID of the Form |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Form |
+ **uuid** | **string**| UUID of the Form |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Form |
+ **uuid** | **string**| UUID of the Form |
  **form** | [**\OpenAPI\Client\Model\Form**](../Model/Form.md)| Form fields to update |
 
 ### Return type

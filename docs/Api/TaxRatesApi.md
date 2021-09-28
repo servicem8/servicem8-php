@@ -57,7 +57,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Tax Rate |
+ **uuid** | **string**| UUID of the Tax Rate |
 
 ### Return type
 
@@ -182,7 +182,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Tax Rate |
+ **uuid** | **string**| UUID of the Tax Rate |
 
 ### Return type
 
@@ -311,7 +311,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **uuid** | [**string**](../Model/.md)| UUID of the Tax Rate |
+ **uuid** | **string**| UUID of the Tax Rate |
  **taxRate** | [**\OpenAPI\Client\Model\TaxRate**](../Model/TaxRate.md)| Tax Rate fields to update |
 
 ### Return type
