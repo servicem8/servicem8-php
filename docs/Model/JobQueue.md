@@ -10,6 +10,6 @@ Name | Type | Description | Notes
 **name** | **string** |  | [optional]
 **defaultTimeframe** | **float** |  | [optional]
 **subscribedStaff** | **string** |  | [optional]
-**requiresAssignment** | **string** |  | [optional]
+**requiresAssignment** | **float** | Valid values are [0,1] | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
