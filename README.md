@@ -23,7 +23,7 @@ Limits are per Addon per account.
 ### Requirements
 
 PHP 7.3 and later.
-Should also work with PHP 8.0 but has not been tested.
+Should also work with PHP 8.0 or 8.1 but has not been tested.
 
 ### Composer
 
