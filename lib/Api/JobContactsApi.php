@@ -188,6 +188,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Result' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -200,6 +203,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -212,6 +218,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -226,6 +235,9 @@ class JobContactsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -308,6 +320,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -505,6 +520,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\JobContact[]' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -517,6 +535,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -529,6 +550,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -543,6 +567,9 @@ class JobContactsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -623,6 +650,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -807,6 +837,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\JobContact' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -819,6 +852,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -831,6 +867,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -845,6 +884,9 @@ class JobContactsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -927,6 +969,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1126,6 +1171,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Result' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1138,6 +1186,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1150,6 +1201,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1164,6 +1218,9 @@ class JobContactsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -1246,6 +1303,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1445,6 +1505,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Result' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1457,6 +1520,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1469,6 +1535,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -1483,6 +1552,9 @@ class JobContactsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -1567,6 +1639,9 @@ class JobContactsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [

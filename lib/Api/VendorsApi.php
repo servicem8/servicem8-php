@@ -186,6 +186,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Vendor[]' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -198,6 +201,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -210,6 +216,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -224,6 +233,9 @@ class VendorsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -304,6 +316,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -488,6 +503,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Vendor' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -500,6 +518,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -512,6 +533,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -526,6 +550,9 @@ class VendorsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -608,6 +635,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -809,6 +839,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Result' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -821,6 +854,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -833,6 +869,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ('\OpenAPI\Client\Model\Error' !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
@@ -847,6 +886,9 @@ class VendorsApi
                 $content = $response->getBody(); //stream goes to serializer
             } else {
                 $content = (string) $response->getBody();
+                if ($returnType !== 'string') {
+                    $content = json_decode($content);
+                }
             }
 
             return [
@@ -931,6 +973,9 @@ class VendorsApi
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
                     }
 
                     return [
