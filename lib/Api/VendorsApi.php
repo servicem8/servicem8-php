@@ -397,7 +397,7 @@ class VendorsApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($queryParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -731,7 +731,7 @@ class VendorsApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($queryParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
@@ -1082,7 +1082,7 @@ class VendorsApi
 
             } else {
                 // for HTTP post (form)
-                $httpBody = ObjectSerializer::buildQuery($queryParams);
+                $httpBody = ObjectSerializer::buildQuery($formParams);
             }
         }
 
