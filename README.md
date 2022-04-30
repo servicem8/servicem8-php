@@ -278,7 +278,7 @@ Class | Method | HTTP request | Description
 - [JobMaterial](docs/Model/JobMaterial.md)
 - [JobPayment](docs/Model/JobPayment.md)
 - [JobQueue](docs/Model/JobQueue.md)
-- [JobRelatedKnowledgeArticles](docs/Model/JobRelatedKnowledgeArticles.md)
+- [JobRelatedKnowledgeArticlesInner](docs/Model/JobRelatedKnowledgeArticlesInner.md)
 - [KnowledgeArticle](docs/Model/KnowledgeArticle.md)
 - [Location](docs/Model/Location.md)
 - [Material](docs/Model/Material.md)

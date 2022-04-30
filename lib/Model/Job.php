@@ -109,7 +109,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
         'unsuccessfulDate' => 'string',
         'jobIsScheduledUntilStamp' => 'string',
         'activeNetworkRequestUuid' => 'string',
-        'relatedKnowledgeArticles' => '\OpenAPI\Client\Model\JobRelatedKnowledgeArticles[]'
+        'relatedKnowledgeArticles' => '\OpenAPI\Client\Model\JobRelatedKnowledgeArticlesInner[]'
     ];
 
     /**
@@ -1743,7 +1743,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets relatedKnowledgeArticles
      *
-     * @return \OpenAPI\Client\Model\JobRelatedKnowledgeArticles[]|null
+     * @return \OpenAPI\Client\Model\JobRelatedKnowledgeArticlesInner[]|null
      */
     public function getRelatedKnowledgeArticles()
     {
@@ -1753,7 +1753,7 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets relatedKnowledgeArticles
      *
-     * @param \OpenAPI\Client\Model\JobRelatedKnowledgeArticles[]|null $relatedKnowledgeArticles relatedKnowledgeArticles
+     * @param \OpenAPI\Client\Model\JobRelatedKnowledgeArticlesInner[]|null $relatedKnowledgeArticles relatedKnowledgeArticles
      *
      * @return self
      */

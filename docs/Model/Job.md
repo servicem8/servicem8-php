@@ -54,6 +54,6 @@ Name | Type | Description | Notes
 **unsuccessfulDate** | **string** |  | [optional]
 **jobIsScheduledUntilStamp** | **string** |  | [optional]
 **activeNetworkRequestUuid** | **string** |  | [optional]
-**relatedKnowledgeArticles** | [**\OpenAPI\Client\Model\JobRelatedKnowledgeArticles[]**](JobRelatedKnowledgeArticles.md) |  | [optional]
+**relatedKnowledgeArticles** | [**\OpenAPI\Client\Model\JobRelatedKnowledgeArticlesInner[]**](JobRelatedKnowledgeArticlesInner.md) |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
