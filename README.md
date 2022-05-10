@@ -205,6 +205,11 @@ Class | Method | HTTP request | Description
 *KnowledgeArticlesApi* | [**getKnowledgeArticleSingle**](docs/Api/KnowledgeArticlesApi.md#getknowledgearticlesingle) | **GET** /knowledgearticle/{uuid}.json | Retrieve a Knowledge Article
 *KnowledgeArticlesApi* | [**postKnowledgeArticleCreate**](docs/Api/KnowledgeArticlesApi.md#postknowledgearticlecreate) | **POST** /knowledgearticle.json | Create a new Knowledge Article
 *KnowledgeArticlesApi* | [**postKnowledgeArticleSingle**](docs/Api/KnowledgeArticlesApi.md#postknowledgearticlesingle) | **POST** /knowledgearticle/{uuid}.json | Update a Knowledge Article
+*KnownLocationsApi* | [**deleteKnownLocationSingle**](docs/Api/KnownLocationsApi.md#deleteknownlocationsingle) | **DELETE** /knownlocation/{uuid}.json | Delete a Known Location
+*KnownLocationsApi* | [**getKnownLocationAll**](docs/Api/KnownLocationsApi.md#getknownlocationall) | **GET** /knownlocation.json | List all Known Locations
+*KnownLocationsApi* | [**getKnownLocationSingle**](docs/Api/KnownLocationsApi.md#getknownlocationsingle) | **GET** /knownlocation/{uuid}.json | Retrieve a Known Location
+*KnownLocationsApi* | [**postKnownLocationCreate**](docs/Api/KnownLocationsApi.md#postknownlocationcreate) | **POST** /knownlocation.json | Create a new Known Location
+*KnownLocationsApi* | [**postKnownLocationSingle**](docs/Api/KnownLocationsApi.md#postknownlocationsingle) | **POST** /knownlocation/{uuid}.json | Update a Known Location
 *LocationsApi* | [**deleteLocationSingle**](docs/Api/LocationsApi.md#deletelocationsingle) | **DELETE** /location/{uuid}.json | Delete a Location
 *LocationsApi* | [**getLocationAll**](docs/Api/LocationsApi.md#getlocationall) | **GET** /location.json | List all Locations
 *LocationsApi* | [**getLocationSingle**](docs/Api/LocationsApi.md#getlocationsingle) | **GET** /location/{uuid}.json | Retrieve a Location
@@ -280,6 +285,7 @@ Class | Method | HTTP request | Description
 - [JobQueue](docs/Model/JobQueue.md)
 - [JobRelatedKnowledgeArticlesInner](docs/Model/JobRelatedKnowledgeArticlesInner.md)
 - [KnowledgeArticle](docs/Model/KnowledgeArticle.md)
+- [KnownLocation](docs/Model/KnownLocation.md)
 - [Location](docs/Model/Location.md)
 - [Material](docs/Model/Material.md)
 - [Note](docs/Model/Note.md)
