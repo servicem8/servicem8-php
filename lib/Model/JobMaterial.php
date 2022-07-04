@@ -70,7 +70,8 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'taxRateUuid' => 'string',
         'sortOrder' => 'string',
         'cost' => 'string',
-        'displayedCost' => 'string'
+        'displayedCost' => 'string',
+        'jobMaterialBundleUuid' => 'string'
     ];
 
     /**
@@ -94,7 +95,8 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'taxRateUuid' => 'uuid',
         'sortOrder' => null,
         'cost' => null,
-        'displayedCost' => null
+        'displayedCost' => null,
+        'jobMaterialBundleUuid' => 'uuid'
     ];
 
     /**
@@ -137,7 +139,8 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'taxRateUuid' => 'tax_rate_uuid',
         'sortOrder' => 'sort_order',
         'cost' => 'cost',
-        'displayedCost' => 'displayed_cost'
+        'displayedCost' => 'displayed_cost',
+        'jobMaterialBundleUuid' => 'job_material_bundle_uuid'
     ];
 
     /**
@@ -159,7 +162,8 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'taxRateUuid' => 'setTaxRateUuid',
         'sortOrder' => 'setSortOrder',
         'cost' => 'setCost',
-        'displayedCost' => 'setDisplayedCost'
+        'displayedCost' => 'setDisplayedCost',
+        'jobMaterialBundleUuid' => 'setJobMaterialBundleUuid'
     ];
 
     /**
@@ -181,7 +185,8 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'taxRateUuid' => 'getTaxRateUuid',
         'sortOrder' => 'getSortOrder',
         'cost' => 'getCost',
-        'displayedCost' => 'getDisplayedCost'
+        'displayedCost' => 'getDisplayedCost',
+        'jobMaterialBundleUuid' => 'getJobMaterialBundleUuid'
     ];
 
     /**
@@ -255,6 +260,7 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['sortOrder'] = $data['sortOrder'] ?? null;
         $this->container['cost'] = $data['cost'] ?? null;
         $this->container['displayedCost'] = $data['displayedCost'] ?? null;
+        $this->container['jobMaterialBundleUuid'] = $data['jobMaterialBundleUuid'] ?? null;
     }
 
     /**
@@ -632,6 +638,30 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setDisplayedCost($displayedCost)
     {
         $this->container['displayedCost'] = $displayedCost;
+
+        return $this;
+    }
+
+    /**
+     * Gets jobMaterialBundleUuid
+     *
+     * @return string|null
+     */
+    public function getJobMaterialBundleUuid()
+    {
+        return $this->container['jobMaterialBundleUuid'];
+    }
+
+    /**
+     * Sets jobMaterialBundleUuid
+     *
+     * @param string|null $jobMaterialBundleUuid jobMaterialBundleUuid
+     *
+     * @return self
+     */
+    public function setJobMaterialBundleUuid($jobMaterialBundleUuid)
+    {
+        $this->container['jobMaterialBundleUuid'] = $jobMaterialBundleUuid;
 
         return $this;
     }

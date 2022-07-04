@@ -204,4 +204,13 @@ class JobMaterialTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "jobMaterialBundleUuid"
+     */
+    public function testPropertyJobMaterialBundleUuid()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }
