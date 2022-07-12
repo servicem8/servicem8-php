@@ -90,6 +90,31 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'relatedObject' => false,
+		'relatedObjectUuid' => false,
+		'note' => false,
+		'actionRequired' => false,
+		'actionCompletedByStaffUuid' => false,
+		'editByStaffUuid' => false,
+		'createDate' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -107,6 +132,48 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -221,16 +288,34 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['relatedObject'] = $data['relatedObject'] ?? null;
-        $this->container['relatedObjectUuid'] = $data['relatedObjectUuid'] ?? null;
-        $this->container['note'] = $data['note'] ?? null;
-        $this->container['actionRequired'] = $data['actionRequired'] ?? null;
-        $this->container['actionCompletedByStaffUuid'] = $data['actionCompletedByStaffUuid'] ?? null;
-        $this->container['editByStaffUuid'] = $data['editByStaffUuid'] ?? null;
-        $this->container['createDate'] = $data['createDate'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('relatedObject', $data ?? [], null);
+        $this->setIfExists('relatedObjectUuid', $data ?? [], null);
+        $this->setIfExists('note', $data ?? [], null);
+        $this->setIfExists('actionRequired', $data ?? [], null);
+        $this->setIfExists('actionCompletedByStaffUuid', $data ?? [], null);
+        $this->setIfExists('editByStaffUuid', $data ?? [], null);
+        $this->setIfExists('createDate', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -276,6 +361,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -300,6 +390,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -324,6 +419,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -348,6 +448,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObject($relatedObject)
     {
+
+        if (is_null($relatedObject)) {
+            throw new \InvalidArgumentException('non-nullable relatedObject cannot be null');
+        }
+
         $this->container['relatedObject'] = $relatedObject;
 
         return $this;
@@ -372,6 +477,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObjectUuid($relatedObjectUuid)
     {
+
+        if (is_null($relatedObjectUuid)) {
+            throw new \InvalidArgumentException('non-nullable relatedObjectUuid cannot be null');
+        }
+
         $this->container['relatedObjectUuid'] = $relatedObjectUuid;
 
         return $this;
@@ -396,6 +506,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNote($note)
     {
+
+        if (is_null($note)) {
+            throw new \InvalidArgumentException('non-nullable note cannot be null');
+        }
+
         $this->container['note'] = $note;
 
         return $this;
@@ -420,6 +535,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActionRequired($actionRequired)
     {
+
+        if (is_null($actionRequired)) {
+            throw new \InvalidArgumentException('non-nullable actionRequired cannot be null');
+        }
+
         $this->container['actionRequired'] = $actionRequired;
 
         return $this;
@@ -444,6 +564,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActionCompletedByStaffUuid($actionCompletedByStaffUuid)
     {
+
+        if (is_null($actionCompletedByStaffUuid)) {
+            throw new \InvalidArgumentException('non-nullable actionCompletedByStaffUuid cannot be null');
+        }
+
         $this->container['actionCompletedByStaffUuid'] = $actionCompletedByStaffUuid;
 
         return $this;
@@ -468,6 +593,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditByStaffUuid($editByStaffUuid)
     {
+
+        if (is_null($editByStaffUuid)) {
+            throw new \InvalidArgumentException('non-nullable editByStaffUuid cannot be null');
+        }
+
         $this->container['editByStaffUuid'] = $editByStaffUuid;
 
         return $this;
@@ -492,6 +622,11 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreateDate($createDate)
     {
+
+        if (is_null($createDate)) {
+            throw new \InvalidArgumentException('non-nullable createDate cannot be null');
+        }
+
         $this->container['createDate'] = $createDate;
 
         return $this;

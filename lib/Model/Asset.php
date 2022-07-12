@@ -94,6 +94,33 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'companyUuid' => false,
+		'assetCode' => false,
+		'assetTypeUuid' => false,
+		'name' => false,
+		'lat' => false,
+		'lng' => false,
+		'geoTimestamp' => false,
+		'altitude' => false,
+		'fieldData' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -111,6 +138,48 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -231,18 +300,36 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['companyUuid'] = $data['companyUuid'] ?? null;
-        $this->container['assetCode'] = $data['assetCode'] ?? null;
-        $this->container['assetTypeUuid'] = $data['assetTypeUuid'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['lat'] = $data['lat'] ?? null;
-        $this->container['lng'] = $data['lng'] ?? null;
-        $this->container['geoTimestamp'] = $data['geoTimestamp'] ?? null;
-        $this->container['altitude'] = $data['altitude'] ?? null;
-        $this->container['fieldData'] = $data['fieldData'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('companyUuid', $data ?? [], null);
+        $this->setIfExists('assetCode', $data ?? [], null);
+        $this->setIfExists('assetTypeUuid', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('lat', $data ?? [], null);
+        $this->setIfExists('lng', $data ?? [], null);
+        $this->setIfExists('geoTimestamp', $data ?? [], null);
+        $this->setIfExists('altitude', $data ?? [], null);
+        $this->setIfExists('fieldData', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -288,6 +375,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -312,6 +404,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -336,6 +433,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -360,6 +462,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompanyUuid($companyUuid)
     {
+
+        if (is_null($companyUuid)) {
+            throw new \InvalidArgumentException('non-nullable companyUuid cannot be null');
+        }
+
         $this->container['companyUuid'] = $companyUuid;
 
         return $this;
@@ -384,6 +491,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssetCode($assetCode)
     {
+
+        if (is_null($assetCode)) {
+            throw new \InvalidArgumentException('non-nullable assetCode cannot be null');
+        }
+
         $this->container['assetCode'] = $assetCode;
 
         return $this;
@@ -408,6 +520,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssetTypeUuid($assetTypeUuid)
     {
+
+        if (is_null($assetTypeUuid)) {
+            throw new \InvalidArgumentException('non-nullable assetTypeUuid cannot be null');
+        }
+
         $this->container['assetTypeUuid'] = $assetTypeUuid;
 
         return $this;
@@ -432,6 +549,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+
         $this->container['name'] = $name;
 
         return $this;
@@ -456,6 +578,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
+
+        if (is_null($lat)) {
+            throw new \InvalidArgumentException('non-nullable lat cannot be null');
+        }
+
         $this->container['lat'] = $lat;
 
         return $this;
@@ -480,6 +607,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
+
+        if (is_null($lng)) {
+            throw new \InvalidArgumentException('non-nullable lng cannot be null');
+        }
+
         $this->container['lng'] = $lng;
 
         return $this;
@@ -504,6 +636,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoTimestamp($geoTimestamp)
     {
+
+        if (is_null($geoTimestamp)) {
+            throw new \InvalidArgumentException('non-nullable geoTimestamp cannot be null');
+        }
+
         $this->container['geoTimestamp'] = $geoTimestamp;
 
         return $this;
@@ -528,6 +665,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAltitude($altitude)
     {
+
+        if (is_null($altitude)) {
+            throw new \InvalidArgumentException('non-nullable altitude cannot be null');
+        }
+
         $this->container['altitude'] = $altitude;
 
         return $this;
@@ -552,6 +694,11 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFieldData($fieldData)
     {
+
+        if (is_null($fieldData)) {
+            throw new \InvalidArgumentException('non-nullable fieldData cannot be null');
+        }
+
         $this->container['fieldData'] = $fieldData;
 
         return $this;

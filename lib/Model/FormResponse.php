@@ -94,6 +94,33 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'formUuid' => false,
+		'staffUuid' => false,
+		'regardingObject' => false,
+		'regardingObjectUuid' => false,
+		'fieldData' => false,
+		'timestamp' => false,
+		'formByStaffUuid' => false,
+		'documentAttachmentUuid' => false,
+		'assetUuid' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -111,6 +138,48 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -231,18 +300,36 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['formUuid'] = $data['formUuid'] ?? null;
-        $this->container['staffUuid'] = $data['staffUuid'] ?? null;
-        $this->container['regardingObject'] = $data['regardingObject'] ?? null;
-        $this->container['regardingObjectUuid'] = $data['regardingObjectUuid'] ?? null;
-        $this->container['fieldData'] = $data['fieldData'] ?? null;
-        $this->container['timestamp'] = $data['timestamp'] ?? null;
-        $this->container['formByStaffUuid'] = $data['formByStaffUuid'] ?? null;
-        $this->container['documentAttachmentUuid'] = $data['documentAttachmentUuid'] ?? null;
-        $this->container['assetUuid'] = $data['assetUuid'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('formUuid', $data ?? [], null);
+        $this->setIfExists('staffUuid', $data ?? [], null);
+        $this->setIfExists('regardingObject', $data ?? [], null);
+        $this->setIfExists('regardingObjectUuid', $data ?? [], null);
+        $this->setIfExists('fieldData', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
+        $this->setIfExists('formByStaffUuid', $data ?? [], null);
+        $this->setIfExists('documentAttachmentUuid', $data ?? [], null);
+        $this->setIfExists('assetUuid', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -288,6 +375,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -312,6 +404,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -336,6 +433,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -360,6 +462,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFormUuid($formUuid)
     {
+
+        if (is_null($formUuid)) {
+            throw new \InvalidArgumentException('non-nullable formUuid cannot be null');
+        }
+
         $this->container['formUuid'] = $formUuid;
 
         return $this;
@@ -384,6 +491,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStaffUuid($staffUuid)
     {
+
+        if (is_null($staffUuid)) {
+            throw new \InvalidArgumentException('non-nullable staffUuid cannot be null');
+        }
+
         $this->container['staffUuid'] = $staffUuid;
 
         return $this;
@@ -408,6 +520,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegardingObject($regardingObject)
     {
+
+        if (is_null($regardingObject)) {
+            throw new \InvalidArgumentException('non-nullable regardingObject cannot be null');
+        }
+
         $this->container['regardingObject'] = $regardingObject;
 
         return $this;
@@ -432,6 +549,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegardingObjectUuid($regardingObjectUuid)
     {
+
+        if (is_null($regardingObjectUuid)) {
+            throw new \InvalidArgumentException('non-nullable regardingObjectUuid cannot be null');
+        }
+
         $this->container['regardingObjectUuid'] = $regardingObjectUuid;
 
         return $this;
@@ -456,6 +578,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFieldData($fieldData)
     {
+
+        if (is_null($fieldData)) {
+            throw new \InvalidArgumentException('non-nullable fieldData cannot be null');
+        }
+
         $this->container['fieldData'] = $fieldData;
 
         return $this;
@@ -480,6 +607,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimestamp($timestamp)
     {
+
+        if (is_null($timestamp)) {
+            throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
+        }
+
         $this->container['timestamp'] = $timestamp;
 
         return $this;
@@ -504,6 +636,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFormByStaffUuid($formByStaffUuid)
     {
+
+        if (is_null($formByStaffUuid)) {
+            throw new \InvalidArgumentException('non-nullable formByStaffUuid cannot be null');
+        }
+
         $this->container['formByStaffUuid'] = $formByStaffUuid;
 
         return $this;
@@ -528,6 +665,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDocumentAttachmentUuid($documentAttachmentUuid)
     {
+
+        if (is_null($documentAttachmentUuid)) {
+            throw new \InvalidArgumentException('non-nullable documentAttachmentUuid cannot be null');
+        }
+
         $this->container['documentAttachmentUuid'] = $documentAttachmentUuid;
 
         return $this;
@@ -552,6 +694,11 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssetUuid($assetUuid)
     {
+
+        if (is_null($assetUuid)) {
+            throw new \InvalidArgumentException('non-nullable assetUuid cannot be null');
+        }
+
         $this->container['assetUuid'] = $assetUuid;
 
         return $this;

@@ -106,6 +106,39 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'name' => false,
+		'website' => false,
+		'abnNumber' => false,
+		'isIndividual' => false,
+		'addressStreet' => false,
+		'addressCity' => false,
+		'addressState' => false,
+		'addressPostcode' => false,
+		'addressCountry' => false,
+		'faxNumber' => false,
+		'address' => false,
+		'billingAddress' => false,
+		'badges' => false,
+		'taxRateUuid' => false,
+		'paymentTerms' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -123,6 +156,48 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -261,24 +336,42 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['website'] = $data['website'] ?? null;
-        $this->container['abnNumber'] = $data['abnNumber'] ?? null;
-        $this->container['isIndividual'] = $data['isIndividual'] ?? null;
-        $this->container['addressStreet'] = $data['addressStreet'] ?? null;
-        $this->container['addressCity'] = $data['addressCity'] ?? null;
-        $this->container['addressState'] = $data['addressState'] ?? null;
-        $this->container['addressPostcode'] = $data['addressPostcode'] ?? null;
-        $this->container['addressCountry'] = $data['addressCountry'] ?? null;
-        $this->container['faxNumber'] = $data['faxNumber'] ?? null;
-        $this->container['address'] = $data['address'] ?? null;
-        $this->container['billingAddress'] = $data['billingAddress'] ?? null;
-        $this->container['badges'] = $data['badges'] ?? null;
-        $this->container['taxRateUuid'] = $data['taxRateUuid'] ?? null;
-        $this->container['paymentTerms'] = $data['paymentTerms'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('website', $data ?? [], null);
+        $this->setIfExists('abnNumber', $data ?? [], null);
+        $this->setIfExists('isIndividual', $data ?? [], null);
+        $this->setIfExists('addressStreet', $data ?? [], null);
+        $this->setIfExists('addressCity', $data ?? [], null);
+        $this->setIfExists('addressState', $data ?? [], null);
+        $this->setIfExists('addressPostcode', $data ?? [], null);
+        $this->setIfExists('addressCountry', $data ?? [], null);
+        $this->setIfExists('faxNumber', $data ?? [], null);
+        $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('billingAddress', $data ?? [], null);
+        $this->setIfExists('badges', $data ?? [], null);
+        $this->setIfExists('taxRateUuid', $data ?? [], null);
+        $this->setIfExists('paymentTerms', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -343,6 +436,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -367,6 +465,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -391,6 +494,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -419,6 +527,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $name when calling Client., must be smaller than or equal to 100.');
         }
 
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+
         $this->container['name'] = $name;
 
         return $this;
@@ -443,6 +556,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebsite($website)
     {
+
+        if (is_null($website)) {
+            throw new \InvalidArgumentException('non-nullable website cannot be null');
+        }
+
         $this->container['website'] = $website;
 
         return $this;
@@ -467,6 +585,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAbnNumber($abnNumber)
     {
+
+        if (is_null($abnNumber)) {
+            throw new \InvalidArgumentException('non-nullable abnNumber cannot be null');
+        }
+
         $this->container['abnNumber'] = $abnNumber;
 
         return $this;
@@ -491,6 +614,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIsIndividual($isIndividual)
     {
+
+        if (is_null($isIndividual)) {
+            throw new \InvalidArgumentException('non-nullable isIndividual cannot be null');
+        }
+
         $this->container['isIndividual'] = $isIndividual;
 
         return $this;
@@ -519,6 +647,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $addressStreet when calling Client., must be smaller than or equal to 500.');
         }
 
+
+        if (is_null($addressStreet)) {
+            throw new \InvalidArgumentException('non-nullable addressStreet cannot be null');
+        }
+
         $this->container['addressStreet'] = $addressStreet;
 
         return $this;
@@ -543,6 +676,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressCity($addressCity)
     {
+
+        if (is_null($addressCity)) {
+            throw new \InvalidArgumentException('non-nullable addressCity cannot be null');
+        }
+
         $this->container['addressCity'] = $addressCity;
 
         return $this;
@@ -567,6 +705,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressState($addressState)
     {
+
+        if (is_null($addressState)) {
+            throw new \InvalidArgumentException('non-nullable addressState cannot be null');
+        }
+
         $this->container['addressState'] = $addressState;
 
         return $this;
@@ -591,6 +734,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressPostcode($addressPostcode)
     {
+
+        if (is_null($addressPostcode)) {
+            throw new \InvalidArgumentException('non-nullable addressPostcode cannot be null');
+        }
+
         $this->container['addressPostcode'] = $addressPostcode;
 
         return $this;
@@ -615,6 +763,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressCountry($addressCountry)
     {
+
+        if (is_null($addressCountry)) {
+            throw new \InvalidArgumentException('non-nullable addressCountry cannot be null');
+        }
+
         $this->container['addressCountry'] = $addressCountry;
 
         return $this;
@@ -639,6 +792,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFaxNumber($faxNumber)
     {
+
+        if (is_null($faxNumber)) {
+            throw new \InvalidArgumentException('non-nullable faxNumber cannot be null');
+        }
+
         $this->container['faxNumber'] = $faxNumber;
 
         return $this;
@@ -665,6 +823,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (!is_null($address) && (mb_strlen($address) > 500)) {
             throw new \InvalidArgumentException('invalid length for $address when calling Client., must be smaller than or equal to 500.');
+        }
+
+
+        if (is_null($address)) {
+            throw new \InvalidArgumentException('non-nullable address cannot be null');
         }
 
         $this->container['address'] = $address;
@@ -695,6 +858,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $billingAddress when calling Client., must be smaller than or equal to 500.');
         }
 
+
+        if (is_null($billingAddress)) {
+            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
+        }
+
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -719,6 +887,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBadges($badges)
     {
+
+        if (is_null($badges)) {
+            throw new \InvalidArgumentException('non-nullable badges cannot be null');
+        }
+
         $this->container['badges'] = $badges;
 
         return $this;
@@ -743,6 +916,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxRateUuid($taxRateUuid)
     {
+
+        if (is_null($taxRateUuid)) {
+            throw new \InvalidArgumentException('non-nullable taxRateUuid cannot be null');
+        }
+
         $this->container['taxRateUuid'] = $taxRateUuid;
 
         return $this;
@@ -767,6 +945,11 @@ class Client implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentTerms($paymentTerms)
     {
+
+        if (is_null($paymentTerms)) {
+            throw new \InvalidArgumentException('non-nullable paymentTerms cannot be null');
+        }
+
         $this->container['paymentTerms'] = $paymentTerms;
 
         return $this;

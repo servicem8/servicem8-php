@@ -172,6 +172,72 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'createdByStaffUuid' => false,
+		'date' => false,
+		'companyUuid' => false,
+		'jobAddress' => false,
+		'billingAddress' => false,
+		'status' => false,
+		'jobDescription' => false,
+		'workDoneDescription' => false,
+		'lng' => false,
+		'lat' => false,
+		'generatedJobId' => false,
+		'paymentDate' => false,
+		'paymentActionedByUuid' => false,
+		'paymentMethod' => false,
+		'paymentAmount' => false,
+		'totalInvoiceAmount' => false,
+		'categoryUuid' => false,
+		'paymentNote' => false,
+		'geoIsValid' => false,
+		'purchaseOrderNumber' => false,
+		'invoiceSent' => false,
+		'invoiceSentStamp' => false,
+		'readyToInvoice' => false,
+		'readyToInvoiceStamp' => false,
+		'paymentProcessed' => false,
+		'paymentProcessedStamp' => false,
+		'geoCountry' => false,
+		'geoPostcode' => false,
+		'geoState' => false,
+		'geoCity' => false,
+		'geoStreet' => false,
+		'geoNumber' => false,
+		'queueUuid' => false,
+		'queueExpiryDate' => false,
+		'queueAssignedStaffUuid' => false,
+		'paymentReceived' => false,
+		'paymentReceivedStamp' => false,
+		'badges' => false,
+		'quoteDate' => false,
+		'quoteSent' => false,
+		'quoteSentStamp' => false,
+		'workOrderDate' => false,
+		'completionDate' => false,
+		'completionActionedByUuid' => false,
+		'unsuccessfulDate' => false,
+		'jobIsScheduledUntilStamp' => false,
+		'activeNetworkRequestUuid' => false,
+		'relatedKnowledgeArticles' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -189,6 +255,48 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -426,57 +534,75 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['createdByStaffUuid'] = $data['createdByStaffUuid'] ?? null;
-        $this->container['date'] = $data['date'] ?? null;
-        $this->container['companyUuid'] = $data['companyUuid'] ?? null;
-        $this->container['jobAddress'] = $data['jobAddress'] ?? null;
-        $this->container['billingAddress'] = $data['billingAddress'] ?? null;
-        $this->container['status'] = $data['status'] ?? null;
-        $this->container['jobDescription'] = $data['jobDescription'] ?? null;
-        $this->container['workDoneDescription'] = $data['workDoneDescription'] ?? null;
-        $this->container['lng'] = $data['lng'] ?? null;
-        $this->container['lat'] = $data['lat'] ?? null;
-        $this->container['generatedJobId'] = $data['generatedJobId'] ?? null;
-        $this->container['paymentDate'] = $data['paymentDate'] ?? null;
-        $this->container['paymentActionedByUuid'] = $data['paymentActionedByUuid'] ?? null;
-        $this->container['paymentMethod'] = $data['paymentMethod'] ?? null;
-        $this->container['paymentAmount'] = $data['paymentAmount'] ?? null;
-        $this->container['totalInvoiceAmount'] = $data['totalInvoiceAmount'] ?? null;
-        $this->container['categoryUuid'] = $data['categoryUuid'] ?? null;
-        $this->container['paymentNote'] = $data['paymentNote'] ?? null;
-        $this->container['geoIsValid'] = $data['geoIsValid'] ?? null;
-        $this->container['purchaseOrderNumber'] = $data['purchaseOrderNumber'] ?? null;
-        $this->container['invoiceSent'] = $data['invoiceSent'] ?? null;
-        $this->container['invoiceSentStamp'] = $data['invoiceSentStamp'] ?? null;
-        $this->container['readyToInvoice'] = $data['readyToInvoice'] ?? null;
-        $this->container['readyToInvoiceStamp'] = $data['readyToInvoiceStamp'] ?? null;
-        $this->container['paymentProcessed'] = $data['paymentProcessed'] ?? null;
-        $this->container['paymentProcessedStamp'] = $data['paymentProcessedStamp'] ?? null;
-        $this->container['geoCountry'] = $data['geoCountry'] ?? null;
-        $this->container['geoPostcode'] = $data['geoPostcode'] ?? null;
-        $this->container['geoState'] = $data['geoState'] ?? null;
-        $this->container['geoCity'] = $data['geoCity'] ?? null;
-        $this->container['geoStreet'] = $data['geoStreet'] ?? null;
-        $this->container['geoNumber'] = $data['geoNumber'] ?? null;
-        $this->container['queueUuid'] = $data['queueUuid'] ?? null;
-        $this->container['queueExpiryDate'] = $data['queueExpiryDate'] ?? null;
-        $this->container['queueAssignedStaffUuid'] = $data['queueAssignedStaffUuid'] ?? null;
-        $this->container['paymentReceived'] = $data['paymentReceived'] ?? null;
-        $this->container['paymentReceivedStamp'] = $data['paymentReceivedStamp'] ?? null;
-        $this->container['badges'] = $data['badges'] ?? null;
-        $this->container['quoteDate'] = $data['quoteDate'] ?? null;
-        $this->container['quoteSent'] = $data['quoteSent'] ?? null;
-        $this->container['quoteSentStamp'] = $data['quoteSentStamp'] ?? null;
-        $this->container['workOrderDate'] = $data['workOrderDate'] ?? null;
-        $this->container['completionDate'] = $data['completionDate'] ?? null;
-        $this->container['completionActionedByUuid'] = $data['completionActionedByUuid'] ?? null;
-        $this->container['unsuccessfulDate'] = $data['unsuccessfulDate'] ?? null;
-        $this->container['jobIsScheduledUntilStamp'] = $data['jobIsScheduledUntilStamp'] ?? null;
-        $this->container['activeNetworkRequestUuid'] = $data['activeNetworkRequestUuid'] ?? null;
-        $this->container['relatedKnowledgeArticles'] = $data['relatedKnowledgeArticles'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('createdByStaffUuid', $data ?? [], null);
+        $this->setIfExists('date', $data ?? [], null);
+        $this->setIfExists('companyUuid', $data ?? [], null);
+        $this->setIfExists('jobAddress', $data ?? [], null);
+        $this->setIfExists('billingAddress', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('jobDescription', $data ?? [], null);
+        $this->setIfExists('workDoneDescription', $data ?? [], null);
+        $this->setIfExists('lng', $data ?? [], null);
+        $this->setIfExists('lat', $data ?? [], null);
+        $this->setIfExists('generatedJobId', $data ?? [], null);
+        $this->setIfExists('paymentDate', $data ?? [], null);
+        $this->setIfExists('paymentActionedByUuid', $data ?? [], null);
+        $this->setIfExists('paymentMethod', $data ?? [], null);
+        $this->setIfExists('paymentAmount', $data ?? [], null);
+        $this->setIfExists('totalInvoiceAmount', $data ?? [], null);
+        $this->setIfExists('categoryUuid', $data ?? [], null);
+        $this->setIfExists('paymentNote', $data ?? [], null);
+        $this->setIfExists('geoIsValid', $data ?? [], null);
+        $this->setIfExists('purchaseOrderNumber', $data ?? [], null);
+        $this->setIfExists('invoiceSent', $data ?? [], null);
+        $this->setIfExists('invoiceSentStamp', $data ?? [], null);
+        $this->setIfExists('readyToInvoice', $data ?? [], null);
+        $this->setIfExists('readyToInvoiceStamp', $data ?? [], null);
+        $this->setIfExists('paymentProcessed', $data ?? [], null);
+        $this->setIfExists('paymentProcessedStamp', $data ?? [], null);
+        $this->setIfExists('geoCountry', $data ?? [], null);
+        $this->setIfExists('geoPostcode', $data ?? [], null);
+        $this->setIfExists('geoState', $data ?? [], null);
+        $this->setIfExists('geoCity', $data ?? [], null);
+        $this->setIfExists('geoStreet', $data ?? [], null);
+        $this->setIfExists('geoNumber', $data ?? [], null);
+        $this->setIfExists('queueUuid', $data ?? [], null);
+        $this->setIfExists('queueExpiryDate', $data ?? [], null);
+        $this->setIfExists('queueAssignedStaffUuid', $data ?? [], null);
+        $this->setIfExists('paymentReceived', $data ?? [], null);
+        $this->setIfExists('paymentReceivedStamp', $data ?? [], null);
+        $this->setIfExists('badges', $data ?? [], null);
+        $this->setIfExists('quoteDate', $data ?? [], null);
+        $this->setIfExists('quoteSent', $data ?? [], null);
+        $this->setIfExists('quoteSentStamp', $data ?? [], null);
+        $this->setIfExists('workOrderDate', $data ?? [], null);
+        $this->setIfExists('completionDate', $data ?? [], null);
+        $this->setIfExists('completionActionedByUuid', $data ?? [], null);
+        $this->setIfExists('unsuccessfulDate', $data ?? [], null);
+        $this->setIfExists('jobIsScheduledUntilStamp', $data ?? [], null);
+        $this->setIfExists('activeNetworkRequestUuid', $data ?? [], null);
+        $this->setIfExists('relatedKnowledgeArticles', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -541,6 +667,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -565,6 +696,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -589,6 +725,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -613,6 +754,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreatedByStaffUuid($createdByStaffUuid)
     {
+
+        if (is_null($createdByStaffUuid)) {
+            throw new \InvalidArgumentException('non-nullable createdByStaffUuid cannot be null');
+        }
+
         $this->container['createdByStaffUuid'] = $createdByStaffUuid;
 
         return $this;
@@ -637,6 +783,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDate($date)
     {
+
+        if (is_null($date)) {
+            throw new \InvalidArgumentException('non-nullable date cannot be null');
+        }
+
         $this->container['date'] = $date;
 
         return $this;
@@ -661,6 +812,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompanyUuid($companyUuid)
     {
+
+        if (is_null($companyUuid)) {
+            throw new \InvalidArgumentException('non-nullable companyUuid cannot be null');
+        }
+
         $this->container['companyUuid'] = $companyUuid;
 
         return $this;
@@ -687,6 +843,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (!is_null($jobAddress) && (mb_strlen($jobAddress) > 500)) {
             throw new \InvalidArgumentException('invalid length for $jobAddress when calling Job., must be smaller than or equal to 500.');
+        }
+
+
+        if (is_null($jobAddress)) {
+            throw new \InvalidArgumentException('non-nullable jobAddress cannot be null');
         }
 
         $this->container['jobAddress'] = $jobAddress;
@@ -717,6 +878,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $billingAddress when calling Job., must be smaller than or equal to 500.');
         }
 
+
+        if (is_null($billingAddress)) {
+            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
+        }
+
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -745,6 +911,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $status when calling Job., must be smaller than or equal to 20.');
         }
 
+
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+
         $this->container['status'] = $status;
 
         return $this;
@@ -769,6 +940,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobDescription($jobDescription)
     {
+
+        if (is_null($jobDescription)) {
+            throw new \InvalidArgumentException('non-nullable jobDescription cannot be null');
+        }
+
         $this->container['jobDescription'] = $jobDescription;
 
         return $this;
@@ -793,6 +969,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWorkDoneDescription($workDoneDescription)
     {
+
+        if (is_null($workDoneDescription)) {
+            throw new \InvalidArgumentException('non-nullable workDoneDescription cannot be null');
+        }
+
         $this->container['workDoneDescription'] = $workDoneDescription;
 
         return $this;
@@ -817,6 +998,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
+
+        if (is_null($lng)) {
+            throw new \InvalidArgumentException('non-nullable lng cannot be null');
+        }
+
         $this->container['lng'] = $lng;
 
         return $this;
@@ -841,6 +1027,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
+
+        if (is_null($lat)) {
+            throw new \InvalidArgumentException('non-nullable lat cannot be null');
+        }
+
         $this->container['lat'] = $lat;
 
         return $this;
@@ -865,6 +1056,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeneratedJobId($generatedJobId)
     {
+
+        if (is_null($generatedJobId)) {
+            throw new \InvalidArgumentException('non-nullable generatedJobId cannot be null');
+        }
+
         $this->container['generatedJobId'] = $generatedJobId;
 
         return $this;
@@ -889,6 +1085,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentDate($paymentDate)
     {
+
+        if (is_null($paymentDate)) {
+            throw new \InvalidArgumentException('non-nullable paymentDate cannot be null');
+        }
+
         $this->container['paymentDate'] = $paymentDate;
 
         return $this;
@@ -913,6 +1114,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentActionedByUuid($paymentActionedByUuid)
     {
+
+        if (is_null($paymentActionedByUuid)) {
+            throw new \InvalidArgumentException('non-nullable paymentActionedByUuid cannot be null');
+        }
+
         $this->container['paymentActionedByUuid'] = $paymentActionedByUuid;
 
         return $this;
@@ -937,6 +1143,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentMethod($paymentMethod)
     {
+
+        if (is_null($paymentMethod)) {
+            throw new \InvalidArgumentException('non-nullable paymentMethod cannot be null');
+        }
+
         $this->container['paymentMethod'] = $paymentMethod;
 
         return $this;
@@ -961,6 +1172,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentAmount($paymentAmount)
     {
+
+        if (is_null($paymentAmount)) {
+            throw new \InvalidArgumentException('non-nullable paymentAmount cannot be null');
+        }
+
         $this->container['paymentAmount'] = $paymentAmount;
 
         return $this;
@@ -985,6 +1201,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTotalInvoiceAmount($totalInvoiceAmount)
     {
+
+        if (is_null($totalInvoiceAmount)) {
+            throw new \InvalidArgumentException('non-nullable totalInvoiceAmount cannot be null');
+        }
+
         $this->container['totalInvoiceAmount'] = $totalInvoiceAmount;
 
         return $this;
@@ -1009,6 +1230,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCategoryUuid($categoryUuid)
     {
+
+        if (is_null($categoryUuid)) {
+            throw new \InvalidArgumentException('non-nullable categoryUuid cannot be null');
+        }
+
         $this->container['categoryUuid'] = $categoryUuid;
 
         return $this;
@@ -1033,6 +1259,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentNote($paymentNote)
     {
+
+        if (is_null($paymentNote)) {
+            throw new \InvalidArgumentException('non-nullable paymentNote cannot be null');
+        }
+
         $this->container['paymentNote'] = $paymentNote;
 
         return $this;
@@ -1057,6 +1288,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoIsValid($geoIsValid)
     {
+
+        if (is_null($geoIsValid)) {
+            throw new \InvalidArgumentException('non-nullable geoIsValid cannot be null');
+        }
+
         $this->container['geoIsValid'] = $geoIsValid;
 
         return $this;
@@ -1085,6 +1321,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $purchaseOrderNumber when calling Job., must be smaller than or equal to 100.');
         }
 
+
+        if (is_null($purchaseOrderNumber)) {
+            throw new \InvalidArgumentException('non-nullable purchaseOrderNumber cannot be null');
+        }
+
         $this->container['purchaseOrderNumber'] = $purchaseOrderNumber;
 
         return $this;
@@ -1109,6 +1350,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInvoiceSent($invoiceSent)
     {
+
+        if (is_null($invoiceSent)) {
+            throw new \InvalidArgumentException('non-nullable invoiceSent cannot be null');
+        }
+
         $this->container['invoiceSent'] = $invoiceSent;
 
         return $this;
@@ -1133,6 +1379,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInvoiceSentStamp($invoiceSentStamp)
     {
+
+        if (is_null($invoiceSentStamp)) {
+            throw new \InvalidArgumentException('non-nullable invoiceSentStamp cannot be null');
+        }
+
         $this->container['invoiceSentStamp'] = $invoiceSentStamp;
 
         return $this;
@@ -1157,6 +1408,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReadyToInvoice($readyToInvoice)
     {
+
+        if (is_null($readyToInvoice)) {
+            throw new \InvalidArgumentException('non-nullable readyToInvoice cannot be null');
+        }
+
         $this->container['readyToInvoice'] = $readyToInvoice;
 
         return $this;
@@ -1181,6 +1437,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReadyToInvoiceStamp($readyToInvoiceStamp)
     {
+
+        if (is_null($readyToInvoiceStamp)) {
+            throw new \InvalidArgumentException('non-nullable readyToInvoiceStamp cannot be null');
+        }
+
         $this->container['readyToInvoiceStamp'] = $readyToInvoiceStamp;
 
         return $this;
@@ -1205,6 +1466,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentProcessed($paymentProcessed)
     {
+
+        if (is_null($paymentProcessed)) {
+            throw new \InvalidArgumentException('non-nullable paymentProcessed cannot be null');
+        }
+
         $this->container['paymentProcessed'] = $paymentProcessed;
 
         return $this;
@@ -1229,6 +1495,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentProcessedStamp($paymentProcessedStamp)
     {
+
+        if (is_null($paymentProcessedStamp)) {
+            throw new \InvalidArgumentException('non-nullable paymentProcessedStamp cannot be null');
+        }
+
         $this->container['paymentProcessedStamp'] = $paymentProcessedStamp;
 
         return $this;
@@ -1253,6 +1524,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoCountry($geoCountry)
     {
+
+        if (is_null($geoCountry)) {
+            throw new \InvalidArgumentException('non-nullable geoCountry cannot be null');
+        }
+
         $this->container['geoCountry'] = $geoCountry;
 
         return $this;
@@ -1277,6 +1553,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoPostcode($geoPostcode)
     {
+
+        if (is_null($geoPostcode)) {
+            throw new \InvalidArgumentException('non-nullable geoPostcode cannot be null');
+        }
+
         $this->container['geoPostcode'] = $geoPostcode;
 
         return $this;
@@ -1301,6 +1582,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoState($geoState)
     {
+
+        if (is_null($geoState)) {
+            throw new \InvalidArgumentException('non-nullable geoState cannot be null');
+        }
+
         $this->container['geoState'] = $geoState;
 
         return $this;
@@ -1325,6 +1611,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoCity($geoCity)
     {
+
+        if (is_null($geoCity)) {
+            throw new \InvalidArgumentException('non-nullable geoCity cannot be null');
+        }
+
         $this->container['geoCity'] = $geoCity;
 
         return $this;
@@ -1349,6 +1640,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoStreet($geoStreet)
     {
+
+        if (is_null($geoStreet)) {
+            throw new \InvalidArgumentException('non-nullable geoStreet cannot be null');
+        }
+
         $this->container['geoStreet'] = $geoStreet;
 
         return $this;
@@ -1373,6 +1669,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoNumber($geoNumber)
     {
+
+        if (is_null($geoNumber)) {
+            throw new \InvalidArgumentException('non-nullable geoNumber cannot be null');
+        }
+
         $this->container['geoNumber'] = $geoNumber;
 
         return $this;
@@ -1397,6 +1698,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQueueUuid($queueUuid)
     {
+
+        if (is_null($queueUuid)) {
+            throw new \InvalidArgumentException('non-nullable queueUuid cannot be null');
+        }
+
         $this->container['queueUuid'] = $queueUuid;
 
         return $this;
@@ -1421,6 +1727,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQueueExpiryDate($queueExpiryDate)
     {
+
+        if (is_null($queueExpiryDate)) {
+            throw new \InvalidArgumentException('non-nullable queueExpiryDate cannot be null');
+        }
+
         $this->container['queueExpiryDate'] = $queueExpiryDate;
 
         return $this;
@@ -1445,6 +1756,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQueueAssignedStaffUuid($queueAssignedStaffUuid)
     {
+
+        if (is_null($queueAssignedStaffUuid)) {
+            throw new \InvalidArgumentException('non-nullable queueAssignedStaffUuid cannot be null');
+        }
+
         $this->container['queueAssignedStaffUuid'] = $queueAssignedStaffUuid;
 
         return $this;
@@ -1469,6 +1785,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentReceived($paymentReceived)
     {
+
+        if (is_null($paymentReceived)) {
+            throw new \InvalidArgumentException('non-nullable paymentReceived cannot be null');
+        }
+
         $this->container['paymentReceived'] = $paymentReceived;
 
         return $this;
@@ -1493,6 +1814,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentReceivedStamp($paymentReceivedStamp)
     {
+
+        if (is_null($paymentReceivedStamp)) {
+            throw new \InvalidArgumentException('non-nullable paymentReceivedStamp cannot be null');
+        }
+
         $this->container['paymentReceivedStamp'] = $paymentReceivedStamp;
 
         return $this;
@@ -1517,6 +1843,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBadges($badges)
     {
+
+        if (is_null($badges)) {
+            throw new \InvalidArgumentException('non-nullable badges cannot be null');
+        }
+
         $this->container['badges'] = $badges;
 
         return $this;
@@ -1541,6 +1872,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQuoteDate($quoteDate)
     {
+
+        if (is_null($quoteDate)) {
+            throw new \InvalidArgumentException('non-nullable quoteDate cannot be null');
+        }
+
         $this->container['quoteDate'] = $quoteDate;
 
         return $this;
@@ -1565,6 +1901,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQuoteSent($quoteSent)
     {
+
+        if (is_null($quoteSent)) {
+            throw new \InvalidArgumentException('non-nullable quoteSent cannot be null');
+        }
+
         $this->container['quoteSent'] = $quoteSent;
 
         return $this;
@@ -1589,6 +1930,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQuoteSentStamp($quoteSentStamp)
     {
+
+        if (is_null($quoteSentStamp)) {
+            throw new \InvalidArgumentException('non-nullable quoteSentStamp cannot be null');
+        }
+
         $this->container['quoteSentStamp'] = $quoteSentStamp;
 
         return $this;
@@ -1613,6 +1959,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWorkOrderDate($workOrderDate)
     {
+
+        if (is_null($workOrderDate)) {
+            throw new \InvalidArgumentException('non-nullable workOrderDate cannot be null');
+        }
+
         $this->container['workOrderDate'] = $workOrderDate;
 
         return $this;
@@ -1637,6 +1988,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompletionDate($completionDate)
     {
+
+        if (is_null($completionDate)) {
+            throw new \InvalidArgumentException('non-nullable completionDate cannot be null');
+        }
+
         $this->container['completionDate'] = $completionDate;
 
         return $this;
@@ -1661,6 +2017,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompletionActionedByUuid($completionActionedByUuid)
     {
+
+        if (is_null($completionActionedByUuid)) {
+            throw new \InvalidArgumentException('non-nullable completionActionedByUuid cannot be null');
+        }
+
         $this->container['completionActionedByUuid'] = $completionActionedByUuid;
 
         return $this;
@@ -1685,6 +2046,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUnsuccessfulDate($unsuccessfulDate)
     {
+
+        if (is_null($unsuccessfulDate)) {
+            throw new \InvalidArgumentException('non-nullable unsuccessfulDate cannot be null');
+        }
+
         $this->container['unsuccessfulDate'] = $unsuccessfulDate;
 
         return $this;
@@ -1709,6 +2075,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobIsScheduledUntilStamp($jobIsScheduledUntilStamp)
     {
+
+        if (is_null($jobIsScheduledUntilStamp)) {
+            throw new \InvalidArgumentException('non-nullable jobIsScheduledUntilStamp cannot be null');
+        }
+
         $this->container['jobIsScheduledUntilStamp'] = $jobIsScheduledUntilStamp;
 
         return $this;
@@ -1733,6 +2104,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActiveNetworkRequestUuid($activeNetworkRequestUuid)
     {
+
+        if (is_null($activeNetworkRequestUuid)) {
+            throw new \InvalidArgumentException('non-nullable activeNetworkRequestUuid cannot be null');
+        }
+
         $this->container['activeNetworkRequestUuid'] = $activeNetworkRequestUuid;
 
         return $this;
@@ -1757,6 +2133,11 @@ class Job implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedKnowledgeArticles($relatedKnowledgeArticles)
     {
+
+        if (is_null($relatedKnowledgeArticles)) {
+            throw new \InvalidArgumentException('non-nullable relatedKnowledgeArticles cannot be null');
+        }
+
         $this->container['relatedKnowledgeArticles'] = $relatedKnowledgeArticles;
 
         return $this;

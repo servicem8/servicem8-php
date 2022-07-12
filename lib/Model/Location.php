@@ -100,6 +100,36 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'name' => false,
+		'line1' => false,
+		'line2' => false,
+		'line3' => false,
+		'city' => false,
+		'country' => false,
+		'postCode' => false,
+		'phone1' => false,
+		'fax' => false,
+		'state' => false,
+		'lng' => false,
+		'lat' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -117,6 +147,48 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -246,21 +318,39 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['line1'] = $data['line1'] ?? null;
-        $this->container['line2'] = $data['line2'] ?? null;
-        $this->container['line3'] = $data['line3'] ?? null;
-        $this->container['city'] = $data['city'] ?? null;
-        $this->container['country'] = $data['country'] ?? null;
-        $this->container['postCode'] = $data['postCode'] ?? null;
-        $this->container['phone1'] = $data['phone1'] ?? null;
-        $this->container['fax'] = $data['fax'] ?? null;
-        $this->container['state'] = $data['state'] ?? null;
-        $this->container['lng'] = $data['lng'] ?? null;
-        $this->container['lat'] = $data['lat'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('line1', $data ?? [], null);
+        $this->setIfExists('line2', $data ?? [], null);
+        $this->setIfExists('line3', $data ?? [], null);
+        $this->setIfExists('city', $data ?? [], null);
+        $this->setIfExists('country', $data ?? [], null);
+        $this->setIfExists('postCode', $data ?? [], null);
+        $this->setIfExists('phone1', $data ?? [], null);
+        $this->setIfExists('fax', $data ?? [], null);
+        $this->setIfExists('state', $data ?? [], null);
+        $this->setIfExists('lng', $data ?? [], null);
+        $this->setIfExists('lat', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -349,6 +439,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -373,6 +468,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -397,6 +497,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -423,6 +528,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if ((mb_strlen($name) > 50)) {
             throw new \InvalidArgumentException('invalid length for $name when calling Location., must be smaller than or equal to 50.');
+        }
+
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
 
         $this->container['name'] = $name;
@@ -453,6 +563,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $line1 when calling Location., must be smaller than or equal to 100.');
         }
 
+
+        if (is_null($line1)) {
+            throw new \InvalidArgumentException('non-nullable line1 cannot be null');
+        }
+
         $this->container['line1'] = $line1;
 
         return $this;
@@ -479,6 +594,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (!is_null($line2) && (mb_strlen($line2) > 100)) {
             throw new \InvalidArgumentException('invalid length for $line2 when calling Location., must be smaller than or equal to 100.');
+        }
+
+
+        if (is_null($line2)) {
+            throw new \InvalidArgumentException('non-nullable line2 cannot be null');
         }
 
         $this->container['line2'] = $line2;
@@ -509,6 +629,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $line3 when calling Location., must be smaller than or equal to 100.');
         }
 
+
+        if (is_null($line3)) {
+            throw new \InvalidArgumentException('non-nullable line3 cannot be null');
+        }
+
         $this->container['line3'] = $line3;
 
         return $this;
@@ -535,6 +660,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (!is_null($city) && (mb_strlen($city) > 50)) {
             throw new \InvalidArgumentException('invalid length for $city when calling Location., must be smaller than or equal to 50.');
+        }
+
+
+        if (is_null($city)) {
+            throw new \InvalidArgumentException('non-nullable city cannot be null');
         }
 
         $this->container['city'] = $city;
@@ -565,6 +695,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $country when calling Location., must be smaller than or equal to 100.');
         }
 
+
+        if (is_null($country)) {
+            throw new \InvalidArgumentException('non-nullable country cannot be null');
+        }
+
         $this->container['country'] = $country;
 
         return $this;
@@ -591,6 +726,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (!is_null($postCode) && (mb_strlen($postCode) > 100)) {
             throw new \InvalidArgumentException('invalid length for $postCode when calling Location., must be smaller than or equal to 100.');
+        }
+
+
+        if (is_null($postCode)) {
+            throw new \InvalidArgumentException('non-nullable postCode cannot be null');
         }
 
         $this->container['postCode'] = $postCode;
@@ -621,6 +761,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $phone1 when calling Location., must be smaller than or equal to 100.');
         }
 
+
+        if (is_null($phone1)) {
+            throw new \InvalidArgumentException('non-nullable phone1 cannot be null');
+        }
+
         $this->container['phone1'] = $phone1;
 
         return $this;
@@ -647,6 +792,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (!is_null($fax) && (mb_strlen($fax) > 100)) {
             throw new \InvalidArgumentException('invalid length for $fax when calling Location., must be smaller than or equal to 100.');
+        }
+
+
+        if (is_null($fax)) {
+            throw new \InvalidArgumentException('non-nullable fax cannot be null');
         }
 
         $this->container['fax'] = $fax;
@@ -677,6 +827,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $state when calling Location., must be smaller than or equal to 400.');
         }
 
+
+        if (is_null($state)) {
+            throw new \InvalidArgumentException('non-nullable state cannot be null');
+        }
+
         $this->container['state'] = $state;
 
         return $this;
@@ -701,6 +856,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
+
+        if (is_null($lng)) {
+            throw new \InvalidArgumentException('non-nullable lng cannot be null');
+        }
+
         $this->container['lng'] = $lng;
 
         return $this;
@@ -725,6 +885,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
+
+        if (is_null($lat)) {
+            throw new \InvalidArgumentException('non-nullable lat cannot be null');
+        }
+
         $this->container['lat'] = $lat;
 
         return $this;

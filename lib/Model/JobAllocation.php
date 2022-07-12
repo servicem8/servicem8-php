@@ -108,6 +108,40 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'jobUuid' => false,
+		'queueUuid' => false,
+		'staffUuid' => false,
+		'allocationDate' => false,
+		'allocationWindowUuid' => false,
+		'allocatedByStaffUuid' => false,
+		'allocatedTimestamp' => false,
+		'expiryTimestamp' => false,
+		'readTimestamp' => false,
+		'completionTimestamp' => false,
+		'estimatedDuration' => false,
+		'revisedDuration' => false,
+		'sortPriority' => false,
+		'requiresAcceptance' => false,
+		'acceptanceStatus' => false,
+		'acceptanceTimestamp' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -125,6 +159,48 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -266,25 +342,43 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['jobUuid'] = $data['jobUuid'] ?? null;
-        $this->container['queueUuid'] = $data['queueUuid'] ?? null;
-        $this->container['staffUuid'] = $data['staffUuid'] ?? null;
-        $this->container['allocationDate'] = $data['allocationDate'] ?? null;
-        $this->container['allocationWindowUuid'] = $data['allocationWindowUuid'] ?? null;
-        $this->container['allocatedByStaffUuid'] = $data['allocatedByStaffUuid'] ?? null;
-        $this->container['allocatedTimestamp'] = $data['allocatedTimestamp'] ?? null;
-        $this->container['expiryTimestamp'] = $data['expiryTimestamp'] ?? null;
-        $this->container['readTimestamp'] = $data['readTimestamp'] ?? null;
-        $this->container['completionTimestamp'] = $data['completionTimestamp'] ?? null;
-        $this->container['estimatedDuration'] = $data['estimatedDuration'] ?? null;
-        $this->container['revisedDuration'] = $data['revisedDuration'] ?? null;
-        $this->container['sortPriority'] = $data['sortPriority'] ?? null;
-        $this->container['requiresAcceptance'] = $data['requiresAcceptance'] ?? null;
-        $this->container['acceptanceStatus'] = $data['acceptanceStatus'] ?? null;
-        $this->container['acceptanceTimestamp'] = $data['acceptanceTimestamp'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('jobUuid', $data ?? [], null);
+        $this->setIfExists('queueUuid', $data ?? [], null);
+        $this->setIfExists('staffUuid', $data ?? [], null);
+        $this->setIfExists('allocationDate', $data ?? [], null);
+        $this->setIfExists('allocationWindowUuid', $data ?? [], null);
+        $this->setIfExists('allocatedByStaffUuid', $data ?? [], null);
+        $this->setIfExists('allocatedTimestamp', $data ?? [], null);
+        $this->setIfExists('expiryTimestamp', $data ?? [], null);
+        $this->setIfExists('readTimestamp', $data ?? [], null);
+        $this->setIfExists('completionTimestamp', $data ?? [], null);
+        $this->setIfExists('estimatedDuration', $data ?? [], null);
+        $this->setIfExists('revisedDuration', $data ?? [], null);
+        $this->setIfExists('sortPriority', $data ?? [], null);
+        $this->setIfExists('requiresAcceptance', $data ?? [], null);
+        $this->setIfExists('acceptanceStatus', $data ?? [], null);
+        $this->setIfExists('acceptanceTimestamp', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -330,6 +424,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -354,6 +453,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -378,6 +482,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -402,6 +511,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobUuid($jobUuid)
     {
+
+        if (is_null($jobUuid)) {
+            throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
+        }
+
         $this->container['jobUuid'] = $jobUuid;
 
         return $this;
@@ -426,6 +540,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQueueUuid($queueUuid)
     {
+
+        if (is_null($queueUuid)) {
+            throw new \InvalidArgumentException('non-nullable queueUuid cannot be null');
+        }
+
         $this->container['queueUuid'] = $queueUuid;
 
         return $this;
@@ -450,6 +569,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStaffUuid($staffUuid)
     {
+
+        if (is_null($staffUuid)) {
+            throw new \InvalidArgumentException('non-nullable staffUuid cannot be null');
+        }
+
         $this->container['staffUuid'] = $staffUuid;
 
         return $this;
@@ -474,6 +598,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllocationDate($allocationDate)
     {
+
+        if (is_null($allocationDate)) {
+            throw new \InvalidArgumentException('non-nullable allocationDate cannot be null');
+        }
+
         $this->container['allocationDate'] = $allocationDate;
 
         return $this;
@@ -498,6 +627,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllocationWindowUuid($allocationWindowUuid)
     {
+
+        if (is_null($allocationWindowUuid)) {
+            throw new \InvalidArgumentException('non-nullable allocationWindowUuid cannot be null');
+        }
+
         $this->container['allocationWindowUuid'] = $allocationWindowUuid;
 
         return $this;
@@ -522,6 +656,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllocatedByStaffUuid($allocatedByStaffUuid)
     {
+
+        if (is_null($allocatedByStaffUuid)) {
+            throw new \InvalidArgumentException('non-nullable allocatedByStaffUuid cannot be null');
+        }
+
         $this->container['allocatedByStaffUuid'] = $allocatedByStaffUuid;
 
         return $this;
@@ -546,6 +685,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllocatedTimestamp($allocatedTimestamp)
     {
+
+        if (is_null($allocatedTimestamp)) {
+            throw new \InvalidArgumentException('non-nullable allocatedTimestamp cannot be null');
+        }
+
         $this->container['allocatedTimestamp'] = $allocatedTimestamp;
 
         return $this;
@@ -570,6 +714,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setExpiryTimestamp($expiryTimestamp)
     {
+
+        if (is_null($expiryTimestamp)) {
+            throw new \InvalidArgumentException('non-nullable expiryTimestamp cannot be null');
+        }
+
         $this->container['expiryTimestamp'] = $expiryTimestamp;
 
         return $this;
@@ -594,6 +743,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReadTimestamp($readTimestamp)
     {
+
+        if (is_null($readTimestamp)) {
+            throw new \InvalidArgumentException('non-nullable readTimestamp cannot be null');
+        }
+
         $this->container['readTimestamp'] = $readTimestamp;
 
         return $this;
@@ -618,6 +772,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompletionTimestamp($completionTimestamp)
     {
+
+        if (is_null($completionTimestamp)) {
+            throw new \InvalidArgumentException('non-nullable completionTimestamp cannot be null');
+        }
+
         $this->container['completionTimestamp'] = $completionTimestamp;
 
         return $this;
@@ -642,6 +801,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEstimatedDuration($estimatedDuration)
     {
+
+        if (is_null($estimatedDuration)) {
+            throw new \InvalidArgumentException('non-nullable estimatedDuration cannot be null');
+        }
+
         $this->container['estimatedDuration'] = $estimatedDuration;
 
         return $this;
@@ -666,6 +830,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRevisedDuration($revisedDuration)
     {
+
+        if (is_null($revisedDuration)) {
+            throw new \InvalidArgumentException('non-nullable revisedDuration cannot be null');
+        }
+
         $this->container['revisedDuration'] = $revisedDuration;
 
         return $this;
@@ -690,6 +859,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSortPriority($sortPriority)
     {
+
+        if (is_null($sortPriority)) {
+            throw new \InvalidArgumentException('non-nullable sortPriority cannot be null');
+        }
+
         $this->container['sortPriority'] = $sortPriority;
 
         return $this;
@@ -714,6 +888,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRequiresAcceptance($requiresAcceptance)
     {
+
+        if (is_null($requiresAcceptance)) {
+            throw new \InvalidArgumentException('non-nullable requiresAcceptance cannot be null');
+        }
+
         $this->container['requiresAcceptance'] = $requiresAcceptance;
 
         return $this;
@@ -738,6 +917,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptanceStatus($acceptanceStatus)
     {
+
+        if (is_null($acceptanceStatus)) {
+            throw new \InvalidArgumentException('non-nullable acceptanceStatus cannot be null');
+        }
+
         $this->container['acceptanceStatus'] = $acceptanceStatus;
 
         return $this;
@@ -762,6 +946,11 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptanceTimestamp($acceptanceTimestamp)
     {
+
+        if (is_null($acceptanceTimestamp)) {
+            throw new \InvalidArgumentException('non-nullable acceptanceTimestamp cannot be null');
+        }
+
         $this->container['acceptanceTimestamp'] = $acceptanceTimestamp;
 
         return $this;

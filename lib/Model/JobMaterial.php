@@ -100,6 +100,36 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'jobUuid' => false,
+		'materialUuid' => false,
+		'name' => false,
+		'quantity' => false,
+		'price' => false,
+		'displayedAmount' => false,
+		'displayedAmountIsTaxInclusive' => false,
+		'taxRateUuid' => false,
+		'sortOrder' => false,
+		'cost' => false,
+		'displayedCost' => false,
+		'jobMaterialBundleUuid' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -117,6 +147,48 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -246,21 +318,39 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['jobUuid'] = $data['jobUuid'] ?? null;
-        $this->container['materialUuid'] = $data['materialUuid'] ?? null;
-        $this->container['name'] = $data['name'] ?? null;
-        $this->container['quantity'] = $data['quantity'] ?? null;
-        $this->container['price'] = $data['price'] ?? null;
-        $this->container['displayedAmount'] = $data['displayedAmount'] ?? null;
-        $this->container['displayedAmountIsTaxInclusive'] = $data['displayedAmountIsTaxInclusive'] ?? null;
-        $this->container['taxRateUuid'] = $data['taxRateUuid'] ?? null;
-        $this->container['sortOrder'] = $data['sortOrder'] ?? null;
-        $this->container['cost'] = $data['cost'] ?? null;
-        $this->container['displayedCost'] = $data['displayedCost'] ?? null;
-        $this->container['jobMaterialBundleUuid'] = $data['jobMaterialBundleUuid'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('jobUuid', $data ?? [], null);
+        $this->setIfExists('materialUuid', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('price', $data ?? [], null);
+        $this->setIfExists('displayedAmount', $data ?? [], null);
+        $this->setIfExists('displayedAmountIsTaxInclusive', $data ?? [], null);
+        $this->setIfExists('taxRateUuid', $data ?? [], null);
+        $this->setIfExists('sortOrder', $data ?? [], null);
+        $this->setIfExists('cost', $data ?? [], null);
+        $this->setIfExists('displayedCost', $data ?? [], null);
+        $this->setIfExists('jobMaterialBundleUuid', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -317,6 +407,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -341,6 +436,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -365,6 +465,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -389,6 +494,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobUuid($jobUuid)
     {
+
+        if (is_null($jobUuid)) {
+            throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
+        }
+
         $this->container['jobUuid'] = $jobUuid;
 
         return $this;
@@ -413,6 +523,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaterialUuid($materialUuid)
     {
+
+        if (is_null($materialUuid)) {
+            throw new \InvalidArgumentException('non-nullable materialUuid cannot be null');
+        }
+
         $this->container['materialUuid'] = $materialUuid;
 
         return $this;
@@ -439,6 +554,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (!is_null($name) && (mb_strlen($name) > 500)) {
             throw new \InvalidArgumentException('invalid length for $name when calling JobMaterial., must be smaller than or equal to 500.');
+        }
+
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
 
         $this->container['name'] = $name;
@@ -469,6 +589,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $quantity when calling JobMaterial., must be smaller than or equal to 100.');
         }
 
+
+        if (is_null($quantity)) {
+            throw new \InvalidArgumentException('non-nullable quantity cannot be null');
+        }
+
         $this->container['quantity'] = $quantity;
 
         return $this;
@@ -493,6 +618,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrice($price)
     {
+
+        if (is_null($price)) {
+            throw new \InvalidArgumentException('non-nullable price cannot be null');
+        }
+
         $this->container['price'] = $price;
 
         return $this;
@@ -517,6 +647,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDisplayedAmount($displayedAmount)
     {
+
+        if (is_null($displayedAmount)) {
+            throw new \InvalidArgumentException('non-nullable displayedAmount cannot be null');
+        }
+
         $this->container['displayedAmount'] = $displayedAmount;
 
         return $this;
@@ -541,6 +676,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDisplayedAmountIsTaxInclusive($displayedAmountIsTaxInclusive)
     {
+
+        if (is_null($displayedAmountIsTaxInclusive)) {
+            throw new \InvalidArgumentException('non-nullable displayedAmountIsTaxInclusive cannot be null');
+        }
+
         $this->container['displayedAmountIsTaxInclusive'] = $displayedAmountIsTaxInclusive;
 
         return $this;
@@ -565,6 +705,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxRateUuid($taxRateUuid)
     {
+
+        if (is_null($taxRateUuid)) {
+            throw new \InvalidArgumentException('non-nullable taxRateUuid cannot be null');
+        }
+
         $this->container['taxRateUuid'] = $taxRateUuid;
 
         return $this;
@@ -589,6 +734,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSortOrder($sortOrder)
     {
+
+        if (is_null($sortOrder)) {
+            throw new \InvalidArgumentException('non-nullable sortOrder cannot be null');
+        }
+
         $this->container['sortOrder'] = $sortOrder;
 
         return $this;
@@ -613,6 +763,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCost($cost)
     {
+
+        if (is_null($cost)) {
+            throw new \InvalidArgumentException('non-nullable cost cannot be null');
+        }
+
         $this->container['cost'] = $cost;
 
         return $this;
@@ -637,6 +792,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDisplayedCost($displayedCost)
     {
+
+        if (is_null($displayedCost)) {
+            throw new \InvalidArgumentException('non-nullable displayedCost cannot be null');
+        }
+
         $this->container['displayedCost'] = $displayedCost;
 
         return $this;
@@ -661,6 +821,11 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobMaterialBundleUuid($jobMaterialBundleUuid)
     {
+
+        if (is_null($jobMaterialBundleUuid)) {
+            throw new \InvalidArgumentException('non-nullable jobMaterialBundleUuid cannot be null');
+        }
+
         $this->container['jobMaterialBundleUuid'] = $jobMaterialBundleUuid;
 
         return $this;

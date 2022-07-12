@@ -90,6 +90,31 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'jobUuid' => false,
+		'actionedByUuid' => false,
+		'timestamp' => false,
+		'amount' => false,
+		'method' => false,
+		'note' => false,
+		'attachmentUuid' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -107,6 +132,48 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -221,16 +288,34 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['jobUuid'] = $data['jobUuid'] ?? null;
-        $this->container['actionedByUuid'] = $data['actionedByUuid'] ?? null;
-        $this->container['timestamp'] = $data['timestamp'] ?? null;
-        $this->container['amount'] = $data['amount'] ?? null;
-        $this->container['method'] = $data['method'] ?? null;
-        $this->container['note'] = $data['note'] ?? null;
-        $this->container['attachmentUuid'] = $data['attachmentUuid'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('jobUuid', $data ?? [], null);
+        $this->setIfExists('actionedByUuid', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
+        $this->setIfExists('amount', $data ?? [], null);
+        $this->setIfExists('method', $data ?? [], null);
+        $this->setIfExists('note', $data ?? [], null);
+        $this->setIfExists('attachmentUuid', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -276,6 +361,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -300,6 +390,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -324,6 +419,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -348,6 +448,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobUuid($jobUuid)
     {
+
+        if (is_null($jobUuid)) {
+            throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
+        }
+
         $this->container['jobUuid'] = $jobUuid;
 
         return $this;
@@ -372,6 +477,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActionedByUuid($actionedByUuid)
     {
+
+        if (is_null($actionedByUuid)) {
+            throw new \InvalidArgumentException('non-nullable actionedByUuid cannot be null');
+        }
+
         $this->container['actionedByUuid'] = $actionedByUuid;
 
         return $this;
@@ -396,6 +506,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimestamp($timestamp)
     {
+
+        if (is_null($timestamp)) {
+            throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
+        }
+
         $this->container['timestamp'] = $timestamp;
 
         return $this;
@@ -420,6 +535,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
+
+        if (is_null($amount)) {
+            throw new \InvalidArgumentException('non-nullable amount cannot be null');
+        }
+
         $this->container['amount'] = $amount;
 
         return $this;
@@ -444,6 +564,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMethod($method)
     {
+
+        if (is_null($method)) {
+            throw new \InvalidArgumentException('non-nullable method cannot be null');
+        }
+
         $this->container['method'] = $method;
 
         return $this;
@@ -468,6 +593,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNote($note)
     {
+
+        if (is_null($note)) {
+            throw new \InvalidArgumentException('non-nullable note cannot be null');
+        }
+
         $this->container['note'] = $note;
 
         return $this;
@@ -492,6 +622,11 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAttachmentUuid($attachmentUuid)
     {
+
+        if (is_null($attachmentUuid)) {
+            throw new \InvalidArgumentException('non-nullable attachmentUuid cannot be null');
+        }
+
         $this->container['attachmentUuid'] = $attachmentUuid;
 
         return $this;

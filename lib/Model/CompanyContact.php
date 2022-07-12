@@ -92,6 +92,32 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'companyUuid' => false,
+		'first' => false,
+		'last' => false,
+		'phone' => false,
+		'mobile' => false,
+		'email' => false,
+		'type' => false,
+		'isPrimaryContact' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -109,6 +135,48 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -226,17 +294,35 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['companyUuid'] = $data['companyUuid'] ?? null;
-        $this->container['first'] = $data['first'] ?? null;
-        $this->container['last'] = $data['last'] ?? null;
-        $this->container['phone'] = $data['phone'] ?? null;
-        $this->container['mobile'] = $data['mobile'] ?? null;
-        $this->container['email'] = $data['email'] ?? null;
-        $this->container['type'] = $data['type'] ?? null;
-        $this->container['isPrimaryContact'] = $data['isPrimaryContact'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('companyUuid', $data ?? [], null);
+        $this->setIfExists('first', $data ?? [], null);
+        $this->setIfExists('last', $data ?? [], null);
+        $this->setIfExists('phone', $data ?? [], null);
+        $this->setIfExists('mobile', $data ?? [], null);
+        $this->setIfExists('email', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('isPrimaryContact', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -282,6 +368,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -306,6 +397,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -330,6 +426,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -354,6 +455,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompanyUuid($companyUuid)
     {
+
+        if (is_null($companyUuid)) {
+            throw new \InvalidArgumentException('non-nullable companyUuid cannot be null');
+        }
+
         $this->container['companyUuid'] = $companyUuid;
 
         return $this;
@@ -378,6 +484,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirst($first)
     {
+
+        if (is_null($first)) {
+            throw new \InvalidArgumentException('non-nullable first cannot be null');
+        }
+
         $this->container['first'] = $first;
 
         return $this;
@@ -402,6 +513,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLast($last)
     {
+
+        if (is_null($last)) {
+            throw new \InvalidArgumentException('non-nullable last cannot be null');
+        }
+
         $this->container['last'] = $last;
 
         return $this;
@@ -426,6 +542,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhone($phone)
     {
+
+        if (is_null($phone)) {
+            throw new \InvalidArgumentException('non-nullable phone cannot be null');
+        }
+
         $this->container['phone'] = $phone;
 
         return $this;
@@ -450,6 +571,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMobile($mobile)
     {
+
+        if (is_null($mobile)) {
+            throw new \InvalidArgumentException('non-nullable mobile cannot be null');
+        }
+
         $this->container['mobile'] = $mobile;
 
         return $this;
@@ -474,6 +600,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
+
+        if (is_null($email)) {
+            throw new \InvalidArgumentException('non-nullable email cannot be null');
+        }
+
         $this->container['email'] = $email;
 
         return $this;
@@ -498,6 +629,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
+
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+
         $this->container['type'] = $type;
 
         return $this;
@@ -522,6 +658,11 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIsPrimaryContact($isPrimaryContact)
     {
+
+        if (is_null($isPrimaryContact)) {
+            throw new \InvalidArgumentException('non-nullable isPrimaryContact cannot be null');
+        }
+
         $this->container['isPrimaryContact'] = $isPrimaryContact;
 
         return $this;

@@ -100,6 +100,36 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     ];
 
     /**
+      * Array of nullable properties. Used for (de)serialization
+      *
+      * @var boolean[]
+      */
+    protected static array $openAPINullables = [
+        'uuid' => false,
+		'active' => false,
+		'editDate' => false,
+		'relatedObject' => false,
+		'relatedObjectUuid' => false,
+		'attachmentName' => false,
+		'fileType' => false,
+		'createdByStaffUuid' => false,
+		'timestamp' => false,
+		'attachmentSource' => false,
+		'tags' => false,
+		'lng' => false,
+		'lat' => false,
+		'photoWidth' => false,
+		'photoHeight' => false
+    ];
+
+    /**
+      * If a nullable field gets set to null, insert it here
+      *
+      * @var boolean[]
+      */
+    protected array $openAPINullablesSetToNull = [];
+
+    /**
      * Array of property to type mappings. Used for (de)serialization
      *
      * @return array
@@ -117,6 +147,48 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     public static function openAPIFormats()
     {
         return self::$openAPIFormats;
+    }
+
+    /**
+     * Array of nullable properties
+     *
+     * @return array
+     */
+    protected static function openAPINullables(): array
+    {
+        return self::$openAPINullables;
+    }
+
+    /**
+     * Array of nullable field names deliberately set to null
+     *
+     * @return boolean[]
+     */
+    private function getOpenAPINullablesSetToNull(): array
+    {
+        return $this->openAPINullablesSetToNull;
+    }
+
+    /**
+     * Checks if a property is nullable
+     *
+     * @param string $property
+     * @return bool
+     */
+    public static function isNullable(string $property): bool
+    {
+        return self::openAPINullables()[$property] ?? false;
+    }
+
+    /**
+     * Checks if a nullable property is set to null.
+     *
+     * @param string $property
+     * @return bool
+     */
+    public function isNullableSetToNull(string $property): bool
+    {
+        return in_array($property, $this->getOpenAPINullablesSetToNull(), true);
     }
 
     /**
@@ -246,21 +318,39 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['uuid'] = $data['uuid'] ?? null;
-        $this->container['active'] = $data['active'] ?? null;
-        $this->container['editDate'] = $data['editDate'] ?? null;
-        $this->container['relatedObject'] = $data['relatedObject'] ?? null;
-        $this->container['relatedObjectUuid'] = $data['relatedObjectUuid'] ?? null;
-        $this->container['attachmentName'] = $data['attachmentName'] ?? null;
-        $this->container['fileType'] = $data['fileType'] ?? null;
-        $this->container['createdByStaffUuid'] = $data['createdByStaffUuid'] ?? null;
-        $this->container['timestamp'] = $data['timestamp'] ?? null;
-        $this->container['attachmentSource'] = $data['attachmentSource'] ?? null;
-        $this->container['tags'] = $data['tags'] ?? null;
-        $this->container['lng'] = $data['lng'] ?? null;
-        $this->container['lat'] = $data['lat'] ?? null;
-        $this->container['photoWidth'] = $data['photoWidth'] ?? null;
-        $this->container['photoHeight'] = $data['photoHeight'] ?? null;
+        $this->setIfExists('uuid', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('editDate', $data ?? [], null);
+        $this->setIfExists('relatedObject', $data ?? [], null);
+        $this->setIfExists('relatedObjectUuid', $data ?? [], null);
+        $this->setIfExists('attachmentName', $data ?? [], null);
+        $this->setIfExists('fileType', $data ?? [], null);
+        $this->setIfExists('createdByStaffUuid', $data ?? [], null);
+        $this->setIfExists('timestamp', $data ?? [], null);
+        $this->setIfExists('attachmentSource', $data ?? [], null);
+        $this->setIfExists('tags', $data ?? [], null);
+        $this->setIfExists('lng', $data ?? [], null);
+        $this->setIfExists('lat', $data ?? [], null);
+        $this->setIfExists('photoWidth', $data ?? [], null);
+        $this->setIfExists('photoHeight', $data ?? [], null);
+    }
+
+    /**
+    * Sets $this->container[$variableName] to the given data or to the given default Value; if $variableName
+    * is nullable and its value is set to null in the $fields array, then mark it as "set to null" in the
+    * $this->openAPINullablesSetToNull array
+    *
+    * @param string $variableName
+    * @param array  $fields
+    * @param mixed  $defaultValue
+    */
+    private function setIfExists(string $variableName, array $fields, $defaultValue): void
+    {
+        if (self::isNullable($variableName) && array_key_exists($variableName, $fields) && is_null($fields[$variableName])) {
+            $this->openAPINullablesSetToNull[] = $variableName;
+        }
+
+        $this->container[$variableName] = $fields[$variableName] ?? $defaultValue;
     }
 
     /**
@@ -314,6 +404,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
+
+        if (is_null($uuid)) {
+            throw new \InvalidArgumentException('non-nullable uuid cannot be null');
+        }
+
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -338,6 +433,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
+
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+
         $this->container['active'] = $active;
 
         return $this;
@@ -362,6 +462,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
+
+        if (is_null($editDate)) {
+            throw new \InvalidArgumentException('non-nullable editDate cannot be null');
+        }
+
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -386,6 +491,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObject($relatedObject)
     {
+
+        if (is_null($relatedObject)) {
+            throw new \InvalidArgumentException('non-nullable relatedObject cannot be null');
+        }
+
         $this->container['relatedObject'] = $relatedObject;
 
         return $this;
@@ -410,6 +520,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObjectUuid($relatedObjectUuid)
     {
+
+        if (is_null($relatedObjectUuid)) {
+            throw new \InvalidArgumentException('non-nullable relatedObjectUuid cannot be null');
+        }
+
         $this->container['relatedObjectUuid'] = $relatedObjectUuid;
 
         return $this;
@@ -436,6 +551,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (!is_null($attachmentName) && (mb_strlen($attachmentName) > 127)) {
             throw new \InvalidArgumentException('invalid length for $attachmentName when calling Attachment., must be smaller than or equal to 127.');
+        }
+
+
+        if (is_null($attachmentName)) {
+            throw new \InvalidArgumentException('non-nullable attachmentName cannot be null');
         }
 
         $this->container['attachmentName'] = $attachmentName;
@@ -466,6 +586,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('invalid length for $fileType when calling Attachment., must be smaller than or equal to 50.');
         }
 
+
+        if (is_null($fileType)) {
+            throw new \InvalidArgumentException('non-nullable fileType cannot be null');
+        }
+
         $this->container['fileType'] = $fileType;
 
         return $this;
@@ -490,6 +615,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreatedByStaffUuid($createdByStaffUuid)
     {
+
+        if (is_null($createdByStaffUuid)) {
+            throw new \InvalidArgumentException('non-nullable createdByStaffUuid cannot be null');
+        }
+
         $this->container['createdByStaffUuid'] = $createdByStaffUuid;
 
         return $this;
@@ -514,6 +644,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimestamp($timestamp)
     {
+
+        if (is_null($timestamp)) {
+            throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
+        }
+
         $this->container['timestamp'] = $timestamp;
 
         return $this;
@@ -538,6 +673,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAttachmentSource($attachmentSource)
     {
+
+        if (is_null($attachmentSource)) {
+            throw new \InvalidArgumentException('non-nullable attachmentSource cannot be null');
+        }
+
         $this->container['attachmentSource'] = $attachmentSource;
 
         return $this;
@@ -562,6 +702,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTags($tags)
     {
+
+        if (is_null($tags)) {
+            throw new \InvalidArgumentException('non-nullable tags cannot be null');
+        }
+
         $this->container['tags'] = $tags;
 
         return $this;
@@ -586,6 +731,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
+
+        if (is_null($lng)) {
+            throw new \InvalidArgumentException('non-nullable lng cannot be null');
+        }
+
         $this->container['lng'] = $lng;
 
         return $this;
@@ -610,6 +760,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
+
+        if (is_null($lat)) {
+            throw new \InvalidArgumentException('non-nullable lat cannot be null');
+        }
+
         $this->container['lat'] = $lat;
 
         return $this;
@@ -634,6 +789,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhotoWidth($photoWidth)
     {
+
+        if (is_null($photoWidth)) {
+            throw new \InvalidArgumentException('non-nullable photoWidth cannot be null');
+        }
+
         $this->container['photoWidth'] = $photoWidth;
 
         return $this;
@@ -658,6 +818,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhotoHeight($photoHeight)
     {
+
+        if (is_null($photoHeight)) {
+            throw new \InvalidArgumentException('non-nullable photoHeight cannot be null');
+        }
+
         $this->container['photoHeight'] = $photoHeight;
 
         return $this;
