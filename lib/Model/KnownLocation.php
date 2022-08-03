@@ -63,7 +63,9 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'string',
         'locationType' => 'string',
         'lng' => 'float',
-        'lat' => 'float'
+        'lat' => 'float',
+        'isShared' => 'string',
+        'staffUuid' => 'string'
     ];
 
     /**
@@ -80,7 +82,9 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => null,
         'locationType' => null,
         'lng' => 'float',
-        'lat' => 'float'
+        'lat' => 'float',
+        'isShared' => null,
+        'staffUuid' => 'uuid'
     ];
 
     /**
@@ -95,7 +99,9 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
 		'name' => false,
 		'locationType' => false,
 		'lng' => false,
-		'lat' => false
+		'lat' => false,
+		'isShared' => false,
+		'staffUuid' => false
     ];
 
     /**
@@ -180,7 +186,9 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'name',
         'locationType' => 'location_type',
         'lng' => 'lng',
-        'lat' => 'lat'
+        'lat' => 'lat',
+        'isShared' => 'is_shared',
+        'staffUuid' => 'staff_uuid'
     ];
 
     /**
@@ -195,7 +203,9 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'setName',
         'locationType' => 'setLocationType',
         'lng' => 'setLng',
-        'lat' => 'setLat'
+        'lat' => 'setLat',
+        'isShared' => 'setIsShared',
+        'staffUuid' => 'setStaffUuid'
     ];
 
     /**
@@ -210,7 +220,9 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'name' => 'getName',
         'locationType' => 'getLocationType',
         'lng' => 'getLng',
-        'lat' => 'getLat'
+        'lat' => 'getLat',
+        'isShared' => 'getIsShared',
+        'staffUuid' => 'getStaffUuid'
     ];
 
     /**
@@ -277,6 +289,8 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('locationType', $data ?? [], null);
         $this->setIfExists('lng', $data ?? [], null);
         $this->setIfExists('lat', $data ?? [], null);
+        $this->setIfExists('isShared', $data ?? [], null);
+        $this->setIfExists('staffUuid', $data ?? [], null);
     }
 
     /**
@@ -520,6 +534,64 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['lat'] = $lat;
+
+        return $this;
+    }
+
+    /**
+     * Gets isShared
+     *
+     * @return string|null
+     */
+    public function getIsShared()
+    {
+        return $this->container['isShared'];
+    }
+
+    /**
+     * Sets isShared
+     *
+     * @param string|null $isShared isShared
+     *
+     * @return self
+     */
+    public function setIsShared($isShared)
+    {
+
+        if (is_null($isShared)) {
+            throw new \InvalidArgumentException('non-nullable isShared cannot be null');
+        }
+
+        $this->container['isShared'] = $isShared;
+
+        return $this;
+    }
+
+    /**
+     * Gets staffUuid
+     *
+     * @return string|null
+     */
+    public function getStaffUuid()
+    {
+        return $this->container['staffUuid'];
+    }
+
+    /**
+     * Sets staffUuid
+     *
+     * @param string|null $staffUuid staffUuid
+     *
+     * @return self
+     */
+    public function setStaffUuid($staffUuid)
+    {
+
+        if (is_null($staffUuid)) {
+            throw new \InvalidArgumentException('non-nullable staffUuid cannot be null');
+        }
+
+        $this->container['staffUuid'] = $staffUuid;
 
         return $this;
     }

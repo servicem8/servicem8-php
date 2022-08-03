@@ -141,4 +141,22 @@ class KnownLocationTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "isShared"
+     */
+    public function testPropertyIsShared()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
+     * Test attribute "staffUuid"
+     */
+    public function testPropertyStaffUuid()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }
