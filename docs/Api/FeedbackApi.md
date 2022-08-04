@@ -1,14 +1,14 @@
 # OpenAPI\Client\FeedbackApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteFeedbackSingle()**](FeedbackApi.md#deleteFeedbackSingle) | **DELETE** /feedback/{uuid}.json | Delete a Feedback
-[**getFeedbackAll()**](FeedbackApi.md#getFeedbackAll) | **GET** /feedback.json | List all Feedback
-[**getFeedbackSingle()**](FeedbackApi.md#getFeedbackSingle) | **GET** /feedback/{uuid}.json | Retrieve a Feedback
-[**postFeedbackCreate()**](FeedbackApi.md#postFeedbackCreate) | **POST** /feedback.json | Create a new Feedback
-[**postFeedbackSingle()**](FeedbackApi.md#postFeedbackSingle) | **POST** /feedback/{uuid}.json | Update a Feedback
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteFeedbackSingle()**](FeedbackApi.md#deleteFeedbackSingle) | **DELETE** /feedback/{uuid}.json | Delete a Feedback |
+| [**getFeedbackAll()**](FeedbackApi.md#getFeedbackAll) | **GET** /feedback.json | List all Feedback |
+| [**getFeedbackSingle()**](FeedbackApi.md#getFeedbackSingle) | **GET** /feedback/{uuid}.json | Retrieve a Feedback |
+| [**postFeedbackCreate()**](FeedbackApi.md#postFeedbackCreate) | **POST** /feedback.json | Create a new Feedback |
+| [**postFeedbackSingle()**](FeedbackApi.md#postFeedbackSingle) | **POST** /feedback/{uuid}.json | Update a Feedback |
 
 
 ## `deleteFeedbackSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Feedback |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Feedback | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Feedback |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Feedback | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **feedback** | [**\OpenAPI\Client\Model\Feedback**](../Model/Feedback.md)| Feedback record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **feedback** | [**\OpenAPI\Client\Model\Feedback**](../Model/Feedback.md)| Feedback record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Feedback |
- **feedback** | [**\OpenAPI\Client\Model\Feedback**](../Model/Feedback.md)| Feedback fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Feedback | |
+| **feedback** | [**\OpenAPI\Client\Model\Feedback**](../Model/Feedback.md)| Feedback fields to update | |
 
 ### Return type
 

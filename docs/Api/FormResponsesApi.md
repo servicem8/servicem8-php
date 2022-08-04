@@ -1,14 +1,14 @@
 # OpenAPI\Client\FormResponsesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteFormResponseSingle()**](FormResponsesApi.md#deleteFormResponseSingle) | **DELETE** /formresponse/{uuid}.json | Delete a Form Response
-[**getFormResponseAll()**](FormResponsesApi.md#getFormResponseAll) | **GET** /formresponse.json | List all Form Responses
-[**getFormResponseSingle()**](FormResponsesApi.md#getFormResponseSingle) | **GET** /formresponse/{uuid}.json | Retrieve a Form Response
-[**postFormResponseCreate()**](FormResponsesApi.md#postFormResponseCreate) | **POST** /formresponse.json | Create a new Form Response
-[**postFormResponseSingle()**](FormResponsesApi.md#postFormResponseSingle) | **POST** /formresponse/{uuid}.json | Update a Form Response
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteFormResponseSingle()**](FormResponsesApi.md#deleteFormResponseSingle) | **DELETE** /formresponse/{uuid}.json | Delete a Form Response |
+| [**getFormResponseAll()**](FormResponsesApi.md#getFormResponseAll) | **GET** /formresponse.json | List all Form Responses |
+| [**getFormResponseSingle()**](FormResponsesApi.md#getFormResponseSingle) | **GET** /formresponse/{uuid}.json | Retrieve a Form Response |
+| [**postFormResponseCreate()**](FormResponsesApi.md#postFormResponseCreate) | **POST** /formresponse.json | Create a new Form Response |
+| [**postFormResponseSingle()**](FormResponsesApi.md#postFormResponseSingle) | **POST** /formresponse/{uuid}.json | Update a Form Response |
 
 
 ## `deleteFormResponseSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form Response |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form Response | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form Response |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form Response | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **formResponse** | [**\OpenAPI\Client\Model\FormResponse**](../Model/FormResponse.md)| Form Response record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **formResponse** | [**\OpenAPI\Client\Model\FormResponse**](../Model/FormResponse.md)| Form Response record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form Response |
- **formResponse** | [**\OpenAPI\Client\Model\FormResponse**](../Model/FormResponse.md)| Form Response fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form Response | |
+| **formResponse** | [**\OpenAPI\Client\Model\FormResponse**](../Model/FormResponse.md)| Form Response fields to update | |
 
 ### Return type
 

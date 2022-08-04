@@ -1,14 +1,14 @@
 # OpenAPI\Client\KnownLocationsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteKnownLocationSingle()**](KnownLocationsApi.md#deleteKnownLocationSingle) | **DELETE** /knownlocation/{uuid}.json | Delete a Known Location
-[**getKnownLocationAll()**](KnownLocationsApi.md#getKnownLocationAll) | **GET** /knownlocation.json | List all Known Locations
-[**getKnownLocationSingle()**](KnownLocationsApi.md#getKnownLocationSingle) | **GET** /knownlocation/{uuid}.json | Retrieve a Known Location
-[**postKnownLocationCreate()**](KnownLocationsApi.md#postKnownLocationCreate) | **POST** /knownlocation.json | Create a new Known Location
-[**postKnownLocationSingle()**](KnownLocationsApi.md#postKnownLocationSingle) | **POST** /knownlocation/{uuid}.json | Update a Known Location
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteKnownLocationSingle()**](KnownLocationsApi.md#deleteKnownLocationSingle) | **DELETE** /knownlocation/{uuid}.json | Delete a Known Location |
+| [**getKnownLocationAll()**](KnownLocationsApi.md#getKnownLocationAll) | **GET** /knownlocation.json | List all Known Locations |
+| [**getKnownLocationSingle()**](KnownLocationsApi.md#getKnownLocationSingle) | **GET** /knownlocation/{uuid}.json | Retrieve a Known Location |
+| [**postKnownLocationCreate()**](KnownLocationsApi.md#postKnownLocationCreate) | **POST** /knownlocation.json | Create a new Known Location |
+| [**postKnownLocationSingle()**](KnownLocationsApi.md#postKnownLocationSingle) | **POST** /knownlocation/{uuid}.json | Update a Known Location |
 
 
 ## `deleteKnownLocationSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Known Location |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Known Location | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Known Location |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Known Location | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **knownLocation** | [**\OpenAPI\Client\Model\KnownLocation**](../Model/KnownLocation.md)| Known Location record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **knownLocation** | [**\OpenAPI\Client\Model\KnownLocation**](../Model/KnownLocation.md)| Known Location record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Known Location |
- **knownLocation** | [**\OpenAPI\Client\Model\KnownLocation**](../Model/KnownLocation.md)| Known Location fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Known Location | |
+| **knownLocation** | [**\OpenAPI\Client\Model\KnownLocation**](../Model/KnownLocation.md)| Known Location fields to update | |
 
 ### Return type
 

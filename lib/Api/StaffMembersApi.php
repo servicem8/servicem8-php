@@ -358,6 +358,7 @@ class StaffMembersApi
      */
     public function deleteStaffMemberSingleRequest($uuid)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
@@ -440,10 +441,11 @@ class StaffMembersApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -755,10 +757,11 @@ class StaffMembersApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1007,6 +1010,7 @@ class StaffMembersApi
      */
     public function getStaffMemberSingleRequest($uuid)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
@@ -1089,10 +1093,11 @@ class StaffMembersApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1341,6 +1346,7 @@ class StaffMembersApi
      */
     public function postStaffMemberCreateRequest($staffMember)
     {
+
         // verify the required parameter 'staffMember' is set
         if ($staffMember === null || (is_array($staffMember) && count($staffMember) === 0)) {
             throw new \InvalidArgumentException(
@@ -1421,10 +1427,11 @@ class StaffMembersApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1678,12 +1685,14 @@ class StaffMembersApi
      */
     public function postStaffMemberSingleRequest($uuid, $staffMember)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $uuid when calling postStaffMemberSingle'
             );
         }
+
         // verify the required parameter 'staffMember' is set
         if ($staffMember === null || (is_array($staffMember) && count($staffMember) === 0)) {
             throw new \InvalidArgumentException(
@@ -1772,10 +1781,11 @@ class StaffMembersApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

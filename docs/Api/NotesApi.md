@@ -1,14 +1,14 @@
 # OpenAPI\Client\NotesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteNoteSingle()**](NotesApi.md#deleteNoteSingle) | **DELETE** /note/{uuid}.json | Delete a Note
-[**getNoteAll()**](NotesApi.md#getNoteAll) | **GET** /note.json | List all Notes
-[**getNoteSingle()**](NotesApi.md#getNoteSingle) | **GET** /note/{uuid}.json | Retrieve a Note
-[**postNoteCreate()**](NotesApi.md#postNoteCreate) | **POST** /note.json | Create a new Note
-[**postNoteSingle()**](NotesApi.md#postNoteSingle) | **POST** /note/{uuid}.json | Update a Note
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteNoteSingle()**](NotesApi.md#deleteNoteSingle) | **DELETE** /note/{uuid}.json | Delete a Note |
+| [**getNoteAll()**](NotesApi.md#getNoteAll) | **GET** /note.json | List all Notes |
+| [**getNoteSingle()**](NotesApi.md#getNoteSingle) | **GET** /note/{uuid}.json | Retrieve a Note |
+| [**postNoteCreate()**](NotesApi.md#postNoteCreate) | **POST** /note.json | Create a new Note |
+| [**postNoteSingle()**](NotesApi.md#postNoteSingle) | **POST** /note/{uuid}.json | Update a Note |
 
 
 ## `deleteNoteSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Note |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Note | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Note |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Note | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **note** | [**\OpenAPI\Client\Model\Note**](../Model/Note.md)| Note record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **note** | [**\OpenAPI\Client\Model\Note**](../Model/Note.md)| Note record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Note |
- **note** | [**\OpenAPI\Client\Model\Note**](../Model/Note.md)| Note fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Note | |
+| **note** | [**\OpenAPI\Client\Model\Note**](../Model/Note.md)| Note fields to update | |
 
 ### Return type
 

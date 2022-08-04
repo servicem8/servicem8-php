@@ -1,14 +1,14 @@
 # OpenAPI\Client\FormFieldsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteFormFieldSingle()**](FormFieldsApi.md#deleteFormFieldSingle) | **DELETE** /formfield/{uuid}.json | Delete a Form Field
-[**getFormFieldAll()**](FormFieldsApi.md#getFormFieldAll) | **GET** /formfield.json | List all Form Fields
-[**getFormFieldSingle()**](FormFieldsApi.md#getFormFieldSingle) | **GET** /formfield/{uuid}.json | Retrieve a Form Field
-[**postFormFieldCreate()**](FormFieldsApi.md#postFormFieldCreate) | **POST** /formfield.json | Create a new Form Field
-[**postFormFieldSingle()**](FormFieldsApi.md#postFormFieldSingle) | **POST** /formfield/{uuid}.json | Update a Form Field
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteFormFieldSingle()**](FormFieldsApi.md#deleteFormFieldSingle) | **DELETE** /formfield/{uuid}.json | Delete a Form Field |
+| [**getFormFieldAll()**](FormFieldsApi.md#getFormFieldAll) | **GET** /formfield.json | List all Form Fields |
+| [**getFormFieldSingle()**](FormFieldsApi.md#getFormFieldSingle) | **GET** /formfield/{uuid}.json | Retrieve a Form Field |
+| [**postFormFieldCreate()**](FormFieldsApi.md#postFormFieldCreate) | **POST** /formfield.json | Create a new Form Field |
+| [**postFormFieldSingle()**](FormFieldsApi.md#postFormFieldSingle) | **POST** /formfield/{uuid}.json | Update a Form Field |
 
 
 ## `deleteFormFieldSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form Field |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form Field | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form Field |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form Field | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **formField** | [**\OpenAPI\Client\Model\FormField**](../Model/FormField.md)| Form Field record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **formField** | [**\OpenAPI\Client\Model\FormField**](../Model/FormField.md)| Form Field record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form Field |
- **formField** | [**\OpenAPI\Client\Model\FormField**](../Model/FormField.md)| Form Field fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form Field | |
+| **formField** | [**\OpenAPI\Client\Model\FormField**](../Model/FormField.md)| Form Field fields to update | |
 
 ### Return type
 

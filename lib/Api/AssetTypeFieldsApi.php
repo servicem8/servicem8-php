@@ -358,6 +358,7 @@ class AssetTypeFieldsApi
      */
     public function deleteAssetTypeFieldSingleRequest($uuid)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
@@ -440,10 +441,11 @@ class AssetTypeFieldsApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -755,10 +757,11 @@ class AssetTypeFieldsApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1007,6 +1010,7 @@ class AssetTypeFieldsApi
      */
     public function getAssetTypeFieldSingleRequest($uuid)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
@@ -1089,10 +1093,11 @@ class AssetTypeFieldsApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1341,6 +1346,7 @@ class AssetTypeFieldsApi
      */
     public function postAssetTypeFieldCreateRequest($assetTypeField)
     {
+
         // verify the required parameter 'assetTypeField' is set
         if ($assetTypeField === null || (is_array($assetTypeField) && count($assetTypeField) === 0)) {
             throw new \InvalidArgumentException(
@@ -1421,10 +1427,11 @@ class AssetTypeFieldsApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1678,12 +1685,14 @@ class AssetTypeFieldsApi
      */
     public function postAssetTypeFieldSingleRequest($uuid, $assetTypeField)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $uuid when calling postAssetTypeFieldSingle'
             );
         }
+
         // verify the required parameter 'assetTypeField' is set
         if ($assetTypeField === null || (is_array($assetTypeField) && count($assetTypeField) === 0)) {
             throw new \InvalidArgumentException(
@@ -1772,10 +1781,11 @@ class AssetTypeFieldsApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

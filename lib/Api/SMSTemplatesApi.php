@@ -358,6 +358,7 @@ class SMSTemplatesApi
      */
     public function deleteSMSTemplateSingleRequest($uuid)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
@@ -440,10 +441,11 @@ class SMSTemplatesApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'DELETE',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -755,10 +757,11 @@ class SMSTemplatesApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1007,6 +1010,7 @@ class SMSTemplatesApi
      */
     public function getSMSTemplateSingleRequest($uuid)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
@@ -1089,10 +1093,11 @@ class SMSTemplatesApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'GET',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1341,6 +1346,7 @@ class SMSTemplatesApi
      */
     public function postSMSTemplateCreateRequest($sMSTemplate)
     {
+
         // verify the required parameter 'sMSTemplate' is set
         if ($sMSTemplate === null || (is_array($sMSTemplate) && count($sMSTemplate) === 0)) {
             throw new \InvalidArgumentException(
@@ -1421,10 +1427,11 @@ class SMSTemplatesApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -1678,12 +1685,14 @@ class SMSTemplatesApi
      */
     public function postSMSTemplateSingleRequest($uuid, $sMSTemplate)
     {
+
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $uuid when calling postSMSTemplateSingle'
             );
         }
+
         // verify the required parameter 'sMSTemplate' is set
         if ($sMSTemplate === null || (is_array($sMSTemplate) && count($sMSTemplate) === 0)) {
             throw new \InvalidArgumentException(
@@ -1772,10 +1781,11 @@ class SMSTemplatesApi
             $headers
         );
 
+        $operationHost = $this->config->getHost();
         $query = ObjectSerializer::buildQuery($queryParams);
         return new Request(
             'POST',
-            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );

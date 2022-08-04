@@ -1,14 +1,14 @@
 # OpenAPI\Client\SMSTemplatesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteSMSTemplateSingle()**](SMSTemplatesApi.md#deleteSMSTemplateSingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template
-[**getSMSTemplateAll()**](SMSTemplatesApi.md#getSMSTemplateAll) | **GET** /smstemplate.json | List all SMS Templates
-[**getSMSTemplateSingle()**](SMSTemplatesApi.md#getSMSTemplateSingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template
-[**postSMSTemplateCreate()**](SMSTemplatesApi.md#postSMSTemplateCreate) | **POST** /smstemplate.json | Create a new SMS Template
-[**postSMSTemplateSingle()**](SMSTemplatesApi.md#postSMSTemplateSingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteSMSTemplateSingle()**](SMSTemplatesApi.md#deleteSMSTemplateSingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template |
+| [**getSMSTemplateAll()**](SMSTemplatesApi.md#getSMSTemplateAll) | **GET** /smstemplate.json | List all SMS Templates |
+| [**getSMSTemplateSingle()**](SMSTemplatesApi.md#getSMSTemplateSingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template |
+| [**postSMSTemplateCreate()**](SMSTemplatesApi.md#postSMSTemplateCreate) | **POST** /smstemplate.json | Create a new SMS Template |
+| [**postSMSTemplateSingle()**](SMSTemplatesApi.md#postSMSTemplateSingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template |
 
 
 ## `deleteSMSTemplateSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the SMS Template |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the SMS Template | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the SMS Template |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the SMS Template | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **sMSTemplate** | [**\OpenAPI\Client\Model\SMSTemplate**](../Model/SMSTemplate.md)| SMS Template record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **sMSTemplate** | [**\OpenAPI\Client\Model\SMSTemplate**](../Model/SMSTemplate.md)| SMS Template record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the SMS Template |
- **sMSTemplate** | [**\OpenAPI\Client\Model\SMSTemplate**](../Model/SMSTemplate.md)| SMS Template fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the SMS Template | |
+| **sMSTemplate** | [**\OpenAPI\Client\Model\SMSTemplate**](../Model/SMSTemplate.md)| SMS Template fields to update | |
 
 ### Return type
 

@@ -1,14 +1,14 @@
 # OpenAPI\Client\AssetTypesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteAssetTypeSingle()**](AssetTypesApi.md#deleteAssetTypeSingle) | **DELETE** /assettype/{uuid}.json | Delete an Asset Type
-[**getAssetTypeAll()**](AssetTypesApi.md#getAssetTypeAll) | **GET** /assettype.json | List all Asset Types
-[**getAssetTypeSingle()**](AssetTypesApi.md#getAssetTypeSingle) | **GET** /assettype/{uuid}.json | Retrieve an Asset Type
-[**postAssetTypeCreate()**](AssetTypesApi.md#postAssetTypeCreate) | **POST** /assettype.json | Create a new Asset Type
-[**postAssetTypeSingle()**](AssetTypesApi.md#postAssetTypeSingle) | **POST** /assettype/{uuid}.json | Update an Asset Type
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteAssetTypeSingle()**](AssetTypesApi.md#deleteAssetTypeSingle) | **DELETE** /assettype/{uuid}.json | Delete an Asset Type |
+| [**getAssetTypeAll()**](AssetTypesApi.md#getAssetTypeAll) | **GET** /assettype.json | List all Asset Types |
+| [**getAssetTypeSingle()**](AssetTypesApi.md#getAssetTypeSingle) | **GET** /assettype/{uuid}.json | Retrieve an Asset Type |
+| [**postAssetTypeCreate()**](AssetTypesApi.md#postAssetTypeCreate) | **POST** /assettype.json | Create a new Asset Type |
+| [**postAssetTypeSingle()**](AssetTypesApi.md#postAssetTypeSingle) | **POST** /assettype/{uuid}.json | Update an Asset Type |
 
 
 ## `deleteAssetTypeSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset Type |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset Type | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset Type |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset Type | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assetType** | [**\OpenAPI\Client\Model\AssetType**](../Model/AssetType.md)| Asset Type record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **assetType** | [**\OpenAPI\Client\Model\AssetType**](../Model/AssetType.md)| Asset Type record to create | |
 
 ### Return type
 
@@ -311,10 +311,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset Type |
- **assetType** | [**\OpenAPI\Client\Model\AssetType**](../Model/AssetType.md)| Asset Type fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset Type | |
+| **assetType** | [**\OpenAPI\Client\Model\AssetType**](../Model/AssetType.md)| Asset Type fields to update | |
 
 ### Return type
 

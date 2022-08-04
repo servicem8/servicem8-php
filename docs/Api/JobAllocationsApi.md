@@ -1,14 +1,14 @@
 # OpenAPI\Client\JobAllocationsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteJobAllocationSingle()**](JobAllocationsApi.md#deleteJobAllocationSingle) | **DELETE** /joballocation/{uuid}.json | Delete a Job Allocation
-[**getJobAllocationAll()**](JobAllocationsApi.md#getJobAllocationAll) | **GET** /joballocation.json | List all Job Allocations
-[**getJobAllocationSingle()**](JobAllocationsApi.md#getJobAllocationSingle) | **GET** /joballocation/{uuid}.json | Retrieve a Job Allocation
-[**postJobAllocationCreate()**](JobAllocationsApi.md#postJobAllocationCreate) | **POST** /joballocation.json | Create a new Job Allocation
-[**postJobAllocationSingle()**](JobAllocationsApi.md#postJobAllocationSingle) | **POST** /joballocation/{uuid}.json | Update a Job Allocation
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteJobAllocationSingle()**](JobAllocationsApi.md#deleteJobAllocationSingle) | **DELETE** /joballocation/{uuid}.json | Delete a Job Allocation |
+| [**getJobAllocationAll()**](JobAllocationsApi.md#getJobAllocationAll) | **GET** /joballocation.json | List all Job Allocations |
+| [**getJobAllocationSingle()**](JobAllocationsApi.md#getJobAllocationSingle) | **GET** /joballocation/{uuid}.json | Retrieve a Job Allocation |
+| [**postJobAllocationCreate()**](JobAllocationsApi.md#postJobAllocationCreate) | **POST** /joballocation.json | Create a new Job Allocation |
+| [**postJobAllocationSingle()**](JobAllocationsApi.md#postJobAllocationSingle) | **POST** /joballocation/{uuid}.json | Update a Job Allocation |
 
 
 ## `deleteJobAllocationSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Allocation |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Allocation | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Allocation |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Allocation | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **jobAllocation** | [**\OpenAPI\Client\Model\JobAllocation**](../Model/JobAllocation.md)| Job Allocation record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jobAllocation** | [**\OpenAPI\Client\Model\JobAllocation**](../Model/JobAllocation.md)| Job Allocation record to create | |
 
 ### Return type
 
@@ -311,10 +311,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Allocation |
- **jobAllocation** | [**\OpenAPI\Client\Model\JobAllocation**](../Model/JobAllocation.md)| Job Allocation fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Allocation | |
+| **jobAllocation** | [**\OpenAPI\Client\Model\JobAllocation**](../Model/JobAllocation.md)| Job Allocation fields to update | |
 
 ### Return type
 

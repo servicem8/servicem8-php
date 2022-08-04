@@ -1,14 +1,14 @@
 # OpenAPI\Client\TasksApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteTaskSingle()**](TasksApi.md#deleteTaskSingle) | **DELETE** /task/{uuid}.json | Delete a Task
-[**getTaskAll()**](TasksApi.md#getTaskAll) | **GET** /task.json | List all Tasks
-[**getTaskSingle()**](TasksApi.md#getTaskSingle) | **GET** /task/{uuid}.json | Retrieve a Task
-[**postTaskCreate()**](TasksApi.md#postTaskCreate) | **POST** /task.json | Create a new Task
-[**postTaskSingle()**](TasksApi.md#postTaskSingle) | **POST** /task/{uuid}.json | Update a Task
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteTaskSingle()**](TasksApi.md#deleteTaskSingle) | **DELETE** /task/{uuid}.json | Delete a Task |
+| [**getTaskAll()**](TasksApi.md#getTaskAll) | **GET** /task.json | List all Tasks |
+| [**getTaskSingle()**](TasksApi.md#getTaskSingle) | **GET** /task/{uuid}.json | Retrieve a Task |
+| [**postTaskCreate()**](TasksApi.md#postTaskCreate) | **POST** /task.json | Create a new Task |
+| [**postTaskSingle()**](TasksApi.md#postTaskSingle) | **POST** /task/{uuid}.json | Update a Task |
 
 
 ## `deleteTaskSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Task |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Task | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Task |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Task | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **task** | [**\OpenAPI\Client\Model\Task**](../Model/Task.md)| Task record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **task** | [**\OpenAPI\Client\Model\Task**](../Model/Task.md)| Task record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Task |
- **task** | [**\OpenAPI\Client\Model\Task**](../Model/Task.md)| Task fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Task | |
+| **task** | [**\OpenAPI\Client\Model\Task**](../Model/Task.md)| Task fields to update | |
 
 ### Return type
 

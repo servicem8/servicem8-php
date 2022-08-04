@@ -1,14 +1,14 @@
 # OpenAPI\Client\JobActivitiesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteJobActivitySingle()**](JobActivitiesApi.md#deleteJobActivitySingle) | **DELETE** /jobactivity/{uuid}.json | Delete a Job Activity
-[**getJobActivityAll()**](JobActivitiesApi.md#getJobActivityAll) | **GET** /jobactivity.json | List all Job Activities
-[**getJobActivitySingle()**](JobActivitiesApi.md#getJobActivitySingle) | **GET** /jobactivity/{uuid}.json | Retrieve a Job Activity
-[**postJobActivityCreate()**](JobActivitiesApi.md#postJobActivityCreate) | **POST** /jobactivity.json | Create a new Job Activity
-[**postJobActivitySingle()**](JobActivitiesApi.md#postJobActivitySingle) | **POST** /jobactivity/{uuid}.json | Update a Job Activity
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteJobActivitySingle()**](JobActivitiesApi.md#deleteJobActivitySingle) | **DELETE** /jobactivity/{uuid}.json | Delete a Job Activity |
+| [**getJobActivityAll()**](JobActivitiesApi.md#getJobActivityAll) | **GET** /jobactivity.json | List all Job Activities |
+| [**getJobActivitySingle()**](JobActivitiesApi.md#getJobActivitySingle) | **GET** /jobactivity/{uuid}.json | Retrieve a Job Activity |
+| [**postJobActivityCreate()**](JobActivitiesApi.md#postJobActivityCreate) | **POST** /jobactivity.json | Create a new Job Activity |
+| [**postJobActivitySingle()**](JobActivitiesApi.md#postJobActivitySingle) | **POST** /jobactivity/{uuid}.json | Update a Job Activity |
 
 
 ## `deleteJobActivitySingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Activity |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Activity | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Activity |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Activity | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **jobActivity** | [**\OpenAPI\Client\Model\JobActivity**](../Model/JobActivity.md)| Job Activity record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jobActivity** | [**\OpenAPI\Client\Model\JobActivity**](../Model/JobActivity.md)| Job Activity record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Activity |
- **jobActivity** | [**\OpenAPI\Client\Model\JobActivity**](../Model/JobActivity.md)| Job Activity fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Activity | |
+| **jobActivity** | [**\OpenAPI\Client\Model\JobActivity**](../Model/JobActivity.md)| Job Activity fields to update | |
 
 ### Return type
 

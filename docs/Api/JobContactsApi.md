@@ -1,14 +1,14 @@
 # OpenAPI\Client\JobContactsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteJobContactSingle()**](JobContactsApi.md#deleteJobContactSingle) | **DELETE** /jobcontact/{uuid}.json | Delete a Job Contact
-[**getJobContactAll()**](JobContactsApi.md#getJobContactAll) | **GET** /jobcontact.json | List all Job Contacts
-[**getJobContactSingle()**](JobContactsApi.md#getJobContactSingle) | **GET** /jobcontact/{uuid}.json | Retrieve a Job Contact
-[**postJobContactCreate()**](JobContactsApi.md#postJobContactCreate) | **POST** /jobcontact.json | Create a new Job Contact
-[**postJobContactSingle()**](JobContactsApi.md#postJobContactSingle) | **POST** /jobcontact/{uuid}.json | Update a Job Contact
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteJobContactSingle()**](JobContactsApi.md#deleteJobContactSingle) | **DELETE** /jobcontact/{uuid}.json | Delete a Job Contact |
+| [**getJobContactAll()**](JobContactsApi.md#getJobContactAll) | **GET** /jobcontact.json | List all Job Contacts |
+| [**getJobContactSingle()**](JobContactsApi.md#getJobContactSingle) | **GET** /jobcontact/{uuid}.json | Retrieve a Job Contact |
+| [**postJobContactCreate()**](JobContactsApi.md#postJobContactCreate) | **POST** /jobcontact.json | Create a new Job Contact |
+| [**postJobContactSingle()**](JobContactsApi.md#postJobContactSingle) | **POST** /jobcontact/{uuid}.json | Update a Job Contact |
 
 
 ## `deleteJobContactSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Contact |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Contact | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Contact |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Contact | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **jobContact** | [**\OpenAPI\Client\Model\JobContact**](../Model/JobContact.md)| Job Contact record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jobContact** | [**\OpenAPI\Client\Model\JobContact**](../Model/JobContact.md)| Job Contact record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Contact |
- **jobContact** | [**\OpenAPI\Client\Model\JobContact**](../Model/JobContact.md)| Job Contact fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Contact | |
+| **jobContact** | [**\OpenAPI\Client\Model\JobContact**](../Model/JobContact.md)| Job Contact fields to update | |
 
 ### Return type
 

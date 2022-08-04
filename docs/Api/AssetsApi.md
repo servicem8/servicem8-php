@@ -1,13 +1,13 @@
 # OpenAPI\Client\AssetsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteAssetSingle()**](AssetsApi.md#deleteAssetSingle) | **DELETE** /asset/{uuid}.json | Delete an Asset
-[**getAssetAll()**](AssetsApi.md#getAssetAll) | **GET** /asset.json | List all Assets
-[**getAssetSingle()**](AssetsApi.md#getAssetSingle) | **GET** /asset/{uuid}.json | Retrieve an Asset
-[**postAssetSingle()**](AssetsApi.md#postAssetSingle) | **POST** /asset/{uuid}.json | Update an Asset
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteAssetSingle()**](AssetsApi.md#deleteAssetSingle) | **DELETE** /asset/{uuid}.json | Delete an Asset |
+| [**getAssetAll()**](AssetsApi.md#getAssetAll) | **GET** /asset.json | List all Assets |
+| [**getAssetSingle()**](AssetsApi.md#getAssetSingle) | **GET** /asset/{uuid}.json | Retrieve an Asset |
+| [**postAssetSingle()**](AssetsApi.md#postAssetSingle) | **POST** /asset/{uuid}.json | Update an Asset |
 
 
 ## `deleteAssetSingle()`
@@ -54,9 +54,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset | |
 
 ### Return type
 
@@ -181,9 +181,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset | |
 
 ### Return type
 
@@ -245,10 +245,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset |
- **asset** | [**\OpenAPI\Client\Model\Asset**](../Model/Asset.md)| Asset fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset | |
+| **asset** | [**\OpenAPI\Client\Model\Asset**](../Model/Asset.md)| Asset fields to update | |
 
 ### Return type
 

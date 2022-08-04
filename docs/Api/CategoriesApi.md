@@ -1,14 +1,14 @@
 # OpenAPI\Client\CategoriesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteCategorySingle()**](CategoriesApi.md#deleteCategorySingle) | **DELETE** /category/{uuid}.json | Delete a Category
-[**getCategoryAll()**](CategoriesApi.md#getCategoryAll) | **GET** /category.json | List all Categories
-[**getCategorySingle()**](CategoriesApi.md#getCategorySingle) | **GET** /category/{uuid}.json | Retrieve a Category
-[**postCategoryCreate()**](CategoriesApi.md#postCategoryCreate) | **POST** /category.json | Create a new Category
-[**postCategorySingle()**](CategoriesApi.md#postCategorySingle) | **POST** /category/{uuid}.json | Update a Category
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteCategorySingle()**](CategoriesApi.md#deleteCategorySingle) | **DELETE** /category/{uuid}.json | Delete a Category |
+| [**getCategoryAll()**](CategoriesApi.md#getCategoryAll) | **GET** /category.json | List all Categories |
+| [**getCategorySingle()**](CategoriesApi.md#getCategorySingle) | **GET** /category/{uuid}.json | Retrieve a Category |
+| [**postCategoryCreate()**](CategoriesApi.md#postCategoryCreate) | **POST** /category.json | Create a new Category |
+| [**postCategorySingle()**](CategoriesApi.md#postCategorySingle) | **POST** /category/{uuid}.json | Update a Category |
 
 
 ## `deleteCategorySingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Category |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Category | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Category |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Category | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **category** | [**\OpenAPI\Client\Model\Category**](../Model/Category.md)| Category record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **category** | [**\OpenAPI\Client\Model\Category**](../Model/Category.md)| Category record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Category |
- **category** | [**\OpenAPI\Client\Model\Category**](../Model/Category.md)| Category fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Category | |
+| **category** | [**\OpenAPI\Client\Model\Category**](../Model/Category.md)| Category fields to update | |
 
 ### Return type
 

@@ -1,12 +1,12 @@
 # OpenAPI\Client\VendorsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**getVendorAll()**](VendorsApi.md#getVendorAll) | **GET** /vendor.json | List all Vendors
-[**getVendorSingle()**](VendorsApi.md#getVendorSingle) | **GET** /vendor/{uuid}.json | Retrieve a Vendor
-[**postVendorSingle()**](VendorsApi.md#postVendorSingle) | **POST** /vendor/{uuid}.json | Update a Vendor
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**getVendorAll()**](VendorsApi.md#getVendorAll) | **GET** /vendor.json | List all Vendors |
+| [**getVendorSingle()**](VendorsApi.md#getVendorSingle) | **GET** /vendor/{uuid}.json | Retrieve a Vendor |
+| [**postVendorSingle()**](VendorsApi.md#postVendorSingle) | **POST** /vendor/{uuid}.json | Update a Vendor |
 
 
 ## `getVendorAll()`
@@ -115,9 +115,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Vendor |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Vendor | |
 
 ### Return type
 
@@ -179,10 +179,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Vendor |
- **vendor** | [**\OpenAPI\Client\Model\Vendor**](../Model/Vendor.md)| Vendor fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Vendor | |
+| **vendor** | [**\OpenAPI\Client\Model\Vendor**](../Model/Vendor.md)| Vendor fields to update | |
 
 ### Return type
 

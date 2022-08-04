@@ -1,14 +1,14 @@
 # OpenAPI\Client\JobMaterialsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteJobMaterialSingle()**](JobMaterialsApi.md#deleteJobMaterialSingle) | **DELETE** /jobmaterial/{uuid}.json | Delete a Job Material
-[**getJobMaterialAll()**](JobMaterialsApi.md#getJobMaterialAll) | **GET** /jobmaterial.json | List all Job Materials
-[**getJobMaterialSingle()**](JobMaterialsApi.md#getJobMaterialSingle) | **GET** /jobmaterial/{uuid}.json | Retrieve a Job Material
-[**postJobMaterialCreate()**](JobMaterialsApi.md#postJobMaterialCreate) | **POST** /jobmaterial.json | Create a new Job Material
-[**postJobMaterialSingle()**](JobMaterialsApi.md#postJobMaterialSingle) | **POST** /jobmaterial/{uuid}.json | Update a Job Material
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteJobMaterialSingle()**](JobMaterialsApi.md#deleteJobMaterialSingle) | **DELETE** /jobmaterial/{uuid}.json | Delete a Job Material |
+| [**getJobMaterialAll()**](JobMaterialsApi.md#getJobMaterialAll) | **GET** /jobmaterial.json | List all Job Materials |
+| [**getJobMaterialSingle()**](JobMaterialsApi.md#getJobMaterialSingle) | **GET** /jobmaterial/{uuid}.json | Retrieve a Job Material |
+| [**postJobMaterialCreate()**](JobMaterialsApi.md#postJobMaterialCreate) | **POST** /jobmaterial.json | Create a new Job Material |
+| [**postJobMaterialSingle()**](JobMaterialsApi.md#postJobMaterialSingle) | **POST** /jobmaterial/{uuid}.json | Update a Job Material |
 
 
 ## `deleteJobMaterialSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Material |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Material | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Material |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Material | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **jobMaterial** | [**\OpenAPI\Client\Model\JobMaterial**](../Model/JobMaterial.md)| Job Material record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jobMaterial** | [**\OpenAPI\Client\Model\JobMaterial**](../Model/JobMaterial.md)| Job Material record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Material |
- **jobMaterial** | [**\OpenAPI\Client\Model\JobMaterial**](../Model/JobMaterial.md)| Job Material fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Material | |
+| **jobMaterial** | [**\OpenAPI\Client\Model\JobMaterial**](../Model/JobMaterial.md)| Job Material fields to update | |
 
 ### Return type
 

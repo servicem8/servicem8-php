@@ -1,14 +1,14 @@
 # OpenAPI\Client\JobQueuesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteJobQueueSingle()**](JobQueuesApi.md#deleteJobQueueSingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue
-[**getJobQueueAll()**](JobQueuesApi.md#getJobQueueAll) | **GET** /queue.json | List all Job Queues
-[**getJobQueueSingle()**](JobQueuesApi.md#getJobQueueSingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue
-[**postJobQueueCreate()**](JobQueuesApi.md#postJobQueueCreate) | **POST** /queue.json | Create a new Job Queue
-[**postJobQueueSingle()**](JobQueuesApi.md#postJobQueueSingle) | **POST** /queue/{uuid}.json | Update a Job Queue
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteJobQueueSingle()**](JobQueuesApi.md#deleteJobQueueSingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue |
+| [**getJobQueueAll()**](JobQueuesApi.md#getJobQueueAll) | **GET** /queue.json | List all Job Queues |
+| [**getJobQueueSingle()**](JobQueuesApi.md#getJobQueueSingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue |
+| [**postJobQueueCreate()**](JobQueuesApi.md#postJobQueueCreate) | **POST** /queue.json | Create a new Job Queue |
+| [**postJobQueueSingle()**](JobQueuesApi.md#postJobQueueSingle) | **POST** /queue/{uuid}.json | Update a Job Queue |
 
 
 ## `deleteJobQueueSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Queue |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Queue | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Queue |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Queue | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **jobQueue** | [**\OpenAPI\Client\Model\JobQueue**](../Model/JobQueue.md)| Job Queue record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jobQueue** | [**\OpenAPI\Client\Model\JobQueue**](../Model/JobQueue.md)| Job Queue record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Queue |
- **jobQueue** | [**\OpenAPI\Client\Model\JobQueue**](../Model/JobQueue.md)| Job Queue fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Queue | |
+| **jobQueue** | [**\OpenAPI\Client\Model\JobQueue**](../Model/JobQueue.md)| Job Queue fields to update | |
 
 ### Return type
 

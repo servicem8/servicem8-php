@@ -1,14 +1,14 @@
 # OpenAPI\Client\SecurityRolesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteSecurityRoleSingle()**](SecurityRolesApi.md#deleteSecurityRoleSingle) | **DELETE** /securityrole/{uuid}.json | Delete a Security Role
-[**getSecurityRoleAll()**](SecurityRolesApi.md#getSecurityRoleAll) | **GET** /securityrole.json | List all Security Roles
-[**getSecurityRoleSingle()**](SecurityRolesApi.md#getSecurityRoleSingle) | **GET** /securityrole/{uuid}.json | Retrieve a Security Role
-[**postSecurityRoleCreate()**](SecurityRolesApi.md#postSecurityRoleCreate) | **POST** /securityrole.json | Create a new Security Role
-[**postSecurityRoleSingle()**](SecurityRolesApi.md#postSecurityRoleSingle) | **POST** /securityrole/{uuid}.json | Update a Security Role
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteSecurityRoleSingle()**](SecurityRolesApi.md#deleteSecurityRoleSingle) | **DELETE** /securityrole/{uuid}.json | Delete a Security Role |
+| [**getSecurityRoleAll()**](SecurityRolesApi.md#getSecurityRoleAll) | **GET** /securityrole.json | List all Security Roles |
+| [**getSecurityRoleSingle()**](SecurityRolesApi.md#getSecurityRoleSingle) | **GET** /securityrole/{uuid}.json | Retrieve a Security Role |
+| [**postSecurityRoleCreate()**](SecurityRolesApi.md#postSecurityRoleCreate) | **POST** /securityrole.json | Create a new Security Role |
+| [**postSecurityRoleSingle()**](SecurityRolesApi.md#postSecurityRoleSingle) | **POST** /securityrole/{uuid}.json | Update a Security Role |
 
 
 ## `deleteSecurityRoleSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Security Role |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Security Role | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Security Role |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Security Role | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **securityRole** | [**\OpenAPI\Client\Model\SecurityRole**](../Model/SecurityRole.md)| Security Role record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **securityRole** | [**\OpenAPI\Client\Model\SecurityRole**](../Model/SecurityRole.md)| Security Role record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Security Role |
- **securityRole** | [**\OpenAPI\Client\Model\SecurityRole**](../Model/SecurityRole.md)| Security Role fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Security Role | |
+| **securityRole** | [**\OpenAPI\Client\Model\SecurityRole**](../Model/SecurityRole.md)| Security Role fields to update | |
 
 ### Return type
 

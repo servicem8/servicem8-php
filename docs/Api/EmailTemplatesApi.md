@@ -1,14 +1,14 @@
 # OpenAPI\Client\EmailTemplatesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteEmailTemplateSingle()**](EmailTemplatesApi.md#deleteEmailTemplateSingle) | **DELETE** /emailtemplate/{uuid}.json | Delete an Email Template
-[**getEmailTemplateAll()**](EmailTemplatesApi.md#getEmailTemplateAll) | **GET** /emailtemplate.json | List all Email Templates
-[**getEmailTemplateSingle()**](EmailTemplatesApi.md#getEmailTemplateSingle) | **GET** /emailtemplate/{uuid}.json | Retrieve an Email Template
-[**postEmailTemplateCreate()**](EmailTemplatesApi.md#postEmailTemplateCreate) | **POST** /emailtemplate.json | Create a new Email Template
-[**postEmailTemplateSingle()**](EmailTemplatesApi.md#postEmailTemplateSingle) | **POST** /emailtemplate/{uuid}.json | Update an Email Template
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteEmailTemplateSingle()**](EmailTemplatesApi.md#deleteEmailTemplateSingle) | **DELETE** /emailtemplate/{uuid}.json | Delete an Email Template |
+| [**getEmailTemplateAll()**](EmailTemplatesApi.md#getEmailTemplateAll) | **GET** /emailtemplate.json | List all Email Templates |
+| [**getEmailTemplateSingle()**](EmailTemplatesApi.md#getEmailTemplateSingle) | **GET** /emailtemplate/{uuid}.json | Retrieve an Email Template |
+| [**postEmailTemplateCreate()**](EmailTemplatesApi.md#postEmailTemplateCreate) | **POST** /emailtemplate.json | Create a new Email Template |
+| [**postEmailTemplateSingle()**](EmailTemplatesApi.md#postEmailTemplateSingle) | **POST** /emailtemplate/{uuid}.json | Update an Email Template |
 
 
 ## `deleteEmailTemplateSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Email Template |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Email Template | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Email Template |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Email Template | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **emailTemplate** | [**\OpenAPI\Client\Model\EmailTemplate**](../Model/EmailTemplate.md)| Email Template record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **emailTemplate** | [**\OpenAPI\Client\Model\EmailTemplate**](../Model/EmailTemplate.md)| Email Template record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Email Template |
- **emailTemplate** | [**\OpenAPI\Client\Model\EmailTemplate**](../Model/EmailTemplate.md)| Email Template fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Email Template | |
+| **emailTemplate** | [**\OpenAPI\Client\Model\EmailTemplate**](../Model/EmailTemplate.md)| Email Template fields to update | |
 
 ### Return type
 

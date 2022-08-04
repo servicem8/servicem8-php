@@ -1,14 +1,14 @@
 # OpenAPI\Client\AssetTypeFieldsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#deleteAssetTypeFieldSingle) | **DELETE** /assettypefield/{uuid}.json | Delete an Asset Type Field
-[**getAssetTypeFieldAll()**](AssetTypeFieldsApi.md#getAssetTypeFieldAll) | **GET** /assettypefield.json | List all Asset Type Fields
-[**getAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#getAssetTypeFieldSingle) | **GET** /assettypefield/{uuid}.json | Retrieve an Asset Type Field
-[**postAssetTypeFieldCreate()**](AssetTypeFieldsApi.md#postAssetTypeFieldCreate) | **POST** /assettypefield.json | Create a new Asset Type Field
-[**postAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#postAssetTypeFieldSingle) | **POST** /assettypefield/{uuid}.json | Update an Asset Type Field
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#deleteAssetTypeFieldSingle) | **DELETE** /assettypefield/{uuid}.json | Delete an Asset Type Field |
+| [**getAssetTypeFieldAll()**](AssetTypeFieldsApi.md#getAssetTypeFieldAll) | **GET** /assettypefield.json | List all Asset Type Fields |
+| [**getAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#getAssetTypeFieldSingle) | **GET** /assettypefield/{uuid}.json | Retrieve an Asset Type Field |
+| [**postAssetTypeFieldCreate()**](AssetTypeFieldsApi.md#postAssetTypeFieldCreate) | **POST** /assettypefield.json | Create a new Asset Type Field |
+| [**postAssetTypeFieldSingle()**](AssetTypeFieldsApi.md#postAssetTypeFieldSingle) | **POST** /assettypefield/{uuid}.json | Update an Asset Type Field |
 
 
 ## `deleteAssetTypeFieldSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset Type Field |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset Type Field | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset Type Field |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset Type Field | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **assetTypeField** | [**\OpenAPI\Client\Model\AssetTypeField**](../Model/AssetTypeField.md)| Asset Type Field record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **assetTypeField** | [**\OpenAPI\Client\Model\AssetTypeField**](../Model/AssetTypeField.md)| Asset Type Field record to create | |
 
 ### Return type
 
@@ -311,10 +311,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Asset Type Field |
- **assetTypeField** | [**\OpenAPI\Client\Model\AssetTypeField**](../Model/AssetTypeField.md)| Asset Type Field fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Asset Type Field | |
+| **assetTypeField** | [**\OpenAPI\Client\Model\AssetTypeField**](../Model/AssetTypeField.md)| Asset Type Field fields to update | |
 
 ### Return type
 

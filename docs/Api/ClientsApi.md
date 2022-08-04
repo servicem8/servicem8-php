@@ -1,14 +1,14 @@
 # OpenAPI\Client\ClientsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteClientSingle()**](ClientsApi.md#deleteClientSingle) | **DELETE** /company/{uuid}.json | Delete a Client
-[**getClientAll()**](ClientsApi.md#getClientAll) | **GET** /company.json | List all Clients
-[**getClientSingle()**](ClientsApi.md#getClientSingle) | **GET** /company/{uuid}.json | Retrieve a Client
-[**postClientCreate()**](ClientsApi.md#postClientCreate) | **POST** /company.json | Create a new Client
-[**postClientSingle()**](ClientsApi.md#postClientSingle) | **POST** /company/{uuid}.json | Update a Client
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteClientSingle()**](ClientsApi.md#deleteClientSingle) | **DELETE** /company/{uuid}.json | Delete a Client |
+| [**getClientAll()**](ClientsApi.md#getClientAll) | **GET** /company.json | List all Clients |
+| [**getClientSingle()**](ClientsApi.md#getClientSingle) | **GET** /company/{uuid}.json | Retrieve a Client |
+| [**postClientCreate()**](ClientsApi.md#postClientCreate) | **POST** /company.json | Create a new Client |
+| [**postClientSingle()**](ClientsApi.md#postClientSingle) | **POST** /company/{uuid}.json | Update a Client |
 
 
 ## `deleteClientSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Client |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Client | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Client |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Client | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **client** | [**\OpenAPI\Client\Model\Client**](../Model/Client.md)| Client record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **client** | [**\OpenAPI\Client\Model\Client**](../Model/Client.md)| Client record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Client |
- **client** | [**\OpenAPI\Client\Model\Client**](../Model/Client.md)| Client fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Client | |
+| **client** | [**\OpenAPI\Client\Model\Client**](../Model/Client.md)| Client fields to update | |
 
 ### Return type
 

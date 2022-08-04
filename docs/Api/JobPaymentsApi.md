@@ -1,14 +1,14 @@
 # OpenAPI\Client\JobPaymentsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteJobPaymentSingle()**](JobPaymentsApi.md#deleteJobPaymentSingle) | **DELETE** /jobpayment/{uuid}.json | Delete a Job Payment
-[**getJobPaymentAll()**](JobPaymentsApi.md#getJobPaymentAll) | **GET** /jobpayment.json | List all Job Payments
-[**getJobPaymentSingle()**](JobPaymentsApi.md#getJobPaymentSingle) | **GET** /jobpayment/{uuid}.json | Retrieve a Job Payment
-[**postJobPaymentCreate()**](JobPaymentsApi.md#postJobPaymentCreate) | **POST** /jobpayment.json | Create a new Job Payment
-[**postJobPaymentSingle()**](JobPaymentsApi.md#postJobPaymentSingle) | **POST** /jobpayment/{uuid}.json | Update a Job Payment
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteJobPaymentSingle()**](JobPaymentsApi.md#deleteJobPaymentSingle) | **DELETE** /jobpayment/{uuid}.json | Delete a Job Payment |
+| [**getJobPaymentAll()**](JobPaymentsApi.md#getJobPaymentAll) | **GET** /jobpayment.json | List all Job Payments |
+| [**getJobPaymentSingle()**](JobPaymentsApi.md#getJobPaymentSingle) | **GET** /jobpayment/{uuid}.json | Retrieve a Job Payment |
+| [**postJobPaymentCreate()**](JobPaymentsApi.md#postJobPaymentCreate) | **POST** /jobpayment.json | Create a new Job Payment |
+| [**postJobPaymentSingle()**](JobPaymentsApi.md#postJobPaymentSingle) | **POST** /jobpayment/{uuid}.json | Update a Job Payment |
 
 
 ## `deleteJobPaymentSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Payment |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Payment | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Payment |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Payment | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **jobPayment** | [**\OpenAPI\Client\Model\JobPayment**](../Model/JobPayment.md)| Job Payment record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **jobPayment** | [**\OpenAPI\Client\Model\JobPayment**](../Model/JobPayment.md)| Job Payment record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job Payment |
- **jobPayment** | [**\OpenAPI\Client\Model\JobPayment**](../Model/JobPayment.md)| Job Payment fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job Payment | |
+| **jobPayment** | [**\OpenAPI\Client\Model\JobPayment**](../Model/JobPayment.md)| Job Payment fields to update | |
 
 ### Return type
 

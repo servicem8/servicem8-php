@@ -1,14 +1,14 @@
 # OpenAPI\Client\StaffMessagesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteStaffMessageSingle()**](StaffMessagesApi.md#deleteStaffMessageSingle) | **DELETE** /staffmessage/{uuid}.json | Delete a Staff Message
-[**getStaffMessageAll()**](StaffMessagesApi.md#getStaffMessageAll) | **GET** /staffmessage.json | List all Staff Messages
-[**getStaffMessageSingle()**](StaffMessagesApi.md#getStaffMessageSingle) | **GET** /staffmessage/{uuid}.json | Retrieve a Staff Message
-[**postStaffMessageCreate()**](StaffMessagesApi.md#postStaffMessageCreate) | **POST** /staffmessage.json | Create a new Staff Message
-[**postStaffMessageSingle()**](StaffMessagesApi.md#postStaffMessageSingle) | **POST** /staffmessage/{uuid}.json | Update a Staff Message
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteStaffMessageSingle()**](StaffMessagesApi.md#deleteStaffMessageSingle) | **DELETE** /staffmessage/{uuid}.json | Delete a Staff Message |
+| [**getStaffMessageAll()**](StaffMessagesApi.md#getStaffMessageAll) | **GET** /staffmessage.json | List all Staff Messages |
+| [**getStaffMessageSingle()**](StaffMessagesApi.md#getStaffMessageSingle) | **GET** /staffmessage/{uuid}.json | Retrieve a Staff Message |
+| [**postStaffMessageCreate()**](StaffMessagesApi.md#postStaffMessageCreate) | **POST** /staffmessage.json | Create a new Staff Message |
+| [**postStaffMessageSingle()**](StaffMessagesApi.md#postStaffMessageSingle) | **POST** /staffmessage/{uuid}.json | Update a Staff Message |
 
 
 ## `deleteStaffMessageSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Staff Message |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Staff Message | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Staff Message |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Staff Message | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **staffMessage** | [**\OpenAPI\Client\Model\StaffMessage**](../Model/StaffMessage.md)| Staff Message record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **staffMessage** | [**\OpenAPI\Client\Model\StaffMessage**](../Model/StaffMessage.md)| Staff Message record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Staff Message |
- **staffMessage** | [**\OpenAPI\Client\Model\StaffMessage**](../Model/StaffMessage.md)| Staff Message fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Staff Message | |
+| **staffMessage** | [**\OpenAPI\Client\Model\StaffMessage**](../Model/StaffMessage.md)| Staff Message fields to update | |
 
 ### Return type
 

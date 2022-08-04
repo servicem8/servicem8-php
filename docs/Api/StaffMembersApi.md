@@ -1,14 +1,14 @@
 # OpenAPI\Client\StaffMembersApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteStaffMemberSingle()**](StaffMembersApi.md#deleteStaffMemberSingle) | **DELETE** /staff/{uuid}.json | Delete a Staff Member
-[**getStaffMemberAll()**](StaffMembersApi.md#getStaffMemberAll) | **GET** /staff.json | List all Staff Members
-[**getStaffMemberSingle()**](StaffMembersApi.md#getStaffMemberSingle) | **GET** /staff/{uuid}.json | Retrieve a Staff Member
-[**postStaffMemberCreate()**](StaffMembersApi.md#postStaffMemberCreate) | **POST** /staff.json | Create a new Staff Member
-[**postStaffMemberSingle()**](StaffMembersApi.md#postStaffMemberSingle) | **POST** /staff/{uuid}.json | Update a Staff Member
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteStaffMemberSingle()**](StaffMembersApi.md#deleteStaffMemberSingle) | **DELETE** /staff/{uuid}.json | Delete a Staff Member |
+| [**getStaffMemberAll()**](StaffMembersApi.md#getStaffMemberAll) | **GET** /staff.json | List all Staff Members |
+| [**getStaffMemberSingle()**](StaffMembersApi.md#getStaffMemberSingle) | **GET** /staff/{uuid}.json | Retrieve a Staff Member |
+| [**postStaffMemberCreate()**](StaffMembersApi.md#postStaffMemberCreate) | **POST** /staff.json | Create a new Staff Member |
+| [**postStaffMemberSingle()**](StaffMembersApi.md#postStaffMemberSingle) | **POST** /staff/{uuid}.json | Update a Staff Member |
 
 
 ## `deleteStaffMemberSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Staff Member |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Staff Member | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Staff Member |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Staff Member | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **staffMember** | [**\OpenAPI\Client\Model\StaffMember**](../Model/StaffMember.md)| Staff Member record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **staffMember** | [**\OpenAPI\Client\Model\StaffMember**](../Model/StaffMember.md)| Staff Member record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Staff Member |
- **staffMember** | [**\OpenAPI\Client\Model\StaffMember**](../Model/StaffMember.md)| Staff Member fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Staff Member | |
+| **staffMember** | [**\OpenAPI\Client\Model\StaffMember**](../Model/StaffMember.md)| Staff Member fields to update | |
 
 ### Return type
 

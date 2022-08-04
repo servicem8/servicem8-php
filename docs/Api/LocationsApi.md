@@ -1,14 +1,14 @@
 # OpenAPI\Client\LocationsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteLocationSingle()**](LocationsApi.md#deleteLocationSingle) | **DELETE** /location/{uuid}.json | Delete a Location
-[**getLocationAll()**](LocationsApi.md#getLocationAll) | **GET** /location.json | List all Locations
-[**getLocationSingle()**](LocationsApi.md#getLocationSingle) | **GET** /location/{uuid}.json | Retrieve a Location
-[**postLocationCreate()**](LocationsApi.md#postLocationCreate) | **POST** /location.json | Create a new Location
-[**postLocationSingle()**](LocationsApi.md#postLocationSingle) | **POST** /location/{uuid}.json | Update a Location
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteLocationSingle()**](LocationsApi.md#deleteLocationSingle) | **DELETE** /location/{uuid}.json | Delete a Location |
+| [**getLocationAll()**](LocationsApi.md#getLocationAll) | **GET** /location.json | List all Locations |
+| [**getLocationSingle()**](LocationsApi.md#getLocationSingle) | **GET** /location/{uuid}.json | Retrieve a Location |
+| [**postLocationCreate()**](LocationsApi.md#postLocationCreate) | **POST** /location.json | Create a new Location |
+| [**postLocationSingle()**](LocationsApi.md#postLocationSingle) | **POST** /location/{uuid}.json | Update a Location |
 
 
 ## `deleteLocationSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Location |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Location | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Location |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Location | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **location** | [**\OpenAPI\Client\Model\Location**](../Model/Location.md)| Location record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **location** | [**\OpenAPI\Client\Model\Location**](../Model/Location.md)| Location record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Location |
- **location** | [**\OpenAPI\Client\Model\Location**](../Model/Location.md)| Location fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Location | |
+| **location** | [**\OpenAPI\Client\Model\Location**](../Model/Location.md)| Location fields to update | |
 
 ### Return type
 

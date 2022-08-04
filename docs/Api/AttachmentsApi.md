@@ -1,14 +1,14 @@
 # OpenAPI\Client\AttachmentsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteAttachmentSingle()**](AttachmentsApi.md#deleteAttachmentSingle) | **DELETE** /attachment/{uuid}.json | Delete an Attachment
-[**getAttachmentAll()**](AttachmentsApi.md#getAttachmentAll) | **GET** /attachment.json | List all Attachments
-[**getAttachmentSingle()**](AttachmentsApi.md#getAttachmentSingle) | **GET** /attachment/{uuid}.json | Retrieve an Attachment
-[**postAttachmentCreate()**](AttachmentsApi.md#postAttachmentCreate) | **POST** /attachment.json | Create a new Attachment
-[**postAttachmentSingle()**](AttachmentsApi.md#postAttachmentSingle) | **POST** /attachment/{uuid}.json | Update an Attachment
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteAttachmentSingle()**](AttachmentsApi.md#deleteAttachmentSingle) | **DELETE** /attachment/{uuid}.json | Delete an Attachment |
+| [**getAttachmentAll()**](AttachmentsApi.md#getAttachmentAll) | **GET** /attachment.json | List all Attachments |
+| [**getAttachmentSingle()**](AttachmentsApi.md#getAttachmentSingle) | **GET** /attachment/{uuid}.json | Retrieve an Attachment |
+| [**postAttachmentCreate()**](AttachmentsApi.md#postAttachmentCreate) | **POST** /attachment.json | Create a new Attachment |
+| [**postAttachmentSingle()**](AttachmentsApi.md#postAttachmentSingle) | **POST** /attachment/{uuid}.json | Update an Attachment |
 
 
 ## `deleteAttachmentSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Attachment |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Attachment | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Attachment |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Attachment | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **attachment** | [**\OpenAPI\Client\Model\Attachment**](../Model/Attachment.md)| Attachment record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **attachment** | [**\OpenAPI\Client\Model\Attachment**](../Model/Attachment.md)| Attachment record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Attachment |
- **attachment** | [**\OpenAPI\Client\Model\Attachment**](../Model/Attachment.md)| Attachment fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Attachment | |
+| **attachment** | [**\OpenAPI\Client\Model\Attachment**](../Model/Attachment.md)| Attachment fields to update | |
 
 ### Return type
 

@@ -1,14 +1,14 @@
 # OpenAPI\Client\FormsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteFormSingle()**](FormsApi.md#deleteFormSingle) | **DELETE** /form/{uuid}.json | Delete a Form
-[**getFormAll()**](FormsApi.md#getFormAll) | **GET** /form.json | List all Forms
-[**getFormSingle()**](FormsApi.md#getFormSingle) | **GET** /form/{uuid}.json | Retrieve a Form
-[**postFormCreate()**](FormsApi.md#postFormCreate) | **POST** /form.json | Create a new Form
-[**postFormSingle()**](FormsApi.md#postFormSingle) | **POST** /form/{uuid}.json | Update a Form
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteFormSingle()**](FormsApi.md#deleteFormSingle) | **DELETE** /form/{uuid}.json | Delete a Form |
+| [**getFormAll()**](FormsApi.md#getFormAll) | **GET** /form.json | List all Forms |
+| [**getFormSingle()**](FormsApi.md#getFormSingle) | **GET** /form/{uuid}.json | Retrieve a Form |
+| [**postFormCreate()**](FormsApi.md#postFormCreate) | **POST** /form.json | Create a new Form |
+| [**postFormSingle()**](FormsApi.md#postFormSingle) | **POST** /form/{uuid}.json | Update a Form |
 
 
 ## `deleteFormSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **form** | [**\OpenAPI\Client\Model\Form**](../Model/Form.md)| Form record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **form** | [**\OpenAPI\Client\Model\Form**](../Model/Form.md)| Form record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Form |
- **form** | [**\OpenAPI\Client\Model\Form**](../Model/Form.md)| Form fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Form | |
+| **form** | [**\OpenAPI\Client\Model\Form**](../Model/Form.md)| Form fields to update | |
 
 ### Return type
 

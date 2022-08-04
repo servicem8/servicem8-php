@@ -1,14 +1,14 @@
 # OpenAPI\Client\AllocationWindowsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteAllocationWindowSingle()**](AllocationWindowsApi.md#deleteAllocationWindowSingle) | **DELETE** /allocationwindow/{uuid}.json | Delete an Allocation Window
-[**getAllocationWindowAll()**](AllocationWindowsApi.md#getAllocationWindowAll) | **GET** /allocationwindow.json | List all Allocation Windows
-[**getAllocationWindowSingle()**](AllocationWindowsApi.md#getAllocationWindowSingle) | **GET** /allocationwindow/{uuid}.json | Retrieve an Allocation Window
-[**postAllocationWindowCreate()**](AllocationWindowsApi.md#postAllocationWindowCreate) | **POST** /allocationwindow.json | Create a new Allocation Window
-[**postAllocationWindowSingle()**](AllocationWindowsApi.md#postAllocationWindowSingle) | **POST** /allocationwindow/{uuid}.json | Update an Allocation Window
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteAllocationWindowSingle()**](AllocationWindowsApi.md#deleteAllocationWindowSingle) | **DELETE** /allocationwindow/{uuid}.json | Delete an Allocation Window |
+| [**getAllocationWindowAll()**](AllocationWindowsApi.md#getAllocationWindowAll) | **GET** /allocationwindow.json | List all Allocation Windows |
+| [**getAllocationWindowSingle()**](AllocationWindowsApi.md#getAllocationWindowSingle) | **GET** /allocationwindow/{uuid}.json | Retrieve an Allocation Window |
+| [**postAllocationWindowCreate()**](AllocationWindowsApi.md#postAllocationWindowCreate) | **POST** /allocationwindow.json | Create a new Allocation Window |
+| [**postAllocationWindowSingle()**](AllocationWindowsApi.md#postAllocationWindowSingle) | **POST** /allocationwindow/{uuid}.json | Update an Allocation Window |
 
 
 ## `deleteAllocationWindowSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Allocation Window |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Allocation Window | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Allocation Window |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Allocation Window | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **allocationWindow** | [**\OpenAPI\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)| Allocation Window record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **allocationWindow** | [**\OpenAPI\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)| Allocation Window record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Allocation Window |
- **allocationWindow** | [**\OpenAPI\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)| Allocation Window fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Allocation Window | |
+| **allocationWindow** | [**\OpenAPI\Client\Model\AllocationWindow**](../Model/AllocationWindow.md)| Allocation Window fields to update | |
 
 ### Return type
 

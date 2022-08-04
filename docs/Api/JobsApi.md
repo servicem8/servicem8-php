@@ -1,14 +1,14 @@
 # OpenAPI\Client\JobsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteJobSingle()**](JobsApi.md#deleteJobSingle) | **DELETE** /job/{uuid}.json | Delete a Job
-[**getJobAll()**](JobsApi.md#getJobAll) | **GET** /job.json | List all Jobs
-[**getJobSingle()**](JobsApi.md#getJobSingle) | **GET** /job/{uuid}.json | Retrieve a Job
-[**postJobCreate()**](JobsApi.md#postJobCreate) | **POST** /job.json | Create a new Job
-[**postJobSingle()**](JobsApi.md#postJobSingle) | **POST** /job/{uuid}.json | Update a Job
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteJobSingle()**](JobsApi.md#deleteJobSingle) | **DELETE** /job/{uuid}.json | Delete a Job |
+| [**getJobAll()**](JobsApi.md#getJobAll) | **GET** /job.json | List all Jobs |
+| [**getJobSingle()**](JobsApi.md#getJobSingle) | **GET** /job/{uuid}.json | Retrieve a Job |
+| [**postJobCreate()**](JobsApi.md#postJobCreate) | **POST** /job.json | Create a new Job |
+| [**postJobSingle()**](JobsApi.md#postJobSingle) | **POST** /job/{uuid}.json | Update a Job |
 
 
 ## `deleteJobSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **job** | [**\OpenAPI\Client\Model\Job**](../Model/Job.md)| Job record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **job** | [**\OpenAPI\Client\Model\Job**](../Model/Job.md)| Job record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Job |
- **job** | [**\OpenAPI\Client\Model\Job**](../Model/Job.md)| Job fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Job | |
+| **job** | [**\OpenAPI\Client\Model\Job**](../Model/Job.md)| Job fields to update | |
 
 ### Return type
 

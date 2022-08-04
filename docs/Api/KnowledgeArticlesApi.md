@@ -1,14 +1,14 @@
 # OpenAPI\Client\KnowledgeArticlesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#deleteKnowledgeArticleSingle) | **DELETE** /knowledgearticle/{uuid}.json | Delete a Knowledge Article
-[**getKnowledgeArticleAll()**](KnowledgeArticlesApi.md#getKnowledgeArticleAll) | **GET** /knowledgearticle.json | List all Knowledge Articles
-[**getKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#getKnowledgeArticleSingle) | **GET** /knowledgearticle/{uuid}.json | Retrieve a Knowledge Article
-[**postKnowledgeArticleCreate()**](KnowledgeArticlesApi.md#postKnowledgeArticleCreate) | **POST** /knowledgearticle.json | Create a new Knowledge Article
-[**postKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#postKnowledgeArticleSingle) | **POST** /knowledgearticle/{uuid}.json | Update a Knowledge Article
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#deleteKnowledgeArticleSingle) | **DELETE** /knowledgearticle/{uuid}.json | Delete a Knowledge Article |
+| [**getKnowledgeArticleAll()**](KnowledgeArticlesApi.md#getKnowledgeArticleAll) | **GET** /knowledgearticle.json | List all Knowledge Articles |
+| [**getKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#getKnowledgeArticleSingle) | **GET** /knowledgearticle/{uuid}.json | Retrieve a Knowledge Article |
+| [**postKnowledgeArticleCreate()**](KnowledgeArticlesApi.md#postKnowledgeArticleCreate) | **POST** /knowledgearticle.json | Create a new Knowledge Article |
+| [**postKnowledgeArticleSingle()**](KnowledgeArticlesApi.md#postKnowledgeArticleSingle) | **POST** /knowledgearticle/{uuid}.json | Update a Knowledge Article |
 
 
 ## `deleteKnowledgeArticleSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Knowledge Article |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Knowledge Article | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Knowledge Article |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Knowledge Article | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **knowledgeArticle** | [**\OpenAPI\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **knowledgeArticle** | [**\OpenAPI\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article record to create | |
 
 ### Return type
 
@@ -311,10 +311,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Knowledge Article |
- **knowledgeArticle** | [**\OpenAPI\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Knowledge Article | |
+| **knowledgeArticle** | [**\OpenAPI\Client\Model\KnowledgeArticle**](../Model/KnowledgeArticle.md)| Knowledge Article fields to update | |
 
 ### Return type
 

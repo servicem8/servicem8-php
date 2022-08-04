@@ -1,14 +1,14 @@
 # OpenAPI\Client\BadgesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteBadgeSingle()**](BadgesApi.md#deleteBadgeSingle) | **DELETE** /badge/{uuid}.json | Delete a Badge
-[**getBadgeAll()**](BadgesApi.md#getBadgeAll) | **GET** /badge.json | List all Badges
-[**getBadgeSingle()**](BadgesApi.md#getBadgeSingle) | **GET** /badge/{uuid}.json | Retrieve a Badge
-[**postBadgeCreate()**](BadgesApi.md#postBadgeCreate) | **POST** /badge.json | Create a new Badge
-[**postBadgeSingle()**](BadgesApi.md#postBadgeSingle) | **POST** /badge/{uuid}.json | Update a Badge
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteBadgeSingle()**](BadgesApi.md#deleteBadgeSingle) | **DELETE** /badge/{uuid}.json | Delete a Badge |
+| [**getBadgeAll()**](BadgesApi.md#getBadgeAll) | **GET** /badge.json | List all Badges |
+| [**getBadgeSingle()**](BadgesApi.md#getBadgeSingle) | **GET** /badge/{uuid}.json | Retrieve a Badge |
+| [**postBadgeCreate()**](BadgesApi.md#postBadgeCreate) | **POST** /badge.json | Create a new Badge |
+| [**postBadgeSingle()**](BadgesApi.md#postBadgeSingle) | **POST** /badge/{uuid}.json | Update a Badge |
 
 
 ## `deleteBadgeSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Badge |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Badge | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Badge |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Badge | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **badge** | [**\OpenAPI\Client\Model\Badge**](../Model/Badge.md)| Badge record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **badge** | [**\OpenAPI\Client\Model\Badge**](../Model/Badge.md)| Badge record to create | |
 
 ### Return type
 
@@ -311,10 +311,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Badge |
- **badge** | [**\OpenAPI\Client\Model\Badge**](../Model/Badge.md)| Badge fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Badge | |
+| **badge** | [**\OpenAPI\Client\Model\Badge**](../Model/Badge.md)| Badge fields to update | |
 
 ### Return type
 

@@ -1,14 +1,14 @@
 # OpenAPI\Client\CompanyContactsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteCompanyContactSingle()**](CompanyContactsApi.md#deleteCompanyContactSingle) | **DELETE** /companycontact/{uuid}.json | Delete a Company Contact
-[**getCompanyContactAll()**](CompanyContactsApi.md#getCompanyContactAll) | **GET** /companycontact.json | List all Company Contacts
-[**getCompanyContactSingle()**](CompanyContactsApi.md#getCompanyContactSingle) | **GET** /companycontact/{uuid}.json | Retrieve a Company Contact
-[**postCompanyContactCreate()**](CompanyContactsApi.md#postCompanyContactCreate) | **POST** /companycontact.json | Create a new Company Contact
-[**postCompanyContactSingle()**](CompanyContactsApi.md#postCompanyContactSingle) | **POST** /companycontact/{uuid}.json | Update a Company Contact
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteCompanyContactSingle()**](CompanyContactsApi.md#deleteCompanyContactSingle) | **DELETE** /companycontact/{uuid}.json | Delete a Company Contact |
+| [**getCompanyContactAll()**](CompanyContactsApi.md#getCompanyContactAll) | **GET** /companycontact.json | List all Company Contacts |
+| [**getCompanyContactSingle()**](CompanyContactsApi.md#getCompanyContactSingle) | **GET** /companycontact/{uuid}.json | Retrieve a Company Contact |
+| [**postCompanyContactCreate()**](CompanyContactsApi.md#postCompanyContactCreate) | **POST** /companycontact.json | Create a new Company Contact |
+| [**postCompanyContactSingle()**](CompanyContactsApi.md#postCompanyContactSingle) | **POST** /companycontact/{uuid}.json | Update a Company Contact |
 
 
 ## `deleteCompanyContactSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Company Contact |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Company Contact | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Company Contact |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Company Contact | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **companyContact** | [**\OpenAPI\Client\Model\CompanyContact**](../Model/CompanyContact.md)| Company Contact record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **companyContact** | [**\OpenAPI\Client\Model\CompanyContact**](../Model/CompanyContact.md)| Company Contact record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Company Contact |
- **companyContact** | [**\OpenAPI\Client\Model\CompanyContact**](../Model/CompanyContact.md)| Company Contact fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Company Contact | |
+| **companyContact** | [**\OpenAPI\Client\Model\CompanyContact**](../Model/CompanyContact.md)| Company Contact fields to update | |
 
 ### Return type
 

@@ -1,14 +1,14 @@
 # OpenAPI\Client\MaterialsApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteMaterialSingle()**](MaterialsApi.md#deleteMaterialSingle) | **DELETE** /material/{uuid}.json | Delete a Material
-[**getMaterialAll()**](MaterialsApi.md#getMaterialAll) | **GET** /material.json | List all Materials
-[**getMaterialSingle()**](MaterialsApi.md#getMaterialSingle) | **GET** /material/{uuid}.json | Retrieve a Material
-[**postMaterialCreate()**](MaterialsApi.md#postMaterialCreate) | **POST** /material.json | Create a new Material
-[**postMaterialSingle()**](MaterialsApi.md#postMaterialSingle) | **POST** /material/{uuid}.json | Update a Material
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteMaterialSingle()**](MaterialsApi.md#deleteMaterialSingle) | **DELETE** /material/{uuid}.json | Delete a Material |
+| [**getMaterialAll()**](MaterialsApi.md#getMaterialAll) | **GET** /material.json | List all Materials |
+| [**getMaterialSingle()**](MaterialsApi.md#getMaterialSingle) | **GET** /material/{uuid}.json | Retrieve a Material |
+| [**postMaterialCreate()**](MaterialsApi.md#postMaterialCreate) | **POST** /material.json | Create a new Material |
+| [**postMaterialSingle()**](MaterialsApi.md#postMaterialSingle) | **POST** /material/{uuid}.json | Update a Material |
 
 
 ## `deleteMaterialSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Material |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Material | |
 
 ### Return type
 
@@ -182,9 +182,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Material |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Material | |
 
 ### Return type
 
@@ -247,9 +247,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **material** | [**\OpenAPI\Client\Model\Material**](../Model/Material.md)| Material record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **material** | [**\OpenAPI\Client\Model\Material**](../Model/Material.md)| Material record to create | |
 
 ### Return type
 
@@ -313,10 +313,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Material |
- **material** | [**\OpenAPI\Client\Model\Material**](../Model/Material.md)| Material fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Material | |
+| **material** | [**\OpenAPI\Client\Model\Material**](../Model/Material.md)| Material fields to update | |
 
 ### Return type
 

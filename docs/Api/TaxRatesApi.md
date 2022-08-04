@@ -1,14 +1,14 @@
 # OpenAPI\Client\TaxRatesApi
 
-All URIs are relative to https://api.servicem8.com/api_1.0.
+All URIs are relative to https://api.servicem8.com/api_1.0, except if the operation defines another base path.
 
-Method | HTTP request | Description
-------------- | ------------- | -------------
-[**deleteTaxRateSingle()**](TaxRatesApi.md#deleteTaxRateSingle) | **DELETE** /taxrate/{uuid}.json | Delete a Tax Rate
-[**getTaxRateAll()**](TaxRatesApi.md#getTaxRateAll) | **GET** /taxrate.json | List all Tax Rates
-[**getTaxRateSingle()**](TaxRatesApi.md#getTaxRateSingle) | **GET** /taxrate/{uuid}.json | Retrieve a Tax Rate
-[**postTaxRateCreate()**](TaxRatesApi.md#postTaxRateCreate) | **POST** /taxrate.json | Create a new Tax Rate
-[**postTaxRateSingle()**](TaxRatesApi.md#postTaxRateSingle) | **POST** /taxrate/{uuid}.json | Update a Tax Rate
+| Method | HTTP request | Description |
+| ------------- | ------------- | ------------- |
+| [**deleteTaxRateSingle()**](TaxRatesApi.md#deleteTaxRateSingle) | **DELETE** /taxrate/{uuid}.json | Delete a Tax Rate |
+| [**getTaxRateAll()**](TaxRatesApi.md#getTaxRateAll) | **GET** /taxrate.json | List all Tax Rates |
+| [**getTaxRateSingle()**](TaxRatesApi.md#getTaxRateSingle) | **GET** /taxrate/{uuid}.json | Retrieve a Tax Rate |
+| [**postTaxRateCreate()**](TaxRatesApi.md#postTaxRateCreate) | **POST** /taxrate.json | Create a new Tax Rate |
+| [**postTaxRateSingle()**](TaxRatesApi.md#postTaxRateSingle) | **POST** /taxrate/{uuid}.json | Update a Tax Rate |
 
 
 ## `deleteTaxRateSingle()`
@@ -55,9 +55,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Tax Rate |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Tax Rate | |
 
 ### Return type
 
@@ -180,9 +180,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Tax Rate |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Tax Rate | |
 
 ### Return type
 
@@ -245,9 +245,9 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **taxRate** | [**\OpenAPI\Client\Model\TaxRate**](../Model/TaxRate.md)| Tax Rate record to create |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **taxRate** | [**\OpenAPI\Client\Model\TaxRate**](../Model/TaxRate.md)| Tax Rate record to create | |
 
 ### Return type
 
@@ -309,10 +309,10 @@ try {
 
 ### Parameters
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **uuid** | **string**| UUID of the Tax Rate |
- **taxRate** | [**\OpenAPI\Client\Model\TaxRate**](../Model/TaxRate.md)| Tax Rate fields to update |
+| Name | Type | Description  | Notes |
+| ------------- | ------------- | ------------- | ------------- |
+| **uuid** | **string**| UUID of the Tax Rate | |
+| **taxRate** | [**\OpenAPI\Client\Model\TaxRate**](../Model/TaxRate.md)| Tax Rate fields to update | |
 
 ### Return type
 
