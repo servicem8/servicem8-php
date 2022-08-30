@@ -13,5 +13,6 @@ Name | Type | Description | Notes
 **lat** | **float** |  | [optional]
 **isShared** | **string** |  | [optional]
 **staffUuid** | **string** |  | [optional]
+**radius** | **string** |  | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

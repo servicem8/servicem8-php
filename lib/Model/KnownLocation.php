@@ -65,7 +65,8 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'lng' => 'float',
         'lat' => 'float',
         'isShared' => 'string',
-        'staffUuid' => 'string'
+        'staffUuid' => 'string',
+        'radius' => 'string'
     ];
 
     /**
@@ -84,7 +85,8 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'lng' => 'float',
         'lat' => 'float',
         'isShared' => null,
-        'staffUuid' => 'uuid'
+        'staffUuid' => 'uuid',
+        'radius' => null
     ];
 
     /**
@@ -101,7 +103,8 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
 		'lng' => false,
 		'lat' => false,
 		'isShared' => false,
-		'staffUuid' => false
+		'staffUuid' => false,
+		'radius' => false
     ];
 
     /**
@@ -188,7 +191,8 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'lng' => 'lng',
         'lat' => 'lat',
         'isShared' => 'is_shared',
-        'staffUuid' => 'staff_uuid'
+        'staffUuid' => 'staff_uuid',
+        'radius' => 'radius'
     ];
 
     /**
@@ -205,7 +209,8 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'lng' => 'setLng',
         'lat' => 'setLat',
         'isShared' => 'setIsShared',
-        'staffUuid' => 'setStaffUuid'
+        'staffUuid' => 'setStaffUuid',
+        'radius' => 'setRadius'
     ];
 
     /**
@@ -222,7 +227,8 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'lng' => 'getLng',
         'lat' => 'getLat',
         'isShared' => 'getIsShared',
-        'staffUuid' => 'getStaffUuid'
+        'staffUuid' => 'getStaffUuid',
+        'radius' => 'getRadius'
     ];
 
     /**
@@ -291,6 +297,7 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('lat', $data ?? [], null);
         $this->setIfExists('isShared', $data ?? [], null);
         $this->setIfExists('staffUuid', $data ?? [], null);
+        $this->setIfExists('radius', $data ?? [], null);
     }
 
     /**
@@ -592,6 +599,35 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['staffUuid'] = $staffUuid;
+
+        return $this;
+    }
+
+    /**
+     * Gets radius
+     *
+     * @return string|null
+     */
+    public function getRadius()
+    {
+        return $this->container['radius'];
+    }
+
+    /**
+     * Sets radius
+     *
+     * @param string|null $radius radius
+     *
+     * @return self
+     */
+    public function setRadius($radius)
+    {
+
+        if (is_null($radius)) {
+            throw new \InvalidArgumentException('non-nullable radius cannot be null');
+        }
+
+        $this->container['radius'] = $radius;
 
         return $this;
     }

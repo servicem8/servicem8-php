@@ -159,4 +159,13 @@ class KnownLocationTest extends TestCase
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
+
+    /**
+     * Test attribute "radius"
+     */
+    public function testPropertyRadius()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
 }
