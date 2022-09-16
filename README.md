@@ -125,6 +125,11 @@ Class | Method | HTTP request | Description
 *BadgesApi* | [**getBadgeSingle**](docs/Api/BadgesApi.md#getbadgesingle) | **GET** /badge/{uuid}.json | Retrieve a Badge
 *BadgesApi* | [**postBadgeCreate**](docs/Api/BadgesApi.md#postbadgecreate) | **POST** /badge.json | Create a new Badge
 *BadgesApi* | [**postBadgeSingle**](docs/Api/BadgesApi.md#postbadgesingle) | **POST** /badge/{uuid}.json | Update a Badge
+*BundlesApi* | [**deleteBundleSingle**](docs/Api/BundlesApi.md#deletebundlesingle) | **DELETE** /materialbundle/{uuid}.json | Delete a Bundle
+*BundlesApi* | [**getBundleAll**](docs/Api/BundlesApi.md#getbundleall) | **GET** /materialbundle.json | List all Bundles
+*BundlesApi* | [**getBundleSingle**](docs/Api/BundlesApi.md#getbundlesingle) | **GET** /materialbundle/{uuid}.json | Retrieve a Bundle
+*BundlesApi* | [**postBundleCreate**](docs/Api/BundlesApi.md#postbundlecreate) | **POST** /materialbundle.json | Create a new Bundle
+*BundlesApi* | [**postBundleSingle**](docs/Api/BundlesApi.md#postbundlesingle) | **POST** /materialbundle/{uuid}.json | Update a Bundle
 *CategoriesApi* | [**deleteCategorySingle**](docs/Api/CategoriesApi.md#deletecategorysingle) | **DELETE** /category/{uuid}.json | Delete a Category
 *CategoriesApi* | [**getCategoryAll**](docs/Api/CategoriesApi.md#getcategoryall) | **GET** /category.json | List all Categories
 *CategoriesApi* | [**getCategorySingle**](docs/Api/CategoriesApi.md#getcategorysingle) | **GET** /category/{uuid}.json | Retrieve a Category
@@ -180,6 +185,11 @@ Class | Method | HTTP request | Description
 *JobContactsApi* | [**getJobContactSingle**](docs/Api/JobContactsApi.md#getjobcontactsingle) | **GET** /jobcontact/{uuid}.json | Retrieve a Job Contact
 *JobContactsApi* | [**postJobContactCreate**](docs/Api/JobContactsApi.md#postjobcontactcreate) | **POST** /jobcontact.json | Create a new Job Contact
 *JobContactsApi* | [**postJobContactSingle**](docs/Api/JobContactsApi.md#postjobcontactsingle) | **POST** /jobcontact/{uuid}.json | Update a Job Contact
+*JobMaterialBundlesApi* | [**deleteJobMaterialBundleSingle**](docs/Api/JobMaterialBundlesApi.md#deletejobmaterialbundlesingle) | **DELETE** /jobmaterialbundle/{uuid}.json | Delete a JobMaterialBundle
+*JobMaterialBundlesApi* | [**getJobMaterialBundleAll**](docs/Api/JobMaterialBundlesApi.md#getjobmaterialbundleall) | **GET** /jobmaterialbundle.json | List all JobMaterialBundles
+*JobMaterialBundlesApi* | [**getJobMaterialBundleSingle**](docs/Api/JobMaterialBundlesApi.md#getjobmaterialbundlesingle) | **GET** /jobmaterialbundle/{uuid}.json | Retrieve a JobMaterialBundle
+*JobMaterialBundlesApi* | [**postJobMaterialBundleCreate**](docs/Api/JobMaterialBundlesApi.md#postjobmaterialbundlecreate) | **POST** /jobmaterialbundle.json | Create a new JobMaterialBundle
+*JobMaterialBundlesApi* | [**postJobMaterialBundleSingle**](docs/Api/JobMaterialBundlesApi.md#postjobmaterialbundlesingle) | **POST** /jobmaterialbundle/{uuid}.json | Update a JobMaterialBundle
 *JobMaterialsApi* | [**deleteJobMaterialSingle**](docs/Api/JobMaterialsApi.md#deletejobmaterialsingle) | **DELETE** /jobmaterial/{uuid}.json | Delete a Job Material
 *JobMaterialsApi* | [**getJobMaterialAll**](docs/Api/JobMaterialsApi.md#getjobmaterialall) | **GET** /jobmaterial.json | List all Job Materials
 *JobMaterialsApi* | [**getJobMaterialSingle**](docs/Api/JobMaterialsApi.md#getjobmaterialsingle) | **GET** /jobmaterial/{uuid}.json | Retrieve a Job Material
@@ -267,6 +277,7 @@ Class | Method | HTTP request | Description
 - [AssetTypeField](docs/Model/AssetTypeField.md)
 - [Attachment](docs/Model/Attachment.md)
 - [Badge](docs/Model/Badge.md)
+- [Bundle](docs/Model/Bundle.md)
 - [Category](docs/Model/Category.md)
 - [Client](docs/Model/Client.md)
 - [CompanyContact](docs/Model/CompanyContact.md)
@@ -281,6 +292,7 @@ Class | Method | HTTP request | Description
 - [JobAllocation](docs/Model/JobAllocation.md)
 - [JobContact](docs/Model/JobContact.md)
 - [JobMaterial](docs/Model/JobMaterial.md)
+- [JobMaterialBundle](docs/Model/JobMaterialBundle.md)
 - [JobPayment](docs/Model/JobPayment.md)
 - [JobQueue](docs/Model/JobQueue.md)
 - [JobRelatedKnowledgeArticlesInner](docs/Model/JobRelatedKnowledgeArticlesInner.md)

@@ -1,6 +1,6 @@
 <?php
 /**
- * JobMaterial
+ * JobMaterialBundle
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * JobMaterial Class Doc Comment
+ * JobMaterialBundle Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
+class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Job Material';
+    protected static $openAPIModelName = 'JobMaterialBundle';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,18 +60,12 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'string',
         'active' => 'float',
         'editDate' => 'string',
-        'jobUuid' => 'string',
-        'materialUuid' => 'string',
+        'itemNumber' => 'string',
         'name' => 'string',
         'quantity' => 'string',
-        'price' => 'string',
-        'displayedAmount' => 'string',
-        'displayedAmountIsTaxInclusive' => 'string',
-        'taxRateUuid' => 'string',
         'sortOrder' => 'string',
-        'cost' => 'string',
-        'displayedCost' => 'string',
-        'jobMaterialBundleUuid' => 'string'
+        'materialBundleUuid' => 'string',
+        'jobUuid' => 'string'
     ];
 
     /**
@@ -85,18 +79,12 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => null,
         'editDate' => null,
-        'jobUuid' => 'uuid',
-        'materialUuid' => 'uuid',
+        'itemNumber' => null,
         'name' => null,
         'quantity' => null,
-        'price' => null,
-        'displayedAmount' => null,
-        'displayedAmountIsTaxInclusive' => null,
-        'taxRateUuid' => 'uuid',
         'sortOrder' => null,
-        'cost' => null,
-        'displayedCost' => null,
-        'jobMaterialBundleUuid' => 'uuid'
+        'materialBundleUuid' => 'uuid',
+        'jobUuid' => 'uuid'
     ];
 
     /**
@@ -108,18 +96,12 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => false,
 		'active' => false,
 		'editDate' => false,
-		'jobUuid' => false,
-		'materialUuid' => false,
+		'itemNumber' => false,
 		'name' => false,
 		'quantity' => false,
-		'price' => false,
-		'displayedAmount' => false,
-		'displayedAmountIsTaxInclusive' => false,
-		'taxRateUuid' => false,
 		'sortOrder' => false,
-		'cost' => false,
-		'displayedCost' => false,
-		'jobMaterialBundleUuid' => false
+		'materialBundleUuid' => false,
+		'jobUuid' => false
     ];
 
     /**
@@ -201,18 +183,12 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => 'active',
         'editDate' => 'edit_date',
-        'jobUuid' => 'job_uuid',
-        'materialUuid' => 'material_uuid',
+        'itemNumber' => 'item_number',
         'name' => 'name',
         'quantity' => 'quantity',
-        'price' => 'price',
-        'displayedAmount' => 'displayed_amount',
-        'displayedAmountIsTaxInclusive' => 'displayed_amount_is_tax_inclusive',
-        'taxRateUuid' => 'tax_rate_uuid',
         'sortOrder' => 'sort_order',
-        'cost' => 'cost',
-        'displayedCost' => 'displayed_cost',
-        'jobMaterialBundleUuid' => 'job_material_bundle_uuid'
+        'materialBundleUuid' => 'material_bundle_uuid',
+        'jobUuid' => 'job_uuid'
     ];
 
     /**
@@ -224,18 +200,12 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'setUuid',
         'active' => 'setActive',
         'editDate' => 'setEditDate',
-        'jobUuid' => 'setJobUuid',
-        'materialUuid' => 'setMaterialUuid',
+        'itemNumber' => 'setItemNumber',
         'name' => 'setName',
         'quantity' => 'setQuantity',
-        'price' => 'setPrice',
-        'displayedAmount' => 'setDisplayedAmount',
-        'displayedAmountIsTaxInclusive' => 'setDisplayedAmountIsTaxInclusive',
-        'taxRateUuid' => 'setTaxRateUuid',
         'sortOrder' => 'setSortOrder',
-        'cost' => 'setCost',
-        'displayedCost' => 'setDisplayedCost',
-        'jobMaterialBundleUuid' => 'setJobMaterialBundleUuid'
+        'materialBundleUuid' => 'setMaterialBundleUuid',
+        'jobUuid' => 'setJobUuid'
     ];
 
     /**
@@ -247,18 +217,12 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'getUuid',
         'active' => 'getActive',
         'editDate' => 'getEditDate',
-        'jobUuid' => 'getJobUuid',
-        'materialUuid' => 'getMaterialUuid',
+        'itemNumber' => 'getItemNumber',
         'name' => 'getName',
         'quantity' => 'getQuantity',
-        'price' => 'getPrice',
-        'displayedAmount' => 'getDisplayedAmount',
-        'displayedAmountIsTaxInclusive' => 'getDisplayedAmountIsTaxInclusive',
-        'taxRateUuid' => 'getTaxRateUuid',
         'sortOrder' => 'getSortOrder',
-        'cost' => 'getCost',
-        'displayedCost' => 'getDisplayedCost',
-        'jobMaterialBundleUuid' => 'getJobMaterialBundleUuid'
+        'materialBundleUuid' => 'getMaterialBundleUuid',
+        'jobUuid' => 'getJobUuid'
     ];
 
     /**
@@ -321,18 +285,12 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('uuid', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('editDate', $data ?? [], null);
-        $this->setIfExists('jobUuid', $data ?? [], null);
-        $this->setIfExists('materialUuid', $data ?? [], null);
+        $this->setIfExists('itemNumber', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
-        $this->setIfExists('price', $data ?? [], null);
-        $this->setIfExists('displayedAmount', $data ?? [], null);
-        $this->setIfExists('displayedAmountIsTaxInclusive', $data ?? [], null);
-        $this->setIfExists('taxRateUuid', $data ?? [], null);
         $this->setIfExists('sortOrder', $data ?? [], null);
-        $this->setIfExists('cost', $data ?? [], null);
-        $this->setIfExists('displayedCost', $data ?? [], null);
-        $this->setIfExists('jobMaterialBundleUuid', $data ?? [], null);
+        $this->setIfExists('materialBundleUuid', $data ?? [], null);
+        $this->setIfExists('jobUuid', $data ?? [], null);
     }
 
     /**
@@ -361,17 +319,6 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if (!is_null($this->container['name']) && (mb_strlen($this->container['name']) > 500)) {
-            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 500.";
-        }
-
-        if ($this->container['quantity'] === null) {
-            $invalidProperties[] = "'quantity' can't be null";
-        }
-        if ((mb_strlen($this->container['quantity']) > 100)) {
-            $invalidProperties[] = "invalid value for 'quantity', the character length must be smaller than or equal to 100.";
-        }
 
         return $invalidProperties;
     }
@@ -476,59 +423,30 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets jobUuid
+     * Gets itemNumber
      *
      * @return string|null
      */
-    public function getJobUuid()
+    public function getItemNumber()
     {
-        return $this->container['jobUuid'];
+        return $this->container['itemNumber'];
     }
 
     /**
-     * Sets jobUuid
+     * Sets itemNumber
      *
-     * @param string|null $jobUuid jobUuid
+     * @param string|null $itemNumber itemNumber
      *
      * @return self
      */
-    public function setJobUuid($jobUuid)
+    public function setItemNumber($itemNumber)
     {
 
-        if (is_null($jobUuid)) {
-            throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
+        if (is_null($itemNumber)) {
+            throw new \InvalidArgumentException('non-nullable itemNumber cannot be null');
         }
 
-        $this->container['jobUuid'] = $jobUuid;
-
-        return $this;
-    }
-
-    /**
-     * Gets materialUuid
-     *
-     * @return string|null
-     */
-    public function getMaterialUuid()
-    {
-        return $this->container['materialUuid'];
-    }
-
-    /**
-     * Sets materialUuid
-     *
-     * @param string|null $materialUuid materialUuid
-     *
-     * @return self
-     */
-    public function setMaterialUuid($materialUuid)
-    {
-
-        if (is_null($materialUuid)) {
-            throw new \InvalidArgumentException('non-nullable materialUuid cannot be null');
-        }
-
-        $this->container['materialUuid'] = $materialUuid;
+        $this->container['itemNumber'] = $itemNumber;
 
         return $this;
     }
@@ -552,10 +470,6 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if (!is_null($name) && (mb_strlen($name) > 500)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling JobMaterial., must be smaller than or equal to 500.');
-        }
-
 
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -569,7 +483,7 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets quantity
      *
-     * @return string
+     * @return string|null
      */
     public function getQuantity()
     {
@@ -579,138 +493,18 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets quantity
      *
-     * @param string $quantity quantity
+     * @param string|null $quantity quantity
      *
      * @return self
      */
     public function setQuantity($quantity)
     {
-        if ((mb_strlen($quantity) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $quantity when calling JobMaterial., must be smaller than or equal to 100.');
-        }
-
 
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
 
         $this->container['quantity'] = $quantity;
-
-        return $this;
-    }
-
-    /**
-     * Gets price
-     *
-     * @return string|null
-     */
-    public function getPrice()
-    {
-        return $this->container['price'];
-    }
-
-    /**
-     * Sets price
-     *
-     * @param string|null $price price
-     *
-     * @return self
-     */
-    public function setPrice($price)
-    {
-
-        if (is_null($price)) {
-            throw new \InvalidArgumentException('non-nullable price cannot be null');
-        }
-
-        $this->container['price'] = $price;
-
-        return $this;
-    }
-
-    /**
-     * Gets displayedAmount
-     *
-     * @return string|null
-     */
-    public function getDisplayedAmount()
-    {
-        return $this->container['displayedAmount'];
-    }
-
-    /**
-     * Sets displayedAmount
-     *
-     * @param string|null $displayedAmount displayedAmount
-     *
-     * @return self
-     */
-    public function setDisplayedAmount($displayedAmount)
-    {
-
-        if (is_null($displayedAmount)) {
-            throw new \InvalidArgumentException('non-nullable displayedAmount cannot be null');
-        }
-
-        $this->container['displayedAmount'] = $displayedAmount;
-
-        return $this;
-    }
-
-    /**
-     * Gets displayedAmountIsTaxInclusive
-     *
-     * @return string|null
-     */
-    public function getDisplayedAmountIsTaxInclusive()
-    {
-        return $this->container['displayedAmountIsTaxInclusive'];
-    }
-
-    /**
-     * Sets displayedAmountIsTaxInclusive
-     *
-     * @param string|null $displayedAmountIsTaxInclusive displayedAmountIsTaxInclusive
-     *
-     * @return self
-     */
-    public function setDisplayedAmountIsTaxInclusive($displayedAmountIsTaxInclusive)
-    {
-
-        if (is_null($displayedAmountIsTaxInclusive)) {
-            throw new \InvalidArgumentException('non-nullable displayedAmountIsTaxInclusive cannot be null');
-        }
-
-        $this->container['displayedAmountIsTaxInclusive'] = $displayedAmountIsTaxInclusive;
-
-        return $this;
-    }
-
-    /**
-     * Gets taxRateUuid
-     *
-     * @return string|null
-     */
-    public function getTaxRateUuid()
-    {
-        return $this->container['taxRateUuid'];
-    }
-
-    /**
-     * Sets taxRateUuid
-     *
-     * @param string|null $taxRateUuid taxRateUuid
-     *
-     * @return self
-     */
-    public function setTaxRateUuid($taxRateUuid)
-    {
-
-        if (is_null($taxRateUuid)) {
-            throw new \InvalidArgumentException('non-nullable taxRateUuid cannot be null');
-        }
-
-        $this->container['taxRateUuid'] = $taxRateUuid;
 
         return $this;
     }
@@ -745,88 +539,59 @@ class JobMaterial implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets cost
+     * Gets materialBundleUuid
      *
      * @return string|null
      */
-    public function getCost()
+    public function getMaterialBundleUuid()
     {
-        return $this->container['cost'];
+        return $this->container['materialBundleUuid'];
     }
 
     /**
-     * Sets cost
+     * Sets materialBundleUuid
      *
-     * @param string|null $cost cost
+     * @param string|null $materialBundleUuid materialBundleUuid
      *
      * @return self
      */
-    public function setCost($cost)
+    public function setMaterialBundleUuid($materialBundleUuid)
     {
 
-        if (is_null($cost)) {
-            throw new \InvalidArgumentException('non-nullable cost cannot be null');
+        if (is_null($materialBundleUuid)) {
+            throw new \InvalidArgumentException('non-nullable materialBundleUuid cannot be null');
         }
 
-        $this->container['cost'] = $cost;
+        $this->container['materialBundleUuid'] = $materialBundleUuid;
 
         return $this;
     }
 
     /**
-     * Gets displayedCost
+     * Gets jobUuid
      *
      * @return string|null
      */
-    public function getDisplayedCost()
+    public function getJobUuid()
     {
-        return $this->container['displayedCost'];
+        return $this->container['jobUuid'];
     }
 
     /**
-     * Sets displayedCost
+     * Sets jobUuid
      *
-     * @param string|null $displayedCost displayedCost
+     * @param string|null $jobUuid jobUuid
      *
      * @return self
      */
-    public function setDisplayedCost($displayedCost)
+    public function setJobUuid($jobUuid)
     {
 
-        if (is_null($displayedCost)) {
-            throw new \InvalidArgumentException('non-nullable displayedCost cannot be null');
+        if (is_null($jobUuid)) {
+            throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
         }
 
-        $this->container['displayedCost'] = $displayedCost;
-
-        return $this;
-    }
-
-    /**
-     * Gets jobMaterialBundleUuid
-     *
-     * @return string|null
-     */
-    public function getJobMaterialBundleUuid()
-    {
-        return $this->container['jobMaterialBundleUuid'];
-    }
-
-    /**
-     * Sets jobMaterialBundleUuid
-     *
-     * @param string|null $jobMaterialBundleUuid UUID of a JobMaterialBundle which this JobMaterial belongs to. The default value is blank, which means that the JobMaterial is not part of a JobMaterialBundle.
-     *
-     * @return self
-     */
-    public function setJobMaterialBundleUuid($jobMaterialBundleUuid)
-    {
-
-        if (is_null($jobMaterialBundleUuid)) {
-            throw new \InvalidArgumentException('non-nullable jobMaterialBundleUuid cannot be null');
-        }
-
-        $this->container['jobMaterialBundleUuid'] = $jobMaterialBundleUuid;
+        $this->container['jobUuid'] = $jobUuid;
 
         return $this;
     }

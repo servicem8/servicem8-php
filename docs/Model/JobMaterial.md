@@ -18,6 +18,6 @@ Name | Type | Description | Notes
 **sortOrder** | **string** |  | [optional]
 **cost** | **string** |  | [optional]
 **displayedCost** | **string** |  | [optional]
-**jobMaterialBundleUuid** | **string** |  | [optional]
+**jobMaterialBundleUuid** | **string** | UUID of a JobMaterialBundle which this JobMaterial belongs to. The default value is blank, which means that the JobMaterial is not part of a JobMaterialBundle. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
