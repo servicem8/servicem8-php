@@ -72,60 +72,60 @@ class JobQueuesApiTest extends TestCase
     }
 
     /**
-     * Test case for deleteJobQueueSingle
+     * Test case for deleteQueueSingle
      *
      * Delete a Job Queue.
      *
      */
-    public function testDeleteJobQueueSingle()
+    public function testDeleteQueueSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getJobQueueAll
+     * Test case for getQueueAll
      *
      * List all Job Queues.
      *
      */
-    public function testGetJobQueueAll()
+    public function testGetQueueAll()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getJobQueueSingle
+     * Test case for getQueueSingle
      *
      * Retrieve a Job Queue.
      *
      */
-    public function testGetJobQueueSingle()
+    public function testGetQueueSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for postJobQueueCreate
+     * Test case for postQueueCreate
      *
      * Create a new Job Queue.
      *
      */
-    public function testPostJobQueueCreate()
+    public function testPostQueueCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for postJobQueueSingle
+     * Test case for postQueueSingle
      *
      * Update a Job Queue.
      *
      */
-    public function testPostJobQueueSingle()
+    public function testPostQueueSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

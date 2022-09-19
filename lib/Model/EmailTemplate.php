@@ -49,7 +49,7 @@ class EmailTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Email Template';
+    protected static $openAPIModelName = 'EmailTemplate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

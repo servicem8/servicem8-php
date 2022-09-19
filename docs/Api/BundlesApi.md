@@ -4,17 +4,17 @@ All URIs are relative to https://api.servicem8.com/api_1.0, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**deleteBundleSingle()**](BundlesApi.md#deleteBundleSingle) | **DELETE** /materialbundle/{uuid}.json | Delete a Bundle |
-| [**getBundleAll()**](BundlesApi.md#getBundleAll) | **GET** /materialbundle.json | List all Bundles |
-| [**getBundleSingle()**](BundlesApi.md#getBundleSingle) | **GET** /materialbundle/{uuid}.json | Retrieve a Bundle |
-| [**postBundleCreate()**](BundlesApi.md#postBundleCreate) | **POST** /materialbundle.json | Create a new Bundle |
-| [**postBundleSingle()**](BundlesApi.md#postBundleSingle) | **POST** /materialbundle/{uuid}.json | Update a Bundle |
+| [**deleteMaterialBundleSingle()**](BundlesApi.md#deleteMaterialBundleSingle) | **DELETE** /materialbundle/{uuid}.json | Delete a Bundle |
+| [**getMaterialBundleAll()**](BundlesApi.md#getMaterialBundleAll) | **GET** /materialbundle.json | List all Bundles |
+| [**getMaterialBundleSingle()**](BundlesApi.md#getMaterialBundleSingle) | **GET** /materialbundle/{uuid}.json | Retrieve a Bundle |
+| [**postMaterialBundleCreate()**](BundlesApi.md#postMaterialBundleCreate) | **POST** /materialbundle.json | Create a new Bundle |
+| [**postMaterialBundleSingle()**](BundlesApi.md#postMaterialBundleSingle) | **POST** /materialbundle/{uuid}.json | Update a Bundle |
 
 
-## `deleteBundleSingle()`
+## `deleteMaterialBundleSingle()`
 
 ```php
-deleteBundleSingle($uuid): \OpenAPI\Client\Model\Result
+deleteMaterialBundleSingle($uuid): \OpenAPI\Client\Model\Result
 ```
 
 Delete a Bundle
@@ -46,10 +46,10 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
 $uuid = 'uuid_example'; // string | UUID of the Bundle
 
 try {
-    $result = $apiInstance->deleteBundleSingle($uuid);
+    $result = $apiInstance->deleteMaterialBundleSingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BundlesApi->deleteBundleSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BundlesApi->deleteMaterialBundleSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -76,10 +76,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getBundleAll()`
+## `getMaterialBundleAll()`
 
 ```php
-getBundleAll(): \OpenAPI\Client\Model\Bundle[]
+getMaterialBundleAll(): \OpenAPI\Client\Model\MaterialBundle[]
 ```
 
 List all Bundles
@@ -110,10 +110,10 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
 );
 
 try {
-    $result = $apiInstance->getBundleAll();
+    $result = $apiInstance->getMaterialBundleAll();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BundlesApi->getBundleAll: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BundlesApi->getMaterialBundleAll: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -123,7 +123,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Bundle[]**](../Model/Bundle.md)
+[**\OpenAPI\Client\Model\MaterialBundle[]**](../Model/MaterialBundle.md)
 
 ### Authorization
 
@@ -138,10 +138,10 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getBundleSingle()`
+## `getMaterialBundleSingle()`
 
 ```php
-getBundleSingle($uuid): \OpenAPI\Client\Model\Bundle
+getMaterialBundleSingle($uuid): \OpenAPI\Client\Model\MaterialBundle
 ```
 
 Retrieve a Bundle
@@ -171,10 +171,10 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
 $uuid = 'uuid_example'; // string | UUID of the Bundle
 
 try {
-    $result = $apiInstance->getBundleSingle($uuid);
+    $result = $apiInstance->getMaterialBundleSingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BundlesApi->getBundleSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BundlesApi->getMaterialBundleSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -186,7 +186,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Bundle**](../Model/Bundle.md)
+[**\OpenAPI\Client\Model\MaterialBundle**](../Model/MaterialBundle.md)
 
 ### Authorization
 
@@ -201,10 +201,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postBundleCreate()`
+## `postMaterialBundleCreate()`
 
 ```php
-postBundleCreate($bundle): \OpenAPI\Client\Model\Result
+postMaterialBundleCreate($bundle): \OpenAPI\Client\Model\Result
 ```
 
 Create a new Bundle
@@ -233,13 +233,13 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$bundle = new \OpenAPI\Client\Model\Bundle(); // \OpenAPI\Client\Model\Bundle | Bundle record to create
+$bundle = new \OpenAPI\Client\Model\MaterialBundle(); // \OpenAPI\Client\Model\MaterialBundle | Bundle record to create
 
 try {
-    $result = $apiInstance->postBundleCreate($bundle);
+    $result = $apiInstance->postMaterialBundleCreate($bundle);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BundlesApi->postBundleCreate: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BundlesApi->postMaterialBundleCreate: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -247,7 +247,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **bundle** | [**\OpenAPI\Client\Model\Bundle**](../Model/Bundle.md)| Bundle record to create | |
+| **bundle** | [**\OpenAPI\Client\Model\MaterialBundle**](../Model/MaterialBundle.md)| Bundle record to create | |
 
 ### Return type
 
@@ -266,10 +266,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postBundleSingle()`
+## `postMaterialBundleSingle()`
 
 ```php
-postBundleSingle($uuid, $bundle): \OpenAPI\Client\Model\Result
+postMaterialBundleSingle($uuid, $bundle): \OpenAPI\Client\Model\Result
 ```
 
 Update a Bundle
@@ -297,13 +297,13 @@ $apiInstance = new OpenAPI\Client\Api\BundlesApi(
     $config
 );
 $uuid = 'uuid_example'; // string | UUID of the Bundle
-$bundle = new \OpenAPI\Client\Model\Bundle(); // \OpenAPI\Client\Model\Bundle | Bundle fields to update
+$bundle = new \OpenAPI\Client\Model\MaterialBundle(); // \OpenAPI\Client\Model\MaterialBundle | Bundle fields to update
 
 try {
-    $result = $apiInstance->postBundleSingle($uuid, $bundle);
+    $result = $apiInstance->postMaterialBundleSingle($uuid, $bundle);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling BundlesApi->postBundleSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling BundlesApi->postMaterialBundleSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -312,7 +312,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **uuid** | **string**| UUID of the Bundle | |
-| **bundle** | [**\OpenAPI\Client\Model\Bundle**](../Model/Bundle.md)| Bundle fields to update | |
+| **bundle** | [**\OpenAPI\Client\Model\MaterialBundle**](../Model/MaterialBundle.md)| Bundle fields to update | |
 
 ### Return type
 

@@ -4,17 +4,17 @@ All URIs are relative to https://api.servicem8.com/api_1.0, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**deleteSMSTemplateSingle()**](SMSTemplatesApi.md#deleteSMSTemplateSingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template |
-| [**getSMSTemplateAll()**](SMSTemplatesApi.md#getSMSTemplateAll) | **GET** /smstemplate.json | List all SMS Templates |
-| [**getSMSTemplateSingle()**](SMSTemplatesApi.md#getSMSTemplateSingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template |
-| [**postSMSTemplateCreate()**](SMSTemplatesApi.md#postSMSTemplateCreate) | **POST** /smstemplate.json | Create a new SMS Template |
-| [**postSMSTemplateSingle()**](SMSTemplatesApi.md#postSMSTemplateSingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template |
+| [**deleteSmsTemplateSingle()**](SMSTemplatesApi.md#deleteSmsTemplateSingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template |
+| [**getSmsTemplateAll()**](SMSTemplatesApi.md#getSmsTemplateAll) | **GET** /smstemplate.json | List all SMS Templates |
+| [**getSmsTemplateSingle()**](SMSTemplatesApi.md#getSmsTemplateSingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template |
+| [**postSmsTemplateCreate()**](SMSTemplatesApi.md#postSmsTemplateCreate) | **POST** /smstemplate.json | Create a new SMS Template |
+| [**postSmsTemplateSingle()**](SMSTemplatesApi.md#postSmsTemplateSingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template |
 
 
-## `deleteSMSTemplateSingle()`
+## `deleteSmsTemplateSingle()`
 
 ```php
-deleteSMSTemplateSingle($uuid): \OpenAPI\Client\Model\Result
+deleteSmsTemplateSingle($uuid): \OpenAPI\Client\Model\Result
 ```
 
 Delete a SMS Template
@@ -46,10 +46,10 @@ $apiInstance = new OpenAPI\Client\Api\SMSTemplatesApi(
 $uuid = 'uuid_example'; // string | UUID of the SMS Template
 
 try {
-    $result = $apiInstance->deleteSMSTemplateSingle($uuid);
+    $result = $apiInstance->deleteSmsTemplateSingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SMSTemplatesApi->deleteSMSTemplateSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SMSTemplatesApi->deleteSmsTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -76,10 +76,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getSMSTemplateAll()`
+## `getSmsTemplateAll()`
 
 ```php
-getSMSTemplateAll(): \OpenAPI\Client\Model\SMSTemplate[]
+getSmsTemplateAll(): \OpenAPI\Client\Model\SmsTemplate[]
 ```
 
 List all SMS Templates
@@ -110,10 +110,10 @@ $apiInstance = new OpenAPI\Client\Api\SMSTemplatesApi(
 );
 
 try {
-    $result = $apiInstance->getSMSTemplateAll();
+    $result = $apiInstance->getSmsTemplateAll();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SMSTemplatesApi->getSMSTemplateAll: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SMSTemplatesApi->getSmsTemplateAll: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -123,7 +123,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SMSTemplate[]**](../Model/SMSTemplate.md)
+[**\OpenAPI\Client\Model\SmsTemplate[]**](../Model/SmsTemplate.md)
 
 ### Authorization
 
@@ -138,10 +138,10 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getSMSTemplateSingle()`
+## `getSmsTemplateSingle()`
 
 ```php
-getSMSTemplateSingle($uuid): \OpenAPI\Client\Model\SMSTemplate
+getSmsTemplateSingle($uuid): \OpenAPI\Client\Model\SmsTemplate
 ```
 
 Retrieve a SMS Template
@@ -171,10 +171,10 @@ $apiInstance = new OpenAPI\Client\Api\SMSTemplatesApi(
 $uuid = 'uuid_example'; // string | UUID of the SMS Template
 
 try {
-    $result = $apiInstance->getSMSTemplateSingle($uuid);
+    $result = $apiInstance->getSmsTemplateSingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SMSTemplatesApi->getSMSTemplateSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SMSTemplatesApi->getSmsTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -186,7 +186,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\SMSTemplate**](../Model/SMSTemplate.md)
+[**\OpenAPI\Client\Model\SmsTemplate**](../Model/SmsTemplate.md)
 
 ### Authorization
 
@@ -201,10 +201,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postSMSTemplateCreate()`
+## `postSmsTemplateCreate()`
 
 ```php
-postSMSTemplateCreate($sMSTemplate): \OpenAPI\Client\Model\Result
+postSmsTemplateCreate($sMSTemplate): \OpenAPI\Client\Model\Result
 ```
 
 Create a new SMS Template
@@ -233,13 +233,13 @@ $apiInstance = new OpenAPI\Client\Api\SMSTemplatesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$sMSTemplate = new \OpenAPI\Client\Model\SMSTemplate(); // \OpenAPI\Client\Model\SMSTemplate | SMS Template record to create
+$sMSTemplate = new \OpenAPI\Client\Model\SmsTemplate(); // \OpenAPI\Client\Model\SmsTemplate | SMS Template record to create
 
 try {
-    $result = $apiInstance->postSMSTemplateCreate($sMSTemplate);
+    $result = $apiInstance->postSmsTemplateCreate($sMSTemplate);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SMSTemplatesApi->postSMSTemplateCreate: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SMSTemplatesApi->postSmsTemplateCreate: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -247,7 +247,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **sMSTemplate** | [**\OpenAPI\Client\Model\SMSTemplate**](../Model/SMSTemplate.md)| SMS Template record to create | |
+| **sMSTemplate** | [**\OpenAPI\Client\Model\SmsTemplate**](../Model/SmsTemplate.md)| SMS Template record to create | |
 
 ### Return type
 
@@ -266,10 +266,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postSMSTemplateSingle()`
+## `postSmsTemplateSingle()`
 
 ```php
-postSMSTemplateSingle($uuid, $sMSTemplate): \OpenAPI\Client\Model\Result
+postSmsTemplateSingle($uuid, $sMSTemplate): \OpenAPI\Client\Model\Result
 ```
 
 Update a SMS Template
@@ -297,13 +297,13 @@ $apiInstance = new OpenAPI\Client\Api\SMSTemplatesApi(
     $config
 );
 $uuid = 'uuid_example'; // string | UUID of the SMS Template
-$sMSTemplate = new \OpenAPI\Client\Model\SMSTemplate(); // \OpenAPI\Client\Model\SMSTemplate | SMS Template fields to update
+$sMSTemplate = new \OpenAPI\Client\Model\SmsTemplate(); // \OpenAPI\Client\Model\SmsTemplate | SMS Template fields to update
 
 try {
-    $result = $apiInstance->postSMSTemplateSingle($uuid, $sMSTemplate);
+    $result = $apiInstance->postSmsTemplateSingle($uuid, $sMSTemplate);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling SMSTemplatesApi->postSMSTemplateSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling SMSTemplatesApi->postSmsTemplateSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -312,7 +312,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **uuid** | **string**| UUID of the SMS Template | |
-| **sMSTemplate** | [**\OpenAPI\Client\Model\SMSTemplate**](../Model/SMSTemplate.md)| SMS Template fields to update | |
+| **sMSTemplate** | [**\OpenAPI\Client\Model\SmsTemplate**](../Model/SmsTemplate.md)| SMS Template fields to update | |
 
 ### Return type
 

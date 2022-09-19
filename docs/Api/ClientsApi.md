@@ -4,17 +4,17 @@ All URIs are relative to https://api.servicem8.com/api_1.0, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**deleteClientSingle()**](ClientsApi.md#deleteClientSingle) | **DELETE** /company/{uuid}.json | Delete a Client |
-| [**getClientAll()**](ClientsApi.md#getClientAll) | **GET** /company.json | List all Clients |
-| [**getClientSingle()**](ClientsApi.md#getClientSingle) | **GET** /company/{uuid}.json | Retrieve a Client |
-| [**postClientCreate()**](ClientsApi.md#postClientCreate) | **POST** /company.json | Create a new Client |
-| [**postClientSingle()**](ClientsApi.md#postClientSingle) | **POST** /company/{uuid}.json | Update a Client |
+| [**deleteCompanySingle()**](ClientsApi.md#deleteCompanySingle) | **DELETE** /company/{uuid}.json | Delete a Client |
+| [**getCompanyAll()**](ClientsApi.md#getCompanyAll) | **GET** /company.json | List all Clients |
+| [**getCompanySingle()**](ClientsApi.md#getCompanySingle) | **GET** /company/{uuid}.json | Retrieve a Client |
+| [**postCompanyCreate()**](ClientsApi.md#postCompanyCreate) | **POST** /company.json | Create a new Client |
+| [**postCompanySingle()**](ClientsApi.md#postCompanySingle) | **POST** /company/{uuid}.json | Update a Client |
 
 
-## `deleteClientSingle()`
+## `deleteCompanySingle()`
 
 ```php
-deleteClientSingle($uuid): \OpenAPI\Client\Model\Result
+deleteCompanySingle($uuid): \OpenAPI\Client\Model\Result
 ```
 
 Delete a Client
@@ -46,10 +46,10 @@ $apiInstance = new OpenAPI\Client\Api\ClientsApi(
 $uuid = 'uuid_example'; // string | UUID of the Client
 
 try {
-    $result = $apiInstance->deleteClientSingle($uuid);
+    $result = $apiInstance->deleteCompanySingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClientsApi->deleteClientSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClientsApi->deleteCompanySingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -76,10 +76,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getClientAll()`
+## `getCompanyAll()`
 
 ```php
-getClientAll(): \OpenAPI\Client\Model\Client[]
+getCompanyAll(): \OpenAPI\Client\Model\Company[]
 ```
 
 List all Clients
@@ -110,10 +110,10 @@ $apiInstance = new OpenAPI\Client\Api\ClientsApi(
 );
 
 try {
-    $result = $apiInstance->getClientAll();
+    $result = $apiInstance->getCompanyAll();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClientsApi->getClientAll: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClientsApi->getCompanyAll: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -123,7 +123,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Client[]**](../Model/Client.md)
+[**\OpenAPI\Client\Model\Company[]**](../Model/Company.md)
 
 ### Authorization
 
@@ -138,10 +138,10 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getClientSingle()`
+## `getCompanySingle()`
 
 ```php
-getClientSingle($uuid): \OpenAPI\Client\Model\Client
+getCompanySingle($uuid): \OpenAPI\Client\Model\Company
 ```
 
 Retrieve a Client
@@ -173,10 +173,10 @@ $apiInstance = new OpenAPI\Client\Api\ClientsApi(
 $uuid = 'uuid_example'; // string | UUID of the Client
 
 try {
-    $result = $apiInstance->getClientSingle($uuid);
+    $result = $apiInstance->getCompanySingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClientsApi->getClientSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClientsApi->getCompanySingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -188,7 +188,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\Client**](../Model/Client.md)
+[**\OpenAPI\Client\Model\Company**](../Model/Company.md)
 
 ### Authorization
 
@@ -203,10 +203,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postClientCreate()`
+## `postCompanyCreate()`
 
 ```php
-postClientCreate($client): \OpenAPI\Client\Model\Result
+postCompanyCreate($client): \OpenAPI\Client\Model\Result
 ```
 
 Create a new Client
@@ -235,13 +235,13 @@ $apiInstance = new OpenAPI\Client\Api\ClientsApi(
     new GuzzleHttp\Client(),
     $config
 );
-$client = new \OpenAPI\Client\Model\Client(); // \OpenAPI\Client\Model\Client | Client record to create
+$client = new \OpenAPI\Client\Model\Company(); // \OpenAPI\Client\Model\Company | Client record to create
 
 try {
-    $result = $apiInstance->postClientCreate($client);
+    $result = $apiInstance->postCompanyCreate($client);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClientsApi->postClientCreate: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClientsApi->postCompanyCreate: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -249,7 +249,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **client** | [**\OpenAPI\Client\Model\Client**](../Model/Client.md)| Client record to create | |
+| **client** | [**\OpenAPI\Client\Model\Company**](../Model/Company.md)| Client record to create | |
 
 ### Return type
 
@@ -268,10 +268,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postClientSingle()`
+## `postCompanySingle()`
 
 ```php
-postClientSingle($uuid, $client): \OpenAPI\Client\Model\Result
+postCompanySingle($uuid, $client): \OpenAPI\Client\Model\Result
 ```
 
 Update a Client
@@ -301,13 +301,13 @@ $apiInstance = new OpenAPI\Client\Api\ClientsApi(
     $config
 );
 $uuid = 'uuid_example'; // string | UUID of the Client
-$client = new \OpenAPI\Client\Model\Client(); // \OpenAPI\Client\Model\Client | Client fields to update
+$client = new \OpenAPI\Client\Model\Company(); // \OpenAPI\Client\Model\Company | Client fields to update
 
 try {
-    $result = $apiInstance->postClientSingle($uuid, $client);
+    $result = $apiInstance->postCompanySingle($uuid, $client);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling ClientsApi->postClientSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling ClientsApi->postCompanySingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -316,7 +316,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **uuid** | **string**| UUID of the Client | |
-| **client** | [**\OpenAPI\Client\Model\Client**](../Model/Client.md)| Client fields to update | |
+| **client** | [**\OpenAPI\Client\Model\Company**](../Model/Company.md)| Client fields to update | |
 
 ### Return type
 

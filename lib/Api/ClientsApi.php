@@ -116,7 +116,7 @@ class ClientsApi
     }
 
     /**
-     * Operation deleteClientSingle
+     * Operation deleteCompanySingle
      *
      * Delete a Client
      *
@@ -126,14 +126,14 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteClientSingle($uuid)
+    public function deleteCompanySingle($uuid)
     {
-        list($response) = $this->deleteClientSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteCompanySingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation deleteClientSingleWithHttpInfo
+     * Operation deleteCompanySingleWithHttpInfo
      *
      * Delete a Client
      *
@@ -143,9 +143,9 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteClientSingleWithHttpInfo($uuid)
+    public function deleteCompanySingleWithHttpInfo($uuid)
     {
-        $request = $this->deleteClientSingleRequest($uuid);
+        $request = $this->deleteCompanySingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -278,7 +278,7 @@ class ClientsApi
     }
 
     /**
-     * Operation deleteClientSingleAsync
+     * Operation deleteCompanySingleAsync
      *
      * Delete a Client
      *
@@ -287,9 +287,9 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteClientSingleAsync($uuid)
+    public function deleteCompanySingleAsync($uuid)
     {
-        return $this->deleteClientSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteCompanySingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -298,7 +298,7 @@ class ClientsApi
     }
 
     /**
-     * Operation deleteClientSingleAsyncWithHttpInfo
+     * Operation deleteCompanySingleAsyncWithHttpInfo
      *
      * Delete a Client
      *
@@ -307,10 +307,10 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteClientSingleAsyncWithHttpInfo($uuid)
+    public function deleteCompanySingleAsyncWithHttpInfo($uuid)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteClientSingleRequest($uuid);
+        $request = $this->deleteCompanySingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -349,20 +349,20 @@ class ClientsApi
     }
 
     /**
-     * Create request for operation 'deleteClientSingle'
+     * Create request for operation 'deleteCompanySingle'
      *
      * @param  string $uuid UUID of the Client (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteClientSingleRequest($uuid)
+    public function deleteCompanySingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling deleteClientSingle'
+                'Missing the required parameter $uuid when calling deleteCompanySingle'
             );
         }
 
@@ -452,34 +452,34 @@ class ClientsApi
     }
 
     /**
-     * Operation getClientAll
+     * Operation getCompanyAll
      *
      * List all Clients
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Client[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\Company[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getClientAll()
+    public function getCompanyAll()
     {
-        list($response) = $this->getClientAllWithHttpInfo();
+        list($response) = $this->getCompanyAllWithHttpInfo();
         return $response;
     }
 
     /**
-     * Operation getClientAllWithHttpInfo
+     * Operation getCompanyAllWithHttpInfo
      *
      * List all Clients
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Client[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Company[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getClientAllWithHttpInfo()
+    public function getCompanyAllWithHttpInfo()
     {
-        $request = $this->getClientAllRequest();
+        $request = $this->getCompanyAllRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -518,17 +518,17 @@ class ClientsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Client[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Company[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Client[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Company[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Client[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Company[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -564,7 +564,7 @@ class ClientsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\Client[]';
+            $returnType = '\OpenAPI\Client\Model\Company[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -585,7 +585,7 @@ class ClientsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Client[]',
+                        '\OpenAPI\Client\Model\Company[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -612,7 +612,7 @@ class ClientsApi
     }
 
     /**
-     * Operation getClientAllAsync
+     * Operation getCompanyAllAsync
      *
      * List all Clients
      *
@@ -620,9 +620,9 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getClientAllAsync()
+    public function getCompanyAllAsync()
     {
-        return $this->getClientAllAsyncWithHttpInfo()
+        return $this->getCompanyAllAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -631,7 +631,7 @@ class ClientsApi
     }
 
     /**
-     * Operation getClientAllAsyncWithHttpInfo
+     * Operation getCompanyAllAsyncWithHttpInfo
      *
      * List all Clients
      *
@@ -639,10 +639,10 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getClientAllAsyncWithHttpInfo()
+    public function getCompanyAllAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\Client[]';
-        $request = $this->getClientAllRequest();
+        $returnType = '\OpenAPI\Client\Model\Company[]';
+        $request = $this->getCompanyAllRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -681,13 +681,13 @@ class ClientsApi
     }
 
     /**
-     * Create request for operation 'getClientAll'
+     * Create request for operation 'getCompanyAll'
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getClientAllRequest()
+    public function getCompanyAllRequest()
     {
 
         $resourcePath = '/company.json';
@@ -768,7 +768,7 @@ class ClientsApi
     }
 
     /**
-     * Operation getClientSingle
+     * Operation getCompanySingle
      *
      * Retrieve a Client
      *
@@ -776,16 +776,16 @@ class ClientsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Client|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\Company|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getClientSingle($uuid)
+    public function getCompanySingle($uuid)
     {
-        list($response) = $this->getClientSingleWithHttpInfo($uuid);
+        list($response) = $this->getCompanySingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation getClientSingleWithHttpInfo
+     * Operation getCompanySingleWithHttpInfo
      *
      * Retrieve a Client
      *
@@ -793,11 +793,11 @@ class ClientsApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Client|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Company|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getClientSingleWithHttpInfo($uuid)
+    public function getCompanySingleWithHttpInfo($uuid)
     {
-        $request = $this->getClientSingleRequest($uuid);
+        $request = $this->getCompanySingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -836,17 +836,17 @@ class ClientsApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Client' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Company' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Client' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Company' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Client', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Company', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -882,7 +882,7 @@ class ClientsApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\Client';
+            $returnType = '\OpenAPI\Client\Model\Company';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -903,7 +903,7 @@ class ClientsApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Client',
+                        '\OpenAPI\Client\Model\Company',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -930,7 +930,7 @@ class ClientsApi
     }
 
     /**
-     * Operation getClientSingleAsync
+     * Operation getCompanySingleAsync
      *
      * Retrieve a Client
      *
@@ -939,9 +939,9 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getClientSingleAsync($uuid)
+    public function getCompanySingleAsync($uuid)
     {
-        return $this->getClientSingleAsyncWithHttpInfo($uuid)
+        return $this->getCompanySingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -950,7 +950,7 @@ class ClientsApi
     }
 
     /**
-     * Operation getClientSingleAsyncWithHttpInfo
+     * Operation getCompanySingleAsyncWithHttpInfo
      *
      * Retrieve a Client
      *
@@ -959,10 +959,10 @@ class ClientsApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getClientSingleAsyncWithHttpInfo($uuid)
+    public function getCompanySingleAsyncWithHttpInfo($uuid)
     {
-        $returnType = '\OpenAPI\Client\Model\Client';
-        $request = $this->getClientSingleRequest($uuid);
+        $returnType = '\OpenAPI\Client\Model\Company';
+        $request = $this->getCompanySingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1001,20 +1001,20 @@ class ClientsApi
     }
 
     /**
-     * Create request for operation 'getClientSingle'
+     * Create request for operation 'getCompanySingle'
      *
      * @param  string $uuid UUID of the Client (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getClientSingleRequest($uuid)
+    public function getCompanySingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling getClientSingle'
+                'Missing the required parameter $uuid when calling getCompanySingle'
             );
         }
 
@@ -1104,36 +1104,36 @@ class ClientsApi
     }
 
     /**
-     * Operation postClientCreate
+     * Operation postCompanyCreate
      *
      * Create a new Client
      *
-     * @param  \OpenAPI\Client\Model\Client $client Client record to create (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postClientCreate($client)
+    public function postCompanyCreate($client)
     {
-        list($response) = $this->postClientCreateWithHttpInfo($client);
+        list($response) = $this->postCompanyCreateWithHttpInfo($client);
         return $response;
     }
 
     /**
-     * Operation postClientCreateWithHttpInfo
+     * Operation postCompanyCreateWithHttpInfo
      *
      * Create a new Client
      *
-     * @param  \OpenAPI\Client\Model\Client $client Client record to create (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postClientCreateWithHttpInfo($client)
+    public function postCompanyCreateWithHttpInfo($client)
     {
-        $request = $this->postClientCreateRequest($client);
+        $request = $this->postCompanyCreateRequest($client);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1266,18 +1266,18 @@ class ClientsApi
     }
 
     /**
-     * Operation postClientCreateAsync
+     * Operation postCompanyCreateAsync
      *
      * Create a new Client
      *
-     * @param  \OpenAPI\Client\Model\Client $client Client record to create (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postClientCreateAsync($client)
+    public function postCompanyCreateAsync($client)
     {
-        return $this->postClientCreateAsyncWithHttpInfo($client)
+        return $this->postCompanyCreateAsyncWithHttpInfo($client)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1286,19 +1286,19 @@ class ClientsApi
     }
 
     /**
-     * Operation postClientCreateAsyncWithHttpInfo
+     * Operation postCompanyCreateAsyncWithHttpInfo
      *
      * Create a new Client
      *
-     * @param  \OpenAPI\Client\Model\Client $client Client record to create (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postClientCreateAsyncWithHttpInfo($client)
+    public function postCompanyCreateAsyncWithHttpInfo($client)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postClientCreateRequest($client);
+        $request = $this->postCompanyCreateRequest($client);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1337,20 +1337,20 @@ class ClientsApi
     }
 
     /**
-     * Create request for operation 'postClientCreate'
+     * Create request for operation 'postCompanyCreate'
      *
-     * @param  \OpenAPI\Client\Model\Client $client Client record to create (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postClientCreateRequest($client)
+    public function postCompanyCreateRequest($client)
     {
 
         // verify the required parameter 'client' is set
         if ($client === null || (is_array($client) && count($client) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $client when calling postClientCreate'
+                'Missing the required parameter $client when calling postCompanyCreate'
             );
         }
 
@@ -1438,38 +1438,38 @@ class ClientsApi
     }
 
     /**
-     * Operation postClientSingle
+     * Operation postCompanySingle
      *
      * Update a Client
      *
      * @param  string $uuid UUID of the Client (required)
-     * @param  \OpenAPI\Client\Model\Client $client Client fields to update (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postClientSingle($uuid, $client)
+    public function postCompanySingle($uuid, $client)
     {
-        list($response) = $this->postClientSingleWithHttpInfo($uuid, $client);
+        list($response) = $this->postCompanySingleWithHttpInfo($uuid, $client);
         return $response;
     }
 
     /**
-     * Operation postClientSingleWithHttpInfo
+     * Operation postCompanySingleWithHttpInfo
      *
      * Update a Client
      *
      * @param  string $uuid UUID of the Client (required)
-     * @param  \OpenAPI\Client\Model\Client $client Client fields to update (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postClientSingleWithHttpInfo($uuid, $client)
+    public function postCompanySingleWithHttpInfo($uuid, $client)
     {
-        $request = $this->postClientSingleRequest($uuid, $client);
+        $request = $this->postCompanySingleRequest($uuid, $client);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1602,19 +1602,19 @@ class ClientsApi
     }
 
     /**
-     * Operation postClientSingleAsync
+     * Operation postCompanySingleAsync
      *
      * Update a Client
      *
      * @param  string $uuid UUID of the Client (required)
-     * @param  \OpenAPI\Client\Model\Client $client Client fields to update (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postClientSingleAsync($uuid, $client)
+    public function postCompanySingleAsync($uuid, $client)
     {
-        return $this->postClientSingleAsyncWithHttpInfo($uuid, $client)
+        return $this->postCompanySingleAsyncWithHttpInfo($uuid, $client)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1623,20 +1623,20 @@ class ClientsApi
     }
 
     /**
-     * Operation postClientSingleAsyncWithHttpInfo
+     * Operation postCompanySingleAsyncWithHttpInfo
      *
      * Update a Client
      *
      * @param  string $uuid UUID of the Client (required)
-     * @param  \OpenAPI\Client\Model\Client $client Client fields to update (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postClientSingleAsyncWithHttpInfo($uuid, $client)
+    public function postCompanySingleAsyncWithHttpInfo($uuid, $client)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postClientSingleRequest($uuid, $client);
+        $request = $this->postCompanySingleRequest($uuid, $client);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1675,28 +1675,28 @@ class ClientsApi
     }
 
     /**
-     * Create request for operation 'postClientSingle'
+     * Create request for operation 'postCompanySingle'
      *
      * @param  string $uuid UUID of the Client (required)
-     * @param  \OpenAPI\Client\Model\Client $client Client fields to update (required)
+     * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postClientSingleRequest($uuid, $client)
+    public function postCompanySingleRequest($uuid, $client)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling postClientSingle'
+                'Missing the required parameter $uuid when calling postCompanySingle'
             );
         }
 
         // verify the required parameter 'client' is set
         if ($client === null || (is_array($client) && count($client) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $client when calling postClientSingle'
+                'Missing the required parameter $client when calling postCompanySingle'
             );
         }
 

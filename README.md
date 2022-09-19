@@ -125,21 +125,21 @@ Class | Method | HTTP request | Description
 *BadgesApi* | [**getBadgeSingle**](docs/Api/BadgesApi.md#getbadgesingle) | **GET** /badge/{uuid}.json | Retrieve a Badge
 *BadgesApi* | [**postBadgeCreate**](docs/Api/BadgesApi.md#postbadgecreate) | **POST** /badge.json | Create a new Badge
 *BadgesApi* | [**postBadgeSingle**](docs/Api/BadgesApi.md#postbadgesingle) | **POST** /badge/{uuid}.json | Update a Badge
-*BundlesApi* | [**deleteBundleSingle**](docs/Api/BundlesApi.md#deletebundlesingle) | **DELETE** /materialbundle/{uuid}.json | Delete a Bundle
-*BundlesApi* | [**getBundleAll**](docs/Api/BundlesApi.md#getbundleall) | **GET** /materialbundle.json | List all Bundles
-*BundlesApi* | [**getBundleSingle**](docs/Api/BundlesApi.md#getbundlesingle) | **GET** /materialbundle/{uuid}.json | Retrieve a Bundle
-*BundlesApi* | [**postBundleCreate**](docs/Api/BundlesApi.md#postbundlecreate) | **POST** /materialbundle.json | Create a new Bundle
-*BundlesApi* | [**postBundleSingle**](docs/Api/BundlesApi.md#postbundlesingle) | **POST** /materialbundle/{uuid}.json | Update a Bundle
+*BundlesApi* | [**deleteMaterialBundleSingle**](docs/Api/BundlesApi.md#deletematerialbundlesingle) | **DELETE** /materialbundle/{uuid}.json | Delete a Bundle
+*BundlesApi* | [**getMaterialBundleAll**](docs/Api/BundlesApi.md#getmaterialbundleall) | **GET** /materialbundle.json | List all Bundles
+*BundlesApi* | [**getMaterialBundleSingle**](docs/Api/BundlesApi.md#getmaterialbundlesingle) | **GET** /materialbundle/{uuid}.json | Retrieve a Bundle
+*BundlesApi* | [**postMaterialBundleCreate**](docs/Api/BundlesApi.md#postmaterialbundlecreate) | **POST** /materialbundle.json | Create a new Bundle
+*BundlesApi* | [**postMaterialBundleSingle**](docs/Api/BundlesApi.md#postmaterialbundlesingle) | **POST** /materialbundle/{uuid}.json | Update a Bundle
 *CategoriesApi* | [**deleteCategorySingle**](docs/Api/CategoriesApi.md#deletecategorysingle) | **DELETE** /category/{uuid}.json | Delete a Category
 *CategoriesApi* | [**getCategoryAll**](docs/Api/CategoriesApi.md#getcategoryall) | **GET** /category.json | List all Categories
 *CategoriesApi* | [**getCategorySingle**](docs/Api/CategoriesApi.md#getcategorysingle) | **GET** /category/{uuid}.json | Retrieve a Category
 *CategoriesApi* | [**postCategoryCreate**](docs/Api/CategoriesApi.md#postcategorycreate) | **POST** /category.json | Create a new Category
 *CategoriesApi* | [**postCategorySingle**](docs/Api/CategoriesApi.md#postcategorysingle) | **POST** /category/{uuid}.json | Update a Category
-*ClientsApi* | [**deleteClientSingle**](docs/Api/ClientsApi.md#deleteclientsingle) | **DELETE** /company/{uuid}.json | Delete a Client
-*ClientsApi* | [**getClientAll**](docs/Api/ClientsApi.md#getclientall) | **GET** /company.json | List all Clients
-*ClientsApi* | [**getClientSingle**](docs/Api/ClientsApi.md#getclientsingle) | **GET** /company/{uuid}.json | Retrieve a Client
-*ClientsApi* | [**postClientCreate**](docs/Api/ClientsApi.md#postclientcreate) | **POST** /company.json | Create a new Client
-*ClientsApi* | [**postClientSingle**](docs/Api/ClientsApi.md#postclientsingle) | **POST** /company/{uuid}.json | Update a Client
+*ClientsApi* | [**deleteCompanySingle**](docs/Api/ClientsApi.md#deletecompanysingle) | **DELETE** /company/{uuid}.json | Delete a Client
+*ClientsApi* | [**getCompanyAll**](docs/Api/ClientsApi.md#getcompanyall) | **GET** /company.json | List all Clients
+*ClientsApi* | [**getCompanySingle**](docs/Api/ClientsApi.md#getcompanysingle) | **GET** /company/{uuid}.json | Retrieve a Client
+*ClientsApi* | [**postCompanyCreate**](docs/Api/ClientsApi.md#postcompanycreate) | **POST** /company.json | Create a new Client
+*ClientsApi* | [**postCompanySingle**](docs/Api/ClientsApi.md#postcompanysingle) | **POST** /company/{uuid}.json | Update a Client
 *CompanyContactsApi* | [**deleteCompanyContactSingle**](docs/Api/CompanyContactsApi.md#deletecompanycontactsingle) | **DELETE** /companycontact/{uuid}.json | Delete a Company Contact
 *CompanyContactsApi* | [**getCompanyContactAll**](docs/Api/CompanyContactsApi.md#getcompanycontactall) | **GET** /companycontact.json | List all Company Contacts
 *CompanyContactsApi* | [**getCompanyContactSingle**](docs/Api/CompanyContactsApi.md#getcompanycontactsingle) | **GET** /companycontact/{uuid}.json | Retrieve a Company Contact
@@ -200,11 +200,11 @@ Class | Method | HTTP request | Description
 *JobPaymentsApi* | [**getJobPaymentSingle**](docs/Api/JobPaymentsApi.md#getjobpaymentsingle) | **GET** /jobpayment/{uuid}.json | Retrieve a Job Payment
 *JobPaymentsApi* | [**postJobPaymentCreate**](docs/Api/JobPaymentsApi.md#postjobpaymentcreate) | **POST** /jobpayment.json | Create a new Job Payment
 *JobPaymentsApi* | [**postJobPaymentSingle**](docs/Api/JobPaymentsApi.md#postjobpaymentsingle) | **POST** /jobpayment/{uuid}.json | Update a Job Payment
-*JobQueuesApi* | [**deleteJobQueueSingle**](docs/Api/JobQueuesApi.md#deletejobqueuesingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue
-*JobQueuesApi* | [**getJobQueueAll**](docs/Api/JobQueuesApi.md#getjobqueueall) | **GET** /queue.json | List all Job Queues
-*JobQueuesApi* | [**getJobQueueSingle**](docs/Api/JobQueuesApi.md#getjobqueuesingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue
-*JobQueuesApi* | [**postJobQueueCreate**](docs/Api/JobQueuesApi.md#postjobqueuecreate) | **POST** /queue.json | Create a new Job Queue
-*JobQueuesApi* | [**postJobQueueSingle**](docs/Api/JobQueuesApi.md#postjobqueuesingle) | **POST** /queue/{uuid}.json | Update a Job Queue
+*JobQueuesApi* | [**deleteQueueSingle**](docs/Api/JobQueuesApi.md#deletequeuesingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue
+*JobQueuesApi* | [**getQueueAll**](docs/Api/JobQueuesApi.md#getqueueall) | **GET** /queue.json | List all Job Queues
+*JobQueuesApi* | [**getQueueSingle**](docs/Api/JobQueuesApi.md#getqueuesingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue
+*JobQueuesApi* | [**postQueueCreate**](docs/Api/JobQueuesApi.md#postqueuecreate) | **POST** /queue.json | Create a new Job Queue
+*JobQueuesApi* | [**postQueueSingle**](docs/Api/JobQueuesApi.md#postqueuesingle) | **POST** /queue/{uuid}.json | Update a Job Queue
 *JobsApi* | [**deleteJobSingle**](docs/Api/JobsApi.md#deletejobsingle) | **DELETE** /job/{uuid}.json | Delete a Job
 *JobsApi* | [**getJobAll**](docs/Api/JobsApi.md#getjoball) | **GET** /job.json | List all Jobs
 *JobsApi* | [**getJobSingle**](docs/Api/JobsApi.md#getjobsingle) | **GET** /job/{uuid}.json | Retrieve a Job
@@ -235,21 +235,21 @@ Class | Method | HTTP request | Description
 *NotesApi* | [**getNoteSingle**](docs/Api/NotesApi.md#getnotesingle) | **GET** /note/{uuid}.json | Retrieve a Note
 *NotesApi* | [**postNoteCreate**](docs/Api/NotesApi.md#postnotecreate) | **POST** /note.json | Create a new Note
 *NotesApi* | [**postNoteSingle**](docs/Api/NotesApi.md#postnotesingle) | **POST** /note/{uuid}.json | Update a Note
-*SMSTemplatesApi* | [**deleteSMSTemplateSingle**](docs/Api/SMSTemplatesApi.md#deletesmstemplatesingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template
-*SMSTemplatesApi* | [**getSMSTemplateAll**](docs/Api/SMSTemplatesApi.md#getsmstemplateall) | **GET** /smstemplate.json | List all SMS Templates
-*SMSTemplatesApi* | [**getSMSTemplateSingle**](docs/Api/SMSTemplatesApi.md#getsmstemplatesingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template
-*SMSTemplatesApi* | [**postSMSTemplateCreate**](docs/Api/SMSTemplatesApi.md#postsmstemplatecreate) | **POST** /smstemplate.json | Create a new SMS Template
-*SMSTemplatesApi* | [**postSMSTemplateSingle**](docs/Api/SMSTemplatesApi.md#postsmstemplatesingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template
+*SMSTemplatesApi* | [**deleteSmsTemplateSingle**](docs/Api/SMSTemplatesApi.md#deletesmstemplatesingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template
+*SMSTemplatesApi* | [**getSmsTemplateAll**](docs/Api/SMSTemplatesApi.md#getsmstemplateall) | **GET** /smstemplate.json | List all SMS Templates
+*SMSTemplatesApi* | [**getSmsTemplateSingle**](docs/Api/SMSTemplatesApi.md#getsmstemplatesingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template
+*SMSTemplatesApi* | [**postSmsTemplateCreate**](docs/Api/SMSTemplatesApi.md#postsmstemplatecreate) | **POST** /smstemplate.json | Create a new SMS Template
+*SMSTemplatesApi* | [**postSmsTemplateSingle**](docs/Api/SMSTemplatesApi.md#postsmstemplatesingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template
 *SecurityRolesApi* | [**deleteSecurityRoleSingle**](docs/Api/SecurityRolesApi.md#deletesecurityrolesingle) | **DELETE** /securityrole/{uuid}.json | Delete a Security Role
 *SecurityRolesApi* | [**getSecurityRoleAll**](docs/Api/SecurityRolesApi.md#getsecurityroleall) | **GET** /securityrole.json | List all Security Roles
 *SecurityRolesApi* | [**getSecurityRoleSingle**](docs/Api/SecurityRolesApi.md#getsecurityrolesingle) | **GET** /securityrole/{uuid}.json | Retrieve a Security Role
 *SecurityRolesApi* | [**postSecurityRoleCreate**](docs/Api/SecurityRolesApi.md#postsecurityrolecreate) | **POST** /securityrole.json | Create a new Security Role
 *SecurityRolesApi* | [**postSecurityRoleSingle**](docs/Api/SecurityRolesApi.md#postsecurityrolesingle) | **POST** /securityrole/{uuid}.json | Update a Security Role
-*StaffMembersApi* | [**deleteStaffMemberSingle**](docs/Api/StaffMembersApi.md#deletestaffmembersingle) | **DELETE** /staff/{uuid}.json | Delete a Staff Member
-*StaffMembersApi* | [**getStaffMemberAll**](docs/Api/StaffMembersApi.md#getstaffmemberall) | **GET** /staff.json | List all Staff Members
-*StaffMembersApi* | [**getStaffMemberSingle**](docs/Api/StaffMembersApi.md#getstaffmembersingle) | **GET** /staff/{uuid}.json | Retrieve a Staff Member
-*StaffMembersApi* | [**postStaffMemberCreate**](docs/Api/StaffMembersApi.md#poststaffmembercreate) | **POST** /staff.json | Create a new Staff Member
-*StaffMembersApi* | [**postStaffMemberSingle**](docs/Api/StaffMembersApi.md#poststaffmembersingle) | **POST** /staff/{uuid}.json | Update a Staff Member
+*StaffMembersApi* | [**deleteStaffSingle**](docs/Api/StaffMembersApi.md#deletestaffsingle) | **DELETE** /staff/{uuid}.json | Delete a Staff Member
+*StaffMembersApi* | [**getStaffAll**](docs/Api/StaffMembersApi.md#getstaffall) | **GET** /staff.json | List all Staff Members
+*StaffMembersApi* | [**getStaffSingle**](docs/Api/StaffMembersApi.md#getstaffsingle) | **GET** /staff/{uuid}.json | Retrieve a Staff Member
+*StaffMembersApi* | [**postStaffCreate**](docs/Api/StaffMembersApi.md#poststaffcreate) | **POST** /staff.json | Create a new Staff Member
+*StaffMembersApi* | [**postStaffSingle**](docs/Api/StaffMembersApi.md#poststaffsingle) | **POST** /staff/{uuid}.json | Update a Staff Member
 *StaffMessagesApi* | [**deleteStaffMessageSingle**](docs/Api/StaffMessagesApi.md#deletestaffmessagesingle) | **DELETE** /staffmessage/{uuid}.json | Delete a Staff Message
 *StaffMessagesApi* | [**getStaffMessageAll**](docs/Api/StaffMessagesApi.md#getstaffmessageall) | **GET** /staffmessage.json | List all Staff Messages
 *StaffMessagesApi* | [**getStaffMessageSingle**](docs/Api/StaffMessagesApi.md#getstaffmessagesingle) | **GET** /staffmessage/{uuid}.json | Retrieve a Staff Message
@@ -277,9 +277,8 @@ Class | Method | HTTP request | Description
 - [AssetTypeField](docs/Model/AssetTypeField.md)
 - [Attachment](docs/Model/Attachment.md)
 - [Badge](docs/Model/Badge.md)
-- [Bundle](docs/Model/Bundle.md)
 - [Category](docs/Model/Category.md)
-- [Client](docs/Model/Client.md)
+- [Company](docs/Model/Company.md)
 - [CompanyContact](docs/Model/CompanyContact.md)
 - [EmailTemplate](docs/Model/EmailTemplate.md)
 - [Error](docs/Model/Error.md)
@@ -294,17 +293,18 @@ Class | Method | HTTP request | Description
 - [JobMaterial](docs/Model/JobMaterial.md)
 - [JobMaterialBundle](docs/Model/JobMaterialBundle.md)
 - [JobPayment](docs/Model/JobPayment.md)
-- [JobQueue](docs/Model/JobQueue.md)
 - [JobRelatedKnowledgeArticlesInner](docs/Model/JobRelatedKnowledgeArticlesInner.md)
 - [KnowledgeArticle](docs/Model/KnowledgeArticle.md)
 - [KnownLocation](docs/Model/KnownLocation.md)
 - [Location](docs/Model/Location.md)
 - [Material](docs/Model/Material.md)
+- [MaterialBundle](docs/Model/MaterialBundle.md)
 - [Note](docs/Model/Note.md)
+- [Queue](docs/Model/Queue.md)
 - [Result](docs/Model/Result.md)
-- [SMSTemplate](docs/Model/SMSTemplate.md)
 - [SecurityRole](docs/Model/SecurityRole.md)
-- [StaffMember](docs/Model/StaffMember.md)
+- [SmsTemplate](docs/Model/SmsTemplate.md)
+- [Staff](docs/Model/Staff.md)
 - [StaffMessage](docs/Model/StaffMessage.md)
 - [Task](docs/Model/Task.md)
 - [TaxRate](docs/Model/TaxRate.md)

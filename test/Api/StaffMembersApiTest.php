@@ -72,60 +72,60 @@ class StaffMembersApiTest extends TestCase
     }
 
     /**
-     * Test case for deleteStaffMemberSingle
+     * Test case for deleteStaffSingle
      *
      * Delete a Staff Member.
      *
      */
-    public function testDeleteStaffMemberSingle()
+    public function testDeleteStaffSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getStaffMemberAll
+     * Test case for getStaffAll
      *
      * List all Staff Members.
      *
      */
-    public function testGetStaffMemberAll()
+    public function testGetStaffAll()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getStaffMemberSingle
+     * Test case for getStaffSingle
      *
      * Retrieve a Staff Member.
      *
      */
-    public function testGetStaffMemberSingle()
+    public function testGetStaffSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for postStaffMemberCreate
+     * Test case for postStaffCreate
      *
      * Create a new Staff Member.
      *
      */
-    public function testPostStaffMemberCreate()
+    public function testPostStaffCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for postStaffMemberSingle
+     * Test case for postStaffSingle
      *
      * Update a Staff Member.
      *
      */
-    public function testPostStaffMemberSingle()
+    public function testPostStaffSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

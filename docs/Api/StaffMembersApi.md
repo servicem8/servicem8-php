@@ -4,17 +4,17 @@ All URIs are relative to https://api.servicem8.com/api_1.0, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**deleteStaffMemberSingle()**](StaffMembersApi.md#deleteStaffMemberSingle) | **DELETE** /staff/{uuid}.json | Delete a Staff Member |
-| [**getStaffMemberAll()**](StaffMembersApi.md#getStaffMemberAll) | **GET** /staff.json | List all Staff Members |
-| [**getStaffMemberSingle()**](StaffMembersApi.md#getStaffMemberSingle) | **GET** /staff/{uuid}.json | Retrieve a Staff Member |
-| [**postStaffMemberCreate()**](StaffMembersApi.md#postStaffMemberCreate) | **POST** /staff.json | Create a new Staff Member |
-| [**postStaffMemberSingle()**](StaffMembersApi.md#postStaffMemberSingle) | **POST** /staff/{uuid}.json | Update a Staff Member |
+| [**deleteStaffSingle()**](StaffMembersApi.md#deleteStaffSingle) | **DELETE** /staff/{uuid}.json | Delete a Staff Member |
+| [**getStaffAll()**](StaffMembersApi.md#getStaffAll) | **GET** /staff.json | List all Staff Members |
+| [**getStaffSingle()**](StaffMembersApi.md#getStaffSingle) | **GET** /staff/{uuid}.json | Retrieve a Staff Member |
+| [**postStaffCreate()**](StaffMembersApi.md#postStaffCreate) | **POST** /staff.json | Create a new Staff Member |
+| [**postStaffSingle()**](StaffMembersApi.md#postStaffSingle) | **POST** /staff/{uuid}.json | Update a Staff Member |
 
 
-## `deleteStaffMemberSingle()`
+## `deleteStaffSingle()`
 
 ```php
-deleteStaffMemberSingle($uuid): \OpenAPI\Client\Model\Result
+deleteStaffSingle($uuid): \OpenAPI\Client\Model\Result
 ```
 
 Delete a Staff Member
@@ -46,10 +46,10 @@ $apiInstance = new OpenAPI\Client\Api\StaffMembersApi(
 $uuid = 'uuid_example'; // string | UUID of the Staff Member
 
 try {
-    $result = $apiInstance->deleteStaffMemberSingle($uuid);
+    $result = $apiInstance->deleteStaffSingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StaffMembersApi->deleteStaffMemberSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StaffMembersApi->deleteStaffSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -76,10 +76,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getStaffMemberAll()`
+## `getStaffAll()`
 
 ```php
-getStaffMemberAll(): \OpenAPI\Client\Model\StaffMember[]
+getStaffAll(): \OpenAPI\Client\Model\Staff[]
 ```
 
 List all Staff Members
@@ -110,10 +110,10 @@ $apiInstance = new OpenAPI\Client\Api\StaffMembersApi(
 );
 
 try {
-    $result = $apiInstance->getStaffMemberAll();
+    $result = $apiInstance->getStaffAll();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StaffMembersApi->getStaffMemberAll: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StaffMembersApi->getStaffAll: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -123,7 +123,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\StaffMember[]**](../Model/StaffMember.md)
+[**\OpenAPI\Client\Model\Staff[]**](../Model/Staff.md)
 
 ### Authorization
 
@@ -138,10 +138,10 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getStaffMemberSingle()`
+## `getStaffSingle()`
 
 ```php
-getStaffMemberSingle($uuid): \OpenAPI\Client\Model\StaffMember
+getStaffSingle($uuid): \OpenAPI\Client\Model\Staff
 ```
 
 Retrieve a Staff Member
@@ -173,10 +173,10 @@ $apiInstance = new OpenAPI\Client\Api\StaffMembersApi(
 $uuid = 'uuid_example'; // string | UUID of the Staff Member
 
 try {
-    $result = $apiInstance->getStaffMemberSingle($uuid);
+    $result = $apiInstance->getStaffSingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StaffMembersApi->getStaffMemberSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StaffMembersApi->getStaffSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -188,7 +188,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\StaffMember**](../Model/StaffMember.md)
+[**\OpenAPI\Client\Model\Staff**](../Model/Staff.md)
 
 ### Authorization
 
@@ -203,10 +203,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postStaffMemberCreate()`
+## `postStaffCreate()`
 
 ```php
-postStaffMemberCreate($staffMember): \OpenAPI\Client\Model\Result
+postStaffCreate($staffMember): \OpenAPI\Client\Model\Result
 ```
 
 Create a new Staff Member
@@ -235,13 +235,13 @@ $apiInstance = new OpenAPI\Client\Api\StaffMembersApi(
     new GuzzleHttp\Client(),
     $config
 );
-$staffMember = new \OpenAPI\Client\Model\StaffMember(); // \OpenAPI\Client\Model\StaffMember | Staff Member record to create
+$staffMember = new \OpenAPI\Client\Model\Staff(); // \OpenAPI\Client\Model\Staff | Staff Member record to create
 
 try {
-    $result = $apiInstance->postStaffMemberCreate($staffMember);
+    $result = $apiInstance->postStaffCreate($staffMember);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StaffMembersApi->postStaffMemberCreate: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StaffMembersApi->postStaffCreate: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -249,7 +249,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **staffMember** | [**\OpenAPI\Client\Model\StaffMember**](../Model/StaffMember.md)| Staff Member record to create | |
+| **staffMember** | [**\OpenAPI\Client\Model\Staff**](../Model/Staff.md)| Staff Member record to create | |
 
 ### Return type
 
@@ -268,10 +268,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postStaffMemberSingle()`
+## `postStaffSingle()`
 
 ```php
-postStaffMemberSingle($uuid, $staffMember): \OpenAPI\Client\Model\Result
+postStaffSingle($uuid, $staffMember): \OpenAPI\Client\Model\Result
 ```
 
 Update a Staff Member
@@ -301,13 +301,13 @@ $apiInstance = new OpenAPI\Client\Api\StaffMembersApi(
     $config
 );
 $uuid = 'uuid_example'; // string | UUID of the Staff Member
-$staffMember = new \OpenAPI\Client\Model\StaffMember(); // \OpenAPI\Client\Model\StaffMember | Staff Member fields to update
+$staffMember = new \OpenAPI\Client\Model\Staff(); // \OpenAPI\Client\Model\Staff | Staff Member fields to update
 
 try {
-    $result = $apiInstance->postStaffMemberSingle($uuid, $staffMember);
+    $result = $apiInstance->postStaffSingle($uuid, $staffMember);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling StaffMembersApi->postStaffMemberSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling StaffMembersApi->postStaffSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -316,7 +316,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **uuid** | **string**| UUID of the Staff Member | |
-| **staffMember** | [**\OpenAPI\Client\Model\StaffMember**](../Model/StaffMember.md)| Staff Member fields to update | |
+| **staffMember** | [**\OpenAPI\Client\Model\Staff**](../Model/Staff.md)| Staff Member fields to update | |
 
 ### Return type
 

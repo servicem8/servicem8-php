@@ -49,7 +49,7 @@ class KnownLocation implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Known Location';
+    protected static $openAPIModelName = 'KnownLocation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

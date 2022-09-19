@@ -49,7 +49,7 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Company Contact';
+    protected static $openAPIModelName = 'CompanyContact';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

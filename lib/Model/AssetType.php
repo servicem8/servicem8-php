@@ -49,7 +49,7 @@ class AssetType implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Asset Type';
+    protected static $openAPIModelName = 'AssetType';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

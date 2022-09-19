@@ -116,7 +116,7 @@ class JobQueuesApi
     }
 
     /**
-     * Operation deleteJobQueueSingle
+     * Operation deleteQueueSingle
      *
      * Delete a Job Queue
      *
@@ -126,14 +126,14 @@ class JobQueuesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteJobQueueSingle($uuid)
+    public function deleteQueueSingle($uuid)
     {
-        list($response) = $this->deleteJobQueueSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteQueueSingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation deleteJobQueueSingleWithHttpInfo
+     * Operation deleteQueueSingleWithHttpInfo
      *
      * Delete a Job Queue
      *
@@ -143,9 +143,9 @@ class JobQueuesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteJobQueueSingleWithHttpInfo($uuid)
+    public function deleteQueueSingleWithHttpInfo($uuid)
     {
-        $request = $this->deleteJobQueueSingleRequest($uuid);
+        $request = $this->deleteQueueSingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -278,7 +278,7 @@ class JobQueuesApi
     }
 
     /**
-     * Operation deleteJobQueueSingleAsync
+     * Operation deleteQueueSingleAsync
      *
      * Delete a Job Queue
      *
@@ -287,9 +287,9 @@ class JobQueuesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobQueueSingleAsync($uuid)
+    public function deleteQueueSingleAsync($uuid)
     {
-        return $this->deleteJobQueueSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteQueueSingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -298,7 +298,7 @@ class JobQueuesApi
     }
 
     /**
-     * Operation deleteJobQueueSingleAsyncWithHttpInfo
+     * Operation deleteQueueSingleAsyncWithHttpInfo
      *
      * Delete a Job Queue
      *
@@ -307,10 +307,10 @@ class JobQueuesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobQueueSingleAsyncWithHttpInfo($uuid)
+    public function deleteQueueSingleAsyncWithHttpInfo($uuid)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteJobQueueSingleRequest($uuid);
+        $request = $this->deleteQueueSingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -349,20 +349,20 @@ class JobQueuesApi
     }
 
     /**
-     * Create request for operation 'deleteJobQueueSingle'
+     * Create request for operation 'deleteQueueSingle'
      *
      * @param  string $uuid UUID of the Job Queue (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteJobQueueSingleRequest($uuid)
+    public function deleteQueueSingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling deleteJobQueueSingle'
+                'Missing the required parameter $uuid when calling deleteQueueSingle'
             );
         }
 
@@ -452,34 +452,34 @@ class JobQueuesApi
     }
 
     /**
-     * Operation getJobQueueAll
+     * Operation getQueueAll
      *
      * List all Job Queues
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\JobQueue[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\Queue[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobQueueAll()
+    public function getQueueAll()
     {
-        list($response) = $this->getJobQueueAllWithHttpInfo();
+        list($response) = $this->getQueueAllWithHttpInfo();
         return $response;
     }
 
     /**
-     * Operation getJobQueueAllWithHttpInfo
+     * Operation getQueueAllWithHttpInfo
      *
      * List all Job Queues
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\JobQueue[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Queue[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobQueueAllWithHttpInfo()
+    public function getQueueAllWithHttpInfo()
     {
-        $request = $this->getJobQueueAllRequest();
+        $request = $this->getQueueAllRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -518,17 +518,17 @@ class JobQueuesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\JobQueue[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Queue[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\JobQueue[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Queue[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\JobQueue[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Queue[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -564,7 +564,7 @@ class JobQueuesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\JobQueue[]';
+            $returnType = '\OpenAPI\Client\Model\Queue[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -585,7 +585,7 @@ class JobQueuesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\JobQueue[]',
+                        '\OpenAPI\Client\Model\Queue[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -612,7 +612,7 @@ class JobQueuesApi
     }
 
     /**
-     * Operation getJobQueueAllAsync
+     * Operation getQueueAllAsync
      *
      * List all Job Queues
      *
@@ -620,9 +620,9 @@ class JobQueuesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobQueueAllAsync()
+    public function getQueueAllAsync()
     {
-        return $this->getJobQueueAllAsyncWithHttpInfo()
+        return $this->getQueueAllAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -631,7 +631,7 @@ class JobQueuesApi
     }
 
     /**
-     * Operation getJobQueueAllAsyncWithHttpInfo
+     * Operation getQueueAllAsyncWithHttpInfo
      *
      * List all Job Queues
      *
@@ -639,10 +639,10 @@ class JobQueuesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobQueueAllAsyncWithHttpInfo()
+    public function getQueueAllAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\JobQueue[]';
-        $request = $this->getJobQueueAllRequest();
+        $returnType = '\OpenAPI\Client\Model\Queue[]';
+        $request = $this->getQueueAllRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -681,13 +681,13 @@ class JobQueuesApi
     }
 
     /**
-     * Create request for operation 'getJobQueueAll'
+     * Create request for operation 'getQueueAll'
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobQueueAllRequest()
+    public function getQueueAllRequest()
     {
 
         $resourcePath = '/queue.json';
@@ -768,7 +768,7 @@ class JobQueuesApi
     }
 
     /**
-     * Operation getJobQueueSingle
+     * Operation getQueueSingle
      *
      * Retrieve a Job Queue
      *
@@ -776,16 +776,16 @@ class JobQueuesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\JobQueue|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\Queue|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobQueueSingle($uuid)
+    public function getQueueSingle($uuid)
     {
-        list($response) = $this->getJobQueueSingleWithHttpInfo($uuid);
+        list($response) = $this->getQueueSingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation getJobQueueSingleWithHttpInfo
+     * Operation getQueueSingleWithHttpInfo
      *
      * Retrieve a Job Queue
      *
@@ -793,11 +793,11 @@ class JobQueuesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\JobQueue|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Queue|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobQueueSingleWithHttpInfo($uuid)
+    public function getQueueSingleWithHttpInfo($uuid)
     {
-        $request = $this->getJobQueueSingleRequest($uuid);
+        $request = $this->getQueueSingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -836,17 +836,17 @@ class JobQueuesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\JobQueue' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Queue' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\JobQueue' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Queue' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\JobQueue', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Queue', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -882,7 +882,7 @@ class JobQueuesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\JobQueue';
+            $returnType = '\OpenAPI\Client\Model\Queue';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -903,7 +903,7 @@ class JobQueuesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\JobQueue',
+                        '\OpenAPI\Client\Model\Queue',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -930,7 +930,7 @@ class JobQueuesApi
     }
 
     /**
-     * Operation getJobQueueSingleAsync
+     * Operation getQueueSingleAsync
      *
      * Retrieve a Job Queue
      *
@@ -939,9 +939,9 @@ class JobQueuesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobQueueSingleAsync($uuid)
+    public function getQueueSingleAsync($uuid)
     {
-        return $this->getJobQueueSingleAsyncWithHttpInfo($uuid)
+        return $this->getQueueSingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -950,7 +950,7 @@ class JobQueuesApi
     }
 
     /**
-     * Operation getJobQueueSingleAsyncWithHttpInfo
+     * Operation getQueueSingleAsyncWithHttpInfo
      *
      * Retrieve a Job Queue
      *
@@ -959,10 +959,10 @@ class JobQueuesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobQueueSingleAsyncWithHttpInfo($uuid)
+    public function getQueueSingleAsyncWithHttpInfo($uuid)
     {
-        $returnType = '\OpenAPI\Client\Model\JobQueue';
-        $request = $this->getJobQueueSingleRequest($uuid);
+        $returnType = '\OpenAPI\Client\Model\Queue';
+        $request = $this->getQueueSingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1001,20 +1001,20 @@ class JobQueuesApi
     }
 
     /**
-     * Create request for operation 'getJobQueueSingle'
+     * Create request for operation 'getQueueSingle'
      *
      * @param  string $uuid UUID of the Job Queue (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobQueueSingleRequest($uuid)
+    public function getQueueSingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling getJobQueueSingle'
+                'Missing the required parameter $uuid when calling getQueueSingle'
             );
         }
 
@@ -1104,36 +1104,36 @@ class JobQueuesApi
     }
 
     /**
-     * Operation postJobQueueCreate
+     * Operation postQueueCreate
      *
      * Create a new Job Queue
      *
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue record to create (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobQueueCreate($jobQueue)
+    public function postQueueCreate($jobQueue)
     {
-        list($response) = $this->postJobQueueCreateWithHttpInfo($jobQueue);
+        list($response) = $this->postQueueCreateWithHttpInfo($jobQueue);
         return $response;
     }
 
     /**
-     * Operation postJobQueueCreateWithHttpInfo
+     * Operation postQueueCreateWithHttpInfo
      *
      * Create a new Job Queue
      *
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue record to create (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobQueueCreateWithHttpInfo($jobQueue)
+    public function postQueueCreateWithHttpInfo($jobQueue)
     {
-        $request = $this->postJobQueueCreateRequest($jobQueue);
+        $request = $this->postQueueCreateRequest($jobQueue);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1266,18 +1266,18 @@ class JobQueuesApi
     }
 
     /**
-     * Operation postJobQueueCreateAsync
+     * Operation postQueueCreateAsync
      *
      * Create a new Job Queue
      *
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue record to create (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobQueueCreateAsync($jobQueue)
+    public function postQueueCreateAsync($jobQueue)
     {
-        return $this->postJobQueueCreateAsyncWithHttpInfo($jobQueue)
+        return $this->postQueueCreateAsyncWithHttpInfo($jobQueue)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1286,19 +1286,19 @@ class JobQueuesApi
     }
 
     /**
-     * Operation postJobQueueCreateAsyncWithHttpInfo
+     * Operation postQueueCreateAsyncWithHttpInfo
      *
      * Create a new Job Queue
      *
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue record to create (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobQueueCreateAsyncWithHttpInfo($jobQueue)
+    public function postQueueCreateAsyncWithHttpInfo($jobQueue)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobQueueCreateRequest($jobQueue);
+        $request = $this->postQueueCreateRequest($jobQueue);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1337,20 +1337,20 @@ class JobQueuesApi
     }
 
     /**
-     * Create request for operation 'postJobQueueCreate'
+     * Create request for operation 'postQueueCreate'
      *
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue record to create (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobQueueCreateRequest($jobQueue)
+    public function postQueueCreateRequest($jobQueue)
     {
 
         // verify the required parameter 'jobQueue' is set
         if ($jobQueue === null || (is_array($jobQueue) && count($jobQueue) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $jobQueue when calling postJobQueueCreate'
+                'Missing the required parameter $jobQueue when calling postQueueCreate'
             );
         }
 
@@ -1438,38 +1438,38 @@ class JobQueuesApi
     }
 
     /**
-     * Operation postJobQueueSingle
+     * Operation postQueueSingle
      *
      * Update a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue fields to update (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobQueueSingle($uuid, $jobQueue)
+    public function postQueueSingle($uuid, $jobQueue)
     {
-        list($response) = $this->postJobQueueSingleWithHttpInfo($uuid, $jobQueue);
+        list($response) = $this->postQueueSingleWithHttpInfo($uuid, $jobQueue);
         return $response;
     }
 
     /**
-     * Operation postJobQueueSingleWithHttpInfo
+     * Operation postQueueSingleWithHttpInfo
      *
      * Update a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue fields to update (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobQueueSingleWithHttpInfo($uuid, $jobQueue)
+    public function postQueueSingleWithHttpInfo($uuid, $jobQueue)
     {
-        $request = $this->postJobQueueSingleRequest($uuid, $jobQueue);
+        $request = $this->postQueueSingleRequest($uuid, $jobQueue);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1602,19 +1602,19 @@ class JobQueuesApi
     }
 
     /**
-     * Operation postJobQueueSingleAsync
+     * Operation postQueueSingleAsync
      *
      * Update a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue fields to update (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobQueueSingleAsync($uuid, $jobQueue)
+    public function postQueueSingleAsync($uuid, $jobQueue)
     {
-        return $this->postJobQueueSingleAsyncWithHttpInfo($uuid, $jobQueue)
+        return $this->postQueueSingleAsyncWithHttpInfo($uuid, $jobQueue)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1623,20 +1623,20 @@ class JobQueuesApi
     }
 
     /**
-     * Operation postJobQueueSingleAsyncWithHttpInfo
+     * Operation postQueueSingleAsyncWithHttpInfo
      *
      * Update a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue fields to update (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobQueueSingleAsyncWithHttpInfo($uuid, $jobQueue)
+    public function postQueueSingleAsyncWithHttpInfo($uuid, $jobQueue)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobQueueSingleRequest($uuid, $jobQueue);
+        $request = $this->postQueueSingleRequest($uuid, $jobQueue);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1675,28 +1675,28 @@ class JobQueuesApi
     }
 
     /**
-     * Create request for operation 'postJobQueueSingle'
+     * Create request for operation 'postQueueSingle'
      *
      * @param  string $uuid UUID of the Job Queue (required)
-     * @param  \OpenAPI\Client\Model\JobQueue $jobQueue Job Queue fields to update (required)
+     * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobQueueSingleRequest($uuid, $jobQueue)
+    public function postQueueSingleRequest($uuid, $jobQueue)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling postJobQueueSingle'
+                'Missing the required parameter $uuid when calling postQueueSingle'
             );
         }
 
         // verify the required parameter 'jobQueue' is set
         if ($jobQueue === null || (is_array($jobQueue) && count($jobQueue) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $jobQueue when calling postJobQueueSingle'
+                'Missing the required parameter $jobQueue when calling postQueueSingle'
             );
         }
 

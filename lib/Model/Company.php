@@ -1,6 +1,6 @@
 <?php
 /**
- * JobAllocation
+ * Company
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * JobAllocation Class Doc Comment
+ * Company Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
+class Company implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'JobAllocation';
+    protected static $openAPIModelName = 'Company';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,22 +60,21 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'string',
         'active' => 'float',
         'editDate' => 'string',
-        'jobUuid' => 'string',
-        'queueUuid' => 'string',
-        'staffUuid' => 'string',
-        'allocationDate' => 'string',
-        'allocationWindowUuid' => 'string',
-        'allocatedByStaffUuid' => 'string',
-        'allocatedTimestamp' => 'string',
-        'expiryTimestamp' => 'string',
-        'readTimestamp' => 'string',
-        'completionTimestamp' => 'string',
-        'estimatedDuration' => 'string',
-        'revisedDuration' => 'string',
-        'sortPriority' => 'string',
-        'requiresAcceptance' => 'string',
-        'acceptanceStatus' => 'string',
-        'acceptanceTimestamp' => 'string'
+        'name' => 'string',
+        'website' => 'string',
+        'abnNumber' => 'string',
+        'isIndividual' => 'string',
+        'addressStreet' => 'string',
+        'addressCity' => 'string',
+        'addressState' => 'string',
+        'addressPostcode' => 'string',
+        'addressCountry' => 'string',
+        'faxNumber' => 'string',
+        'address' => 'string',
+        'billingAddress' => 'string',
+        'badges' => 'string',
+        'taxRateUuid' => 'string',
+        'paymentTerms' => 'string'
     ];
 
     /**
@@ -89,22 +88,21 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => null,
         'editDate' => null,
-        'jobUuid' => 'uuid',
-        'queueUuid' => 'uuid',
-        'staffUuid' => 'uuid',
-        'allocationDate' => null,
-        'allocationWindowUuid' => 'uuid',
-        'allocatedByStaffUuid' => 'uuid',
-        'allocatedTimestamp' => null,
-        'expiryTimestamp' => null,
-        'readTimestamp' => null,
-        'completionTimestamp' => null,
-        'estimatedDuration' => null,
-        'revisedDuration' => null,
-        'sortPriority' => null,
-        'requiresAcceptance' => null,
-        'acceptanceStatus' => null,
-        'acceptanceTimestamp' => null
+        'name' => null,
+        'website' => null,
+        'abnNumber' => null,
+        'isIndividual' => null,
+        'addressStreet' => null,
+        'addressCity' => null,
+        'addressState' => null,
+        'addressPostcode' => null,
+        'addressCountry' => null,
+        'faxNumber' => null,
+        'address' => null,
+        'billingAddress' => null,
+        'badges' => null,
+        'taxRateUuid' => 'uuid',
+        'paymentTerms' => null
     ];
 
     /**
@@ -116,22 +114,21 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => false,
 		'active' => false,
 		'editDate' => false,
-		'jobUuid' => false,
-		'queueUuid' => false,
-		'staffUuid' => false,
-		'allocationDate' => false,
-		'allocationWindowUuid' => false,
-		'allocatedByStaffUuid' => false,
-		'allocatedTimestamp' => false,
-		'expiryTimestamp' => false,
-		'readTimestamp' => false,
-		'completionTimestamp' => false,
-		'estimatedDuration' => false,
-		'revisedDuration' => false,
-		'sortPriority' => false,
-		'requiresAcceptance' => false,
-		'acceptanceStatus' => false,
-		'acceptanceTimestamp' => false
+		'name' => false,
+		'website' => false,
+		'abnNumber' => false,
+		'isIndividual' => false,
+		'addressStreet' => false,
+		'addressCity' => false,
+		'addressState' => false,
+		'addressPostcode' => false,
+		'addressCountry' => false,
+		'faxNumber' => false,
+		'address' => false,
+		'billingAddress' => false,
+		'badges' => false,
+		'taxRateUuid' => false,
+		'paymentTerms' => false
     ];
 
     /**
@@ -213,22 +210,21 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => 'active',
         'editDate' => 'edit_date',
-        'jobUuid' => 'job_uuid',
-        'queueUuid' => 'queue_uuid',
-        'staffUuid' => 'staff_uuid',
-        'allocationDate' => 'allocation_date',
-        'allocationWindowUuid' => 'allocation_window_uuid',
-        'allocatedByStaffUuid' => 'allocated_by_staff_uuid',
-        'allocatedTimestamp' => 'allocated_timestamp',
-        'expiryTimestamp' => 'expiry_timestamp',
-        'readTimestamp' => 'read_timestamp',
-        'completionTimestamp' => 'completion_timestamp',
-        'estimatedDuration' => 'estimated_duration',
-        'revisedDuration' => 'revised_duration',
-        'sortPriority' => 'sort_priority',
-        'requiresAcceptance' => 'requires_acceptance',
-        'acceptanceStatus' => 'acceptance_status',
-        'acceptanceTimestamp' => 'acceptance_timestamp'
+        'name' => 'name',
+        'website' => 'website',
+        'abnNumber' => 'abn_number',
+        'isIndividual' => 'is_individual',
+        'addressStreet' => 'address_street',
+        'addressCity' => 'address_city',
+        'addressState' => 'address_state',
+        'addressPostcode' => 'address_postcode',
+        'addressCountry' => 'address_country',
+        'faxNumber' => 'fax_number',
+        'address' => 'address',
+        'billingAddress' => 'billing_address',
+        'badges' => 'badges',
+        'taxRateUuid' => 'tax_rate_uuid',
+        'paymentTerms' => 'payment_terms'
     ];
 
     /**
@@ -240,22 +236,21 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'setUuid',
         'active' => 'setActive',
         'editDate' => 'setEditDate',
-        'jobUuid' => 'setJobUuid',
-        'queueUuid' => 'setQueueUuid',
-        'staffUuid' => 'setStaffUuid',
-        'allocationDate' => 'setAllocationDate',
-        'allocationWindowUuid' => 'setAllocationWindowUuid',
-        'allocatedByStaffUuid' => 'setAllocatedByStaffUuid',
-        'allocatedTimestamp' => 'setAllocatedTimestamp',
-        'expiryTimestamp' => 'setExpiryTimestamp',
-        'readTimestamp' => 'setReadTimestamp',
-        'completionTimestamp' => 'setCompletionTimestamp',
-        'estimatedDuration' => 'setEstimatedDuration',
-        'revisedDuration' => 'setRevisedDuration',
-        'sortPriority' => 'setSortPriority',
-        'requiresAcceptance' => 'setRequiresAcceptance',
-        'acceptanceStatus' => 'setAcceptanceStatus',
-        'acceptanceTimestamp' => 'setAcceptanceTimestamp'
+        'name' => 'setName',
+        'website' => 'setWebsite',
+        'abnNumber' => 'setAbnNumber',
+        'isIndividual' => 'setIsIndividual',
+        'addressStreet' => 'setAddressStreet',
+        'addressCity' => 'setAddressCity',
+        'addressState' => 'setAddressState',
+        'addressPostcode' => 'setAddressPostcode',
+        'addressCountry' => 'setAddressCountry',
+        'faxNumber' => 'setFaxNumber',
+        'address' => 'setAddress',
+        'billingAddress' => 'setBillingAddress',
+        'badges' => 'setBadges',
+        'taxRateUuid' => 'setTaxRateUuid',
+        'paymentTerms' => 'setPaymentTerms'
     ];
 
     /**
@@ -267,22 +262,21 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'getUuid',
         'active' => 'getActive',
         'editDate' => 'getEditDate',
-        'jobUuid' => 'getJobUuid',
-        'queueUuid' => 'getQueueUuid',
-        'staffUuid' => 'getStaffUuid',
-        'allocationDate' => 'getAllocationDate',
-        'allocationWindowUuid' => 'getAllocationWindowUuid',
-        'allocatedByStaffUuid' => 'getAllocatedByStaffUuid',
-        'allocatedTimestamp' => 'getAllocatedTimestamp',
-        'expiryTimestamp' => 'getExpiryTimestamp',
-        'readTimestamp' => 'getReadTimestamp',
-        'completionTimestamp' => 'getCompletionTimestamp',
-        'estimatedDuration' => 'getEstimatedDuration',
-        'revisedDuration' => 'getRevisedDuration',
-        'sortPriority' => 'getSortPriority',
-        'requiresAcceptance' => 'getRequiresAcceptance',
-        'acceptanceStatus' => 'getAcceptanceStatus',
-        'acceptanceTimestamp' => 'getAcceptanceTimestamp'
+        'name' => 'getName',
+        'website' => 'getWebsite',
+        'abnNumber' => 'getAbnNumber',
+        'isIndividual' => 'getIsIndividual',
+        'addressStreet' => 'getAddressStreet',
+        'addressCity' => 'getAddressCity',
+        'addressState' => 'getAddressState',
+        'addressPostcode' => 'getAddressPostcode',
+        'addressCountry' => 'getAddressCountry',
+        'faxNumber' => 'getFaxNumber',
+        'address' => 'getAddress',
+        'billingAddress' => 'getBillingAddress',
+        'badges' => 'getBadges',
+        'taxRateUuid' => 'getTaxRateUuid',
+        'paymentTerms' => 'getPaymentTerms'
     ];
 
     /**
@@ -345,22 +339,21 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('uuid', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('editDate', $data ?? [], null);
-        $this->setIfExists('jobUuid', $data ?? [], null);
-        $this->setIfExists('queueUuid', $data ?? [], null);
-        $this->setIfExists('staffUuid', $data ?? [], null);
-        $this->setIfExists('allocationDate', $data ?? [], null);
-        $this->setIfExists('allocationWindowUuid', $data ?? [], null);
-        $this->setIfExists('allocatedByStaffUuid', $data ?? [], null);
-        $this->setIfExists('allocatedTimestamp', $data ?? [], null);
-        $this->setIfExists('expiryTimestamp', $data ?? [], null);
-        $this->setIfExists('readTimestamp', $data ?? [], null);
-        $this->setIfExists('completionTimestamp', $data ?? [], null);
-        $this->setIfExists('estimatedDuration', $data ?? [], null);
-        $this->setIfExists('revisedDuration', $data ?? [], null);
-        $this->setIfExists('sortPriority', $data ?? [], null);
-        $this->setIfExists('requiresAcceptance', $data ?? [], null);
-        $this->setIfExists('acceptanceStatus', $data ?? [], null);
-        $this->setIfExists('acceptanceTimestamp', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('website', $data ?? [], null);
+        $this->setIfExists('abnNumber', $data ?? [], null);
+        $this->setIfExists('isIndividual', $data ?? [], null);
+        $this->setIfExists('addressStreet', $data ?? [], null);
+        $this->setIfExists('addressCity', $data ?? [], null);
+        $this->setIfExists('addressState', $data ?? [], null);
+        $this->setIfExists('addressPostcode', $data ?? [], null);
+        $this->setIfExists('addressCountry', $data ?? [], null);
+        $this->setIfExists('faxNumber', $data ?? [], null);
+        $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('billingAddress', $data ?? [], null);
+        $this->setIfExists('badges', $data ?? [], null);
+        $this->setIfExists('taxRateUuid', $data ?? [], null);
+        $this->setIfExists('paymentTerms', $data ?? [], null);
     }
 
     /**
@@ -389,6 +382,25 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ((mb_strlen($this->container['name']) > 100)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 100.";
+        }
+
+        if (!is_null($this->container['addressStreet']) && (mb_strlen($this->container['addressStreet']) > 500)) {
+            $invalidProperties[] = "invalid value for 'addressStreet', the character length must be smaller than or equal to 500.";
+        }
+
+        if (!is_null($this->container['address']) && (mb_strlen($this->container['address']) > 500)) {
+            $invalidProperties[] = "invalid value for 'address', the character length must be smaller than or equal to 500.";
+        }
+
+        if (!is_null($this->container['billingAddress']) && (mb_strlen($this->container['billingAddress']) > 500)) {
+            $invalidProperties[] = "invalid value for 'billingAddress', the character length must be smaller than or equal to 500.";
+        }
 
         return $invalidProperties;
     }
@@ -493,465 +505,452 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets jobUuid
+     * Gets name
      *
-     * @return string|null
+     * @return string
      */
-    public function getJobUuid()
+    public function getName()
     {
-        return $this->container['jobUuid'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets jobUuid
+     * Sets name
      *
-     * @param string|null $jobUuid jobUuid
+     * @param string $name Company Name
      *
      * @return self
      */
-    public function setJobUuid($jobUuid)
+    public function setName($name)
     {
-
-        if (is_null($jobUuid)) {
-            throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
+        if ((mb_strlen($name) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling Company., must be smaller than or equal to 100.');
         }
 
-        $this->container['jobUuid'] = $jobUuid;
+
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets queueUuid
+     * Gets website
      *
      * @return string|null
      */
-    public function getQueueUuid()
+    public function getWebsite()
     {
-        return $this->container['queueUuid'];
+        return $this->container['website'];
     }
 
     /**
-     * Sets queueUuid
+     * Sets website
      *
-     * @param string|null $queueUuid queueUuid
+     * @param string|null $website website
      *
      * @return self
      */
-    public function setQueueUuid($queueUuid)
+    public function setWebsite($website)
     {
 
-        if (is_null($queueUuid)) {
-            throw new \InvalidArgumentException('non-nullable queueUuid cannot be null');
+        if (is_null($website)) {
+            throw new \InvalidArgumentException('non-nullable website cannot be null');
         }
 
-        $this->container['queueUuid'] = $queueUuid;
+        $this->container['website'] = $website;
 
         return $this;
     }
 
     /**
-     * Gets staffUuid
+     * Gets abnNumber
      *
      * @return string|null
      */
-    public function getStaffUuid()
+    public function getAbnNumber()
     {
-        return $this->container['staffUuid'];
+        return $this->container['abnNumber'];
     }
 
     /**
-     * Sets staffUuid
+     * Sets abnNumber
      *
-     * @param string|null $staffUuid staffUuid
+     * @param string|null $abnNumber abnNumber
      *
      * @return self
      */
-    public function setStaffUuid($staffUuid)
+    public function setAbnNumber($abnNumber)
     {
 
-        if (is_null($staffUuid)) {
-            throw new \InvalidArgumentException('non-nullable staffUuid cannot be null');
+        if (is_null($abnNumber)) {
+            throw new \InvalidArgumentException('non-nullable abnNumber cannot be null');
         }
 
-        $this->container['staffUuid'] = $staffUuid;
+        $this->container['abnNumber'] = $abnNumber;
 
         return $this;
     }
 
     /**
-     * Gets allocationDate
+     * Gets isIndividual
      *
      * @return string|null
      */
-    public function getAllocationDate()
+    public function getIsIndividual()
     {
-        return $this->container['allocationDate'];
+        return $this->container['isIndividual'];
     }
 
     /**
-     * Sets allocationDate
+     * Sets isIndividual
      *
-     * @param string|null $allocationDate allocationDate
+     * @param string|null $isIndividual isIndividual
      *
      * @return self
      */
-    public function setAllocationDate($allocationDate)
+    public function setIsIndividual($isIndividual)
     {
 
-        if (is_null($allocationDate)) {
-            throw new \InvalidArgumentException('non-nullable allocationDate cannot be null');
+        if (is_null($isIndividual)) {
+            throw new \InvalidArgumentException('non-nullable isIndividual cannot be null');
         }
 
-        $this->container['allocationDate'] = $allocationDate;
+        $this->container['isIndividual'] = $isIndividual;
 
         return $this;
     }
 
     /**
-     * Gets allocationWindowUuid
+     * Gets addressStreet
      *
      * @return string|null
      */
-    public function getAllocationWindowUuid()
+    public function getAddressStreet()
     {
-        return $this->container['allocationWindowUuid'];
+        return $this->container['addressStreet'];
     }
 
     /**
-     * Sets allocationWindowUuid
+     * Sets addressStreet
      *
-     * @param string|null $allocationWindowUuid allocationWindowUuid
+     * @param string|null $addressStreet addressStreet
      *
      * @return self
      */
-    public function setAllocationWindowUuid($allocationWindowUuid)
+    public function setAddressStreet($addressStreet)
     {
-
-        if (is_null($allocationWindowUuid)) {
-            throw new \InvalidArgumentException('non-nullable allocationWindowUuid cannot be null');
+        if (!is_null($addressStreet) && (mb_strlen($addressStreet) > 500)) {
+            throw new \InvalidArgumentException('invalid length for $addressStreet when calling Company., must be smaller than or equal to 500.');
         }
 
-        $this->container['allocationWindowUuid'] = $allocationWindowUuid;
+
+        if (is_null($addressStreet)) {
+            throw new \InvalidArgumentException('non-nullable addressStreet cannot be null');
+        }
+
+        $this->container['addressStreet'] = $addressStreet;
 
         return $this;
     }
 
     /**
-     * Gets allocatedByStaffUuid
+     * Gets addressCity
      *
      * @return string|null
      */
-    public function getAllocatedByStaffUuid()
+    public function getAddressCity()
     {
-        return $this->container['allocatedByStaffUuid'];
+        return $this->container['addressCity'];
     }
 
     /**
-     * Sets allocatedByStaffUuid
+     * Sets addressCity
      *
-     * @param string|null $allocatedByStaffUuid allocatedByStaffUuid
+     * @param string|null $addressCity addressCity
      *
      * @return self
      */
-    public function setAllocatedByStaffUuid($allocatedByStaffUuid)
+    public function setAddressCity($addressCity)
     {
 
-        if (is_null($allocatedByStaffUuid)) {
-            throw new \InvalidArgumentException('non-nullable allocatedByStaffUuid cannot be null');
+        if (is_null($addressCity)) {
+            throw new \InvalidArgumentException('non-nullable addressCity cannot be null');
         }
 
-        $this->container['allocatedByStaffUuid'] = $allocatedByStaffUuid;
+        $this->container['addressCity'] = $addressCity;
 
         return $this;
     }
 
     /**
-     * Gets allocatedTimestamp
+     * Gets addressState
      *
      * @return string|null
      */
-    public function getAllocatedTimestamp()
+    public function getAddressState()
     {
-        return $this->container['allocatedTimestamp'];
+        return $this->container['addressState'];
     }
 
     /**
-     * Sets allocatedTimestamp
+     * Sets addressState
      *
-     * @param string|null $allocatedTimestamp allocatedTimestamp
+     * @param string|null $addressState addressState
      *
      * @return self
      */
-    public function setAllocatedTimestamp($allocatedTimestamp)
+    public function setAddressState($addressState)
     {
 
-        if (is_null($allocatedTimestamp)) {
-            throw new \InvalidArgumentException('non-nullable allocatedTimestamp cannot be null');
+        if (is_null($addressState)) {
+            throw new \InvalidArgumentException('non-nullable addressState cannot be null');
         }
 
-        $this->container['allocatedTimestamp'] = $allocatedTimestamp;
+        $this->container['addressState'] = $addressState;
 
         return $this;
     }
 
     /**
-     * Gets expiryTimestamp
+     * Gets addressPostcode
      *
      * @return string|null
      */
-    public function getExpiryTimestamp()
+    public function getAddressPostcode()
     {
-        return $this->container['expiryTimestamp'];
+        return $this->container['addressPostcode'];
     }
 
     /**
-     * Sets expiryTimestamp
+     * Sets addressPostcode
      *
-     * @param string|null $expiryTimestamp expiryTimestamp
+     * @param string|null $addressPostcode addressPostcode
      *
      * @return self
      */
-    public function setExpiryTimestamp($expiryTimestamp)
+    public function setAddressPostcode($addressPostcode)
     {
 
-        if (is_null($expiryTimestamp)) {
-            throw new \InvalidArgumentException('non-nullable expiryTimestamp cannot be null');
+        if (is_null($addressPostcode)) {
+            throw new \InvalidArgumentException('non-nullable addressPostcode cannot be null');
         }
 
-        $this->container['expiryTimestamp'] = $expiryTimestamp;
+        $this->container['addressPostcode'] = $addressPostcode;
 
         return $this;
     }
 
     /**
-     * Gets readTimestamp
+     * Gets addressCountry
      *
      * @return string|null
      */
-    public function getReadTimestamp()
+    public function getAddressCountry()
     {
-        return $this->container['readTimestamp'];
+        return $this->container['addressCountry'];
     }
 
     /**
-     * Sets readTimestamp
+     * Sets addressCountry
      *
-     * @param string|null $readTimestamp readTimestamp
+     * @param string|null $addressCountry addressCountry
      *
      * @return self
      */
-    public function setReadTimestamp($readTimestamp)
+    public function setAddressCountry($addressCountry)
     {
 
-        if (is_null($readTimestamp)) {
-            throw new \InvalidArgumentException('non-nullable readTimestamp cannot be null');
+        if (is_null($addressCountry)) {
+            throw new \InvalidArgumentException('non-nullable addressCountry cannot be null');
         }
 
-        $this->container['readTimestamp'] = $readTimestamp;
+        $this->container['addressCountry'] = $addressCountry;
 
         return $this;
     }
 
     /**
-     * Gets completionTimestamp
+     * Gets faxNumber
      *
      * @return string|null
      */
-    public function getCompletionTimestamp()
+    public function getFaxNumber()
     {
-        return $this->container['completionTimestamp'];
+        return $this->container['faxNumber'];
     }
 
     /**
-     * Sets completionTimestamp
+     * Sets faxNumber
      *
-     * @param string|null $completionTimestamp completionTimestamp
+     * @param string|null $faxNumber faxNumber
      *
      * @return self
      */
-    public function setCompletionTimestamp($completionTimestamp)
+    public function setFaxNumber($faxNumber)
     {
 
-        if (is_null($completionTimestamp)) {
-            throw new \InvalidArgumentException('non-nullable completionTimestamp cannot be null');
+        if (is_null($faxNumber)) {
+            throw new \InvalidArgumentException('non-nullable faxNumber cannot be null');
         }
 
-        $this->container['completionTimestamp'] = $completionTimestamp;
+        $this->container['faxNumber'] = $faxNumber;
 
         return $this;
     }
 
     /**
-     * Gets estimatedDuration
+     * Gets address
      *
      * @return string|null
      */
-    public function getEstimatedDuration()
+    public function getAddress()
     {
-        return $this->container['estimatedDuration'];
+        return $this->container['address'];
     }
 
     /**
-     * Sets estimatedDuration
+     * Sets address
      *
-     * @param string|null $estimatedDuration estimatedDuration
+     * @param string|null $address Password
      *
      * @return self
      */
-    public function setEstimatedDuration($estimatedDuration)
+    public function setAddress($address)
     {
-
-        if (is_null($estimatedDuration)) {
-            throw new \InvalidArgumentException('non-nullable estimatedDuration cannot be null');
+        if (!is_null($address) && (mb_strlen($address) > 500)) {
+            throw new \InvalidArgumentException('invalid length for $address when calling Company., must be smaller than or equal to 500.');
         }
 
-        $this->container['estimatedDuration'] = $estimatedDuration;
+
+        if (is_null($address)) {
+            throw new \InvalidArgumentException('non-nullable address cannot be null');
+        }
+
+        $this->container['address'] = $address;
 
         return $this;
     }
 
     /**
-     * Gets revisedDuration
+     * Gets billingAddress
      *
      * @return string|null
      */
-    public function getRevisedDuration()
+    public function getBillingAddress()
     {
-        return $this->container['revisedDuration'];
+        return $this->container['billingAddress'];
     }
 
     /**
-     * Sets revisedDuration
+     * Sets billingAddress
      *
-     * @param string|null $revisedDuration revisedDuration
+     * @param string|null $billingAddress Confirm Password
      *
      * @return self
      */
-    public function setRevisedDuration($revisedDuration)
+    public function setBillingAddress($billingAddress)
     {
-
-        if (is_null($revisedDuration)) {
-            throw new \InvalidArgumentException('non-nullable revisedDuration cannot be null');
+        if (!is_null($billingAddress) && (mb_strlen($billingAddress) > 500)) {
+            throw new \InvalidArgumentException('invalid length for $billingAddress when calling Company., must be smaller than or equal to 500.');
         }
 
-        $this->container['revisedDuration'] = $revisedDuration;
+
+        if (is_null($billingAddress)) {
+            throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
+        }
+
+        $this->container['billingAddress'] = $billingAddress;
 
         return $this;
     }
 
     /**
-     * Gets sortPriority
+     * Gets badges
      *
      * @return string|null
      */
-    public function getSortPriority()
+    public function getBadges()
     {
-        return $this->container['sortPriority'];
+        return $this->container['badges'];
     }
 
     /**
-     * Sets sortPriority
+     * Sets badges
      *
-     * @param string|null $sortPriority sortPriority
+     * @param string|null $badges badges
      *
      * @return self
      */
-    public function setSortPriority($sortPriority)
+    public function setBadges($badges)
     {
 
-        if (is_null($sortPriority)) {
-            throw new \InvalidArgumentException('non-nullable sortPriority cannot be null');
+        if (is_null($badges)) {
+            throw new \InvalidArgumentException('non-nullable badges cannot be null');
         }
 
-        $this->container['sortPriority'] = $sortPriority;
+        $this->container['badges'] = $badges;
 
         return $this;
     }
 
     /**
-     * Gets requiresAcceptance
+     * Gets taxRateUuid
      *
      * @return string|null
      */
-    public function getRequiresAcceptance()
+    public function getTaxRateUuid()
     {
-        return $this->container['requiresAcceptance'];
+        return $this->container['taxRateUuid'];
     }
 
     /**
-     * Sets requiresAcceptance
+     * Sets taxRateUuid
      *
-     * @param string|null $requiresAcceptance requiresAcceptance
+     * @param string|null $taxRateUuid taxRateUuid
      *
      * @return self
      */
-    public function setRequiresAcceptance($requiresAcceptance)
+    public function setTaxRateUuid($taxRateUuid)
     {
 
-        if (is_null($requiresAcceptance)) {
-            throw new \InvalidArgumentException('non-nullable requiresAcceptance cannot be null');
+        if (is_null($taxRateUuid)) {
+            throw new \InvalidArgumentException('non-nullable taxRateUuid cannot be null');
         }
 
-        $this->container['requiresAcceptance'] = $requiresAcceptance;
+        $this->container['taxRateUuid'] = $taxRateUuid;
 
         return $this;
     }
 
     /**
-     * Gets acceptanceStatus
+     * Gets paymentTerms
      *
      * @return string|null
      */
-    public function getAcceptanceStatus()
+    public function getPaymentTerms()
     {
-        return $this->container['acceptanceStatus'];
+        return $this->container['paymentTerms'];
     }
 
     /**
-     * Sets acceptanceStatus
+     * Sets paymentTerms
      *
-     * @param string|null $acceptanceStatus acceptanceStatus
+     * @param string|null $paymentTerms paymentTerms
      *
      * @return self
      */
-    public function setAcceptanceStatus($acceptanceStatus)
+    public function setPaymentTerms($paymentTerms)
     {
 
-        if (is_null($acceptanceStatus)) {
-            throw new \InvalidArgumentException('non-nullable acceptanceStatus cannot be null');
+        if (is_null($paymentTerms)) {
+            throw new \InvalidArgumentException('non-nullable paymentTerms cannot be null');
         }
 
-        $this->container['acceptanceStatus'] = $acceptanceStatus;
-
-        return $this;
-    }
-
-    /**
-     * Gets acceptanceTimestamp
-     *
-     * @return string|null
-     */
-    public function getAcceptanceTimestamp()
-    {
-        return $this->container['acceptanceTimestamp'];
-    }
-
-    /**
-     * Sets acceptanceTimestamp
-     *
-     * @param string|null $acceptanceTimestamp acceptanceTimestamp
-     *
-     * @return self
-     */
-    public function setAcceptanceTimestamp($acceptanceTimestamp)
-    {
-
-        if (is_null($acceptanceTimestamp)) {
-            throw new \InvalidArgumentException('non-nullable acceptanceTimestamp cannot be null');
-        }
-
-        $this->container['acceptanceTimestamp'] = $acceptanceTimestamp;
+        $this->container['paymentTerms'] = $paymentTerms;
 
         return $this;
     }

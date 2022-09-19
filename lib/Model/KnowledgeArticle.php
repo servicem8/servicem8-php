@@ -49,7 +49,7 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Knowledge Article';
+    protected static $openAPIModelName = 'KnowledgeArticle';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

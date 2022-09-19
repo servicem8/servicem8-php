@@ -116,7 +116,7 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation deleteSMSTemplateSingle
+     * Operation deleteSmsTemplateSingle
      *
      * Delete a SMS Template
      *
@@ -126,14 +126,14 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteSMSTemplateSingle($uuid)
+    public function deleteSmsTemplateSingle($uuid)
     {
-        list($response) = $this->deleteSMSTemplateSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteSmsTemplateSingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation deleteSMSTemplateSingleWithHttpInfo
+     * Operation deleteSmsTemplateSingleWithHttpInfo
      *
      * Delete a SMS Template
      *
@@ -143,9 +143,9 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteSMSTemplateSingleWithHttpInfo($uuid)
+    public function deleteSmsTemplateSingleWithHttpInfo($uuid)
     {
-        $request = $this->deleteSMSTemplateSingleRequest($uuid);
+        $request = $this->deleteSmsTemplateSingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -278,7 +278,7 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation deleteSMSTemplateSingleAsync
+     * Operation deleteSmsTemplateSingleAsync
      *
      * Delete a SMS Template
      *
@@ -287,9 +287,9 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSMSTemplateSingleAsync($uuid)
+    public function deleteSmsTemplateSingleAsync($uuid)
     {
-        return $this->deleteSMSTemplateSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteSmsTemplateSingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -298,7 +298,7 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation deleteSMSTemplateSingleAsyncWithHttpInfo
+     * Operation deleteSmsTemplateSingleAsyncWithHttpInfo
      *
      * Delete a SMS Template
      *
@@ -307,10 +307,10 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSMSTemplateSingleAsyncWithHttpInfo($uuid)
+    public function deleteSmsTemplateSingleAsyncWithHttpInfo($uuid)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteSMSTemplateSingleRequest($uuid);
+        $request = $this->deleteSmsTemplateSingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -349,20 +349,20 @@ class SMSTemplatesApi
     }
 
     /**
-     * Create request for operation 'deleteSMSTemplateSingle'
+     * Create request for operation 'deleteSmsTemplateSingle'
      *
      * @param  string $uuid UUID of the SMS Template (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSMSTemplateSingleRequest($uuid)
+    public function deleteSmsTemplateSingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling deleteSMSTemplateSingle'
+                'Missing the required parameter $uuid when calling deleteSmsTemplateSingle'
             );
         }
 
@@ -452,34 +452,34 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation getSMSTemplateAll
+     * Operation getSmsTemplateAll
      *
      * List all SMS Templates
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SMSTemplate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\SmsTemplate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getSMSTemplateAll()
+    public function getSmsTemplateAll()
     {
-        list($response) = $this->getSMSTemplateAllWithHttpInfo();
+        list($response) = $this->getSmsTemplateAllWithHttpInfo();
         return $response;
     }
 
     /**
-     * Operation getSMSTemplateAllWithHttpInfo
+     * Operation getSmsTemplateAllWithHttpInfo
      *
      * List all SMS Templates
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SMSTemplate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\SmsTemplate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSMSTemplateAllWithHttpInfo()
+    public function getSmsTemplateAllWithHttpInfo()
     {
-        $request = $this->getSMSTemplateAllRequest();
+        $request = $this->getSmsTemplateAllRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -518,17 +518,17 @@ class SMSTemplatesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SMSTemplate[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\SmsTemplate[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SMSTemplate[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\SmsTemplate[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SMSTemplate[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SmsTemplate[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -564,7 +564,7 @@ class SMSTemplatesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SMSTemplate[]';
+            $returnType = '\OpenAPI\Client\Model\SmsTemplate[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -585,7 +585,7 @@ class SMSTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SMSTemplate[]',
+                        '\OpenAPI\Client\Model\SmsTemplate[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -612,7 +612,7 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation getSMSTemplateAllAsync
+     * Operation getSmsTemplateAllAsync
      *
      * List all SMS Templates
      *
@@ -620,9 +620,9 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSMSTemplateAllAsync()
+    public function getSmsTemplateAllAsync()
     {
-        return $this->getSMSTemplateAllAsyncWithHttpInfo()
+        return $this->getSmsTemplateAllAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -631,7 +631,7 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation getSMSTemplateAllAsyncWithHttpInfo
+     * Operation getSmsTemplateAllAsyncWithHttpInfo
      *
      * List all SMS Templates
      *
@@ -639,10 +639,10 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSMSTemplateAllAsyncWithHttpInfo()
+    public function getSmsTemplateAllAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\SMSTemplate[]';
-        $request = $this->getSMSTemplateAllRequest();
+        $returnType = '\OpenAPI\Client\Model\SmsTemplate[]';
+        $request = $this->getSmsTemplateAllRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -681,13 +681,13 @@ class SMSTemplatesApi
     }
 
     /**
-     * Create request for operation 'getSMSTemplateAll'
+     * Create request for operation 'getSmsTemplateAll'
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSMSTemplateAllRequest()
+    public function getSmsTemplateAllRequest()
     {
 
         $resourcePath = '/smstemplate.json';
@@ -768,7 +768,7 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation getSMSTemplateSingle
+     * Operation getSmsTemplateSingle
      *
      * Retrieve a SMS Template
      *
@@ -776,16 +776,16 @@ class SMSTemplatesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\SMSTemplate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\SmsTemplate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getSMSTemplateSingle($uuid)
+    public function getSmsTemplateSingle($uuid)
     {
-        list($response) = $this->getSMSTemplateSingleWithHttpInfo($uuid);
+        list($response) = $this->getSmsTemplateSingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation getSMSTemplateSingleWithHttpInfo
+     * Operation getSmsTemplateSingleWithHttpInfo
      *
      * Retrieve a SMS Template
      *
@@ -793,11 +793,11 @@ class SMSTemplatesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\SMSTemplate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\SmsTemplate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSMSTemplateSingleWithHttpInfo($uuid)
+    public function getSmsTemplateSingleWithHttpInfo($uuid)
     {
-        $request = $this->getSMSTemplateSingleRequest($uuid);
+        $request = $this->getSmsTemplateSingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -836,17 +836,17 @@ class SMSTemplatesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\SMSTemplate' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\SmsTemplate' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\SMSTemplate' !== 'string') {
+                        if ('\OpenAPI\Client\Model\SmsTemplate' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SMSTemplate', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\SmsTemplate', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -882,7 +882,7 @@ class SMSTemplatesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\SMSTemplate';
+            $returnType = '\OpenAPI\Client\Model\SmsTemplate';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -903,7 +903,7 @@ class SMSTemplatesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\SMSTemplate',
+                        '\OpenAPI\Client\Model\SmsTemplate',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -930,7 +930,7 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation getSMSTemplateSingleAsync
+     * Operation getSmsTemplateSingleAsync
      *
      * Retrieve a SMS Template
      *
@@ -939,9 +939,9 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSMSTemplateSingleAsync($uuid)
+    public function getSmsTemplateSingleAsync($uuid)
     {
-        return $this->getSMSTemplateSingleAsyncWithHttpInfo($uuid)
+        return $this->getSmsTemplateSingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -950,7 +950,7 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation getSMSTemplateSingleAsyncWithHttpInfo
+     * Operation getSmsTemplateSingleAsyncWithHttpInfo
      *
      * Retrieve a SMS Template
      *
@@ -959,10 +959,10 @@ class SMSTemplatesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSMSTemplateSingleAsyncWithHttpInfo($uuid)
+    public function getSmsTemplateSingleAsyncWithHttpInfo($uuid)
     {
-        $returnType = '\OpenAPI\Client\Model\SMSTemplate';
-        $request = $this->getSMSTemplateSingleRequest($uuid);
+        $returnType = '\OpenAPI\Client\Model\SmsTemplate';
+        $request = $this->getSmsTemplateSingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1001,20 +1001,20 @@ class SMSTemplatesApi
     }
 
     /**
-     * Create request for operation 'getSMSTemplateSingle'
+     * Create request for operation 'getSmsTemplateSingle'
      *
      * @param  string $uuid UUID of the SMS Template (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSMSTemplateSingleRequest($uuid)
+    public function getSmsTemplateSingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling getSMSTemplateSingle'
+                'Missing the required parameter $uuid when calling getSmsTemplateSingle'
             );
         }
 
@@ -1104,36 +1104,36 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation postSMSTemplateCreate
+     * Operation postSmsTemplateCreate
      *
      * Create a new SMS Template
      *
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postSMSTemplateCreate($sMSTemplate)
+    public function postSmsTemplateCreate($sMSTemplate)
     {
-        list($response) = $this->postSMSTemplateCreateWithHttpInfo($sMSTemplate);
+        list($response) = $this->postSmsTemplateCreateWithHttpInfo($sMSTemplate);
         return $response;
     }
 
     /**
-     * Operation postSMSTemplateCreateWithHttpInfo
+     * Operation postSmsTemplateCreateWithHttpInfo
      *
      * Create a new SMS Template
      *
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postSMSTemplateCreateWithHttpInfo($sMSTemplate)
+    public function postSmsTemplateCreateWithHttpInfo($sMSTemplate)
     {
-        $request = $this->postSMSTemplateCreateRequest($sMSTemplate);
+        $request = $this->postSmsTemplateCreateRequest($sMSTemplate);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1266,18 +1266,18 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation postSMSTemplateCreateAsync
+     * Operation postSmsTemplateCreateAsync
      *
      * Create a new SMS Template
      *
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSMSTemplateCreateAsync($sMSTemplate)
+    public function postSmsTemplateCreateAsync($sMSTemplate)
     {
-        return $this->postSMSTemplateCreateAsyncWithHttpInfo($sMSTemplate)
+        return $this->postSmsTemplateCreateAsyncWithHttpInfo($sMSTemplate)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1286,19 +1286,19 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation postSMSTemplateCreateAsyncWithHttpInfo
+     * Operation postSmsTemplateCreateAsyncWithHttpInfo
      *
      * Create a new SMS Template
      *
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSMSTemplateCreateAsyncWithHttpInfo($sMSTemplate)
+    public function postSmsTemplateCreateAsyncWithHttpInfo($sMSTemplate)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postSMSTemplateCreateRequest($sMSTemplate);
+        $request = $this->postSmsTemplateCreateRequest($sMSTemplate);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1337,20 +1337,20 @@ class SMSTemplatesApi
     }
 
     /**
-     * Create request for operation 'postSMSTemplateCreate'
+     * Create request for operation 'postSmsTemplateCreate'
      *
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postSMSTemplateCreateRequest($sMSTemplate)
+    public function postSmsTemplateCreateRequest($sMSTemplate)
     {
 
         // verify the required parameter 'sMSTemplate' is set
         if ($sMSTemplate === null || (is_array($sMSTemplate) && count($sMSTemplate) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sMSTemplate when calling postSMSTemplateCreate'
+                'Missing the required parameter $sMSTemplate when calling postSmsTemplateCreate'
             );
         }
 
@@ -1438,38 +1438,38 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation postSMSTemplateSingle
+     * Operation postSmsTemplateSingle
      *
      * Update a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postSMSTemplateSingle($uuid, $sMSTemplate)
+    public function postSmsTemplateSingle($uuid, $sMSTemplate)
     {
-        list($response) = $this->postSMSTemplateSingleWithHttpInfo($uuid, $sMSTemplate);
+        list($response) = $this->postSmsTemplateSingleWithHttpInfo($uuid, $sMSTemplate);
         return $response;
     }
 
     /**
-     * Operation postSMSTemplateSingleWithHttpInfo
+     * Operation postSmsTemplateSingleWithHttpInfo
      *
      * Update a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postSMSTemplateSingleWithHttpInfo($uuid, $sMSTemplate)
+    public function postSmsTemplateSingleWithHttpInfo($uuid, $sMSTemplate)
     {
-        $request = $this->postSMSTemplateSingleRequest($uuid, $sMSTemplate);
+        $request = $this->postSmsTemplateSingleRequest($uuid, $sMSTemplate);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1602,19 +1602,19 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation postSMSTemplateSingleAsync
+     * Operation postSmsTemplateSingleAsync
      *
      * Update a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSMSTemplateSingleAsync($uuid, $sMSTemplate)
+    public function postSmsTemplateSingleAsync($uuid, $sMSTemplate)
     {
-        return $this->postSMSTemplateSingleAsyncWithHttpInfo($uuid, $sMSTemplate)
+        return $this->postSmsTemplateSingleAsyncWithHttpInfo($uuid, $sMSTemplate)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1623,20 +1623,20 @@ class SMSTemplatesApi
     }
 
     /**
-     * Operation postSMSTemplateSingleAsyncWithHttpInfo
+     * Operation postSmsTemplateSingleAsyncWithHttpInfo
      *
      * Update a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSMSTemplateSingleAsyncWithHttpInfo($uuid, $sMSTemplate)
+    public function postSmsTemplateSingleAsyncWithHttpInfo($uuid, $sMSTemplate)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postSMSTemplateSingleRequest($uuid, $sMSTemplate);
+        $request = $this->postSmsTemplateSingleRequest($uuid, $sMSTemplate);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1675,28 +1675,28 @@ class SMSTemplatesApi
     }
 
     /**
-     * Create request for operation 'postSMSTemplateSingle'
+     * Create request for operation 'postSmsTemplateSingle'
      *
      * @param  string $uuid UUID of the SMS Template (required)
-     * @param  \OpenAPI\Client\Model\SMSTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postSMSTemplateSingleRequest($uuid, $sMSTemplate)
+    public function postSmsTemplateSingleRequest($uuid, $sMSTemplate)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling postSMSTemplateSingle'
+                'Missing the required parameter $uuid when calling postSmsTemplateSingle'
             );
         }
 
         // verify the required parameter 'sMSTemplate' is set
         if ($sMSTemplate === null || (is_array($sMSTemplate) && count($sMSTemplate) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $sMSTemplate when calling postSMSTemplateSingle'
+                'Missing the required parameter $sMSTemplate when calling postSmsTemplateSingle'
             );
         }
 

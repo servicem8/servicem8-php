@@ -1,6 +1,6 @@
 <?php
 /**
- * AssetTypeField
+ * MaterialBundle
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AssetTypeField Class Doc Comment
+ * MaterialBundle Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
+class MaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AssetTypeField';
+    protected static $openAPIModelName = 'MaterialBundle';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,10 +60,9 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'string',
         'active' => 'float',
         'editDate' => 'string',
-        'assetTypeUuid' => 'string',
+        'itemNumber' => 'string',
         'name' => 'string',
-        'fieldData' => 'string',
-        'sortOrder' => 'string'
+        'materialList' => 'string'
     ];
 
     /**
@@ -77,10 +76,9 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => null,
         'editDate' => null,
-        'assetTypeUuid' => 'uuid',
+        'itemNumber' => null,
         'name' => null,
-        'fieldData' => null,
-        'sortOrder' => null
+        'materialList' => null
     ];
 
     /**
@@ -92,10 +90,9 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => false,
 		'active' => false,
 		'editDate' => false,
-		'assetTypeUuid' => false,
+		'itemNumber' => false,
 		'name' => false,
-		'fieldData' => false,
-		'sortOrder' => false
+		'materialList' => false
     ];
 
     /**
@@ -177,10 +174,9 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => 'active',
         'editDate' => 'edit_date',
-        'assetTypeUuid' => 'asset_type_uuid',
+        'itemNumber' => 'item_number',
         'name' => 'name',
-        'fieldData' => 'field_data',
-        'sortOrder' => 'sort_order'
+        'materialList' => 'material_list'
     ];
 
     /**
@@ -192,10 +188,9 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'setUuid',
         'active' => 'setActive',
         'editDate' => 'setEditDate',
-        'assetTypeUuid' => 'setAssetTypeUuid',
+        'itemNumber' => 'setItemNumber',
         'name' => 'setName',
-        'fieldData' => 'setFieldData',
-        'sortOrder' => 'setSortOrder'
+        'materialList' => 'setMaterialList'
     ];
 
     /**
@@ -207,10 +202,9 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'getUuid',
         'active' => 'getActive',
         'editDate' => 'getEditDate',
-        'assetTypeUuid' => 'getAssetTypeUuid',
+        'itemNumber' => 'getItemNumber',
         'name' => 'getName',
-        'fieldData' => 'getFieldData',
-        'sortOrder' => 'getSortOrder'
+        'materialList' => 'getMaterialList'
     ];
 
     /**
@@ -273,10 +267,9 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('uuid', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('editDate', $data ?? [], null);
-        $this->setIfExists('assetTypeUuid', $data ?? [], null);
+        $this->setIfExists('itemNumber', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('fieldData', $data ?? [], null);
-        $this->setIfExists('sortOrder', $data ?? [], null);
+        $this->setIfExists('materialList', $data ?? [], null);
     }
 
     /**
@@ -409,30 +402,30 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets assetTypeUuid
+     * Gets itemNumber
      *
      * @return string|null
      */
-    public function getAssetTypeUuid()
+    public function getItemNumber()
     {
-        return $this->container['assetTypeUuid'];
+        return $this->container['itemNumber'];
     }
 
     /**
-     * Sets assetTypeUuid
+     * Sets itemNumber
      *
-     * @param string|null $assetTypeUuid assetTypeUuid
+     * @param string|null $itemNumber itemNumber
      *
      * @return self
      */
-    public function setAssetTypeUuid($assetTypeUuid)
+    public function setItemNumber($itemNumber)
     {
 
-        if (is_null($assetTypeUuid)) {
-            throw new \InvalidArgumentException('non-nullable assetTypeUuid cannot be null');
+        if (is_null($itemNumber)) {
+            throw new \InvalidArgumentException('non-nullable itemNumber cannot be null');
         }
 
-        $this->container['assetTypeUuid'] = $assetTypeUuid;
+        $this->container['itemNumber'] = $itemNumber;
 
         return $this;
     }
@@ -467,59 +460,30 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets fieldData
+     * Gets materialList
      *
      * @return string|null
      */
-    public function getFieldData()
+    public function getMaterialList()
     {
-        return $this->container['fieldData'];
+        return $this->container['materialList'];
     }
 
     /**
-     * Sets fieldData
+     * Sets materialList
      *
-     * @param string|null $fieldData fieldData
+     * @param string|null $materialList materialList
      *
      * @return self
      */
-    public function setFieldData($fieldData)
+    public function setMaterialList($materialList)
     {
 
-        if (is_null($fieldData)) {
-            throw new \InvalidArgumentException('non-nullable fieldData cannot be null');
+        if (is_null($materialList)) {
+            throw new \InvalidArgumentException('non-nullable materialList cannot be null');
         }
 
-        $this->container['fieldData'] = $fieldData;
-
-        return $this;
-    }
-
-    /**
-     * Gets sortOrder
-     *
-     * @return string|null
-     */
-    public function getSortOrder()
-    {
-        return $this->container['sortOrder'];
-    }
-
-    /**
-     * Sets sortOrder
-     *
-     * @param string|null $sortOrder sortOrder
-     *
-     * @return self
-     */
-    public function setSortOrder($sortOrder)
-    {
-
-        if (is_null($sortOrder)) {
-            throw new \InvalidArgumentException('non-nullable sortOrder cannot be null');
-        }
-
-        $this->container['sortOrder'] = $sortOrder;
+        $this->container['materialList'] = $materialList;
 
         return $this;
     }

@@ -116,7 +116,7 @@ class BundlesApi
     }
 
     /**
-     * Operation deleteBundleSingle
+     * Operation deleteMaterialBundleSingle
      *
      * Delete a Bundle
      *
@@ -126,14 +126,14 @@ class BundlesApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteBundleSingle($uuid)
+    public function deleteMaterialBundleSingle($uuid)
     {
-        list($response) = $this->deleteBundleSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteMaterialBundleSingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation deleteBundleSingleWithHttpInfo
+     * Operation deleteMaterialBundleSingleWithHttpInfo
      *
      * Delete a Bundle
      *
@@ -143,9 +143,9 @@ class BundlesApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteBundleSingleWithHttpInfo($uuid)
+    public function deleteMaterialBundleSingleWithHttpInfo($uuid)
     {
-        $request = $this->deleteBundleSingleRequest($uuid);
+        $request = $this->deleteMaterialBundleSingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -278,7 +278,7 @@ class BundlesApi
     }
 
     /**
-     * Operation deleteBundleSingleAsync
+     * Operation deleteMaterialBundleSingleAsync
      *
      * Delete a Bundle
      *
@@ -287,9 +287,9 @@ class BundlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteBundleSingleAsync($uuid)
+    public function deleteMaterialBundleSingleAsync($uuid)
     {
-        return $this->deleteBundleSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteMaterialBundleSingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -298,7 +298,7 @@ class BundlesApi
     }
 
     /**
-     * Operation deleteBundleSingleAsyncWithHttpInfo
+     * Operation deleteMaterialBundleSingleAsyncWithHttpInfo
      *
      * Delete a Bundle
      *
@@ -307,10 +307,10 @@ class BundlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteBundleSingleAsyncWithHttpInfo($uuid)
+    public function deleteMaterialBundleSingleAsyncWithHttpInfo($uuid)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteBundleSingleRequest($uuid);
+        $request = $this->deleteMaterialBundleSingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -349,20 +349,20 @@ class BundlesApi
     }
 
     /**
-     * Create request for operation 'deleteBundleSingle'
+     * Create request for operation 'deleteMaterialBundleSingle'
      *
      * @param  string $uuid UUID of the Bundle (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteBundleSingleRequest($uuid)
+    public function deleteMaterialBundleSingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling deleteBundleSingle'
+                'Missing the required parameter $uuid when calling deleteMaterialBundleSingle'
             );
         }
 
@@ -452,34 +452,34 @@ class BundlesApi
     }
 
     /**
-     * Operation getBundleAll
+     * Operation getMaterialBundleAll
      *
      * List all Bundles
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Bundle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\MaterialBundle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getBundleAll()
+    public function getMaterialBundleAll()
     {
-        list($response) = $this->getBundleAllWithHttpInfo();
+        list($response) = $this->getMaterialBundleAllWithHttpInfo();
         return $response;
     }
 
     /**
-     * Operation getBundleAllWithHttpInfo
+     * Operation getMaterialBundleAllWithHttpInfo
      *
      * List all Bundles
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Bundle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\MaterialBundle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getBundleAllWithHttpInfo()
+    public function getMaterialBundleAllWithHttpInfo()
     {
-        $request = $this->getBundleAllRequest();
+        $request = $this->getMaterialBundleAllRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -518,17 +518,17 @@ class BundlesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Bundle[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\MaterialBundle[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Bundle[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\MaterialBundle[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Bundle[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\MaterialBundle[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -564,7 +564,7 @@ class BundlesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\Bundle[]';
+            $returnType = '\OpenAPI\Client\Model\MaterialBundle[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -585,7 +585,7 @@ class BundlesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Bundle[]',
+                        '\OpenAPI\Client\Model\MaterialBundle[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -612,7 +612,7 @@ class BundlesApi
     }
 
     /**
-     * Operation getBundleAllAsync
+     * Operation getMaterialBundleAllAsync
      *
      * List all Bundles
      *
@@ -620,9 +620,9 @@ class BundlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBundleAllAsync()
+    public function getMaterialBundleAllAsync()
     {
-        return $this->getBundleAllAsyncWithHttpInfo()
+        return $this->getMaterialBundleAllAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -631,7 +631,7 @@ class BundlesApi
     }
 
     /**
-     * Operation getBundleAllAsyncWithHttpInfo
+     * Operation getMaterialBundleAllAsyncWithHttpInfo
      *
      * List all Bundles
      *
@@ -639,10 +639,10 @@ class BundlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBundleAllAsyncWithHttpInfo()
+    public function getMaterialBundleAllAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\Bundle[]';
-        $request = $this->getBundleAllRequest();
+        $returnType = '\OpenAPI\Client\Model\MaterialBundle[]';
+        $request = $this->getMaterialBundleAllRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -681,13 +681,13 @@ class BundlesApi
     }
 
     /**
-     * Create request for operation 'getBundleAll'
+     * Create request for operation 'getMaterialBundleAll'
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getBundleAllRequest()
+    public function getMaterialBundleAllRequest()
     {
 
         $resourcePath = '/materialbundle.json';
@@ -768,7 +768,7 @@ class BundlesApi
     }
 
     /**
-     * Operation getBundleSingle
+     * Operation getMaterialBundleSingle
      *
      * Retrieve a Bundle
      *
@@ -776,16 +776,16 @@ class BundlesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\Bundle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\MaterialBundle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getBundleSingle($uuid)
+    public function getMaterialBundleSingle($uuid)
     {
-        list($response) = $this->getBundleSingleWithHttpInfo($uuid);
+        list($response) = $this->getMaterialBundleSingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation getBundleSingleWithHttpInfo
+     * Operation getMaterialBundleSingleWithHttpInfo
      *
      * Retrieve a Bundle
      *
@@ -793,11 +793,11 @@ class BundlesApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\Bundle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\MaterialBundle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getBundleSingleWithHttpInfo($uuid)
+    public function getMaterialBundleSingleWithHttpInfo($uuid)
     {
-        $request = $this->getBundleSingleRequest($uuid);
+        $request = $this->getMaterialBundleSingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -836,17 +836,17 @@ class BundlesApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\Bundle' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\MaterialBundle' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\Bundle' !== 'string') {
+                        if ('\OpenAPI\Client\Model\MaterialBundle' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Bundle', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\MaterialBundle', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -882,7 +882,7 @@ class BundlesApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\Bundle';
+            $returnType = '\OpenAPI\Client\Model\MaterialBundle';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -903,7 +903,7 @@ class BundlesApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\Bundle',
+                        '\OpenAPI\Client\Model\MaterialBundle',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -930,7 +930,7 @@ class BundlesApi
     }
 
     /**
-     * Operation getBundleSingleAsync
+     * Operation getMaterialBundleSingleAsync
      *
      * Retrieve a Bundle
      *
@@ -939,9 +939,9 @@ class BundlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBundleSingleAsync($uuid)
+    public function getMaterialBundleSingleAsync($uuid)
     {
-        return $this->getBundleSingleAsyncWithHttpInfo($uuid)
+        return $this->getMaterialBundleSingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -950,7 +950,7 @@ class BundlesApi
     }
 
     /**
-     * Operation getBundleSingleAsyncWithHttpInfo
+     * Operation getMaterialBundleSingleAsyncWithHttpInfo
      *
      * Retrieve a Bundle
      *
@@ -959,10 +959,10 @@ class BundlesApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBundleSingleAsyncWithHttpInfo($uuid)
+    public function getMaterialBundleSingleAsyncWithHttpInfo($uuid)
     {
-        $returnType = '\OpenAPI\Client\Model\Bundle';
-        $request = $this->getBundleSingleRequest($uuid);
+        $returnType = '\OpenAPI\Client\Model\MaterialBundle';
+        $request = $this->getMaterialBundleSingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1001,20 +1001,20 @@ class BundlesApi
     }
 
     /**
-     * Create request for operation 'getBundleSingle'
+     * Create request for operation 'getMaterialBundleSingle'
      *
      * @param  string $uuid UUID of the Bundle (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getBundleSingleRequest($uuid)
+    public function getMaterialBundleSingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling getBundleSingle'
+                'Missing the required parameter $uuid when calling getMaterialBundleSingle'
             );
         }
 
@@ -1104,36 +1104,36 @@ class BundlesApi
     }
 
     /**
-     * Operation postBundleCreate
+     * Operation postMaterialBundleCreate
      *
      * Create a new Bundle
      *
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle record to create (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postBundleCreate($bundle)
+    public function postMaterialBundleCreate($bundle)
     {
-        list($response) = $this->postBundleCreateWithHttpInfo($bundle);
+        list($response) = $this->postMaterialBundleCreateWithHttpInfo($bundle);
         return $response;
     }
 
     /**
-     * Operation postBundleCreateWithHttpInfo
+     * Operation postMaterialBundleCreateWithHttpInfo
      *
      * Create a new Bundle
      *
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle record to create (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postBundleCreateWithHttpInfo($bundle)
+    public function postMaterialBundleCreateWithHttpInfo($bundle)
     {
-        $request = $this->postBundleCreateRequest($bundle);
+        $request = $this->postMaterialBundleCreateRequest($bundle);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1266,18 +1266,18 @@ class BundlesApi
     }
 
     /**
-     * Operation postBundleCreateAsync
+     * Operation postMaterialBundleCreateAsync
      *
      * Create a new Bundle
      *
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle record to create (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postBundleCreateAsync($bundle)
+    public function postMaterialBundleCreateAsync($bundle)
     {
-        return $this->postBundleCreateAsyncWithHttpInfo($bundle)
+        return $this->postMaterialBundleCreateAsyncWithHttpInfo($bundle)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1286,19 +1286,19 @@ class BundlesApi
     }
 
     /**
-     * Operation postBundleCreateAsyncWithHttpInfo
+     * Operation postMaterialBundleCreateAsyncWithHttpInfo
      *
      * Create a new Bundle
      *
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle record to create (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postBundleCreateAsyncWithHttpInfo($bundle)
+    public function postMaterialBundleCreateAsyncWithHttpInfo($bundle)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postBundleCreateRequest($bundle);
+        $request = $this->postMaterialBundleCreateRequest($bundle);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1337,20 +1337,20 @@ class BundlesApi
     }
 
     /**
-     * Create request for operation 'postBundleCreate'
+     * Create request for operation 'postMaterialBundleCreate'
      *
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle record to create (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postBundleCreateRequest($bundle)
+    public function postMaterialBundleCreateRequest($bundle)
     {
 
         // verify the required parameter 'bundle' is set
         if ($bundle === null || (is_array($bundle) && count($bundle) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $bundle when calling postBundleCreate'
+                'Missing the required parameter $bundle when calling postMaterialBundleCreate'
             );
         }
 
@@ -1438,38 +1438,38 @@ class BundlesApi
     }
 
     /**
-     * Operation postBundleSingle
+     * Operation postMaterialBundleSingle
      *
      * Update a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle fields to update (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postBundleSingle($uuid, $bundle)
+    public function postMaterialBundleSingle($uuid, $bundle)
     {
-        list($response) = $this->postBundleSingleWithHttpInfo($uuid, $bundle);
+        list($response) = $this->postMaterialBundleSingleWithHttpInfo($uuid, $bundle);
         return $response;
     }
 
     /**
-     * Operation postBundleSingleWithHttpInfo
+     * Operation postMaterialBundleSingleWithHttpInfo
      *
      * Update a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle fields to update (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postBundleSingleWithHttpInfo($uuid, $bundle)
+    public function postMaterialBundleSingleWithHttpInfo($uuid, $bundle)
     {
-        $request = $this->postBundleSingleRequest($uuid, $bundle);
+        $request = $this->postMaterialBundleSingleRequest($uuid, $bundle);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1602,19 +1602,19 @@ class BundlesApi
     }
 
     /**
-     * Operation postBundleSingleAsync
+     * Operation postMaterialBundleSingleAsync
      *
      * Update a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle fields to update (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postBundleSingleAsync($uuid, $bundle)
+    public function postMaterialBundleSingleAsync($uuid, $bundle)
     {
-        return $this->postBundleSingleAsyncWithHttpInfo($uuid, $bundle)
+        return $this->postMaterialBundleSingleAsyncWithHttpInfo($uuid, $bundle)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1623,20 +1623,20 @@ class BundlesApi
     }
 
     /**
-     * Operation postBundleSingleAsyncWithHttpInfo
+     * Operation postMaterialBundleSingleAsyncWithHttpInfo
      *
      * Update a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle fields to update (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postBundleSingleAsyncWithHttpInfo($uuid, $bundle)
+    public function postMaterialBundleSingleAsyncWithHttpInfo($uuid, $bundle)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postBundleSingleRequest($uuid, $bundle);
+        $request = $this->postMaterialBundleSingleRequest($uuid, $bundle);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1675,28 +1675,28 @@ class BundlesApi
     }
 
     /**
-     * Create request for operation 'postBundleSingle'
+     * Create request for operation 'postMaterialBundleSingle'
      *
      * @param  string $uuid UUID of the Bundle (required)
-     * @param  \OpenAPI\Client\Model\Bundle $bundle Bundle fields to update (required)
+     * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postBundleSingleRequest($uuid, $bundle)
+    public function postMaterialBundleSingleRequest($uuid, $bundle)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling postBundleSingle'
+                'Missing the required parameter $uuid when calling postMaterialBundleSingle'
             );
         }
 
         // verify the required parameter 'bundle' is set
         if ($bundle === null || (is_array($bundle) && count($bundle) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $bundle when calling postBundleSingle'
+                'Missing the required parameter $bundle when calling postMaterialBundleSingle'
             );
         }
 

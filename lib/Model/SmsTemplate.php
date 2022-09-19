@@ -1,6 +1,6 @@
 <?php
 /**
- * AssetTypeField
+ * SmsTemplate
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AssetTypeField Class Doc Comment
+ * SmsTemplate Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
+class SmsTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AssetTypeField';
+    protected static $openAPIModelName = 'SmsTemplate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,10 +60,8 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'string',
         'active' => 'float',
         'editDate' => 'string',
-        'assetTypeUuid' => 'string',
         'name' => 'string',
-        'fieldData' => 'string',
-        'sortOrder' => 'string'
+        'message' => 'string'
     ];
 
     /**
@@ -77,10 +75,8 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => null,
         'editDate' => null,
-        'assetTypeUuid' => 'uuid',
         'name' => null,
-        'fieldData' => null,
-        'sortOrder' => null
+        'message' => null
     ];
 
     /**
@@ -92,10 +88,8 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => false,
 		'active' => false,
 		'editDate' => false,
-		'assetTypeUuid' => false,
 		'name' => false,
-		'fieldData' => false,
-		'sortOrder' => false
+		'message' => false
     ];
 
     /**
@@ -177,10 +171,8 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => 'active',
         'editDate' => 'edit_date',
-        'assetTypeUuid' => 'asset_type_uuid',
         'name' => 'name',
-        'fieldData' => 'field_data',
-        'sortOrder' => 'sort_order'
+        'message' => 'message'
     ];
 
     /**
@@ -192,10 +184,8 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'setUuid',
         'active' => 'setActive',
         'editDate' => 'setEditDate',
-        'assetTypeUuid' => 'setAssetTypeUuid',
         'name' => 'setName',
-        'fieldData' => 'setFieldData',
-        'sortOrder' => 'setSortOrder'
+        'message' => 'setMessage'
     ];
 
     /**
@@ -207,10 +197,8 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'getUuid',
         'active' => 'getActive',
         'editDate' => 'getEditDate',
-        'assetTypeUuid' => 'getAssetTypeUuid',
         'name' => 'getName',
-        'fieldData' => 'getFieldData',
-        'sortOrder' => 'getSortOrder'
+        'message' => 'getMessage'
     ];
 
     /**
@@ -273,10 +261,8 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('uuid', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('editDate', $data ?? [], null);
-        $this->setIfExists('assetTypeUuid', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('fieldData', $data ?? [], null);
-        $this->setIfExists('sortOrder', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
     }
 
     /**
@@ -305,6 +291,17 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
+
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        if ((mb_strlen($this->container['name']) > 50)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 50.";
+        }
+
+        if (!is_null($this->container['message']) && (mb_strlen($this->container['message']) > 612)) {
+            $invalidProperties[] = "invalid value for 'message', the character length must be smaller than or equal to 612.";
+        }
 
         return $invalidProperties;
     }
@@ -409,38 +406,9 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets assetTypeUuid
-     *
-     * @return string|null
-     */
-    public function getAssetTypeUuid()
-    {
-        return $this->container['assetTypeUuid'];
-    }
-
-    /**
-     * Sets assetTypeUuid
-     *
-     * @param string|null $assetTypeUuid assetTypeUuid
-     *
-     * @return self
-     */
-    public function setAssetTypeUuid($assetTypeUuid)
-    {
-
-        if (is_null($assetTypeUuid)) {
-            throw new \InvalidArgumentException('non-nullable assetTypeUuid cannot be null');
-        }
-
-        $this->container['assetTypeUuid'] = $assetTypeUuid;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
-     * @return string|null
+     * @return string
      */
     public function getName()
     {
@@ -450,12 +418,16 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets name
      *
-     * @param string|null $name name
+     * @param string $name name
      *
      * @return self
      */
     public function setName($name)
     {
+        if ((mb_strlen($name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling SmsTemplate., must be smaller than or equal to 50.');
+        }
+
 
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
@@ -467,59 +439,34 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets fieldData
+     * Gets message
      *
      * @return string|null
      */
-    public function getFieldData()
+    public function getMessage()
     {
-        return $this->container['fieldData'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets fieldData
+     * Sets message
      *
-     * @param string|null $fieldData fieldData
+     * @param string|null $message message
      *
      * @return self
      */
-    public function setFieldData($fieldData)
+    public function setMessage($message)
     {
-
-        if (is_null($fieldData)) {
-            throw new \InvalidArgumentException('non-nullable fieldData cannot be null');
+        if (!is_null($message) && (mb_strlen($message) > 612)) {
+            throw new \InvalidArgumentException('invalid length for $message when calling SmsTemplate., must be smaller than or equal to 612.');
         }
 
-        $this->container['fieldData'] = $fieldData;
 
-        return $this;
-    }
-
-    /**
-     * Gets sortOrder
-     *
-     * @return string|null
-     */
-    public function getSortOrder()
-    {
-        return $this->container['sortOrder'];
-    }
-
-    /**
-     * Sets sortOrder
-     *
-     * @param string|null $sortOrder sortOrder
-     *
-     * @return self
-     */
-    public function setSortOrder($sortOrder)
-    {
-
-        if (is_null($sortOrder)) {
-            throw new \InvalidArgumentException('non-nullable sortOrder cannot be null');
+        if (is_null($message)) {
+            throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
 
-        $this->container['sortOrder'] = $sortOrder;
+        $this->container['message'] = $message;
 
         return $this;
     }

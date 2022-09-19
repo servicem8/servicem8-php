@@ -72,60 +72,60 @@ class SMSTemplatesApiTest extends TestCase
     }
 
     /**
-     * Test case for deleteSMSTemplateSingle
+     * Test case for deleteSmsTemplateSingle
      *
      * Delete a SMS Template.
      *
      */
-    public function testDeleteSMSTemplateSingle()
+    public function testDeleteSmsTemplateSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSMSTemplateAll
+     * Test case for getSmsTemplateAll
      *
      * List all SMS Templates.
      *
      */
-    public function testGetSMSTemplateAll()
+    public function testGetSmsTemplateAll()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getSMSTemplateSingle
+     * Test case for getSmsTemplateSingle
      *
      * Retrieve a SMS Template.
      *
      */
-    public function testGetSMSTemplateSingle()
+    public function testGetSmsTemplateSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for postSMSTemplateCreate
+     * Test case for postSmsTemplateCreate
      *
      * Create a new SMS Template.
      *
      */
-    public function testPostSMSTemplateCreate()
+    public function testPostSmsTemplateCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for postSMSTemplateSingle
+     * Test case for postSmsTemplateSingle
      *
      * Update a SMS Template.
      *
      */
-    public function testPostSMSTemplateSingle()
+    public function testPostSmsTemplateSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

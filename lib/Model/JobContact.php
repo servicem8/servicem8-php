@@ -49,7 +49,7 @@ class JobContact implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Job Contact';
+    protected static $openAPIModelName = 'JobContact';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

@@ -72,60 +72,60 @@ class BundlesApiTest extends TestCase
     }
 
     /**
-     * Test case for deleteBundleSingle
+     * Test case for deleteMaterialBundleSingle
      *
      * Delete a Bundle.
      *
      */
-    public function testDeleteBundleSingle()
+    public function testDeleteMaterialBundleSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getBundleAll
+     * Test case for getMaterialBundleAll
      *
      * List all Bundles.
      *
      */
-    public function testGetBundleAll()
+    public function testGetMaterialBundleAll()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for getBundleSingle
+     * Test case for getMaterialBundleSingle
      *
      * Retrieve a Bundle.
      *
      */
-    public function testGetBundleSingle()
+    public function testGetMaterialBundleSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for postBundleCreate
+     * Test case for postMaterialBundleCreate
      *
      * Create a new Bundle.
      *
      */
-    public function testPostBundleCreate()
+    public function testPostMaterialBundleCreate()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');
     }
 
     /**
-     * Test case for postBundleSingle
+     * Test case for postMaterialBundleSingle
      *
      * Update a Bundle.
      *
      */
-    public function testPostBundleSingle()
+    public function testPostMaterialBundleSingle()
     {
         // TODO: implement
         $this->markTestIncomplete('Not implemented');

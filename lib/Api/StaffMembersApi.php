@@ -116,7 +116,7 @@ class StaffMembersApi
     }
 
     /**
-     * Operation deleteStaffMemberSingle
+     * Operation deleteStaffSingle
      *
      * Delete a Staff Member
      *
@@ -126,14 +126,14 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteStaffMemberSingle($uuid)
+    public function deleteStaffSingle($uuid)
     {
-        list($response) = $this->deleteStaffMemberSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteStaffSingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation deleteStaffMemberSingleWithHttpInfo
+     * Operation deleteStaffSingleWithHttpInfo
      *
      * Delete a Staff Member
      *
@@ -143,9 +143,9 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteStaffMemberSingleWithHttpInfo($uuid)
+    public function deleteStaffSingleWithHttpInfo($uuid)
     {
-        $request = $this->deleteStaffMemberSingleRequest($uuid);
+        $request = $this->deleteStaffSingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -278,7 +278,7 @@ class StaffMembersApi
     }
 
     /**
-     * Operation deleteStaffMemberSingleAsync
+     * Operation deleteStaffSingleAsync
      *
      * Delete a Staff Member
      *
@@ -287,9 +287,9 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteStaffMemberSingleAsync($uuid)
+    public function deleteStaffSingleAsync($uuid)
     {
-        return $this->deleteStaffMemberSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteStaffSingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -298,7 +298,7 @@ class StaffMembersApi
     }
 
     /**
-     * Operation deleteStaffMemberSingleAsyncWithHttpInfo
+     * Operation deleteStaffSingleAsyncWithHttpInfo
      *
      * Delete a Staff Member
      *
@@ -307,10 +307,10 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteStaffMemberSingleAsyncWithHttpInfo($uuid)
+    public function deleteStaffSingleAsyncWithHttpInfo($uuid)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteStaffMemberSingleRequest($uuid);
+        $request = $this->deleteStaffSingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -349,20 +349,20 @@ class StaffMembersApi
     }
 
     /**
-     * Create request for operation 'deleteStaffMemberSingle'
+     * Create request for operation 'deleteStaffSingle'
      *
      * @param  string $uuid UUID of the Staff Member (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteStaffMemberSingleRequest($uuid)
+    public function deleteStaffSingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling deleteStaffMemberSingle'
+                'Missing the required parameter $uuid when calling deleteStaffSingle'
             );
         }
 
@@ -452,34 +452,34 @@ class StaffMembersApi
     }
 
     /**
-     * Operation getStaffMemberAll
+     * Operation getStaffAll
      *
      * List all Staff Members
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\StaffMember[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\Staff[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getStaffMemberAll()
+    public function getStaffAll()
     {
-        list($response) = $this->getStaffMemberAllWithHttpInfo();
+        list($response) = $this->getStaffAllWithHttpInfo();
         return $response;
     }
 
     /**
-     * Operation getStaffMemberAllWithHttpInfo
+     * Operation getStaffAllWithHttpInfo
      *
      * List all Staff Members
      *
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\StaffMember[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Staff[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getStaffMemberAllWithHttpInfo()
+    public function getStaffAllWithHttpInfo()
     {
-        $request = $this->getStaffMemberAllRequest();
+        $request = $this->getStaffAllRequest();
 
         try {
             $options = $this->createHttpClientOption();
@@ -518,17 +518,17 @@ class StaffMembersApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\StaffMember[]' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Staff[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\StaffMember[]' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Staff[]' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\StaffMember[]', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Staff[]', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -564,7 +564,7 @@ class StaffMembersApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\StaffMember[]';
+            $returnType = '\OpenAPI\Client\Model\Staff[]';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -585,7 +585,7 @@ class StaffMembersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\StaffMember[]',
+                        '\OpenAPI\Client\Model\Staff[]',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -612,7 +612,7 @@ class StaffMembersApi
     }
 
     /**
-     * Operation getStaffMemberAllAsync
+     * Operation getStaffAllAsync
      *
      * List all Staff Members
      *
@@ -620,9 +620,9 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffMemberAllAsync()
+    public function getStaffAllAsync()
     {
-        return $this->getStaffMemberAllAsyncWithHttpInfo()
+        return $this->getStaffAllAsyncWithHttpInfo()
             ->then(
                 function ($response) {
                     return $response[0];
@@ -631,7 +631,7 @@ class StaffMembersApi
     }
 
     /**
-     * Operation getStaffMemberAllAsyncWithHttpInfo
+     * Operation getStaffAllAsyncWithHttpInfo
      *
      * List all Staff Members
      *
@@ -639,10 +639,10 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffMemberAllAsyncWithHttpInfo()
+    public function getStaffAllAsyncWithHttpInfo()
     {
-        $returnType = '\OpenAPI\Client\Model\StaffMember[]';
-        $request = $this->getStaffMemberAllRequest();
+        $returnType = '\OpenAPI\Client\Model\Staff[]';
+        $request = $this->getStaffAllRequest();
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -681,13 +681,13 @@ class StaffMembersApi
     }
 
     /**
-     * Create request for operation 'getStaffMemberAll'
+     * Create request for operation 'getStaffAll'
      *
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStaffMemberAllRequest()
+    public function getStaffAllRequest()
     {
 
         $resourcePath = '/staff.json';
@@ -768,7 +768,7 @@ class StaffMembersApi
     }
 
     /**
-     * Operation getStaffMemberSingle
+     * Operation getStaffSingle
      *
      * Retrieve a Staff Member
      *
@@ -776,16 +776,16 @@ class StaffMembersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\StaffMember|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
+     * @return \OpenAPI\Client\Model\Staff|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getStaffMemberSingle($uuid)
+    public function getStaffSingle($uuid)
     {
-        list($response) = $this->getStaffMemberSingleWithHttpInfo($uuid);
+        list($response) = $this->getStaffSingleWithHttpInfo($uuid);
         return $response;
     }
 
     /**
-     * Operation getStaffMemberSingleWithHttpInfo
+     * Operation getStaffSingleWithHttpInfo
      *
      * Retrieve a Staff Member
      *
@@ -793,11 +793,11 @@ class StaffMembersApi
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\StaffMember|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \OpenAPI\Client\Model\Staff|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getStaffMemberSingleWithHttpInfo($uuid)
+    public function getStaffSingleWithHttpInfo($uuid)
     {
-        $request = $this->getStaffMemberSingleRequest($uuid);
+        $request = $this->getStaffSingleRequest($uuid);
 
         try {
             $options = $this->createHttpClientOption();
@@ -836,17 +836,17 @@ class StaffMembersApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\StaffMember' === '\SplFileObject') {
+                    if ('\OpenAPI\Client\Model\Staff' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\OpenAPI\Client\Model\StaffMember' !== 'string') {
+                        if ('\OpenAPI\Client\Model\Staff' !== 'string') {
                             $content = json_decode($content);
                         }
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\StaffMember', []),
+                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\Staff', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
@@ -882,7 +882,7 @@ class StaffMembersApi
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\StaffMember';
+            $returnType = '\OpenAPI\Client\Model\Staff';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -903,7 +903,7 @@ class StaffMembersApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\StaffMember',
+                        '\OpenAPI\Client\Model\Staff',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -930,7 +930,7 @@ class StaffMembersApi
     }
 
     /**
-     * Operation getStaffMemberSingleAsync
+     * Operation getStaffSingleAsync
      *
      * Retrieve a Staff Member
      *
@@ -939,9 +939,9 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffMemberSingleAsync($uuid)
+    public function getStaffSingleAsync($uuid)
     {
-        return $this->getStaffMemberSingleAsyncWithHttpInfo($uuid)
+        return $this->getStaffSingleAsyncWithHttpInfo($uuid)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -950,7 +950,7 @@ class StaffMembersApi
     }
 
     /**
-     * Operation getStaffMemberSingleAsyncWithHttpInfo
+     * Operation getStaffSingleAsyncWithHttpInfo
      *
      * Retrieve a Staff Member
      *
@@ -959,10 +959,10 @@ class StaffMembersApi
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffMemberSingleAsyncWithHttpInfo($uuid)
+    public function getStaffSingleAsyncWithHttpInfo($uuid)
     {
-        $returnType = '\OpenAPI\Client\Model\StaffMember';
-        $request = $this->getStaffMemberSingleRequest($uuid);
+        $returnType = '\OpenAPI\Client\Model\Staff';
+        $request = $this->getStaffSingleRequest($uuid);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1001,20 +1001,20 @@ class StaffMembersApi
     }
 
     /**
-     * Create request for operation 'getStaffMemberSingle'
+     * Create request for operation 'getStaffSingle'
      *
      * @param  string $uuid UUID of the Staff Member (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStaffMemberSingleRequest($uuid)
+    public function getStaffSingleRequest($uuid)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling getStaffMemberSingle'
+                'Missing the required parameter $uuid when calling getStaffSingle'
             );
         }
 
@@ -1104,36 +1104,36 @@ class StaffMembersApi
     }
 
     /**
-     * Operation postStaffMemberCreate
+     * Operation postStaffCreate
      *
      * Create a new Staff Member
      *
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member record to create (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postStaffMemberCreate($staffMember)
+    public function postStaffCreate($staffMember)
     {
-        list($response) = $this->postStaffMemberCreateWithHttpInfo($staffMember);
+        list($response) = $this->postStaffCreateWithHttpInfo($staffMember);
         return $response;
     }
 
     /**
-     * Operation postStaffMemberCreateWithHttpInfo
+     * Operation postStaffCreateWithHttpInfo
      *
      * Create a new Staff Member
      *
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member record to create (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member record to create (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postStaffMemberCreateWithHttpInfo($staffMember)
+    public function postStaffCreateWithHttpInfo($staffMember)
     {
-        $request = $this->postStaffMemberCreateRequest($staffMember);
+        $request = $this->postStaffCreateRequest($staffMember);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1266,18 +1266,18 @@ class StaffMembersApi
     }
 
     /**
-     * Operation postStaffMemberCreateAsync
+     * Operation postStaffCreateAsync
      *
      * Create a new Staff Member
      *
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member record to create (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postStaffMemberCreateAsync($staffMember)
+    public function postStaffCreateAsync($staffMember)
     {
-        return $this->postStaffMemberCreateAsyncWithHttpInfo($staffMember)
+        return $this->postStaffCreateAsyncWithHttpInfo($staffMember)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1286,19 +1286,19 @@ class StaffMembersApi
     }
 
     /**
-     * Operation postStaffMemberCreateAsyncWithHttpInfo
+     * Operation postStaffCreateAsyncWithHttpInfo
      *
      * Create a new Staff Member
      *
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member record to create (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postStaffMemberCreateAsyncWithHttpInfo($staffMember)
+    public function postStaffCreateAsyncWithHttpInfo($staffMember)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postStaffMemberCreateRequest($staffMember);
+        $request = $this->postStaffCreateRequest($staffMember);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1337,20 +1337,20 @@ class StaffMembersApi
     }
 
     /**
-     * Create request for operation 'postStaffMemberCreate'
+     * Create request for operation 'postStaffCreate'
      *
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member record to create (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member record to create (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postStaffMemberCreateRequest($staffMember)
+    public function postStaffCreateRequest($staffMember)
     {
 
         // verify the required parameter 'staffMember' is set
         if ($staffMember === null || (is_array($staffMember) && count($staffMember) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $staffMember when calling postStaffMemberCreate'
+                'Missing the required parameter $staffMember when calling postStaffCreate'
             );
         }
 
@@ -1438,38 +1438,38 @@ class StaffMembersApi
     }
 
     /**
-     * Operation postStaffMemberSingle
+     * Operation postStaffSingle
      *
      * Update a Staff Member
      *
      * @param  string $uuid UUID of the Staff Member (required)
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member fields to update (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postStaffMemberSingle($uuid, $staffMember)
+    public function postStaffSingle($uuid, $staffMember)
     {
-        list($response) = $this->postStaffMemberSingleWithHttpInfo($uuid, $staffMember);
+        list($response) = $this->postStaffSingleWithHttpInfo($uuid, $staffMember);
         return $response;
     }
 
     /**
-     * Operation postStaffMemberSingleWithHttpInfo
+     * Operation postStaffSingleWithHttpInfo
      *
      * Update a Staff Member
      *
      * @param  string $uuid UUID of the Staff Member (required)
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member fields to update (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member fields to update (required)
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postStaffMemberSingleWithHttpInfo($uuid, $staffMember)
+    public function postStaffSingleWithHttpInfo($uuid, $staffMember)
     {
-        $request = $this->postStaffMemberSingleRequest($uuid, $staffMember);
+        $request = $this->postStaffSingleRequest($uuid, $staffMember);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1602,19 +1602,19 @@ class StaffMembersApi
     }
 
     /**
-     * Operation postStaffMemberSingleAsync
+     * Operation postStaffSingleAsync
      *
      * Update a Staff Member
      *
      * @param  string $uuid UUID of the Staff Member (required)
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member fields to update (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postStaffMemberSingleAsync($uuid, $staffMember)
+    public function postStaffSingleAsync($uuid, $staffMember)
     {
-        return $this->postStaffMemberSingleAsyncWithHttpInfo($uuid, $staffMember)
+        return $this->postStaffSingleAsyncWithHttpInfo($uuid, $staffMember)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1623,20 +1623,20 @@ class StaffMembersApi
     }
 
     /**
-     * Operation postStaffMemberSingleAsyncWithHttpInfo
+     * Operation postStaffSingleAsyncWithHttpInfo
      *
      * Update a Staff Member
      *
      * @param  string $uuid UUID of the Staff Member (required)
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member fields to update (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postStaffMemberSingleAsyncWithHttpInfo($uuid, $staffMember)
+    public function postStaffSingleAsyncWithHttpInfo($uuid, $staffMember)
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postStaffMemberSingleRequest($uuid, $staffMember);
+        $request = $this->postStaffSingleRequest($uuid, $staffMember);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1675,28 +1675,28 @@ class StaffMembersApi
     }
 
     /**
-     * Create request for operation 'postStaffMemberSingle'
+     * Create request for operation 'postStaffSingle'
      *
      * @param  string $uuid UUID of the Staff Member (required)
-     * @param  \OpenAPI\Client\Model\StaffMember $staffMember Staff Member fields to update (required)
+     * @param  \OpenAPI\Client\Model\Staff $staffMember Staff Member fields to update (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postStaffMemberSingleRequest($uuid, $staffMember)
+    public function postStaffSingleRequest($uuid, $staffMember)
     {
 
         // verify the required parameter 'uuid' is set
         if ($uuid === null || (is_array($uuid) && count($uuid) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $uuid when calling postStaffMemberSingle'
+                'Missing the required parameter $uuid when calling postStaffSingle'
             );
         }
 
         // verify the required parameter 'staffMember' is set
         if ($staffMember === null || (is_array($staffMember) && count($staffMember) === 0)) {
             throw new \InvalidArgumentException(
-                'Missing the required parameter $staffMember when calling postStaffMemberSingle'
+                'Missing the required parameter $staffMember when calling postStaffSingle'
             );
         }
 

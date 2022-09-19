@@ -49,7 +49,7 @@ class TaxRate implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Tax Rate';
+    protected static $openAPIModelName = 'TaxRate';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

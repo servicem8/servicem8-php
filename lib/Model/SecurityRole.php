@@ -49,7 +49,7 @@ class SecurityRole implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Security Role';
+    protected static $openAPIModelName = 'SecurityRole';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

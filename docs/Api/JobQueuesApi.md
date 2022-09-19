@@ -4,17 +4,17 @@ All URIs are relative to https://api.servicem8.com/api_1.0, except if the operat
 
 | Method | HTTP request | Description |
 | ------------- | ------------- | ------------- |
-| [**deleteJobQueueSingle()**](JobQueuesApi.md#deleteJobQueueSingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue |
-| [**getJobQueueAll()**](JobQueuesApi.md#getJobQueueAll) | **GET** /queue.json | List all Job Queues |
-| [**getJobQueueSingle()**](JobQueuesApi.md#getJobQueueSingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue |
-| [**postJobQueueCreate()**](JobQueuesApi.md#postJobQueueCreate) | **POST** /queue.json | Create a new Job Queue |
-| [**postJobQueueSingle()**](JobQueuesApi.md#postJobQueueSingle) | **POST** /queue/{uuid}.json | Update a Job Queue |
+| [**deleteQueueSingle()**](JobQueuesApi.md#deleteQueueSingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue |
+| [**getQueueAll()**](JobQueuesApi.md#getQueueAll) | **GET** /queue.json | List all Job Queues |
+| [**getQueueSingle()**](JobQueuesApi.md#getQueueSingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue |
+| [**postQueueCreate()**](JobQueuesApi.md#postQueueCreate) | **POST** /queue.json | Create a new Job Queue |
+| [**postQueueSingle()**](JobQueuesApi.md#postQueueSingle) | **POST** /queue/{uuid}.json | Update a Job Queue |
 
 
-## `deleteJobQueueSingle()`
+## `deleteQueueSingle()`
 
 ```php
-deleteJobQueueSingle($uuid): \OpenAPI\Client\Model\Result
+deleteQueueSingle($uuid): \OpenAPI\Client\Model\Result
 ```
 
 Delete a Job Queue
@@ -46,10 +46,10 @@ $apiInstance = new OpenAPI\Client\Api\JobQueuesApi(
 $uuid = 'uuid_example'; // string | UUID of the Job Queue
 
 try {
-    $result = $apiInstance->deleteJobQueueSingle($uuid);
+    $result = $apiInstance->deleteQueueSingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling JobQueuesApi->deleteJobQueueSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling JobQueuesApi->deleteQueueSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -76,10 +76,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getJobQueueAll()`
+## `getQueueAll()`
 
 ```php
-getJobQueueAll(): \OpenAPI\Client\Model\JobQueue[]
+getQueueAll(): \OpenAPI\Client\Model\Queue[]
 ```
 
 List all Job Queues
@@ -110,10 +110,10 @@ $apiInstance = new OpenAPI\Client\Api\JobQueuesApi(
 );
 
 try {
-    $result = $apiInstance->getJobQueueAll();
+    $result = $apiInstance->getQueueAll();
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling JobQueuesApi->getJobQueueAll: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling JobQueuesApi->getQueueAll: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -123,7 +123,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**\OpenAPI\Client\Model\JobQueue[]**](../Model/JobQueue.md)
+[**\OpenAPI\Client\Model\Queue[]**](../Model/Queue.md)
 
 ### Authorization
 
@@ -138,10 +138,10 @@ This endpoint does not need any parameter.
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `getJobQueueSingle()`
+## `getQueueSingle()`
 
 ```php
-getJobQueueSingle($uuid): \OpenAPI\Client\Model\JobQueue
+getQueueSingle($uuid): \OpenAPI\Client\Model\Queue
 ```
 
 Retrieve a Job Queue
@@ -173,10 +173,10 @@ $apiInstance = new OpenAPI\Client\Api\JobQueuesApi(
 $uuid = 'uuid_example'; // string | UUID of the Job Queue
 
 try {
-    $result = $apiInstance->getJobQueueSingle($uuid);
+    $result = $apiInstance->getQueueSingle($uuid);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling JobQueuesApi->getJobQueueSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling JobQueuesApi->getQueueSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -188,7 +188,7 @@ try {
 
 ### Return type
 
-[**\OpenAPI\Client\Model\JobQueue**](../Model/JobQueue.md)
+[**\OpenAPI\Client\Model\Queue**](../Model/Queue.md)
 
 ### Authorization
 
@@ -203,10 +203,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postJobQueueCreate()`
+## `postQueueCreate()`
 
 ```php
-postJobQueueCreate($jobQueue): \OpenAPI\Client\Model\Result
+postQueueCreate($jobQueue): \OpenAPI\Client\Model\Result
 ```
 
 Create a new Job Queue
@@ -235,13 +235,13 @@ $apiInstance = new OpenAPI\Client\Api\JobQueuesApi(
     new GuzzleHttp\Client(),
     $config
 );
-$jobQueue = new \OpenAPI\Client\Model\JobQueue(); // \OpenAPI\Client\Model\JobQueue | Job Queue record to create
+$jobQueue = new \OpenAPI\Client\Model\Queue(); // \OpenAPI\Client\Model\Queue | Job Queue record to create
 
 try {
-    $result = $apiInstance->postJobQueueCreate($jobQueue);
+    $result = $apiInstance->postQueueCreate($jobQueue);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling JobQueuesApi->postJobQueueCreate: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling JobQueuesApi->postQueueCreate: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -249,7 +249,7 @@ try {
 
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
-| **jobQueue** | [**\OpenAPI\Client\Model\JobQueue**](../Model/JobQueue.md)| Job Queue record to create | |
+| **jobQueue** | [**\OpenAPI\Client\Model\Queue**](../Model/Queue.md)| Job Queue record to create | |
 
 ### Return type
 
@@ -268,10 +268,10 @@ try {
 [[Back to Model list]](../../README.md#models)
 [[Back to README]](../../README.md)
 
-## `postJobQueueSingle()`
+## `postQueueSingle()`
 
 ```php
-postJobQueueSingle($uuid, $jobQueue): \OpenAPI\Client\Model\Result
+postQueueSingle($uuid, $jobQueue): \OpenAPI\Client\Model\Result
 ```
 
 Update a Job Queue
@@ -301,13 +301,13 @@ $apiInstance = new OpenAPI\Client\Api\JobQueuesApi(
     $config
 );
 $uuid = 'uuid_example'; // string | UUID of the Job Queue
-$jobQueue = new \OpenAPI\Client\Model\JobQueue(); // \OpenAPI\Client\Model\JobQueue | Job Queue fields to update
+$jobQueue = new \OpenAPI\Client\Model\Queue(); // \OpenAPI\Client\Model\Queue | Job Queue fields to update
 
 try {
-    $result = $apiInstance->postJobQueueSingle($uuid, $jobQueue);
+    $result = $apiInstance->postQueueSingle($uuid, $jobQueue);
     print_r($result);
 } catch (Exception $e) {
-    echo 'Exception when calling JobQueuesApi->postJobQueueSingle: ', $e->getMessage(), PHP_EOL;
+    echo 'Exception when calling JobQueuesApi->postQueueSingle: ', $e->getMessage(), PHP_EOL;
 }
 ```
 
@@ -316,7 +316,7 @@ try {
 | Name | Type | Description  | Notes |
 | ------------- | ------------- | ------------- | ------------- |
 | **uuid** | **string**| UUID of the Job Queue | |
-| **jobQueue** | [**\OpenAPI\Client\Model\JobQueue**](../Model/JobQueue.md)| Job Queue fields to update | |
+| **jobQueue** | [**\OpenAPI\Client\Model\Queue**](../Model/Queue.md)| Job Queue fields to update | |
 
 ### Return type
 

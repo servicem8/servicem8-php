@@ -49,7 +49,7 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Job Activity';
+    protected static $openAPIModelName = 'JobActivity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

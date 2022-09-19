@@ -49,7 +49,7 @@ class FormField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Form Field';
+    protected static $openAPIModelName = 'FormField';
 
     /**
       * Array of property to type mappings. Used for (de)serialization

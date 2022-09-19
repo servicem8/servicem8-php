@@ -1,6 +1,6 @@
 <?php
 /**
- * AssetTypeField
+ * Queue
  *
  * PHP version 7.4
  *
@@ -32,7 +32,7 @@ use \ArrayAccess;
 use \OpenAPI\Client\ObjectSerializer;
 
 /**
- * AssetTypeField Class Doc Comment
+ * Queue Class Doc Comment
  *
  * @category Class
  * @package  OpenAPI\Client
@@ -40,7 +40,7 @@ use \OpenAPI\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
+class Queue implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -49,7 +49,7 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AssetTypeField';
+    protected static $openAPIModelName = 'Queue';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,10 +60,10 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'string',
         'active' => 'float',
         'editDate' => 'string',
-        'assetTypeUuid' => 'string',
         'name' => 'string',
-        'fieldData' => 'string',
-        'sortOrder' => 'string'
+        'defaultTimeframe' => 'float',
+        'subscribedStaff' => 'string',
+        'requiresAssignment' => 'float'
     ];
 
     /**
@@ -77,10 +77,10 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => null,
         'editDate' => null,
-        'assetTypeUuid' => 'uuid',
         'name' => null,
-        'fieldData' => null,
-        'sortOrder' => null
+        'defaultTimeframe' => null,
+        'subscribedStaff' => null,
+        'requiresAssignment' => null
     ];
 
     /**
@@ -92,10 +92,10 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => false,
 		'active' => false,
 		'editDate' => false,
-		'assetTypeUuid' => false,
 		'name' => false,
-		'fieldData' => false,
-		'sortOrder' => false
+		'defaultTimeframe' => false,
+		'subscribedStaff' => false,
+		'requiresAssignment' => false
     ];
 
     /**
@@ -177,10 +177,10 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'uuid',
         'active' => 'active',
         'editDate' => 'edit_date',
-        'assetTypeUuid' => 'asset_type_uuid',
         'name' => 'name',
-        'fieldData' => 'field_data',
-        'sortOrder' => 'sort_order'
+        'defaultTimeframe' => 'default_timeframe',
+        'subscribedStaff' => 'subscribed_staff',
+        'requiresAssignment' => 'requires_assignment'
     ];
 
     /**
@@ -192,10 +192,10 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'setUuid',
         'active' => 'setActive',
         'editDate' => 'setEditDate',
-        'assetTypeUuid' => 'setAssetTypeUuid',
         'name' => 'setName',
-        'fieldData' => 'setFieldData',
-        'sortOrder' => 'setSortOrder'
+        'defaultTimeframe' => 'setDefaultTimeframe',
+        'subscribedStaff' => 'setSubscribedStaff',
+        'requiresAssignment' => 'setRequiresAssignment'
     ];
 
     /**
@@ -207,10 +207,10 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         'uuid' => 'getUuid',
         'active' => 'getActive',
         'editDate' => 'getEditDate',
-        'assetTypeUuid' => 'getAssetTypeUuid',
         'name' => 'getName',
-        'fieldData' => 'getFieldData',
-        'sortOrder' => 'getSortOrder'
+        'defaultTimeframe' => 'getDefaultTimeframe',
+        'subscribedStaff' => 'getSubscribedStaff',
+        'requiresAssignment' => 'getRequiresAssignment'
     ];
 
     /**
@@ -273,10 +273,10 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('uuid', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('editDate', $data ?? [], null);
-        $this->setIfExists('assetTypeUuid', $data ?? [], null);
         $this->setIfExists('name', $data ?? [], null);
-        $this->setIfExists('fieldData', $data ?? [], null);
-        $this->setIfExists('sortOrder', $data ?? [], null);
+        $this->setIfExists('defaultTimeframe', $data ?? [], null);
+        $this->setIfExists('subscribedStaff', $data ?? [], null);
+        $this->setIfExists('requiresAssignment', $data ?? [], null);
     }
 
     /**
@@ -409,35 +409,6 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets assetTypeUuid
-     *
-     * @return string|null
-     */
-    public function getAssetTypeUuid()
-    {
-        return $this->container['assetTypeUuid'];
-    }
-
-    /**
-     * Sets assetTypeUuid
-     *
-     * @param string|null $assetTypeUuid assetTypeUuid
-     *
-     * @return self
-     */
-    public function setAssetTypeUuid($assetTypeUuid)
-    {
-
-        if (is_null($assetTypeUuid)) {
-            throw new \InvalidArgumentException('non-nullable assetTypeUuid cannot be null');
-        }
-
-        $this->container['assetTypeUuid'] = $assetTypeUuid;
-
-        return $this;
-    }
-
-    /**
      * Gets name
      *
      * @return string|null
@@ -467,59 +438,88 @@ class AssetTypeField implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets fieldData
+     * Gets defaultTimeframe
      *
-     * @return string|null
+     * @return float|null
      */
-    public function getFieldData()
+    public function getDefaultTimeframe()
     {
-        return $this->container['fieldData'];
+        return $this->container['defaultTimeframe'];
     }
 
     /**
-     * Sets fieldData
+     * Sets defaultTimeframe
      *
-     * @param string|null $fieldData fieldData
+     * @param float|null $defaultTimeframe defaultTimeframe
      *
      * @return self
      */
-    public function setFieldData($fieldData)
+    public function setDefaultTimeframe($defaultTimeframe)
     {
 
-        if (is_null($fieldData)) {
-            throw new \InvalidArgumentException('non-nullable fieldData cannot be null');
+        if (is_null($defaultTimeframe)) {
+            throw new \InvalidArgumentException('non-nullable defaultTimeframe cannot be null');
         }
 
-        $this->container['fieldData'] = $fieldData;
+        $this->container['defaultTimeframe'] = $defaultTimeframe;
 
         return $this;
     }
 
     /**
-     * Gets sortOrder
+     * Gets subscribedStaff
      *
      * @return string|null
      */
-    public function getSortOrder()
+    public function getSubscribedStaff()
     {
-        return $this->container['sortOrder'];
+        return $this->container['subscribedStaff'];
     }
 
     /**
-     * Sets sortOrder
+     * Sets subscribedStaff
      *
-     * @param string|null $sortOrder sortOrder
+     * @param string|null $subscribedStaff subscribedStaff
      *
      * @return self
      */
-    public function setSortOrder($sortOrder)
+    public function setSubscribedStaff($subscribedStaff)
     {
 
-        if (is_null($sortOrder)) {
-            throw new \InvalidArgumentException('non-nullable sortOrder cannot be null');
+        if (is_null($subscribedStaff)) {
+            throw new \InvalidArgumentException('non-nullable subscribedStaff cannot be null');
         }
 
-        $this->container['sortOrder'] = $sortOrder;
+        $this->container['subscribedStaff'] = $subscribedStaff;
+
+        return $this;
+    }
+
+    /**
+     * Gets requiresAssignment
+     *
+     * @return float|null
+     */
+    public function getRequiresAssignment()
+    {
+        return $this->container['requiresAssignment'];
+    }
+
+    /**
+     * Sets requiresAssignment
+     *
+     * @param float|null $requiresAssignment Valid values are [0,1]
+     *
+     * @return self
+     */
+    public function setRequiresAssignment($requiresAssignment)
+    {
+
+        if (is_null($requiresAssignment)) {
+            throw new \InvalidArgumentException('non-nullable requiresAssignment cannot be null');
+        }
+
+        $this->container['requiresAssignment'] = $requiresAssignment;
 
         return $this;
     }
