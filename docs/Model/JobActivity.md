@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **endDate** | **string** |  | [optional]
 **activityWasScheduled** | **string** |  | [optional]
 **activityWasRecorded** | **string** |  | [optional]
+**activityWasAutomated** | **string** |  | [optional]
 **hasBeenOpened** | **string** |  | [optional]
 **hasBeenOpenedTimestamp** | **string** |  | [optional]
 **travelTimeInSeconds** | **string** |  | [optional]

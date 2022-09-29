@@ -161,6 +161,15 @@ class JobActivityTest extends TestCase
     }
 
     /**
+     * Test attribute "activityWasAutomated"
+     */
+    public function testPropertyActivityWasAutomated()
+    {
+        // TODO: implement
+        $this->markTestIncomplete('Not implemented');
+    }
+
+    /**
      * Test attribute "hasBeenOpened"
      */
     public function testPropertyHasBeenOpened()

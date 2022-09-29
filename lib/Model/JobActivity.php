@@ -66,6 +66,7 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
         'endDate' => 'string',
         'activityWasScheduled' => 'string',
         'activityWasRecorded' => 'string',
+        'activityWasAutomated' => 'string',
         'hasBeenOpened' => 'string',
         'hasBeenOpenedTimestamp' => 'string',
         'travelTimeInSeconds' => 'string',
@@ -93,6 +94,7 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
         'endDate' => null,
         'activityWasScheduled' => null,
         'activityWasRecorded' => null,
+        'activityWasAutomated' => null,
         'hasBeenOpened' => null,
         'hasBeenOpenedTimestamp' => null,
         'travelTimeInSeconds' => null,
@@ -118,6 +120,7 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
 		'endDate' => false,
 		'activityWasScheduled' => false,
 		'activityWasRecorded' => false,
+		'activityWasAutomated' => false,
 		'hasBeenOpened' => false,
 		'hasBeenOpenedTimestamp' => false,
 		'travelTimeInSeconds' => false,
@@ -223,6 +226,7 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
         'endDate' => 'end_date',
         'activityWasScheduled' => 'activity_was_scheduled',
         'activityWasRecorded' => 'activity_was_recorded',
+        'activityWasAutomated' => 'activity_was_automated',
         'hasBeenOpened' => 'has_been_opened',
         'hasBeenOpenedTimestamp' => 'has_been_opened_timestamp',
         'travelTimeInSeconds' => 'travel_time_in_seconds',
@@ -248,6 +252,7 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
         'endDate' => 'setEndDate',
         'activityWasScheduled' => 'setActivityWasScheduled',
         'activityWasRecorded' => 'setActivityWasRecorded',
+        'activityWasAutomated' => 'setActivityWasAutomated',
         'hasBeenOpened' => 'setHasBeenOpened',
         'hasBeenOpenedTimestamp' => 'setHasBeenOpenedTimestamp',
         'travelTimeInSeconds' => 'setTravelTimeInSeconds',
@@ -273,6 +278,7 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
         'endDate' => 'getEndDate',
         'activityWasScheduled' => 'getActivityWasScheduled',
         'activityWasRecorded' => 'getActivityWasRecorded',
+        'activityWasAutomated' => 'getActivityWasAutomated',
         'hasBeenOpened' => 'getHasBeenOpened',
         'hasBeenOpenedTimestamp' => 'getHasBeenOpenedTimestamp',
         'travelTimeInSeconds' => 'getTravelTimeInSeconds',
@@ -349,6 +355,7 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('endDate', $data ?? [], null);
         $this->setIfExists('activityWasScheduled', $data ?? [], null);
         $this->setIfExists('activityWasRecorded', $data ?? [], null);
+        $this->setIfExists('activityWasAutomated', $data ?? [], null);
         $this->setIfExists('hasBeenOpened', $data ?? [], null);
         $this->setIfExists('hasBeenOpenedTimestamp', $data ?? [], null);
         $this->setIfExists('travelTimeInSeconds', $data ?? [], null);
@@ -658,6 +665,35 @@ class JobActivity implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['activityWasRecorded'] = $activityWasRecorded;
+
+        return $this;
+    }
+
+    /**
+     * Gets activityWasAutomated
+     *
+     * @return string|null
+     */
+    public function getActivityWasAutomated()
+    {
+        return $this->container['activityWasAutomated'];
+    }
+
+    /**
+     * Sets activityWasAutomated
+     *
+     * @param string|null $activityWasAutomated activityWasAutomated
+     *
+     * @return self
+     */
+    public function setActivityWasAutomated($activityWasAutomated)
+    {
+
+        if (is_null($activityWasAutomated)) {
+            throw new \InvalidArgumentException('non-nullable activityWasAutomated cannot be null');
+        }
+
+        $this->container['activityWasAutomated'] = $activityWasAutomated;
 
         return $this;
     }
