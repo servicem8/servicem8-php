@@ -183,7 +183,6 @@ class TasksApi
             }
 
             switch($statusCode) {
-            
                 case 200:
                     if ('\OpenAPI\Client\Model\Result' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -199,8 +198,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 case 400:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -216,8 +213,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 default:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -233,7 +228,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
             }
 
             $returnType = '\OpenAPI\Client\Model\Result';
@@ -254,7 +248,6 @@ class TasksApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-            
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -263,8 +256,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -273,8 +264,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -283,7 +272,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
             }
             throw $e;
         }
@@ -529,7 +517,6 @@ class TasksApi
             }
 
             switch($statusCode) {
-            
                 case 200:
                     if ('\OpenAPI\Client\Model\Task[]' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -545,8 +532,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 case 400:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -562,8 +547,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 default:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -579,7 +562,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
             }
 
             $returnType = '\OpenAPI\Client\Model\Task[]';
@@ -600,7 +582,6 @@ class TasksApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-            
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -609,8 +590,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -619,8 +598,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -629,7 +606,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
             }
             throw $e;
         }
@@ -859,7 +835,6 @@ class TasksApi
             }
 
             switch($statusCode) {
-            
                 case 200:
                     if ('\OpenAPI\Client\Model\Task' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -875,8 +850,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 case 400:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -892,8 +865,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 default:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -909,7 +880,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
             }
 
             $returnType = '\OpenAPI\Client\Model\Task';
@@ -930,7 +900,6 @@ class TasksApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-            
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -939,8 +908,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -949,8 +916,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -959,7 +924,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
             }
             throw $e;
         }
@@ -1207,7 +1171,6 @@ class TasksApi
             }
 
             switch($statusCode) {
-            
                 case 200:
                     if ('\OpenAPI\Client\Model\Result' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1223,8 +1186,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 case 400:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1240,8 +1201,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 default:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1257,7 +1216,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
             }
 
             $returnType = '\OpenAPI\Client\Model\Result';
@@ -1278,7 +1236,6 @@ class TasksApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-            
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1287,8 +1244,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1297,8 +1252,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1307,7 +1260,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
             }
             throw $e;
         }
@@ -1555,7 +1507,6 @@ class TasksApi
             }
 
             switch($statusCode) {
-            
                 case 200:
                     if ('\OpenAPI\Client\Model\Result' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1571,8 +1522,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 case 400:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1588,8 +1537,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
-            
                 default:
                     if ('\OpenAPI\Client\Model\Error' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
@@ -1605,7 +1552,6 @@ class TasksApi
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
-            
             }
 
             $returnType = '\OpenAPI\Client\Model\Result';
@@ -1626,7 +1572,6 @@ class TasksApi
 
         } catch (ApiException $e) {
             switch ($e->getCode()) {
-            
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1635,8 +1580,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1645,8 +1588,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
-            
                 default:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
@@ -1655,7 +1596,6 @@ class TasksApi
                     );
                     $e->setResponseObject($data);
                     break;
-            
             }
             throw $e;
         }
