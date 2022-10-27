@@ -69,7 +69,26 @@ class NotesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteNoteSingle' => [
+            'application/json',
+        ],
+        'getNoteAll' => [
+            'application/json',
+        ],
+        'getNoteSingle' => [
+            'application/json',
+        ],
+        'postNoteCreate' => [
+            'application/json',
+        ],
+        'postNoteSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class NotesApi
      * Delete a Note
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteNoteSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteNoteSingle($uuid)
+    public function deleteNoteSingle($uuid, string $contentType = self::contentTypes['deleteNoteSingle'][0])
     {
-        list($response) = $this->deleteNoteSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteNoteSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class NotesApi
      * Delete a Note
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteNoteSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteNoteSingleWithHttpInfo($uuid)
+    public function deleteNoteSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteNoteSingle'][0])
     {
-        $request = $this->deleteNoteSingleRequest($uuid);
+        $request = $this->deleteNoteSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class NotesApi
      * Delete a Note
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteNoteSingleAsync($uuid)
+    public function deleteNoteSingleAsync($uuid, string $contentType = self::contentTypes['deleteNoteSingle'][0])
     {
-        return $this->deleteNoteSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteNoteSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class NotesApi
      * Delete a Note
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteNoteSingleAsyncWithHttpInfo($uuid)
+    public function deleteNoteSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteNoteSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteNoteSingleRequest($uuid);
+        $request = $this->deleteNoteSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class NotesApi
      * Create request for operation 'deleteNoteSingle'
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteNoteSingleRequest($uuid)
+    public function deleteNoteSingleRequest($uuid, string $contentType = self::contentTypes['deleteNoteSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class NotesApi
                 'Missing the required parameter $uuid when calling deleteNoteSingle'
             );
         }
+
 
         $resourcePath = '/note/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class NotesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class NotesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class NotesApi
      *
      * List all Notes
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Note[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getNoteAll()
+    public function getNoteAll(string $contentType = self::contentTypes['getNoteAll'][0])
     {
-        list($response) = $this->getNoteAllWithHttpInfo();
+        list($response) = $this->getNoteAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class NotesApi
      *
      * List all Notes
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Note[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getNoteAllWithHttpInfo()
+    public function getNoteAllWithHttpInfo(string $contentType = self::contentTypes['getNoteAll'][0])
     {
-        $request = $this->getNoteAllRequest();
+        $request = $this->getNoteAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class NotesApi
      *
      * List all Notes
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNoteAllAsync()
+    public function getNoteAllAsync(string $contentType = self::contentTypes['getNoteAll'][0])
     {
-        return $this->getNoteAllAsyncWithHttpInfo()
+        return $this->getNoteAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class NotesApi
      *
      * List all Notes
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNoteAllAsyncWithHttpInfo()
+    public function getNoteAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getNoteAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Note[]';
-        $request = $this->getNoteAllRequest();
+        $request = $this->getNoteAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class NotesApi
     /**
      * Create request for operation 'getNoteAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getNoteAllRequest()
+    public function getNoteAllRequest(string $contentType = self::contentTypes['getNoteAll'][0])
     {
+
 
         $resourcePath = '/note.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class NotesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class NotesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class NotesApi
      * Retrieve a Note
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Note|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getNoteSingle($uuid)
+    public function getNoteSingle($uuid, string $contentType = self::contentTypes['getNoteSingle'][0])
     {
-        list($response) = $this->getNoteSingleWithHttpInfo($uuid);
+        list($response) = $this->getNoteSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class NotesApi
      * Retrieve a Note
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Note|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getNoteSingleWithHttpInfo($uuid)
+    public function getNoteSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getNoteSingle'][0])
     {
-        $request = $this->getNoteSingleRequest($uuid);
+        $request = $this->getNoteSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class NotesApi
      * Retrieve a Note
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNoteSingleAsync($uuid)
+    public function getNoteSingleAsync($uuid, string $contentType = self::contentTypes['getNoteSingle'][0])
     {
-        return $this->getNoteSingleAsyncWithHttpInfo($uuid)
+        return $this->getNoteSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class NotesApi
      * Retrieve a Note
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getNoteSingleAsyncWithHttpInfo($uuid)
+    public function getNoteSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getNoteSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Note';
-        $request = $this->getNoteSingleRequest($uuid);
+        $request = $this->getNoteSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class NotesApi
      * Create request for operation 'getNoteSingle'
      *
      * @param  string $uuid UUID of the Note (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getNoteSingleRequest($uuid)
+    public function getNoteSingleRequest($uuid, string $contentType = self::contentTypes['getNoteSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class NotesApi
                 'Missing the required parameter $uuid when calling getNoteSingle'
             );
         }
+
 
         $resourcePath = '/note/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class NotesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class NotesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class NotesApi
      * Create a new Note
      *
      * @param  \OpenAPI\Client\Model\Note $note Note record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postNoteCreate($note)
+    public function postNoteCreate($note, string $contentType = self::contentTypes['postNoteCreate'][0])
     {
-        list($response) = $this->postNoteCreateWithHttpInfo($note);
+        list($response) = $this->postNoteCreateWithHttpInfo($note, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class NotesApi
      * Create a new Note
      *
      * @param  \OpenAPI\Client\Model\Note $note Note record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postNoteCreateWithHttpInfo($note)
+    public function postNoteCreateWithHttpInfo($note, string $contentType = self::contentTypes['postNoteCreate'][0])
     {
-        $request = $this->postNoteCreateRequest($note);
+        $request = $this->postNoteCreateRequest($note, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class NotesApi
      * Create a new Note
      *
      * @param  \OpenAPI\Client\Model\Note $note Note record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postNoteCreateAsync($note)
+    public function postNoteCreateAsync($note, string $contentType = self::contentTypes['postNoteCreate'][0])
     {
-        return $this->postNoteCreateAsyncWithHttpInfo($note)
+        return $this->postNoteCreateAsyncWithHttpInfo($note, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class NotesApi
      * Create a new Note
      *
      * @param  \OpenAPI\Client\Model\Note $note Note record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postNoteCreateAsyncWithHttpInfo($note)
+    public function postNoteCreateAsyncWithHttpInfo($note, string $contentType = self::contentTypes['postNoteCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postNoteCreateRequest($note);
+        $request = $this->postNoteCreateRequest($note, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class NotesApi
      * Create request for operation 'postNoteCreate'
      *
      * @param  \OpenAPI\Client\Model\Note $note Note record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postNoteCreateRequest($note)
+    public function postNoteCreateRequest($note, string $contentType = self::contentTypes['postNoteCreate'][0])
     {
 
         // verify the required parameter 'note' is set
@@ -1353,6 +1380,7 @@ class NotesApi
                 'Missing the required parameter $note when calling postNoteCreate'
             );
         }
+
 
         $resourcePath = '/note.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class NotesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($note)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($note));
             } else {
                 $httpBody = $note;
@@ -1398,9 +1422,9 @@ class NotesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class NotesApi
      *
      * @param  string $uuid UUID of the Note (required)
      * @param  \OpenAPI\Client\Model\Note $note Note fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postNoteSingle($uuid, $note)
+    public function postNoteSingle($uuid, $note, string $contentType = self::contentTypes['postNoteSingle'][0])
     {
-        list($response) = $this->postNoteSingleWithHttpInfo($uuid, $note);
+        list($response) = $this->postNoteSingleWithHttpInfo($uuid, $note, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class NotesApi
      *
      * @param  string $uuid UUID of the Note (required)
      * @param  \OpenAPI\Client\Model\Note $note Note fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postNoteSingleWithHttpInfo($uuid, $note)
+    public function postNoteSingleWithHttpInfo($uuid, $note, string $contentType = self::contentTypes['postNoteSingle'][0])
     {
-        $request = $this->postNoteSingleRequest($uuid, $note);
+        $request = $this->postNoteSingleRequest($uuid, $note, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class NotesApi
      *
      * @param  string $uuid UUID of the Note (required)
      * @param  \OpenAPI\Client\Model\Note $note Note fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postNoteSingleAsync($uuid, $note)
+    public function postNoteSingleAsync($uuid, $note, string $contentType = self::contentTypes['postNoteSingle'][0])
     {
-        return $this->postNoteSingleAsyncWithHttpInfo($uuid, $note)
+        return $this->postNoteSingleAsyncWithHttpInfo($uuid, $note, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class NotesApi
      *
      * @param  string $uuid UUID of the Note (required)
      * @param  \OpenAPI\Client\Model\Note $note Note fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postNoteSingleAsyncWithHttpInfo($uuid, $note)
+    public function postNoteSingleAsyncWithHttpInfo($uuid, $note, string $contentType = self::contentTypes['postNoteSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postNoteSingleRequest($uuid, $note);
+        $request = $this->postNoteSingleRequest($uuid, $note, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class NotesApi
      *
      * @param  string $uuid UUID of the Note (required)
      * @param  \OpenAPI\Client\Model\Note $note Note fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postNoteSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postNoteSingleRequest($uuid, $note)
+    public function postNoteSingleRequest($uuid, $note, string $contentType = self::contentTypes['postNoteSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class NotesApi
                 'Missing the required parameter $note when calling postNoteSingle'
             );
         }
+
 
         $resourcePath = '/note/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class NotesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($note)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($note));
             } else {
                 $httpBody = $note;
@@ -1752,9 +1778,9 @@ class NotesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

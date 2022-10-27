@@ -69,7 +69,26 @@ class LocationsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteLocationSingle' => [
+            'application/json',
+        ],
+        'getLocationAll' => [
+            'application/json',
+        ],
+        'getLocationSingle' => [
+            'application/json',
+        ],
+        'postLocationCreate' => [
+            'application/json',
+        ],
+        'postLocationSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class LocationsApi
      * Delete a Location
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteLocationSingle($uuid)
+    public function deleteLocationSingle($uuid, string $contentType = self::contentTypes['deleteLocationSingle'][0])
     {
-        list($response) = $this->deleteLocationSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteLocationSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class LocationsApi
      * Delete a Location
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteLocationSingleWithHttpInfo($uuid)
+    public function deleteLocationSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteLocationSingle'][0])
     {
-        $request = $this->deleteLocationSingleRequest($uuid);
+        $request = $this->deleteLocationSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class LocationsApi
      * Delete a Location
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteLocationSingleAsync($uuid)
+    public function deleteLocationSingleAsync($uuid, string $contentType = self::contentTypes['deleteLocationSingle'][0])
     {
-        return $this->deleteLocationSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteLocationSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class LocationsApi
      * Delete a Location
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteLocationSingleAsyncWithHttpInfo($uuid)
+    public function deleteLocationSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteLocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteLocationSingleRequest($uuid);
+        $request = $this->deleteLocationSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class LocationsApi
      * Create request for operation 'deleteLocationSingle'
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteLocationSingleRequest($uuid)
+    public function deleteLocationSingleRequest($uuid, string $contentType = self::contentTypes['deleteLocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class LocationsApi
                 'Missing the required parameter $uuid when calling deleteLocationSingle'
             );
         }
+
 
         $resourcePath = '/location/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class LocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class LocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class LocationsApi
      *
      * List all Locations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Location[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getLocationAll()
+    public function getLocationAll(string $contentType = self::contentTypes['getLocationAll'][0])
     {
-        list($response) = $this->getLocationAllWithHttpInfo();
+        list($response) = $this->getLocationAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class LocationsApi
      *
      * List all Locations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Location[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getLocationAllWithHttpInfo()
+    public function getLocationAllWithHttpInfo(string $contentType = self::contentTypes['getLocationAll'][0])
     {
-        $request = $this->getLocationAllRequest();
+        $request = $this->getLocationAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class LocationsApi
      *
      * List all Locations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLocationAllAsync()
+    public function getLocationAllAsync(string $contentType = self::contentTypes['getLocationAll'][0])
     {
-        return $this->getLocationAllAsyncWithHttpInfo()
+        return $this->getLocationAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class LocationsApi
      *
      * List all Locations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLocationAllAsyncWithHttpInfo()
+    public function getLocationAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getLocationAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Location[]';
-        $request = $this->getLocationAllRequest();
+        $request = $this->getLocationAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class LocationsApi
     /**
      * Create request for operation 'getLocationAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLocationAllRequest()
+    public function getLocationAllRequest(string $contentType = self::contentTypes['getLocationAll'][0])
     {
+
 
         $resourcePath = '/location.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class LocationsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class LocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class LocationsApi
      * Retrieve a Location
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Location|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getLocationSingle($uuid)
+    public function getLocationSingle($uuid, string $contentType = self::contentTypes['getLocationSingle'][0])
     {
-        list($response) = $this->getLocationSingleWithHttpInfo($uuid);
+        list($response) = $this->getLocationSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class LocationsApi
      * Retrieve a Location
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Location|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getLocationSingleWithHttpInfo($uuid)
+    public function getLocationSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getLocationSingle'][0])
     {
-        $request = $this->getLocationSingleRequest($uuid);
+        $request = $this->getLocationSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class LocationsApi
      * Retrieve a Location
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLocationSingleAsync($uuid)
+    public function getLocationSingleAsync($uuid, string $contentType = self::contentTypes['getLocationSingle'][0])
     {
-        return $this->getLocationSingleAsyncWithHttpInfo($uuid)
+        return $this->getLocationSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class LocationsApi
      * Retrieve a Location
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getLocationSingleAsyncWithHttpInfo($uuid)
+    public function getLocationSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getLocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Location';
-        $request = $this->getLocationSingleRequest($uuid);
+        $request = $this->getLocationSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class LocationsApi
      * Create request for operation 'getLocationSingle'
      *
      * @param  string $uuid UUID of the Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getLocationSingleRequest($uuid)
+    public function getLocationSingleRequest($uuid, string $contentType = self::contentTypes['getLocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class LocationsApi
                 'Missing the required parameter $uuid when calling getLocationSingle'
             );
         }
+
 
         $resourcePath = '/location/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class LocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class LocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class LocationsApi
      * Create a new Location
      *
      * @param  \OpenAPI\Client\Model\Location $location Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postLocationCreate($location)
+    public function postLocationCreate($location, string $contentType = self::contentTypes['postLocationCreate'][0])
     {
-        list($response) = $this->postLocationCreateWithHttpInfo($location);
+        list($response) = $this->postLocationCreateWithHttpInfo($location, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class LocationsApi
      * Create a new Location
      *
      * @param  \OpenAPI\Client\Model\Location $location Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postLocationCreateWithHttpInfo($location)
+    public function postLocationCreateWithHttpInfo($location, string $contentType = self::contentTypes['postLocationCreate'][0])
     {
-        $request = $this->postLocationCreateRequest($location);
+        $request = $this->postLocationCreateRequest($location, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class LocationsApi
      * Create a new Location
      *
      * @param  \OpenAPI\Client\Model\Location $location Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postLocationCreateAsync($location)
+    public function postLocationCreateAsync($location, string $contentType = self::contentTypes['postLocationCreate'][0])
     {
-        return $this->postLocationCreateAsyncWithHttpInfo($location)
+        return $this->postLocationCreateAsyncWithHttpInfo($location, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class LocationsApi
      * Create a new Location
      *
      * @param  \OpenAPI\Client\Model\Location $location Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postLocationCreateAsyncWithHttpInfo($location)
+    public function postLocationCreateAsyncWithHttpInfo($location, string $contentType = self::contentTypes['postLocationCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postLocationCreateRequest($location);
+        $request = $this->postLocationCreateRequest($location, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class LocationsApi
      * Create request for operation 'postLocationCreate'
      *
      * @param  \OpenAPI\Client\Model\Location $location Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postLocationCreateRequest($location)
+    public function postLocationCreateRequest($location, string $contentType = self::contentTypes['postLocationCreate'][0])
     {
 
         // verify the required parameter 'location' is set
@@ -1353,6 +1380,7 @@ class LocationsApi
                 'Missing the required parameter $location when calling postLocationCreate'
             );
         }
+
 
         $resourcePath = '/location.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class LocationsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($location)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($location));
             } else {
                 $httpBody = $location;
@@ -1398,9 +1422,9 @@ class LocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class LocationsApi
      *
      * @param  string $uuid UUID of the Location (required)
      * @param  \OpenAPI\Client\Model\Location $location Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postLocationSingle($uuid, $location)
+    public function postLocationSingle($uuid, $location, string $contentType = self::contentTypes['postLocationSingle'][0])
     {
-        list($response) = $this->postLocationSingleWithHttpInfo($uuid, $location);
+        list($response) = $this->postLocationSingleWithHttpInfo($uuid, $location, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class LocationsApi
      *
      * @param  string $uuid UUID of the Location (required)
      * @param  \OpenAPI\Client\Model\Location $location Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postLocationSingleWithHttpInfo($uuid, $location)
+    public function postLocationSingleWithHttpInfo($uuid, $location, string $contentType = self::contentTypes['postLocationSingle'][0])
     {
-        $request = $this->postLocationSingleRequest($uuid, $location);
+        $request = $this->postLocationSingleRequest($uuid, $location, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class LocationsApi
      *
      * @param  string $uuid UUID of the Location (required)
      * @param  \OpenAPI\Client\Model\Location $location Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postLocationSingleAsync($uuid, $location)
+    public function postLocationSingleAsync($uuid, $location, string $contentType = self::contentTypes['postLocationSingle'][0])
     {
-        return $this->postLocationSingleAsyncWithHttpInfo($uuid, $location)
+        return $this->postLocationSingleAsyncWithHttpInfo($uuid, $location, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class LocationsApi
      *
      * @param  string $uuid UUID of the Location (required)
      * @param  \OpenAPI\Client\Model\Location $location Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postLocationSingleAsyncWithHttpInfo($uuid, $location)
+    public function postLocationSingleAsyncWithHttpInfo($uuid, $location, string $contentType = self::contentTypes['postLocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postLocationSingleRequest($uuid, $location);
+        $request = $this->postLocationSingleRequest($uuid, $location, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class LocationsApi
      *
      * @param  string $uuid UUID of the Location (required)
      * @param  \OpenAPI\Client\Model\Location $location Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postLocationSingleRequest($uuid, $location)
+    public function postLocationSingleRequest($uuid, $location, string $contentType = self::contentTypes['postLocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class LocationsApi
                 'Missing the required parameter $location when calling postLocationSingle'
             );
         }
+
 
         $resourcePath = '/location/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class LocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($location)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($location));
             } else {
                 $httpBody = $location;
@@ -1752,9 +1778,9 @@ class LocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

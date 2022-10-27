@@ -69,7 +69,26 @@ class AssetTypesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteAssetTypeSingle' => [
+            'application/json',
+        ],
+        'getAssetTypeAll' => [
+            'application/json',
+        ],
+        'getAssetTypeSingle' => [
+            'application/json',
+        ],
+        'postAssetTypeCreate' => [
+            'application/json',
+        ],
+        'postAssetTypeSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class AssetTypesApi
      * Delete an Asset Type
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteAssetTypeSingle($uuid)
+    public function deleteAssetTypeSingle($uuid, string $contentType = self::contentTypes['deleteAssetTypeSingle'][0])
     {
-        list($response) = $this->deleteAssetTypeSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteAssetTypeSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class AssetTypesApi
      * Delete an Asset Type
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteAssetTypeSingleWithHttpInfo($uuid)
+    public function deleteAssetTypeSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteAssetTypeSingle'][0])
     {
-        $request = $this->deleteAssetTypeSingleRequest($uuid);
+        $request = $this->deleteAssetTypeSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class AssetTypesApi
      * Delete an Asset Type
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAssetTypeSingleAsync($uuid)
+    public function deleteAssetTypeSingleAsync($uuid, string $contentType = self::contentTypes['deleteAssetTypeSingle'][0])
     {
-        return $this->deleteAssetTypeSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteAssetTypeSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class AssetTypesApi
      * Delete an Asset Type
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAssetTypeSingleAsyncWithHttpInfo($uuid)
+    public function deleteAssetTypeSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteAssetTypeSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteAssetTypeSingleRequest($uuid);
+        $request = $this->deleteAssetTypeSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class AssetTypesApi
      * Create request for operation 'deleteAssetTypeSingle'
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteAssetTypeSingleRequest($uuid)
+    public function deleteAssetTypeSingleRequest($uuid, string $contentType = self::contentTypes['deleteAssetTypeSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class AssetTypesApi
                 'Missing the required parameter $uuid when calling deleteAssetTypeSingle'
             );
         }
+
 
         $resourcePath = '/assettype/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class AssetTypesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class AssetTypesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class AssetTypesApi
      *
      * List all Asset Types
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AssetType[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getAssetTypeAll()
+    public function getAssetTypeAll(string $contentType = self::contentTypes['getAssetTypeAll'][0])
     {
-        list($response) = $this->getAssetTypeAllWithHttpInfo();
+        list($response) = $this->getAssetTypeAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class AssetTypesApi
      *
      * List all Asset Types
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AssetType[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAssetTypeAllWithHttpInfo()
+    public function getAssetTypeAllWithHttpInfo(string $contentType = self::contentTypes['getAssetTypeAll'][0])
     {
-        $request = $this->getAssetTypeAllRequest();
+        $request = $this->getAssetTypeAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class AssetTypesApi
      *
      * List all Asset Types
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAssetTypeAllAsync()
+    public function getAssetTypeAllAsync(string $contentType = self::contentTypes['getAssetTypeAll'][0])
     {
-        return $this->getAssetTypeAllAsyncWithHttpInfo()
+        return $this->getAssetTypeAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class AssetTypesApi
      *
      * List all Asset Types
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAssetTypeAllAsyncWithHttpInfo()
+    public function getAssetTypeAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getAssetTypeAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AssetType[]';
-        $request = $this->getAssetTypeAllRequest();
+        $request = $this->getAssetTypeAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class AssetTypesApi
     /**
      * Create request for operation 'getAssetTypeAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAssetTypeAllRequest()
+    public function getAssetTypeAllRequest(string $contentType = self::contentTypes['getAssetTypeAll'][0])
     {
+
 
         $resourcePath = '/assettype.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class AssetTypesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class AssetTypesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class AssetTypesApi
      * Retrieve an Asset Type
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AssetType|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getAssetTypeSingle($uuid)
+    public function getAssetTypeSingle($uuid, string $contentType = self::contentTypes['getAssetTypeSingle'][0])
     {
-        list($response) = $this->getAssetTypeSingleWithHttpInfo($uuid);
+        list($response) = $this->getAssetTypeSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class AssetTypesApi
      * Retrieve an Asset Type
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AssetType|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAssetTypeSingleWithHttpInfo($uuid)
+    public function getAssetTypeSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getAssetTypeSingle'][0])
     {
-        $request = $this->getAssetTypeSingleRequest($uuid);
+        $request = $this->getAssetTypeSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class AssetTypesApi
      * Retrieve an Asset Type
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAssetTypeSingleAsync($uuid)
+    public function getAssetTypeSingleAsync($uuid, string $contentType = self::contentTypes['getAssetTypeSingle'][0])
     {
-        return $this->getAssetTypeSingleAsyncWithHttpInfo($uuid)
+        return $this->getAssetTypeSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class AssetTypesApi
      * Retrieve an Asset Type
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAssetTypeSingleAsyncWithHttpInfo($uuid)
+    public function getAssetTypeSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getAssetTypeSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AssetType';
-        $request = $this->getAssetTypeSingleRequest($uuid);
+        $request = $this->getAssetTypeSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class AssetTypesApi
      * Create request for operation 'getAssetTypeSingle'
      *
      * @param  string $uuid UUID of the Asset Type (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAssetTypeSingleRequest($uuid)
+    public function getAssetTypeSingleRequest($uuid, string $contentType = self::contentTypes['getAssetTypeSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class AssetTypesApi
                 'Missing the required parameter $uuid when calling getAssetTypeSingle'
             );
         }
+
 
         $resourcePath = '/assettype/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class AssetTypesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class AssetTypesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class AssetTypesApi
      * Create a new Asset Type
      *
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postAssetTypeCreate($assetType)
+    public function postAssetTypeCreate($assetType, string $contentType = self::contentTypes['postAssetTypeCreate'][0])
     {
-        list($response) = $this->postAssetTypeCreateWithHttpInfo($assetType);
+        list($response) = $this->postAssetTypeCreateWithHttpInfo($assetType, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class AssetTypesApi
      * Create a new Asset Type
      *
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postAssetTypeCreateWithHttpInfo($assetType)
+    public function postAssetTypeCreateWithHttpInfo($assetType, string $contentType = self::contentTypes['postAssetTypeCreate'][0])
     {
-        $request = $this->postAssetTypeCreateRequest($assetType);
+        $request = $this->postAssetTypeCreateRequest($assetType, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class AssetTypesApi
      * Create a new Asset Type
      *
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAssetTypeCreateAsync($assetType)
+    public function postAssetTypeCreateAsync($assetType, string $contentType = self::contentTypes['postAssetTypeCreate'][0])
     {
-        return $this->postAssetTypeCreateAsyncWithHttpInfo($assetType)
+        return $this->postAssetTypeCreateAsyncWithHttpInfo($assetType, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class AssetTypesApi
      * Create a new Asset Type
      *
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAssetTypeCreateAsyncWithHttpInfo($assetType)
+    public function postAssetTypeCreateAsyncWithHttpInfo($assetType, string $contentType = self::contentTypes['postAssetTypeCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postAssetTypeCreateRequest($assetType);
+        $request = $this->postAssetTypeCreateRequest($assetType, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class AssetTypesApi
      * Create request for operation 'postAssetTypeCreate'
      *
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postAssetTypeCreateRequest($assetType)
+    public function postAssetTypeCreateRequest($assetType, string $contentType = self::contentTypes['postAssetTypeCreate'][0])
     {
 
         // verify the required parameter 'assetType' is set
@@ -1353,6 +1380,7 @@ class AssetTypesApi
                 'Missing the required parameter $assetType when calling postAssetTypeCreate'
             );
         }
+
 
         $resourcePath = '/assettype.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class AssetTypesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($assetType)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($assetType));
             } else {
                 $httpBody = $assetType;
@@ -1398,9 +1422,9 @@ class AssetTypesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class AssetTypesApi
      *
      * @param  string $uuid UUID of the Asset Type (required)
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postAssetTypeSingle($uuid, $assetType)
+    public function postAssetTypeSingle($uuid, $assetType, string $contentType = self::contentTypes['postAssetTypeSingle'][0])
     {
-        list($response) = $this->postAssetTypeSingleWithHttpInfo($uuid, $assetType);
+        list($response) = $this->postAssetTypeSingleWithHttpInfo($uuid, $assetType, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class AssetTypesApi
      *
      * @param  string $uuid UUID of the Asset Type (required)
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postAssetTypeSingleWithHttpInfo($uuid, $assetType)
+    public function postAssetTypeSingleWithHttpInfo($uuid, $assetType, string $contentType = self::contentTypes['postAssetTypeSingle'][0])
     {
-        $request = $this->postAssetTypeSingleRequest($uuid, $assetType);
+        $request = $this->postAssetTypeSingleRequest($uuid, $assetType, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class AssetTypesApi
      *
      * @param  string $uuid UUID of the Asset Type (required)
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAssetTypeSingleAsync($uuid, $assetType)
+    public function postAssetTypeSingleAsync($uuid, $assetType, string $contentType = self::contentTypes['postAssetTypeSingle'][0])
     {
-        return $this->postAssetTypeSingleAsyncWithHttpInfo($uuid, $assetType)
+        return $this->postAssetTypeSingleAsyncWithHttpInfo($uuid, $assetType, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class AssetTypesApi
      *
      * @param  string $uuid UUID of the Asset Type (required)
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAssetTypeSingleAsyncWithHttpInfo($uuid, $assetType)
+    public function postAssetTypeSingleAsyncWithHttpInfo($uuid, $assetType, string $contentType = self::contentTypes['postAssetTypeSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postAssetTypeSingleRequest($uuid, $assetType);
+        $request = $this->postAssetTypeSingleRequest($uuid, $assetType, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class AssetTypesApi
      *
      * @param  string $uuid UUID of the Asset Type (required)
      * @param  \OpenAPI\Client\Model\AssetType $assetType Asset Type fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAssetTypeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postAssetTypeSingleRequest($uuid, $assetType)
+    public function postAssetTypeSingleRequest($uuid, $assetType, string $contentType = self::contentTypes['postAssetTypeSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class AssetTypesApi
                 'Missing the required parameter $assetType when calling postAssetTypeSingle'
             );
         }
+
 
         $resourcePath = '/assettype/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class AssetTypesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($assetType)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($assetType));
             } else {
                 $httpBody = $assetType;
@@ -1752,9 +1778,9 @@ class AssetTypesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

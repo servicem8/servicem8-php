@@ -69,7 +69,26 @@ class KnownLocationsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteKnownLocationSingle' => [
+            'application/json',
+        ],
+        'getKnownLocationAll' => [
+            'application/json',
+        ],
+        'getKnownLocationSingle' => [
+            'application/json',
+        ],
+        'postKnownLocationCreate' => [
+            'application/json',
+        ],
+        'postKnownLocationSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class KnownLocationsApi
      * Delete a Known Location
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteKnownLocationSingle($uuid)
+    public function deleteKnownLocationSingle($uuid, string $contentType = self::contentTypes['deleteKnownLocationSingle'][0])
     {
-        list($response) = $this->deleteKnownLocationSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteKnownLocationSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class KnownLocationsApi
      * Delete a Known Location
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteKnownLocationSingleWithHttpInfo($uuid)
+    public function deleteKnownLocationSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteKnownLocationSingle'][0])
     {
-        $request = $this->deleteKnownLocationSingleRequest($uuid);
+        $request = $this->deleteKnownLocationSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class KnownLocationsApi
      * Delete a Known Location
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteKnownLocationSingleAsync($uuid)
+    public function deleteKnownLocationSingleAsync($uuid, string $contentType = self::contentTypes['deleteKnownLocationSingle'][0])
     {
-        return $this->deleteKnownLocationSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteKnownLocationSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class KnownLocationsApi
      * Delete a Known Location
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteKnownLocationSingleAsyncWithHttpInfo($uuid)
+    public function deleteKnownLocationSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteKnownLocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteKnownLocationSingleRequest($uuid);
+        $request = $this->deleteKnownLocationSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class KnownLocationsApi
      * Create request for operation 'deleteKnownLocationSingle'
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteKnownLocationSingleRequest($uuid)
+    public function deleteKnownLocationSingleRequest($uuid, string $contentType = self::contentTypes['deleteKnownLocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class KnownLocationsApi
                 'Missing the required parameter $uuid when calling deleteKnownLocationSingle'
             );
         }
+
 
         $resourcePath = '/knownlocation/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class KnownLocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class KnownLocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class KnownLocationsApi
      *
      * List all Known Locations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\KnownLocation[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getKnownLocationAll()
+    public function getKnownLocationAll(string $contentType = self::contentTypes['getKnownLocationAll'][0])
     {
-        list($response) = $this->getKnownLocationAllWithHttpInfo();
+        list($response) = $this->getKnownLocationAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class KnownLocationsApi
      *
      * List all Known Locations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\KnownLocation[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getKnownLocationAllWithHttpInfo()
+    public function getKnownLocationAllWithHttpInfo(string $contentType = self::contentTypes['getKnownLocationAll'][0])
     {
-        $request = $this->getKnownLocationAllRequest();
+        $request = $this->getKnownLocationAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class KnownLocationsApi
      *
      * List all Known Locations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getKnownLocationAllAsync()
+    public function getKnownLocationAllAsync(string $contentType = self::contentTypes['getKnownLocationAll'][0])
     {
-        return $this->getKnownLocationAllAsyncWithHttpInfo()
+        return $this->getKnownLocationAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class KnownLocationsApi
      *
      * List all Known Locations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getKnownLocationAllAsyncWithHttpInfo()
+    public function getKnownLocationAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getKnownLocationAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\KnownLocation[]';
-        $request = $this->getKnownLocationAllRequest();
+        $request = $this->getKnownLocationAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class KnownLocationsApi
     /**
      * Create request for operation 'getKnownLocationAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getKnownLocationAllRequest()
+    public function getKnownLocationAllRequest(string $contentType = self::contentTypes['getKnownLocationAll'][0])
     {
+
 
         $resourcePath = '/knownlocation.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class KnownLocationsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class KnownLocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class KnownLocationsApi
      * Retrieve a Known Location
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\KnownLocation|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getKnownLocationSingle($uuid)
+    public function getKnownLocationSingle($uuid, string $contentType = self::contentTypes['getKnownLocationSingle'][0])
     {
-        list($response) = $this->getKnownLocationSingleWithHttpInfo($uuid);
+        list($response) = $this->getKnownLocationSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class KnownLocationsApi
      * Retrieve a Known Location
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\KnownLocation|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getKnownLocationSingleWithHttpInfo($uuid)
+    public function getKnownLocationSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getKnownLocationSingle'][0])
     {
-        $request = $this->getKnownLocationSingleRequest($uuid);
+        $request = $this->getKnownLocationSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class KnownLocationsApi
      * Retrieve a Known Location
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getKnownLocationSingleAsync($uuid)
+    public function getKnownLocationSingleAsync($uuid, string $contentType = self::contentTypes['getKnownLocationSingle'][0])
     {
-        return $this->getKnownLocationSingleAsyncWithHttpInfo($uuid)
+        return $this->getKnownLocationSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class KnownLocationsApi
      * Retrieve a Known Location
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getKnownLocationSingleAsyncWithHttpInfo($uuid)
+    public function getKnownLocationSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getKnownLocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\KnownLocation';
-        $request = $this->getKnownLocationSingleRequest($uuid);
+        $request = $this->getKnownLocationSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class KnownLocationsApi
      * Create request for operation 'getKnownLocationSingle'
      *
      * @param  string $uuid UUID of the Known Location (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getKnownLocationSingleRequest($uuid)
+    public function getKnownLocationSingleRequest($uuid, string $contentType = self::contentTypes['getKnownLocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class KnownLocationsApi
                 'Missing the required parameter $uuid when calling getKnownLocationSingle'
             );
         }
+
 
         $resourcePath = '/knownlocation/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class KnownLocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class KnownLocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class KnownLocationsApi
      * Create a new Known Location
      *
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postKnownLocationCreate($knownLocation)
+    public function postKnownLocationCreate($knownLocation, string $contentType = self::contentTypes['postKnownLocationCreate'][0])
     {
-        list($response) = $this->postKnownLocationCreateWithHttpInfo($knownLocation);
+        list($response) = $this->postKnownLocationCreateWithHttpInfo($knownLocation, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class KnownLocationsApi
      * Create a new Known Location
      *
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postKnownLocationCreateWithHttpInfo($knownLocation)
+    public function postKnownLocationCreateWithHttpInfo($knownLocation, string $contentType = self::contentTypes['postKnownLocationCreate'][0])
     {
-        $request = $this->postKnownLocationCreateRequest($knownLocation);
+        $request = $this->postKnownLocationCreateRequest($knownLocation, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class KnownLocationsApi
      * Create a new Known Location
      *
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postKnownLocationCreateAsync($knownLocation)
+    public function postKnownLocationCreateAsync($knownLocation, string $contentType = self::contentTypes['postKnownLocationCreate'][0])
     {
-        return $this->postKnownLocationCreateAsyncWithHttpInfo($knownLocation)
+        return $this->postKnownLocationCreateAsyncWithHttpInfo($knownLocation, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class KnownLocationsApi
      * Create a new Known Location
      *
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postKnownLocationCreateAsyncWithHttpInfo($knownLocation)
+    public function postKnownLocationCreateAsyncWithHttpInfo($knownLocation, string $contentType = self::contentTypes['postKnownLocationCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postKnownLocationCreateRequest($knownLocation);
+        $request = $this->postKnownLocationCreateRequest($knownLocation, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class KnownLocationsApi
      * Create request for operation 'postKnownLocationCreate'
      *
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postKnownLocationCreateRequest($knownLocation)
+    public function postKnownLocationCreateRequest($knownLocation, string $contentType = self::contentTypes['postKnownLocationCreate'][0])
     {
 
         // verify the required parameter 'knownLocation' is set
@@ -1353,6 +1380,7 @@ class KnownLocationsApi
                 'Missing the required parameter $knownLocation when calling postKnownLocationCreate'
             );
         }
+
 
         $resourcePath = '/knownlocation.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class KnownLocationsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($knownLocation)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($knownLocation));
             } else {
                 $httpBody = $knownLocation;
@@ -1398,9 +1422,9 @@ class KnownLocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class KnownLocationsApi
      *
      * @param  string $uuid UUID of the Known Location (required)
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postKnownLocationSingle($uuid, $knownLocation)
+    public function postKnownLocationSingle($uuid, $knownLocation, string $contentType = self::contentTypes['postKnownLocationSingle'][0])
     {
-        list($response) = $this->postKnownLocationSingleWithHttpInfo($uuid, $knownLocation);
+        list($response) = $this->postKnownLocationSingleWithHttpInfo($uuid, $knownLocation, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class KnownLocationsApi
      *
      * @param  string $uuid UUID of the Known Location (required)
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postKnownLocationSingleWithHttpInfo($uuid, $knownLocation)
+    public function postKnownLocationSingleWithHttpInfo($uuid, $knownLocation, string $contentType = self::contentTypes['postKnownLocationSingle'][0])
     {
-        $request = $this->postKnownLocationSingleRequest($uuid, $knownLocation);
+        $request = $this->postKnownLocationSingleRequest($uuid, $knownLocation, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class KnownLocationsApi
      *
      * @param  string $uuid UUID of the Known Location (required)
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postKnownLocationSingleAsync($uuid, $knownLocation)
+    public function postKnownLocationSingleAsync($uuid, $knownLocation, string $contentType = self::contentTypes['postKnownLocationSingle'][0])
     {
-        return $this->postKnownLocationSingleAsyncWithHttpInfo($uuid, $knownLocation)
+        return $this->postKnownLocationSingleAsyncWithHttpInfo($uuid, $knownLocation, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class KnownLocationsApi
      *
      * @param  string $uuid UUID of the Known Location (required)
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postKnownLocationSingleAsyncWithHttpInfo($uuid, $knownLocation)
+    public function postKnownLocationSingleAsyncWithHttpInfo($uuid, $knownLocation, string $contentType = self::contentTypes['postKnownLocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postKnownLocationSingleRequest($uuid, $knownLocation);
+        $request = $this->postKnownLocationSingleRequest($uuid, $knownLocation, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class KnownLocationsApi
      *
      * @param  string $uuid UUID of the Known Location (required)
      * @param  \OpenAPI\Client\Model\KnownLocation $knownLocation Known Location fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnownLocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postKnownLocationSingleRequest($uuid, $knownLocation)
+    public function postKnownLocationSingleRequest($uuid, $knownLocation, string $contentType = self::contentTypes['postKnownLocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class KnownLocationsApi
                 'Missing the required parameter $knownLocation when calling postKnownLocationSingle'
             );
         }
+
 
         $resourcePath = '/knownlocation/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class KnownLocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($knownLocation)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($knownLocation));
             } else {
                 $httpBody = $knownLocation;
@@ -1752,9 +1778,9 @@ class KnownLocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

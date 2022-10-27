@@ -69,7 +69,26 @@ class JobQueuesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteQueueSingle' => [
+            'application/json',
+        ],
+        'getQueueAll' => [
+            'application/json',
+        ],
+        'getQueueSingle' => [
+            'application/json',
+        ],
+        'postQueueCreate' => [
+            'application/json',
+        ],
+        'postQueueSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class JobQueuesApi
      * Delete a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteQueueSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteQueueSingle($uuid)
+    public function deleteQueueSingle($uuid, string $contentType = self::contentTypes['deleteQueueSingle'][0])
     {
-        list($response) = $this->deleteQueueSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteQueueSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class JobQueuesApi
      * Delete a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteQueueSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteQueueSingleWithHttpInfo($uuid)
+    public function deleteQueueSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteQueueSingle'][0])
     {
-        $request = $this->deleteQueueSingleRequest($uuid);
+        $request = $this->deleteQueueSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class JobQueuesApi
      * Delete a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteQueueSingleAsync($uuid)
+    public function deleteQueueSingleAsync($uuid, string $contentType = self::contentTypes['deleteQueueSingle'][0])
     {
-        return $this->deleteQueueSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteQueueSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class JobQueuesApi
      * Delete a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteQueueSingleAsyncWithHttpInfo($uuid)
+    public function deleteQueueSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteQueueSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteQueueSingleRequest($uuid);
+        $request = $this->deleteQueueSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class JobQueuesApi
      * Create request for operation 'deleteQueueSingle'
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteQueueSingleRequest($uuid)
+    public function deleteQueueSingleRequest($uuid, string $contentType = self::contentTypes['deleteQueueSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class JobQueuesApi
                 'Missing the required parameter $uuid when calling deleteQueueSingle'
             );
         }
+
 
         $resourcePath = '/queue/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class JobQueuesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class JobQueuesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class JobQueuesApi
      *
      * List all Job Queues
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Queue[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getQueueAll()
+    public function getQueueAll(string $contentType = self::contentTypes['getQueueAll'][0])
     {
-        list($response) = $this->getQueueAllWithHttpInfo();
+        list($response) = $this->getQueueAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class JobQueuesApi
      *
      * List all Job Queues
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Queue[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getQueueAllWithHttpInfo()
+    public function getQueueAllWithHttpInfo(string $contentType = self::contentTypes['getQueueAll'][0])
     {
-        $request = $this->getQueueAllRequest();
+        $request = $this->getQueueAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class JobQueuesApi
      *
      * List all Job Queues
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getQueueAllAsync()
+    public function getQueueAllAsync(string $contentType = self::contentTypes['getQueueAll'][0])
     {
-        return $this->getQueueAllAsyncWithHttpInfo()
+        return $this->getQueueAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class JobQueuesApi
      *
      * List all Job Queues
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getQueueAllAsyncWithHttpInfo()
+    public function getQueueAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getQueueAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Queue[]';
-        $request = $this->getQueueAllRequest();
+        $request = $this->getQueueAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class JobQueuesApi
     /**
      * Create request for operation 'getQueueAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getQueueAllRequest()
+    public function getQueueAllRequest(string $contentType = self::contentTypes['getQueueAll'][0])
     {
+
 
         $resourcePath = '/queue.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class JobQueuesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class JobQueuesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class JobQueuesApi
      * Retrieve a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Queue|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getQueueSingle($uuid)
+    public function getQueueSingle($uuid, string $contentType = self::contentTypes['getQueueSingle'][0])
     {
-        list($response) = $this->getQueueSingleWithHttpInfo($uuid);
+        list($response) = $this->getQueueSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class JobQueuesApi
      * Retrieve a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Queue|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getQueueSingleWithHttpInfo($uuid)
+    public function getQueueSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getQueueSingle'][0])
     {
-        $request = $this->getQueueSingleRequest($uuid);
+        $request = $this->getQueueSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class JobQueuesApi
      * Retrieve a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getQueueSingleAsync($uuid)
+    public function getQueueSingleAsync($uuid, string $contentType = self::contentTypes['getQueueSingle'][0])
     {
-        return $this->getQueueSingleAsyncWithHttpInfo($uuid)
+        return $this->getQueueSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class JobQueuesApi
      * Retrieve a Job Queue
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getQueueSingleAsyncWithHttpInfo($uuid)
+    public function getQueueSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getQueueSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Queue';
-        $request = $this->getQueueSingleRequest($uuid);
+        $request = $this->getQueueSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class JobQueuesApi
      * Create request for operation 'getQueueSingle'
      *
      * @param  string $uuid UUID of the Job Queue (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getQueueSingleRequest($uuid)
+    public function getQueueSingleRequest($uuid, string $contentType = self::contentTypes['getQueueSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class JobQueuesApi
                 'Missing the required parameter $uuid when calling getQueueSingle'
             );
         }
+
 
         $resourcePath = '/queue/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class JobQueuesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class JobQueuesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class JobQueuesApi
      * Create a new Job Queue
      *
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postQueueCreate($jobQueue)
+    public function postQueueCreate($jobQueue, string $contentType = self::contentTypes['postQueueCreate'][0])
     {
-        list($response) = $this->postQueueCreateWithHttpInfo($jobQueue);
+        list($response) = $this->postQueueCreateWithHttpInfo($jobQueue, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class JobQueuesApi
      * Create a new Job Queue
      *
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postQueueCreateWithHttpInfo($jobQueue)
+    public function postQueueCreateWithHttpInfo($jobQueue, string $contentType = self::contentTypes['postQueueCreate'][0])
     {
-        $request = $this->postQueueCreateRequest($jobQueue);
+        $request = $this->postQueueCreateRequest($jobQueue, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class JobQueuesApi
      * Create a new Job Queue
      *
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postQueueCreateAsync($jobQueue)
+    public function postQueueCreateAsync($jobQueue, string $contentType = self::contentTypes['postQueueCreate'][0])
     {
-        return $this->postQueueCreateAsyncWithHttpInfo($jobQueue)
+        return $this->postQueueCreateAsyncWithHttpInfo($jobQueue, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class JobQueuesApi
      * Create a new Job Queue
      *
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postQueueCreateAsyncWithHttpInfo($jobQueue)
+    public function postQueueCreateAsyncWithHttpInfo($jobQueue, string $contentType = self::contentTypes['postQueueCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postQueueCreateRequest($jobQueue);
+        $request = $this->postQueueCreateRequest($jobQueue, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class JobQueuesApi
      * Create request for operation 'postQueueCreate'
      *
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postQueueCreateRequest($jobQueue)
+    public function postQueueCreateRequest($jobQueue, string $contentType = self::contentTypes['postQueueCreate'][0])
     {
 
         // verify the required parameter 'jobQueue' is set
@@ -1353,6 +1380,7 @@ class JobQueuesApi
                 'Missing the required parameter $jobQueue when calling postQueueCreate'
             );
         }
+
 
         $resourcePath = '/queue.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class JobQueuesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobQueue)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobQueue));
             } else {
                 $httpBody = $jobQueue;
@@ -1398,9 +1422,9 @@ class JobQueuesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class JobQueuesApi
      *
      * @param  string $uuid UUID of the Job Queue (required)
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postQueueSingle($uuid, $jobQueue)
+    public function postQueueSingle($uuid, $jobQueue, string $contentType = self::contentTypes['postQueueSingle'][0])
     {
-        list($response) = $this->postQueueSingleWithHttpInfo($uuid, $jobQueue);
+        list($response) = $this->postQueueSingleWithHttpInfo($uuid, $jobQueue, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class JobQueuesApi
      *
      * @param  string $uuid UUID of the Job Queue (required)
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postQueueSingleWithHttpInfo($uuid, $jobQueue)
+    public function postQueueSingleWithHttpInfo($uuid, $jobQueue, string $contentType = self::contentTypes['postQueueSingle'][0])
     {
-        $request = $this->postQueueSingleRequest($uuid, $jobQueue);
+        $request = $this->postQueueSingleRequest($uuid, $jobQueue, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class JobQueuesApi
      *
      * @param  string $uuid UUID of the Job Queue (required)
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postQueueSingleAsync($uuid, $jobQueue)
+    public function postQueueSingleAsync($uuid, $jobQueue, string $contentType = self::contentTypes['postQueueSingle'][0])
     {
-        return $this->postQueueSingleAsyncWithHttpInfo($uuid, $jobQueue)
+        return $this->postQueueSingleAsyncWithHttpInfo($uuid, $jobQueue, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class JobQueuesApi
      *
      * @param  string $uuid UUID of the Job Queue (required)
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postQueueSingleAsyncWithHttpInfo($uuid, $jobQueue)
+    public function postQueueSingleAsyncWithHttpInfo($uuid, $jobQueue, string $contentType = self::contentTypes['postQueueSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postQueueSingleRequest($uuid, $jobQueue);
+        $request = $this->postQueueSingleRequest($uuid, $jobQueue, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class JobQueuesApi
      *
      * @param  string $uuid UUID of the Job Queue (required)
      * @param  \OpenAPI\Client\Model\Queue $jobQueue Job Queue fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postQueueSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postQueueSingleRequest($uuid, $jobQueue)
+    public function postQueueSingleRequest($uuid, $jobQueue, string $contentType = self::contentTypes['postQueueSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class JobQueuesApi
                 'Missing the required parameter $jobQueue when calling postQueueSingle'
             );
         }
+
 
         $resourcePath = '/queue/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class JobQueuesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobQueue)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobQueue));
             } else {
                 $httpBody = $jobQueue;
@@ -1752,9 +1778,9 @@ class JobQueuesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

@@ -69,7 +69,26 @@ class FormFieldsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteFormFieldSingle' => [
+            'application/json',
+        ],
+        'getFormFieldAll' => [
+            'application/json',
+        ],
+        'getFormFieldSingle' => [
+            'application/json',
+        ],
+        'postFormFieldCreate' => [
+            'application/json',
+        ],
+        'postFormFieldSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class FormFieldsApi
      * Delete a Form Field
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteFormFieldSingle($uuid)
+    public function deleteFormFieldSingle($uuid, string $contentType = self::contentTypes['deleteFormFieldSingle'][0])
     {
-        list($response) = $this->deleteFormFieldSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteFormFieldSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class FormFieldsApi
      * Delete a Form Field
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteFormFieldSingleWithHttpInfo($uuid)
+    public function deleteFormFieldSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteFormFieldSingle'][0])
     {
-        $request = $this->deleteFormFieldSingleRequest($uuid);
+        $request = $this->deleteFormFieldSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class FormFieldsApi
      * Delete a Form Field
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFormFieldSingleAsync($uuid)
+    public function deleteFormFieldSingleAsync($uuid, string $contentType = self::contentTypes['deleteFormFieldSingle'][0])
     {
-        return $this->deleteFormFieldSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteFormFieldSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class FormFieldsApi
      * Delete a Form Field
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFormFieldSingleAsyncWithHttpInfo($uuid)
+    public function deleteFormFieldSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteFormFieldSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteFormFieldSingleRequest($uuid);
+        $request = $this->deleteFormFieldSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class FormFieldsApi
      * Create request for operation 'deleteFormFieldSingle'
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFormFieldSingleRequest($uuid)
+    public function deleteFormFieldSingleRequest($uuid, string $contentType = self::contentTypes['deleteFormFieldSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class FormFieldsApi
                 'Missing the required parameter $uuid when calling deleteFormFieldSingle'
             );
         }
+
 
         $resourcePath = '/formfield/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class FormFieldsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class FormFieldsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class FormFieldsApi
      *
      * List all Form Fields
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\FormField[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getFormFieldAll()
+    public function getFormFieldAll(string $contentType = self::contentTypes['getFormFieldAll'][0])
     {
-        list($response) = $this->getFormFieldAllWithHttpInfo();
+        list($response) = $this->getFormFieldAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class FormFieldsApi
      *
      * List all Form Fields
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\FormField[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFormFieldAllWithHttpInfo()
+    public function getFormFieldAllWithHttpInfo(string $contentType = self::contentTypes['getFormFieldAll'][0])
     {
-        $request = $this->getFormFieldAllRequest();
+        $request = $this->getFormFieldAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class FormFieldsApi
      *
      * List all Form Fields
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFormFieldAllAsync()
+    public function getFormFieldAllAsync(string $contentType = self::contentTypes['getFormFieldAll'][0])
     {
-        return $this->getFormFieldAllAsyncWithHttpInfo()
+        return $this->getFormFieldAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class FormFieldsApi
      *
      * List all Form Fields
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFormFieldAllAsyncWithHttpInfo()
+    public function getFormFieldAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getFormFieldAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\FormField[]';
-        $request = $this->getFormFieldAllRequest();
+        $request = $this->getFormFieldAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class FormFieldsApi
     /**
      * Create request for operation 'getFormFieldAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFormFieldAllRequest()
+    public function getFormFieldAllRequest(string $contentType = self::contentTypes['getFormFieldAll'][0])
     {
+
 
         $resourcePath = '/formfield.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class FormFieldsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class FormFieldsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class FormFieldsApi
      * Retrieve a Form Field
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\FormField|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getFormFieldSingle($uuid)
+    public function getFormFieldSingle($uuid, string $contentType = self::contentTypes['getFormFieldSingle'][0])
     {
-        list($response) = $this->getFormFieldSingleWithHttpInfo($uuid);
+        list($response) = $this->getFormFieldSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class FormFieldsApi
      * Retrieve a Form Field
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\FormField|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFormFieldSingleWithHttpInfo($uuid)
+    public function getFormFieldSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getFormFieldSingle'][0])
     {
-        $request = $this->getFormFieldSingleRequest($uuid);
+        $request = $this->getFormFieldSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class FormFieldsApi
      * Retrieve a Form Field
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFormFieldSingleAsync($uuid)
+    public function getFormFieldSingleAsync($uuid, string $contentType = self::contentTypes['getFormFieldSingle'][0])
     {
-        return $this->getFormFieldSingleAsyncWithHttpInfo($uuid)
+        return $this->getFormFieldSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class FormFieldsApi
      * Retrieve a Form Field
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFormFieldSingleAsyncWithHttpInfo($uuid)
+    public function getFormFieldSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getFormFieldSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\FormField';
-        $request = $this->getFormFieldSingleRequest($uuid);
+        $request = $this->getFormFieldSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class FormFieldsApi
      * Create request for operation 'getFormFieldSingle'
      *
      * @param  string $uuid UUID of the Form Field (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFormFieldSingleRequest($uuid)
+    public function getFormFieldSingleRequest($uuid, string $contentType = self::contentTypes['getFormFieldSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class FormFieldsApi
                 'Missing the required parameter $uuid when calling getFormFieldSingle'
             );
         }
+
 
         $resourcePath = '/formfield/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class FormFieldsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class FormFieldsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class FormFieldsApi
      * Create a new Form Field
      *
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postFormFieldCreate($formField)
+    public function postFormFieldCreate($formField, string $contentType = self::contentTypes['postFormFieldCreate'][0])
     {
-        list($response) = $this->postFormFieldCreateWithHttpInfo($formField);
+        list($response) = $this->postFormFieldCreateWithHttpInfo($formField, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class FormFieldsApi
      * Create a new Form Field
      *
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postFormFieldCreateWithHttpInfo($formField)
+    public function postFormFieldCreateWithHttpInfo($formField, string $contentType = self::contentTypes['postFormFieldCreate'][0])
     {
-        $request = $this->postFormFieldCreateRequest($formField);
+        $request = $this->postFormFieldCreateRequest($formField, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class FormFieldsApi
      * Create a new Form Field
      *
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFormFieldCreateAsync($formField)
+    public function postFormFieldCreateAsync($formField, string $contentType = self::contentTypes['postFormFieldCreate'][0])
     {
-        return $this->postFormFieldCreateAsyncWithHttpInfo($formField)
+        return $this->postFormFieldCreateAsyncWithHttpInfo($formField, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class FormFieldsApi
      * Create a new Form Field
      *
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFormFieldCreateAsyncWithHttpInfo($formField)
+    public function postFormFieldCreateAsyncWithHttpInfo($formField, string $contentType = self::contentTypes['postFormFieldCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postFormFieldCreateRequest($formField);
+        $request = $this->postFormFieldCreateRequest($formField, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class FormFieldsApi
      * Create request for operation 'postFormFieldCreate'
      *
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postFormFieldCreateRequest($formField)
+    public function postFormFieldCreateRequest($formField, string $contentType = self::contentTypes['postFormFieldCreate'][0])
     {
 
         // verify the required parameter 'formField' is set
@@ -1353,6 +1380,7 @@ class FormFieldsApi
                 'Missing the required parameter $formField when calling postFormFieldCreate'
             );
         }
+
 
         $resourcePath = '/formfield.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class FormFieldsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($formField)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($formField));
             } else {
                 $httpBody = $formField;
@@ -1398,9 +1422,9 @@ class FormFieldsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class FormFieldsApi
      *
      * @param  string $uuid UUID of the Form Field (required)
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postFormFieldSingle($uuid, $formField)
+    public function postFormFieldSingle($uuid, $formField, string $contentType = self::contentTypes['postFormFieldSingle'][0])
     {
-        list($response) = $this->postFormFieldSingleWithHttpInfo($uuid, $formField);
+        list($response) = $this->postFormFieldSingleWithHttpInfo($uuid, $formField, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class FormFieldsApi
      *
      * @param  string $uuid UUID of the Form Field (required)
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postFormFieldSingleWithHttpInfo($uuid, $formField)
+    public function postFormFieldSingleWithHttpInfo($uuid, $formField, string $contentType = self::contentTypes['postFormFieldSingle'][0])
     {
-        $request = $this->postFormFieldSingleRequest($uuid, $formField);
+        $request = $this->postFormFieldSingleRequest($uuid, $formField, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class FormFieldsApi
      *
      * @param  string $uuid UUID of the Form Field (required)
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFormFieldSingleAsync($uuid, $formField)
+    public function postFormFieldSingleAsync($uuid, $formField, string $contentType = self::contentTypes['postFormFieldSingle'][0])
     {
-        return $this->postFormFieldSingleAsyncWithHttpInfo($uuid, $formField)
+        return $this->postFormFieldSingleAsyncWithHttpInfo($uuid, $formField, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class FormFieldsApi
      *
      * @param  string $uuid UUID of the Form Field (required)
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFormFieldSingleAsyncWithHttpInfo($uuid, $formField)
+    public function postFormFieldSingleAsyncWithHttpInfo($uuid, $formField, string $contentType = self::contentTypes['postFormFieldSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postFormFieldSingleRequest($uuid, $formField);
+        $request = $this->postFormFieldSingleRequest($uuid, $formField, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class FormFieldsApi
      *
      * @param  string $uuid UUID of the Form Field (required)
      * @param  \OpenAPI\Client\Model\FormField $formField Form Field fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormFieldSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postFormFieldSingleRequest($uuid, $formField)
+    public function postFormFieldSingleRequest($uuid, $formField, string $contentType = self::contentTypes['postFormFieldSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class FormFieldsApi
                 'Missing the required parameter $formField when calling postFormFieldSingle'
             );
         }
+
 
         $resourcePath = '/formfield/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class FormFieldsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($formField)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($formField));
             } else {
                 $httpBody = $formField;
@@ -1752,9 +1778,9 @@ class FormFieldsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

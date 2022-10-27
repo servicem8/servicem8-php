@@ -69,7 +69,26 @@ class SMSTemplatesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteSmsTemplateSingle' => [
+            'application/json',
+        ],
+        'getSmsTemplateAll' => [
+            'application/json',
+        ],
+        'getSmsTemplateSingle' => [
+            'application/json',
+        ],
+        'postSmsTemplateCreate' => [
+            'application/json',
+        ],
+        'postSmsTemplateSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class SMSTemplatesApi
      * Delete a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteSmsTemplateSingle($uuid)
+    public function deleteSmsTemplateSingle($uuid, string $contentType = self::contentTypes['deleteSmsTemplateSingle'][0])
     {
-        list($response) = $this->deleteSmsTemplateSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteSmsTemplateSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class SMSTemplatesApi
      * Delete a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteSmsTemplateSingleWithHttpInfo($uuid)
+    public function deleteSmsTemplateSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteSmsTemplateSingle'][0])
     {
-        $request = $this->deleteSmsTemplateSingleRequest($uuid);
+        $request = $this->deleteSmsTemplateSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class SMSTemplatesApi
      * Delete a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSmsTemplateSingleAsync($uuid)
+    public function deleteSmsTemplateSingleAsync($uuid, string $contentType = self::contentTypes['deleteSmsTemplateSingle'][0])
     {
-        return $this->deleteSmsTemplateSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteSmsTemplateSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class SMSTemplatesApi
      * Delete a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSmsTemplateSingleAsyncWithHttpInfo($uuid)
+    public function deleteSmsTemplateSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteSmsTemplateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteSmsTemplateSingleRequest($uuid);
+        $request = $this->deleteSmsTemplateSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class SMSTemplatesApi
      * Create request for operation 'deleteSmsTemplateSingle'
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSmsTemplateSingleRequest($uuid)
+    public function deleteSmsTemplateSingleRequest($uuid, string $contentType = self::contentTypes['deleteSmsTemplateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class SMSTemplatesApi
                 'Missing the required parameter $uuid when calling deleteSmsTemplateSingle'
             );
         }
+
 
         $resourcePath = '/smstemplate/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class SMSTemplatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class SMSTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class SMSTemplatesApi
      *
      * List all SMS Templates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SmsTemplate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getSmsTemplateAll()
+    public function getSmsTemplateAll(string $contentType = self::contentTypes['getSmsTemplateAll'][0])
     {
-        list($response) = $this->getSmsTemplateAllWithHttpInfo();
+        list($response) = $this->getSmsTemplateAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class SMSTemplatesApi
      *
      * List all SMS Templates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SmsTemplate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSmsTemplateAllWithHttpInfo()
+    public function getSmsTemplateAllWithHttpInfo(string $contentType = self::contentTypes['getSmsTemplateAll'][0])
     {
-        $request = $this->getSmsTemplateAllRequest();
+        $request = $this->getSmsTemplateAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class SMSTemplatesApi
      *
      * List all SMS Templates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSmsTemplateAllAsync()
+    public function getSmsTemplateAllAsync(string $contentType = self::contentTypes['getSmsTemplateAll'][0])
     {
-        return $this->getSmsTemplateAllAsyncWithHttpInfo()
+        return $this->getSmsTemplateAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class SMSTemplatesApi
      *
      * List all SMS Templates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSmsTemplateAllAsyncWithHttpInfo()
+    public function getSmsTemplateAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getSmsTemplateAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\SmsTemplate[]';
-        $request = $this->getSmsTemplateAllRequest();
+        $request = $this->getSmsTemplateAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class SMSTemplatesApi
     /**
      * Create request for operation 'getSmsTemplateAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmsTemplateAllRequest()
+    public function getSmsTemplateAllRequest(string $contentType = self::contentTypes['getSmsTemplateAll'][0])
     {
+
 
         $resourcePath = '/smstemplate.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class SMSTemplatesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class SMSTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class SMSTemplatesApi
      * Retrieve a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SmsTemplate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getSmsTemplateSingle($uuid)
+    public function getSmsTemplateSingle($uuid, string $contentType = self::contentTypes['getSmsTemplateSingle'][0])
     {
-        list($response) = $this->getSmsTemplateSingleWithHttpInfo($uuid);
+        list($response) = $this->getSmsTemplateSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class SMSTemplatesApi
      * Retrieve a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SmsTemplate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSmsTemplateSingleWithHttpInfo($uuid)
+    public function getSmsTemplateSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getSmsTemplateSingle'][0])
     {
-        $request = $this->getSmsTemplateSingleRequest($uuid);
+        $request = $this->getSmsTemplateSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class SMSTemplatesApi
      * Retrieve a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSmsTemplateSingleAsync($uuid)
+    public function getSmsTemplateSingleAsync($uuid, string $contentType = self::contentTypes['getSmsTemplateSingle'][0])
     {
-        return $this->getSmsTemplateSingleAsyncWithHttpInfo($uuid)
+        return $this->getSmsTemplateSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class SMSTemplatesApi
      * Retrieve a SMS Template
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSmsTemplateSingleAsyncWithHttpInfo($uuid)
+    public function getSmsTemplateSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getSmsTemplateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\SmsTemplate';
-        $request = $this->getSmsTemplateSingleRequest($uuid);
+        $request = $this->getSmsTemplateSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class SMSTemplatesApi
      * Create request for operation 'getSmsTemplateSingle'
      *
      * @param  string $uuid UUID of the SMS Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSmsTemplateSingleRequest($uuid)
+    public function getSmsTemplateSingleRequest($uuid, string $contentType = self::contentTypes['getSmsTemplateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class SMSTemplatesApi
                 'Missing the required parameter $uuid when calling getSmsTemplateSingle'
             );
         }
+
 
         $resourcePath = '/smstemplate/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class SMSTemplatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class SMSTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class SMSTemplatesApi
      * Create a new SMS Template
      *
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postSmsTemplateCreate($sMSTemplate)
+    public function postSmsTemplateCreate($sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateCreate'][0])
     {
-        list($response) = $this->postSmsTemplateCreateWithHttpInfo($sMSTemplate);
+        list($response) = $this->postSmsTemplateCreateWithHttpInfo($sMSTemplate, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class SMSTemplatesApi
      * Create a new SMS Template
      *
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postSmsTemplateCreateWithHttpInfo($sMSTemplate)
+    public function postSmsTemplateCreateWithHttpInfo($sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateCreate'][0])
     {
-        $request = $this->postSmsTemplateCreateRequest($sMSTemplate);
+        $request = $this->postSmsTemplateCreateRequest($sMSTemplate, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class SMSTemplatesApi
      * Create a new SMS Template
      *
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSmsTemplateCreateAsync($sMSTemplate)
+    public function postSmsTemplateCreateAsync($sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateCreate'][0])
     {
-        return $this->postSmsTemplateCreateAsyncWithHttpInfo($sMSTemplate)
+        return $this->postSmsTemplateCreateAsyncWithHttpInfo($sMSTemplate, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class SMSTemplatesApi
      * Create a new SMS Template
      *
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSmsTemplateCreateAsyncWithHttpInfo($sMSTemplate)
+    public function postSmsTemplateCreateAsyncWithHttpInfo($sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postSmsTemplateCreateRequest($sMSTemplate);
+        $request = $this->postSmsTemplateCreateRequest($sMSTemplate, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class SMSTemplatesApi
      * Create request for operation 'postSmsTemplateCreate'
      *
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postSmsTemplateCreateRequest($sMSTemplate)
+    public function postSmsTemplateCreateRequest($sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateCreate'][0])
     {
 
         // verify the required parameter 'sMSTemplate' is set
@@ -1353,6 +1380,7 @@ class SMSTemplatesApi
                 'Missing the required parameter $sMSTemplate when calling postSmsTemplateCreate'
             );
         }
+
 
         $resourcePath = '/smstemplate.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class SMSTemplatesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($sMSTemplate)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sMSTemplate));
             } else {
                 $httpBody = $sMSTemplate;
@@ -1398,9 +1422,9 @@ class SMSTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class SMSTemplatesApi
      *
      * @param  string $uuid UUID of the SMS Template (required)
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postSmsTemplateSingle($uuid, $sMSTemplate)
+    public function postSmsTemplateSingle($uuid, $sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateSingle'][0])
     {
-        list($response) = $this->postSmsTemplateSingleWithHttpInfo($uuid, $sMSTemplate);
+        list($response) = $this->postSmsTemplateSingleWithHttpInfo($uuid, $sMSTemplate, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class SMSTemplatesApi
      *
      * @param  string $uuid UUID of the SMS Template (required)
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postSmsTemplateSingleWithHttpInfo($uuid, $sMSTemplate)
+    public function postSmsTemplateSingleWithHttpInfo($uuid, $sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateSingle'][0])
     {
-        $request = $this->postSmsTemplateSingleRequest($uuid, $sMSTemplate);
+        $request = $this->postSmsTemplateSingleRequest($uuid, $sMSTemplate, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class SMSTemplatesApi
      *
      * @param  string $uuid UUID of the SMS Template (required)
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSmsTemplateSingleAsync($uuid, $sMSTemplate)
+    public function postSmsTemplateSingleAsync($uuid, $sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateSingle'][0])
     {
-        return $this->postSmsTemplateSingleAsyncWithHttpInfo($uuid, $sMSTemplate)
+        return $this->postSmsTemplateSingleAsyncWithHttpInfo($uuid, $sMSTemplate, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class SMSTemplatesApi
      *
      * @param  string $uuid UUID of the SMS Template (required)
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSmsTemplateSingleAsyncWithHttpInfo($uuid, $sMSTemplate)
+    public function postSmsTemplateSingleAsyncWithHttpInfo($uuid, $sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postSmsTemplateSingleRequest($uuid, $sMSTemplate);
+        $request = $this->postSmsTemplateSingleRequest($uuid, $sMSTemplate, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class SMSTemplatesApi
      *
      * @param  string $uuid UUID of the SMS Template (required)
      * @param  \OpenAPI\Client\Model\SmsTemplate $sMSTemplate SMS Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSmsTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postSmsTemplateSingleRequest($uuid, $sMSTemplate)
+    public function postSmsTemplateSingleRequest($uuid, $sMSTemplate, string $contentType = self::contentTypes['postSmsTemplateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class SMSTemplatesApi
                 'Missing the required parameter $sMSTemplate when calling postSmsTemplateSingle'
             );
         }
+
 
         $resourcePath = '/smstemplate/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class SMSTemplatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($sMSTemplate)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($sMSTemplate));
             } else {
                 $httpBody = $sMSTemplate;
@@ -1752,9 +1778,9 @@ class SMSTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

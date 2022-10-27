@@ -69,7 +69,26 @@ class ClientsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteCompanySingle' => [
+            'application/json',
+        ],
+        'getCompanyAll' => [
+            'application/json',
+        ],
+        'getCompanySingle' => [
+            'application/json',
+        ],
+        'postCompanyCreate' => [
+            'application/json',
+        ],
+        'postCompanySingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class ClientsApi
      * Delete a Client
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanySingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteCompanySingle($uuid)
+    public function deleteCompanySingle($uuid, string $contentType = self::contentTypes['deleteCompanySingle'][0])
     {
-        list($response) = $this->deleteCompanySingleWithHttpInfo($uuid);
+        list($response) = $this->deleteCompanySingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class ClientsApi
      * Delete a Client
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanySingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteCompanySingleWithHttpInfo($uuid)
+    public function deleteCompanySingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteCompanySingle'][0])
     {
-        $request = $this->deleteCompanySingleRequest($uuid);
+        $request = $this->deleteCompanySingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class ClientsApi
      * Delete a Client
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompanySingleAsync($uuid)
+    public function deleteCompanySingleAsync($uuid, string $contentType = self::contentTypes['deleteCompanySingle'][0])
     {
-        return $this->deleteCompanySingleAsyncWithHttpInfo($uuid)
+        return $this->deleteCompanySingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class ClientsApi
      * Delete a Client
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteCompanySingleAsyncWithHttpInfo($uuid)
+    public function deleteCompanySingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteCompanySingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteCompanySingleRequest($uuid);
+        $request = $this->deleteCompanySingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class ClientsApi
      * Create request for operation 'deleteCompanySingle'
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteCompanySingleRequest($uuid)
+    public function deleteCompanySingleRequest($uuid, string $contentType = self::contentTypes['deleteCompanySingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class ClientsApi
                 'Missing the required parameter $uuid when calling deleteCompanySingle'
             );
         }
+
 
         $resourcePath = '/company/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class ClientsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class ClientsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class ClientsApi
      *
      * List all Clients
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Company[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getCompanyAll()
+    public function getCompanyAll(string $contentType = self::contentTypes['getCompanyAll'][0])
     {
-        list($response) = $this->getCompanyAllWithHttpInfo();
+        list($response) = $this->getCompanyAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class ClientsApi
      *
      * List all Clients
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Company[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCompanyAllWithHttpInfo()
+    public function getCompanyAllWithHttpInfo(string $contentType = self::contentTypes['getCompanyAll'][0])
     {
-        $request = $this->getCompanyAllRequest();
+        $request = $this->getCompanyAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class ClientsApi
      *
      * List all Clients
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyAllAsync()
+    public function getCompanyAllAsync(string $contentType = self::contentTypes['getCompanyAll'][0])
     {
-        return $this->getCompanyAllAsyncWithHttpInfo()
+        return $this->getCompanyAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class ClientsApi
      *
      * List all Clients
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanyAllAsyncWithHttpInfo()
+    public function getCompanyAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getCompanyAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Company[]';
-        $request = $this->getCompanyAllRequest();
+        $request = $this->getCompanyAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class ClientsApi
     /**
      * Create request for operation 'getCompanyAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanyAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompanyAllRequest()
+    public function getCompanyAllRequest(string $contentType = self::contentTypes['getCompanyAll'][0])
     {
+
 
         $resourcePath = '/company.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class ClientsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class ClientsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class ClientsApi
      * Retrieve a Client
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanySingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Company|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getCompanySingle($uuid)
+    public function getCompanySingle($uuid, string $contentType = self::contentTypes['getCompanySingle'][0])
     {
-        list($response) = $this->getCompanySingleWithHttpInfo($uuid);
+        list($response) = $this->getCompanySingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class ClientsApi
      * Retrieve a Client
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanySingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Company|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getCompanySingleWithHttpInfo($uuid)
+    public function getCompanySingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getCompanySingle'][0])
     {
-        $request = $this->getCompanySingleRequest($uuid);
+        $request = $this->getCompanySingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class ClientsApi
      * Retrieve a Client
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanySingleAsync($uuid)
+    public function getCompanySingleAsync($uuid, string $contentType = self::contentTypes['getCompanySingle'][0])
     {
-        return $this->getCompanySingleAsyncWithHttpInfo($uuid)
+        return $this->getCompanySingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class ClientsApi
      * Retrieve a Client
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getCompanySingleAsyncWithHttpInfo($uuid)
+    public function getCompanySingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getCompanySingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Company';
-        $request = $this->getCompanySingleRequest($uuid);
+        $request = $this->getCompanySingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class ClientsApi
      * Create request for operation 'getCompanySingle'
      *
      * @param  string $uuid UUID of the Client (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getCompanySingleRequest($uuid)
+    public function getCompanySingleRequest($uuid, string $contentType = self::contentTypes['getCompanySingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class ClientsApi
                 'Missing the required parameter $uuid when calling getCompanySingle'
             );
         }
+
 
         $resourcePath = '/company/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class ClientsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class ClientsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class ClientsApi
      * Create a new Client
      *
      * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanyCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postCompanyCreate($client)
+    public function postCompanyCreate($client, string $contentType = self::contentTypes['postCompanyCreate'][0])
     {
-        list($response) = $this->postCompanyCreateWithHttpInfo($client);
+        list($response) = $this->postCompanyCreateWithHttpInfo($client, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class ClientsApi
      * Create a new Client
      *
      * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanyCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postCompanyCreateWithHttpInfo($client)
+    public function postCompanyCreateWithHttpInfo($client, string $contentType = self::contentTypes['postCompanyCreate'][0])
     {
-        $request = $this->postCompanyCreateRequest($client);
+        $request = $this->postCompanyCreateRequest($client, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class ClientsApi
      * Create a new Client
      *
      * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanyCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postCompanyCreateAsync($client)
+    public function postCompanyCreateAsync($client, string $contentType = self::contentTypes['postCompanyCreate'][0])
     {
-        return $this->postCompanyCreateAsyncWithHttpInfo($client)
+        return $this->postCompanyCreateAsyncWithHttpInfo($client, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class ClientsApi
      * Create a new Client
      *
      * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanyCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postCompanyCreateAsyncWithHttpInfo($client)
+    public function postCompanyCreateAsyncWithHttpInfo($client, string $contentType = self::contentTypes['postCompanyCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postCompanyCreateRequest($client);
+        $request = $this->postCompanyCreateRequest($client, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class ClientsApi
      * Create request for operation 'postCompanyCreate'
      *
      * @param  \OpenAPI\Client\Model\Company $client Client record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanyCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postCompanyCreateRequest($client)
+    public function postCompanyCreateRequest($client, string $contentType = self::contentTypes['postCompanyCreate'][0])
     {
 
         // verify the required parameter 'client' is set
@@ -1353,6 +1380,7 @@ class ClientsApi
                 'Missing the required parameter $client when calling postCompanyCreate'
             );
         }
+
 
         $resourcePath = '/company.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class ClientsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($client)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($client));
             } else {
                 $httpBody = $client;
@@ -1398,9 +1422,9 @@ class ClientsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class ClientsApi
      *
      * @param  string $uuid UUID of the Client (required)
      * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanySingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postCompanySingle($uuid, $client)
+    public function postCompanySingle($uuid, $client, string $contentType = self::contentTypes['postCompanySingle'][0])
     {
-        list($response) = $this->postCompanySingleWithHttpInfo($uuid, $client);
+        list($response) = $this->postCompanySingleWithHttpInfo($uuid, $client, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class ClientsApi
      *
      * @param  string $uuid UUID of the Client (required)
      * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanySingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postCompanySingleWithHttpInfo($uuid, $client)
+    public function postCompanySingleWithHttpInfo($uuid, $client, string $contentType = self::contentTypes['postCompanySingle'][0])
     {
-        $request = $this->postCompanySingleRequest($uuid, $client);
+        $request = $this->postCompanySingleRequest($uuid, $client, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class ClientsApi
      *
      * @param  string $uuid UUID of the Client (required)
      * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postCompanySingleAsync($uuid, $client)
+    public function postCompanySingleAsync($uuid, $client, string $contentType = self::contentTypes['postCompanySingle'][0])
     {
-        return $this->postCompanySingleAsyncWithHttpInfo($uuid, $client)
+        return $this->postCompanySingleAsyncWithHttpInfo($uuid, $client, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class ClientsApi
      *
      * @param  string $uuid UUID of the Client (required)
      * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postCompanySingleAsyncWithHttpInfo($uuid, $client)
+    public function postCompanySingleAsyncWithHttpInfo($uuid, $client, string $contentType = self::contentTypes['postCompanySingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postCompanySingleRequest($uuid, $client);
+        $request = $this->postCompanySingleRequest($uuid, $client, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class ClientsApi
      *
      * @param  string $uuid UUID of the Client (required)
      * @param  \OpenAPI\Client\Model\Company $client Client fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postCompanySingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postCompanySingleRequest($uuid, $client)
+    public function postCompanySingleRequest($uuid, $client, string $contentType = self::contentTypes['postCompanySingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class ClientsApi
                 'Missing the required parameter $client when calling postCompanySingle'
             );
         }
+
 
         $resourcePath = '/company/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class ClientsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($client)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($client));
             } else {
                 $httpBody = $client;
@@ -1752,9 +1778,9 @@ class ClientsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

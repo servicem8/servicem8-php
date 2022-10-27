@@ -69,7 +69,26 @@ class AttachmentsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteAttachmentSingle' => [
+            'application/json',
+        ],
+        'getAttachmentAll' => [
+            'application/json',
+        ],
+        'getAttachmentSingle' => [
+            'application/json',
+        ],
+        'postAttachmentCreate' => [
+            'application/json',
+        ],
+        'postAttachmentSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class AttachmentsApi
      * Delete an Attachment
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteAttachmentSingle($uuid)
+    public function deleteAttachmentSingle($uuid, string $contentType = self::contentTypes['deleteAttachmentSingle'][0])
     {
-        list($response) = $this->deleteAttachmentSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteAttachmentSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class AttachmentsApi
      * Delete an Attachment
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteAttachmentSingleWithHttpInfo($uuid)
+    public function deleteAttachmentSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteAttachmentSingle'][0])
     {
-        $request = $this->deleteAttachmentSingleRequest($uuid);
+        $request = $this->deleteAttachmentSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class AttachmentsApi
      * Delete an Attachment
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAttachmentSingleAsync($uuid)
+    public function deleteAttachmentSingleAsync($uuid, string $contentType = self::contentTypes['deleteAttachmentSingle'][0])
     {
-        return $this->deleteAttachmentSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteAttachmentSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class AttachmentsApi
      * Delete an Attachment
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAttachmentSingleAsyncWithHttpInfo($uuid)
+    public function deleteAttachmentSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteAttachmentSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteAttachmentSingleRequest($uuid);
+        $request = $this->deleteAttachmentSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class AttachmentsApi
      * Create request for operation 'deleteAttachmentSingle'
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteAttachmentSingleRequest($uuid)
+    public function deleteAttachmentSingleRequest($uuid, string $contentType = self::contentTypes['deleteAttachmentSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class AttachmentsApi
                 'Missing the required parameter $uuid when calling deleteAttachmentSingle'
             );
         }
+
 
         $resourcePath = '/attachment/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class AttachmentsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class AttachmentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class AttachmentsApi
      *
      * List all Attachments
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Attachment[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getAttachmentAll()
+    public function getAttachmentAll(string $contentType = self::contentTypes['getAttachmentAll'][0])
     {
-        list($response) = $this->getAttachmentAllWithHttpInfo();
+        list($response) = $this->getAttachmentAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class AttachmentsApi
      *
      * List all Attachments
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Attachment[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAttachmentAllWithHttpInfo()
+    public function getAttachmentAllWithHttpInfo(string $contentType = self::contentTypes['getAttachmentAll'][0])
     {
-        $request = $this->getAttachmentAllRequest();
+        $request = $this->getAttachmentAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class AttachmentsApi
      *
      * List all Attachments
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAttachmentAllAsync()
+    public function getAttachmentAllAsync(string $contentType = self::contentTypes['getAttachmentAll'][0])
     {
-        return $this->getAttachmentAllAsyncWithHttpInfo()
+        return $this->getAttachmentAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class AttachmentsApi
      *
      * List all Attachments
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAttachmentAllAsyncWithHttpInfo()
+    public function getAttachmentAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getAttachmentAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Attachment[]';
-        $request = $this->getAttachmentAllRequest();
+        $request = $this->getAttachmentAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class AttachmentsApi
     /**
      * Create request for operation 'getAttachmentAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAttachmentAllRequest()
+    public function getAttachmentAllRequest(string $contentType = self::contentTypes['getAttachmentAll'][0])
     {
+
 
         $resourcePath = '/attachment.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class AttachmentsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class AttachmentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class AttachmentsApi
      * Retrieve an Attachment
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Attachment|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getAttachmentSingle($uuid)
+    public function getAttachmentSingle($uuid, string $contentType = self::contentTypes['getAttachmentSingle'][0])
     {
-        list($response) = $this->getAttachmentSingleWithHttpInfo($uuid);
+        list($response) = $this->getAttachmentSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class AttachmentsApi
      * Retrieve an Attachment
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Attachment|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAttachmentSingleWithHttpInfo($uuid)
+    public function getAttachmentSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getAttachmentSingle'][0])
     {
-        $request = $this->getAttachmentSingleRequest($uuid);
+        $request = $this->getAttachmentSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class AttachmentsApi
      * Retrieve an Attachment
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAttachmentSingleAsync($uuid)
+    public function getAttachmentSingleAsync($uuid, string $contentType = self::contentTypes['getAttachmentSingle'][0])
     {
-        return $this->getAttachmentSingleAsyncWithHttpInfo($uuid)
+        return $this->getAttachmentSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class AttachmentsApi
      * Retrieve an Attachment
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAttachmentSingleAsyncWithHttpInfo($uuid)
+    public function getAttachmentSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getAttachmentSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Attachment';
-        $request = $this->getAttachmentSingleRequest($uuid);
+        $request = $this->getAttachmentSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class AttachmentsApi
      * Create request for operation 'getAttachmentSingle'
      *
      * @param  string $uuid UUID of the Attachment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAttachmentSingleRequest($uuid)
+    public function getAttachmentSingleRequest($uuid, string $contentType = self::contentTypes['getAttachmentSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class AttachmentsApi
                 'Missing the required parameter $uuid when calling getAttachmentSingle'
             );
         }
+
 
         $resourcePath = '/attachment/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class AttachmentsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class AttachmentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class AttachmentsApi
      * Create a new Attachment
      *
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postAttachmentCreate($attachment)
+    public function postAttachmentCreate($attachment, string $contentType = self::contentTypes['postAttachmentCreate'][0])
     {
-        list($response) = $this->postAttachmentCreateWithHttpInfo($attachment);
+        list($response) = $this->postAttachmentCreateWithHttpInfo($attachment, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class AttachmentsApi
      * Create a new Attachment
      *
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postAttachmentCreateWithHttpInfo($attachment)
+    public function postAttachmentCreateWithHttpInfo($attachment, string $contentType = self::contentTypes['postAttachmentCreate'][0])
     {
-        $request = $this->postAttachmentCreateRequest($attachment);
+        $request = $this->postAttachmentCreateRequest($attachment, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class AttachmentsApi
      * Create a new Attachment
      *
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAttachmentCreateAsync($attachment)
+    public function postAttachmentCreateAsync($attachment, string $contentType = self::contentTypes['postAttachmentCreate'][0])
     {
-        return $this->postAttachmentCreateAsyncWithHttpInfo($attachment)
+        return $this->postAttachmentCreateAsyncWithHttpInfo($attachment, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class AttachmentsApi
      * Create a new Attachment
      *
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAttachmentCreateAsyncWithHttpInfo($attachment)
+    public function postAttachmentCreateAsyncWithHttpInfo($attachment, string $contentType = self::contentTypes['postAttachmentCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postAttachmentCreateRequest($attachment);
+        $request = $this->postAttachmentCreateRequest($attachment, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class AttachmentsApi
      * Create request for operation 'postAttachmentCreate'
      *
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postAttachmentCreateRequest($attachment)
+    public function postAttachmentCreateRequest($attachment, string $contentType = self::contentTypes['postAttachmentCreate'][0])
     {
 
         // verify the required parameter 'attachment' is set
@@ -1353,6 +1380,7 @@ class AttachmentsApi
                 'Missing the required parameter $attachment when calling postAttachmentCreate'
             );
         }
+
 
         $resourcePath = '/attachment.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class AttachmentsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($attachment)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($attachment));
             } else {
                 $httpBody = $attachment;
@@ -1398,9 +1422,9 @@ class AttachmentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class AttachmentsApi
      *
      * @param  string $uuid UUID of the Attachment (required)
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postAttachmentSingle($uuid, $attachment)
+    public function postAttachmentSingle($uuid, $attachment, string $contentType = self::contentTypes['postAttachmentSingle'][0])
     {
-        list($response) = $this->postAttachmentSingleWithHttpInfo($uuid, $attachment);
+        list($response) = $this->postAttachmentSingleWithHttpInfo($uuid, $attachment, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class AttachmentsApi
      *
      * @param  string $uuid UUID of the Attachment (required)
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postAttachmentSingleWithHttpInfo($uuid, $attachment)
+    public function postAttachmentSingleWithHttpInfo($uuid, $attachment, string $contentType = self::contentTypes['postAttachmentSingle'][0])
     {
-        $request = $this->postAttachmentSingleRequest($uuid, $attachment);
+        $request = $this->postAttachmentSingleRequest($uuid, $attachment, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class AttachmentsApi
      *
      * @param  string $uuid UUID of the Attachment (required)
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAttachmentSingleAsync($uuid, $attachment)
+    public function postAttachmentSingleAsync($uuid, $attachment, string $contentType = self::contentTypes['postAttachmentSingle'][0])
     {
-        return $this->postAttachmentSingleAsyncWithHttpInfo($uuid, $attachment)
+        return $this->postAttachmentSingleAsyncWithHttpInfo($uuid, $attachment, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class AttachmentsApi
      *
      * @param  string $uuid UUID of the Attachment (required)
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAttachmentSingleAsyncWithHttpInfo($uuid, $attachment)
+    public function postAttachmentSingleAsyncWithHttpInfo($uuid, $attachment, string $contentType = self::contentTypes['postAttachmentSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postAttachmentSingleRequest($uuid, $attachment);
+        $request = $this->postAttachmentSingleRequest($uuid, $attachment, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class AttachmentsApi
      *
      * @param  string $uuid UUID of the Attachment (required)
      * @param  \OpenAPI\Client\Model\Attachment $attachment Attachment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAttachmentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postAttachmentSingleRequest($uuid, $attachment)
+    public function postAttachmentSingleRequest($uuid, $attachment, string $contentType = self::contentTypes['postAttachmentSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class AttachmentsApi
                 'Missing the required parameter $attachment when calling postAttachmentSingle'
             );
         }
+
 
         $resourcePath = '/attachment/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class AttachmentsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($attachment)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($attachment));
             } else {
                 $httpBody = $attachment;
@@ -1752,9 +1778,9 @@ class AttachmentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

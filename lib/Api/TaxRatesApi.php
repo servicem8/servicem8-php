@@ -69,7 +69,26 @@ class TaxRatesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteTaxRateSingle' => [
+            'application/json',
+        ],
+        'getTaxRateAll' => [
+            'application/json',
+        ],
+        'getTaxRateSingle' => [
+            'application/json',
+        ],
+        'postTaxRateCreate' => [
+            'application/json',
+        ],
+        'postTaxRateSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class TaxRatesApi
      * Delete a Tax Rate
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteTaxRateSingle($uuid)
+    public function deleteTaxRateSingle($uuid, string $contentType = self::contentTypes['deleteTaxRateSingle'][0])
     {
-        list($response) = $this->deleteTaxRateSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteTaxRateSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class TaxRatesApi
      * Delete a Tax Rate
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteTaxRateSingleWithHttpInfo($uuid)
+    public function deleteTaxRateSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteTaxRateSingle'][0])
     {
-        $request = $this->deleteTaxRateSingleRequest($uuid);
+        $request = $this->deleteTaxRateSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class TaxRatesApi
      * Delete a Tax Rate
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteTaxRateSingleAsync($uuid)
+    public function deleteTaxRateSingleAsync($uuid, string $contentType = self::contentTypes['deleteTaxRateSingle'][0])
     {
-        return $this->deleteTaxRateSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteTaxRateSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class TaxRatesApi
      * Delete a Tax Rate
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteTaxRateSingleAsyncWithHttpInfo($uuid)
+    public function deleteTaxRateSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteTaxRateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteTaxRateSingleRequest($uuid);
+        $request = $this->deleteTaxRateSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class TaxRatesApi
      * Create request for operation 'deleteTaxRateSingle'
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteTaxRateSingleRequest($uuid)
+    public function deleteTaxRateSingleRequest($uuid, string $contentType = self::contentTypes['deleteTaxRateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class TaxRatesApi
                 'Missing the required parameter $uuid when calling deleteTaxRateSingle'
             );
         }
+
 
         $resourcePath = '/taxrate/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class TaxRatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class TaxRatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class TaxRatesApi
      *
      * List all Tax Rates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\TaxRate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getTaxRateAll()
+    public function getTaxRateAll(string $contentType = self::contentTypes['getTaxRateAll'][0])
     {
-        list($response) = $this->getTaxRateAllWithHttpInfo();
+        list($response) = $this->getTaxRateAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class TaxRatesApi
      *
      * List all Tax Rates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\TaxRate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getTaxRateAllWithHttpInfo()
+    public function getTaxRateAllWithHttpInfo(string $contentType = self::contentTypes['getTaxRateAll'][0])
     {
-        $request = $this->getTaxRateAllRequest();
+        $request = $this->getTaxRateAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class TaxRatesApi
      *
      * List all Tax Rates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTaxRateAllAsync()
+    public function getTaxRateAllAsync(string $contentType = self::contentTypes['getTaxRateAll'][0])
     {
-        return $this->getTaxRateAllAsyncWithHttpInfo()
+        return $this->getTaxRateAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class TaxRatesApi
      *
      * List all Tax Rates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTaxRateAllAsyncWithHttpInfo()
+    public function getTaxRateAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getTaxRateAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\TaxRate[]';
-        $request = $this->getTaxRateAllRequest();
+        $request = $this->getTaxRateAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class TaxRatesApi
     /**
      * Create request for operation 'getTaxRateAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTaxRateAllRequest()
+    public function getTaxRateAllRequest(string $contentType = self::contentTypes['getTaxRateAll'][0])
     {
+
 
         $resourcePath = '/taxrate.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class TaxRatesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class TaxRatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class TaxRatesApi
      * Retrieve a Tax Rate
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\TaxRate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getTaxRateSingle($uuid)
+    public function getTaxRateSingle($uuid, string $contentType = self::contentTypes['getTaxRateSingle'][0])
     {
-        list($response) = $this->getTaxRateSingleWithHttpInfo($uuid);
+        list($response) = $this->getTaxRateSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class TaxRatesApi
      * Retrieve a Tax Rate
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\TaxRate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getTaxRateSingleWithHttpInfo($uuid)
+    public function getTaxRateSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getTaxRateSingle'][0])
     {
-        $request = $this->getTaxRateSingleRequest($uuid);
+        $request = $this->getTaxRateSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class TaxRatesApi
      * Retrieve a Tax Rate
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTaxRateSingleAsync($uuid)
+    public function getTaxRateSingleAsync($uuid, string $contentType = self::contentTypes['getTaxRateSingle'][0])
     {
-        return $this->getTaxRateSingleAsyncWithHttpInfo($uuid)
+        return $this->getTaxRateSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class TaxRatesApi
      * Retrieve a Tax Rate
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTaxRateSingleAsyncWithHttpInfo($uuid)
+    public function getTaxRateSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getTaxRateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\TaxRate';
-        $request = $this->getTaxRateSingleRequest($uuid);
+        $request = $this->getTaxRateSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class TaxRatesApi
      * Create request for operation 'getTaxRateSingle'
      *
      * @param  string $uuid UUID of the Tax Rate (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTaxRateSingleRequest($uuid)
+    public function getTaxRateSingleRequest($uuid, string $contentType = self::contentTypes['getTaxRateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class TaxRatesApi
                 'Missing the required parameter $uuid when calling getTaxRateSingle'
             );
         }
+
 
         $resourcePath = '/taxrate/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class TaxRatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class TaxRatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class TaxRatesApi
      * Create a new Tax Rate
      *
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postTaxRateCreate($taxRate)
+    public function postTaxRateCreate($taxRate, string $contentType = self::contentTypes['postTaxRateCreate'][0])
     {
-        list($response) = $this->postTaxRateCreateWithHttpInfo($taxRate);
+        list($response) = $this->postTaxRateCreateWithHttpInfo($taxRate, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class TaxRatesApi
      * Create a new Tax Rate
      *
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postTaxRateCreateWithHttpInfo($taxRate)
+    public function postTaxRateCreateWithHttpInfo($taxRate, string $contentType = self::contentTypes['postTaxRateCreate'][0])
     {
-        $request = $this->postTaxRateCreateRequest($taxRate);
+        $request = $this->postTaxRateCreateRequest($taxRate, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class TaxRatesApi
      * Create a new Tax Rate
      *
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postTaxRateCreateAsync($taxRate)
+    public function postTaxRateCreateAsync($taxRate, string $contentType = self::contentTypes['postTaxRateCreate'][0])
     {
-        return $this->postTaxRateCreateAsyncWithHttpInfo($taxRate)
+        return $this->postTaxRateCreateAsyncWithHttpInfo($taxRate, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class TaxRatesApi
      * Create a new Tax Rate
      *
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postTaxRateCreateAsyncWithHttpInfo($taxRate)
+    public function postTaxRateCreateAsyncWithHttpInfo($taxRate, string $contentType = self::contentTypes['postTaxRateCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postTaxRateCreateRequest($taxRate);
+        $request = $this->postTaxRateCreateRequest($taxRate, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class TaxRatesApi
      * Create request for operation 'postTaxRateCreate'
      *
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postTaxRateCreateRequest($taxRate)
+    public function postTaxRateCreateRequest($taxRate, string $contentType = self::contentTypes['postTaxRateCreate'][0])
     {
 
         // verify the required parameter 'taxRate' is set
@@ -1353,6 +1380,7 @@ class TaxRatesApi
                 'Missing the required parameter $taxRate when calling postTaxRateCreate'
             );
         }
+
 
         $resourcePath = '/taxrate.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class TaxRatesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($taxRate)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($taxRate));
             } else {
                 $httpBody = $taxRate;
@@ -1398,9 +1422,9 @@ class TaxRatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class TaxRatesApi
      *
      * @param  string $uuid UUID of the Tax Rate (required)
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postTaxRateSingle($uuid, $taxRate)
+    public function postTaxRateSingle($uuid, $taxRate, string $contentType = self::contentTypes['postTaxRateSingle'][0])
     {
-        list($response) = $this->postTaxRateSingleWithHttpInfo($uuid, $taxRate);
+        list($response) = $this->postTaxRateSingleWithHttpInfo($uuid, $taxRate, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class TaxRatesApi
      *
      * @param  string $uuid UUID of the Tax Rate (required)
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postTaxRateSingleWithHttpInfo($uuid, $taxRate)
+    public function postTaxRateSingleWithHttpInfo($uuid, $taxRate, string $contentType = self::contentTypes['postTaxRateSingle'][0])
     {
-        $request = $this->postTaxRateSingleRequest($uuid, $taxRate);
+        $request = $this->postTaxRateSingleRequest($uuid, $taxRate, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class TaxRatesApi
      *
      * @param  string $uuid UUID of the Tax Rate (required)
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postTaxRateSingleAsync($uuid, $taxRate)
+    public function postTaxRateSingleAsync($uuid, $taxRate, string $contentType = self::contentTypes['postTaxRateSingle'][0])
     {
-        return $this->postTaxRateSingleAsyncWithHttpInfo($uuid, $taxRate)
+        return $this->postTaxRateSingleAsyncWithHttpInfo($uuid, $taxRate, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class TaxRatesApi
      *
      * @param  string $uuid UUID of the Tax Rate (required)
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postTaxRateSingleAsyncWithHttpInfo($uuid, $taxRate)
+    public function postTaxRateSingleAsyncWithHttpInfo($uuid, $taxRate, string $contentType = self::contentTypes['postTaxRateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postTaxRateSingleRequest($uuid, $taxRate);
+        $request = $this->postTaxRateSingleRequest($uuid, $taxRate, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class TaxRatesApi
      *
      * @param  string $uuid UUID of the Tax Rate (required)
      * @param  \OpenAPI\Client\Model\TaxRate $taxRate Tax Rate fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaxRateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postTaxRateSingleRequest($uuid, $taxRate)
+    public function postTaxRateSingleRequest($uuid, $taxRate, string $contentType = self::contentTypes['postTaxRateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class TaxRatesApi
                 'Missing the required parameter $taxRate when calling postTaxRateSingle'
             );
         }
+
 
         $resourcePath = '/taxrate/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class TaxRatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($taxRate)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($taxRate));
             } else {
                 $httpBody = $taxRate;
@@ -1752,9 +1778,9 @@ class TaxRatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

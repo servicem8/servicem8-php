@@ -69,7 +69,26 @@ class JobContactsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteJobContactSingle' => [
+            'application/json',
+        ],
+        'getJobContactAll' => [
+            'application/json',
+        ],
+        'getJobContactSingle' => [
+            'application/json',
+        ],
+        'postJobContactCreate' => [
+            'application/json',
+        ],
+        'postJobContactSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class JobContactsApi
      * Delete a Job Contact
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobContactSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteJobContactSingle($uuid)
+    public function deleteJobContactSingle($uuid, string $contentType = self::contentTypes['deleteJobContactSingle'][0])
     {
-        list($response) = $this->deleteJobContactSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteJobContactSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class JobContactsApi
      * Delete a Job Contact
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobContactSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteJobContactSingleWithHttpInfo($uuid)
+    public function deleteJobContactSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteJobContactSingle'][0])
     {
-        $request = $this->deleteJobContactSingleRequest($uuid);
+        $request = $this->deleteJobContactSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class JobContactsApi
      * Delete a Job Contact
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobContactSingleAsync($uuid)
+    public function deleteJobContactSingleAsync($uuid, string $contentType = self::contentTypes['deleteJobContactSingle'][0])
     {
-        return $this->deleteJobContactSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteJobContactSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class JobContactsApi
      * Delete a Job Contact
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobContactSingleAsyncWithHttpInfo($uuid)
+    public function deleteJobContactSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteJobContactSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteJobContactSingleRequest($uuid);
+        $request = $this->deleteJobContactSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class JobContactsApi
      * Create request for operation 'deleteJobContactSingle'
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteJobContactSingleRequest($uuid)
+    public function deleteJobContactSingleRequest($uuid, string $contentType = self::contentTypes['deleteJobContactSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class JobContactsApi
                 'Missing the required parameter $uuid when calling deleteJobContactSingle'
             );
         }
+
 
         $resourcePath = '/jobcontact/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class JobContactsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class JobContactsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class JobContactsApi
      *
      * List all Job Contacts
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\JobContact[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobContactAll()
+    public function getJobContactAll(string $contentType = self::contentTypes['getJobContactAll'][0])
     {
-        list($response) = $this->getJobContactAllWithHttpInfo();
+        list($response) = $this->getJobContactAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class JobContactsApi
      *
      * List all Job Contacts
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\JobContact[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobContactAllWithHttpInfo()
+    public function getJobContactAllWithHttpInfo(string $contentType = self::contentTypes['getJobContactAll'][0])
     {
-        $request = $this->getJobContactAllRequest();
+        $request = $this->getJobContactAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class JobContactsApi
      *
      * List all Job Contacts
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobContactAllAsync()
+    public function getJobContactAllAsync(string $contentType = self::contentTypes['getJobContactAll'][0])
     {
-        return $this->getJobContactAllAsyncWithHttpInfo()
+        return $this->getJobContactAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class JobContactsApi
      *
      * List all Job Contacts
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobContactAllAsyncWithHttpInfo()
+    public function getJobContactAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getJobContactAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\JobContact[]';
-        $request = $this->getJobContactAllRequest();
+        $request = $this->getJobContactAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class JobContactsApi
     /**
      * Create request for operation 'getJobContactAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobContactAllRequest()
+    public function getJobContactAllRequest(string $contentType = self::contentTypes['getJobContactAll'][0])
     {
+
 
         $resourcePath = '/jobcontact.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class JobContactsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class JobContactsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class JobContactsApi
      * Retrieve a Job Contact
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\JobContact|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobContactSingle($uuid)
+    public function getJobContactSingle($uuid, string $contentType = self::contentTypes['getJobContactSingle'][0])
     {
-        list($response) = $this->getJobContactSingleWithHttpInfo($uuid);
+        list($response) = $this->getJobContactSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class JobContactsApi
      * Retrieve a Job Contact
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\JobContact|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobContactSingleWithHttpInfo($uuid)
+    public function getJobContactSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getJobContactSingle'][0])
     {
-        $request = $this->getJobContactSingleRequest($uuid);
+        $request = $this->getJobContactSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class JobContactsApi
      * Retrieve a Job Contact
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobContactSingleAsync($uuid)
+    public function getJobContactSingleAsync($uuid, string $contentType = self::contentTypes['getJobContactSingle'][0])
     {
-        return $this->getJobContactSingleAsyncWithHttpInfo($uuid)
+        return $this->getJobContactSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class JobContactsApi
      * Retrieve a Job Contact
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobContactSingleAsyncWithHttpInfo($uuid)
+    public function getJobContactSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getJobContactSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\JobContact';
-        $request = $this->getJobContactSingleRequest($uuid);
+        $request = $this->getJobContactSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class JobContactsApi
      * Create request for operation 'getJobContactSingle'
      *
      * @param  string $uuid UUID of the Job Contact (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobContactSingleRequest($uuid)
+    public function getJobContactSingleRequest($uuid, string $contentType = self::contentTypes['getJobContactSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class JobContactsApi
                 'Missing the required parameter $uuid when calling getJobContactSingle'
             );
         }
+
 
         $resourcePath = '/jobcontact/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class JobContactsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class JobContactsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class JobContactsApi
      * Create a new Job Contact
      *
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobContactCreate($jobContact)
+    public function postJobContactCreate($jobContact, string $contentType = self::contentTypes['postJobContactCreate'][0])
     {
-        list($response) = $this->postJobContactCreateWithHttpInfo($jobContact);
+        list($response) = $this->postJobContactCreateWithHttpInfo($jobContact, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class JobContactsApi
      * Create a new Job Contact
      *
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobContactCreateWithHttpInfo($jobContact)
+    public function postJobContactCreateWithHttpInfo($jobContact, string $contentType = self::contentTypes['postJobContactCreate'][0])
     {
-        $request = $this->postJobContactCreateRequest($jobContact);
+        $request = $this->postJobContactCreateRequest($jobContact, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class JobContactsApi
      * Create a new Job Contact
      *
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobContactCreateAsync($jobContact)
+    public function postJobContactCreateAsync($jobContact, string $contentType = self::contentTypes['postJobContactCreate'][0])
     {
-        return $this->postJobContactCreateAsyncWithHttpInfo($jobContact)
+        return $this->postJobContactCreateAsyncWithHttpInfo($jobContact, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class JobContactsApi
      * Create a new Job Contact
      *
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobContactCreateAsyncWithHttpInfo($jobContact)
+    public function postJobContactCreateAsyncWithHttpInfo($jobContact, string $contentType = self::contentTypes['postJobContactCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobContactCreateRequest($jobContact);
+        $request = $this->postJobContactCreateRequest($jobContact, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class JobContactsApi
      * Create request for operation 'postJobContactCreate'
      *
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobContactCreateRequest($jobContact)
+    public function postJobContactCreateRequest($jobContact, string $contentType = self::contentTypes['postJobContactCreate'][0])
     {
 
         // verify the required parameter 'jobContact' is set
@@ -1353,6 +1380,7 @@ class JobContactsApi
                 'Missing the required parameter $jobContact when calling postJobContactCreate'
             );
         }
+
 
         $resourcePath = '/jobcontact.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class JobContactsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobContact)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobContact));
             } else {
                 $httpBody = $jobContact;
@@ -1398,9 +1422,9 @@ class JobContactsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class JobContactsApi
      *
      * @param  string $uuid UUID of the Job Contact (required)
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobContactSingle($uuid, $jobContact)
+    public function postJobContactSingle($uuid, $jobContact, string $contentType = self::contentTypes['postJobContactSingle'][0])
     {
-        list($response) = $this->postJobContactSingleWithHttpInfo($uuid, $jobContact);
+        list($response) = $this->postJobContactSingleWithHttpInfo($uuid, $jobContact, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class JobContactsApi
      *
      * @param  string $uuid UUID of the Job Contact (required)
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobContactSingleWithHttpInfo($uuid, $jobContact)
+    public function postJobContactSingleWithHttpInfo($uuid, $jobContact, string $contentType = self::contentTypes['postJobContactSingle'][0])
     {
-        $request = $this->postJobContactSingleRequest($uuid, $jobContact);
+        $request = $this->postJobContactSingleRequest($uuid, $jobContact, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class JobContactsApi
      *
      * @param  string $uuid UUID of the Job Contact (required)
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobContactSingleAsync($uuid, $jobContact)
+    public function postJobContactSingleAsync($uuid, $jobContact, string $contentType = self::contentTypes['postJobContactSingle'][0])
     {
-        return $this->postJobContactSingleAsyncWithHttpInfo($uuid, $jobContact)
+        return $this->postJobContactSingleAsyncWithHttpInfo($uuid, $jobContact, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class JobContactsApi
      *
      * @param  string $uuid UUID of the Job Contact (required)
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobContactSingleAsyncWithHttpInfo($uuid, $jobContact)
+    public function postJobContactSingleAsyncWithHttpInfo($uuid, $jobContact, string $contentType = self::contentTypes['postJobContactSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobContactSingleRequest($uuid, $jobContact);
+        $request = $this->postJobContactSingleRequest($uuid, $jobContact, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class JobContactsApi
      *
      * @param  string $uuid UUID of the Job Contact (required)
      * @param  \OpenAPI\Client\Model\JobContact $jobContact Job Contact fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobContactSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobContactSingleRequest($uuid, $jobContact)
+    public function postJobContactSingleRequest($uuid, $jobContact, string $contentType = self::contentTypes['postJobContactSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class JobContactsApi
                 'Missing the required parameter $jobContact when calling postJobContactSingle'
             );
         }
+
 
         $resourcePath = '/jobcontact/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class JobContactsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobContact)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobContact));
             } else {
                 $httpBody = $jobContact;
@@ -1752,9 +1778,9 @@ class JobContactsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

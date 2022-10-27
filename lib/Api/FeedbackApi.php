@@ -69,7 +69,26 @@ class FeedbackApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteFeedbackSingle' => [
+            'application/json',
+        ],
+        'getFeedbackAll' => [
+            'application/json',
+        ],
+        'getFeedbackSingle' => [
+            'application/json',
+        ],
+        'postFeedbackCreate' => [
+            'application/json',
+        ],
+        'postFeedbackSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class FeedbackApi
      * Delete a Feedback
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteFeedbackSingle($uuid)
+    public function deleteFeedbackSingle($uuid, string $contentType = self::contentTypes['deleteFeedbackSingle'][0])
     {
-        list($response) = $this->deleteFeedbackSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteFeedbackSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class FeedbackApi
      * Delete a Feedback
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteFeedbackSingleWithHttpInfo($uuid)
+    public function deleteFeedbackSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteFeedbackSingle'][0])
     {
-        $request = $this->deleteFeedbackSingleRequest($uuid);
+        $request = $this->deleteFeedbackSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class FeedbackApi
      * Delete a Feedback
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFeedbackSingleAsync($uuid)
+    public function deleteFeedbackSingleAsync($uuid, string $contentType = self::contentTypes['deleteFeedbackSingle'][0])
     {
-        return $this->deleteFeedbackSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteFeedbackSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class FeedbackApi
      * Delete a Feedback
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFeedbackSingleAsyncWithHttpInfo($uuid)
+    public function deleteFeedbackSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteFeedbackSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteFeedbackSingleRequest($uuid);
+        $request = $this->deleteFeedbackSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class FeedbackApi
      * Create request for operation 'deleteFeedbackSingle'
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFeedbackSingleRequest($uuid)
+    public function deleteFeedbackSingleRequest($uuid, string $contentType = self::contentTypes['deleteFeedbackSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class FeedbackApi
                 'Missing the required parameter $uuid when calling deleteFeedbackSingle'
             );
         }
+
 
         $resourcePath = '/feedback/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class FeedbackApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class FeedbackApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class FeedbackApi
      *
      * List all Feedback
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Feedback[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getFeedbackAll()
+    public function getFeedbackAll(string $contentType = self::contentTypes['getFeedbackAll'][0])
     {
-        list($response) = $this->getFeedbackAllWithHttpInfo();
+        list($response) = $this->getFeedbackAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class FeedbackApi
      *
      * List all Feedback
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Feedback[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFeedbackAllWithHttpInfo()
+    public function getFeedbackAllWithHttpInfo(string $contentType = self::contentTypes['getFeedbackAll'][0])
     {
-        $request = $this->getFeedbackAllRequest();
+        $request = $this->getFeedbackAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class FeedbackApi
      *
      * List all Feedback
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFeedbackAllAsync()
+    public function getFeedbackAllAsync(string $contentType = self::contentTypes['getFeedbackAll'][0])
     {
-        return $this->getFeedbackAllAsyncWithHttpInfo()
+        return $this->getFeedbackAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class FeedbackApi
      *
      * List all Feedback
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFeedbackAllAsyncWithHttpInfo()
+    public function getFeedbackAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getFeedbackAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Feedback[]';
-        $request = $this->getFeedbackAllRequest();
+        $request = $this->getFeedbackAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class FeedbackApi
     /**
      * Create request for operation 'getFeedbackAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFeedbackAllRequest()
+    public function getFeedbackAllRequest(string $contentType = self::contentTypes['getFeedbackAll'][0])
     {
+
 
         $resourcePath = '/feedback.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class FeedbackApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class FeedbackApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class FeedbackApi
      * Retrieve a Feedback
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Feedback|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getFeedbackSingle($uuid)
+    public function getFeedbackSingle($uuid, string $contentType = self::contentTypes['getFeedbackSingle'][0])
     {
-        list($response) = $this->getFeedbackSingleWithHttpInfo($uuid);
+        list($response) = $this->getFeedbackSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class FeedbackApi
      * Retrieve a Feedback
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Feedback|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFeedbackSingleWithHttpInfo($uuid)
+    public function getFeedbackSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getFeedbackSingle'][0])
     {
-        $request = $this->getFeedbackSingleRequest($uuid);
+        $request = $this->getFeedbackSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class FeedbackApi
      * Retrieve a Feedback
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFeedbackSingleAsync($uuid)
+    public function getFeedbackSingleAsync($uuid, string $contentType = self::contentTypes['getFeedbackSingle'][0])
     {
-        return $this->getFeedbackSingleAsyncWithHttpInfo($uuid)
+        return $this->getFeedbackSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class FeedbackApi
      * Retrieve a Feedback
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFeedbackSingleAsyncWithHttpInfo($uuid)
+    public function getFeedbackSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getFeedbackSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Feedback';
-        $request = $this->getFeedbackSingleRequest($uuid);
+        $request = $this->getFeedbackSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class FeedbackApi
      * Create request for operation 'getFeedbackSingle'
      *
      * @param  string $uuid UUID of the Feedback (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFeedbackSingleRequest($uuid)
+    public function getFeedbackSingleRequest($uuid, string $contentType = self::contentTypes['getFeedbackSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class FeedbackApi
                 'Missing the required parameter $uuid when calling getFeedbackSingle'
             );
         }
+
 
         $resourcePath = '/feedback/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class FeedbackApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class FeedbackApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class FeedbackApi
      * Create a new Feedback
      *
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postFeedbackCreate($feedback)
+    public function postFeedbackCreate($feedback, string $contentType = self::contentTypes['postFeedbackCreate'][0])
     {
-        list($response) = $this->postFeedbackCreateWithHttpInfo($feedback);
+        list($response) = $this->postFeedbackCreateWithHttpInfo($feedback, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class FeedbackApi
      * Create a new Feedback
      *
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postFeedbackCreateWithHttpInfo($feedback)
+    public function postFeedbackCreateWithHttpInfo($feedback, string $contentType = self::contentTypes['postFeedbackCreate'][0])
     {
-        $request = $this->postFeedbackCreateRequest($feedback);
+        $request = $this->postFeedbackCreateRequest($feedback, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class FeedbackApi
      * Create a new Feedback
      *
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFeedbackCreateAsync($feedback)
+    public function postFeedbackCreateAsync($feedback, string $contentType = self::contentTypes['postFeedbackCreate'][0])
     {
-        return $this->postFeedbackCreateAsyncWithHttpInfo($feedback)
+        return $this->postFeedbackCreateAsyncWithHttpInfo($feedback, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class FeedbackApi
      * Create a new Feedback
      *
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFeedbackCreateAsyncWithHttpInfo($feedback)
+    public function postFeedbackCreateAsyncWithHttpInfo($feedback, string $contentType = self::contentTypes['postFeedbackCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postFeedbackCreateRequest($feedback);
+        $request = $this->postFeedbackCreateRequest($feedback, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class FeedbackApi
      * Create request for operation 'postFeedbackCreate'
      *
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postFeedbackCreateRequest($feedback)
+    public function postFeedbackCreateRequest($feedback, string $contentType = self::contentTypes['postFeedbackCreate'][0])
     {
 
         // verify the required parameter 'feedback' is set
@@ -1353,6 +1380,7 @@ class FeedbackApi
                 'Missing the required parameter $feedback when calling postFeedbackCreate'
             );
         }
+
 
         $resourcePath = '/feedback.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class FeedbackApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($feedback)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($feedback));
             } else {
                 $httpBody = $feedback;
@@ -1398,9 +1422,9 @@ class FeedbackApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class FeedbackApi
      *
      * @param  string $uuid UUID of the Feedback (required)
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postFeedbackSingle($uuid, $feedback)
+    public function postFeedbackSingle($uuid, $feedback, string $contentType = self::contentTypes['postFeedbackSingle'][0])
     {
-        list($response) = $this->postFeedbackSingleWithHttpInfo($uuid, $feedback);
+        list($response) = $this->postFeedbackSingleWithHttpInfo($uuid, $feedback, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class FeedbackApi
      *
      * @param  string $uuid UUID of the Feedback (required)
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postFeedbackSingleWithHttpInfo($uuid, $feedback)
+    public function postFeedbackSingleWithHttpInfo($uuid, $feedback, string $contentType = self::contentTypes['postFeedbackSingle'][0])
     {
-        $request = $this->postFeedbackSingleRequest($uuid, $feedback);
+        $request = $this->postFeedbackSingleRequest($uuid, $feedback, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class FeedbackApi
      *
      * @param  string $uuid UUID of the Feedback (required)
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFeedbackSingleAsync($uuid, $feedback)
+    public function postFeedbackSingleAsync($uuid, $feedback, string $contentType = self::contentTypes['postFeedbackSingle'][0])
     {
-        return $this->postFeedbackSingleAsyncWithHttpInfo($uuid, $feedback)
+        return $this->postFeedbackSingleAsyncWithHttpInfo($uuid, $feedback, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class FeedbackApi
      *
      * @param  string $uuid UUID of the Feedback (required)
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFeedbackSingleAsyncWithHttpInfo($uuid, $feedback)
+    public function postFeedbackSingleAsyncWithHttpInfo($uuid, $feedback, string $contentType = self::contentTypes['postFeedbackSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postFeedbackSingleRequest($uuid, $feedback);
+        $request = $this->postFeedbackSingleRequest($uuid, $feedback, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class FeedbackApi
      *
      * @param  string $uuid UUID of the Feedback (required)
      * @param  \OpenAPI\Client\Model\Feedback $feedback Feedback fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFeedbackSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postFeedbackSingleRequest($uuid, $feedback)
+    public function postFeedbackSingleRequest($uuid, $feedback, string $contentType = self::contentTypes['postFeedbackSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class FeedbackApi
                 'Missing the required parameter $feedback when calling postFeedbackSingle'
             );
         }
+
 
         $resourcePath = '/feedback/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class FeedbackApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($feedback)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($feedback));
             } else {
                 $httpBody = $feedback;
@@ -1752,9 +1778,9 @@ class FeedbackApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

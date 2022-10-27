@@ -69,7 +69,26 @@ class EmailTemplatesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteEmailTemplateSingle' => [
+            'application/json',
+        ],
+        'getEmailTemplateAll' => [
+            'application/json',
+        ],
+        'getEmailTemplateSingle' => [
+            'application/json',
+        ],
+        'postEmailTemplateCreate' => [
+            'application/json',
+        ],
+        'postEmailTemplateSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class EmailTemplatesApi
      * Delete an Email Template
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteEmailTemplateSingle($uuid)
+    public function deleteEmailTemplateSingle($uuid, string $contentType = self::contentTypes['deleteEmailTemplateSingle'][0])
     {
-        list($response) = $this->deleteEmailTemplateSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteEmailTemplateSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class EmailTemplatesApi
      * Delete an Email Template
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteEmailTemplateSingleWithHttpInfo($uuid)
+    public function deleteEmailTemplateSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteEmailTemplateSingle'][0])
     {
-        $request = $this->deleteEmailTemplateSingleRequest($uuid);
+        $request = $this->deleteEmailTemplateSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class EmailTemplatesApi
      * Delete an Email Template
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteEmailTemplateSingleAsync($uuid)
+    public function deleteEmailTemplateSingleAsync($uuid, string $contentType = self::contentTypes['deleteEmailTemplateSingle'][0])
     {
-        return $this->deleteEmailTemplateSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteEmailTemplateSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class EmailTemplatesApi
      * Delete an Email Template
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteEmailTemplateSingleAsyncWithHttpInfo($uuid)
+    public function deleteEmailTemplateSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteEmailTemplateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteEmailTemplateSingleRequest($uuid);
+        $request = $this->deleteEmailTemplateSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class EmailTemplatesApi
      * Create request for operation 'deleteEmailTemplateSingle'
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteEmailTemplateSingleRequest($uuid)
+    public function deleteEmailTemplateSingleRequest($uuid, string $contentType = self::contentTypes['deleteEmailTemplateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class EmailTemplatesApi
                 'Missing the required parameter $uuid when calling deleteEmailTemplateSingle'
             );
         }
+
 
         $resourcePath = '/emailtemplate/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class EmailTemplatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class EmailTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class EmailTemplatesApi
      *
      * List all Email Templates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmailTemplate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getEmailTemplateAll()
+    public function getEmailTemplateAll(string $contentType = self::contentTypes['getEmailTemplateAll'][0])
     {
-        list($response) = $this->getEmailTemplateAllWithHttpInfo();
+        list($response) = $this->getEmailTemplateAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class EmailTemplatesApi
      *
      * List all Email Templates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmailTemplate[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmailTemplateAllWithHttpInfo()
+    public function getEmailTemplateAllWithHttpInfo(string $contentType = self::contentTypes['getEmailTemplateAll'][0])
     {
-        $request = $this->getEmailTemplateAllRequest();
+        $request = $this->getEmailTemplateAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class EmailTemplatesApi
      *
      * List all Email Templates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmailTemplateAllAsync()
+    public function getEmailTemplateAllAsync(string $contentType = self::contentTypes['getEmailTemplateAll'][0])
     {
-        return $this->getEmailTemplateAllAsyncWithHttpInfo()
+        return $this->getEmailTemplateAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class EmailTemplatesApi
      *
      * List all Email Templates
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmailTemplateAllAsyncWithHttpInfo()
+    public function getEmailTemplateAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getEmailTemplateAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmailTemplate[]';
-        $request = $this->getEmailTemplateAllRequest();
+        $request = $this->getEmailTemplateAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class EmailTemplatesApi
     /**
      * Create request for operation 'getEmailTemplateAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailTemplateAllRequest()
+    public function getEmailTemplateAllRequest(string $contentType = self::contentTypes['getEmailTemplateAll'][0])
     {
+
 
         $resourcePath = '/emailtemplate.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class EmailTemplatesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class EmailTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class EmailTemplatesApi
      * Retrieve an Email Template
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\EmailTemplate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getEmailTemplateSingle($uuid)
+    public function getEmailTemplateSingle($uuid, string $contentType = self::contentTypes['getEmailTemplateSingle'][0])
     {
-        list($response) = $this->getEmailTemplateSingleWithHttpInfo($uuid);
+        list($response) = $this->getEmailTemplateSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class EmailTemplatesApi
      * Retrieve an Email Template
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\EmailTemplate|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getEmailTemplateSingleWithHttpInfo($uuid)
+    public function getEmailTemplateSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getEmailTemplateSingle'][0])
     {
-        $request = $this->getEmailTemplateSingleRequest($uuid);
+        $request = $this->getEmailTemplateSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class EmailTemplatesApi
      * Retrieve an Email Template
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmailTemplateSingleAsync($uuid)
+    public function getEmailTemplateSingleAsync($uuid, string $contentType = self::contentTypes['getEmailTemplateSingle'][0])
     {
-        return $this->getEmailTemplateSingleAsyncWithHttpInfo($uuid)
+        return $this->getEmailTemplateSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class EmailTemplatesApi
      * Retrieve an Email Template
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getEmailTemplateSingleAsyncWithHttpInfo($uuid)
+    public function getEmailTemplateSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getEmailTemplateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\EmailTemplate';
-        $request = $this->getEmailTemplateSingleRequest($uuid);
+        $request = $this->getEmailTemplateSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class EmailTemplatesApi
      * Create request for operation 'getEmailTemplateSingle'
      *
      * @param  string $uuid UUID of the Email Template (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getEmailTemplateSingleRequest($uuid)
+    public function getEmailTemplateSingleRequest($uuid, string $contentType = self::contentTypes['getEmailTemplateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class EmailTemplatesApi
                 'Missing the required parameter $uuid when calling getEmailTemplateSingle'
             );
         }
+
 
         $resourcePath = '/emailtemplate/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class EmailTemplatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class EmailTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class EmailTemplatesApi
      * Create a new Email Template
      *
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postEmailTemplateCreate($emailTemplate)
+    public function postEmailTemplateCreate($emailTemplate, string $contentType = self::contentTypes['postEmailTemplateCreate'][0])
     {
-        list($response) = $this->postEmailTemplateCreateWithHttpInfo($emailTemplate);
+        list($response) = $this->postEmailTemplateCreateWithHttpInfo($emailTemplate, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class EmailTemplatesApi
      * Create a new Email Template
      *
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postEmailTemplateCreateWithHttpInfo($emailTemplate)
+    public function postEmailTemplateCreateWithHttpInfo($emailTemplate, string $contentType = self::contentTypes['postEmailTemplateCreate'][0])
     {
-        $request = $this->postEmailTemplateCreateRequest($emailTemplate);
+        $request = $this->postEmailTemplateCreateRequest($emailTemplate, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class EmailTemplatesApi
      * Create a new Email Template
      *
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postEmailTemplateCreateAsync($emailTemplate)
+    public function postEmailTemplateCreateAsync($emailTemplate, string $contentType = self::contentTypes['postEmailTemplateCreate'][0])
     {
-        return $this->postEmailTemplateCreateAsyncWithHttpInfo($emailTemplate)
+        return $this->postEmailTemplateCreateAsyncWithHttpInfo($emailTemplate, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class EmailTemplatesApi
      * Create a new Email Template
      *
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postEmailTemplateCreateAsyncWithHttpInfo($emailTemplate)
+    public function postEmailTemplateCreateAsyncWithHttpInfo($emailTemplate, string $contentType = self::contentTypes['postEmailTemplateCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postEmailTemplateCreateRequest($emailTemplate);
+        $request = $this->postEmailTemplateCreateRequest($emailTemplate, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class EmailTemplatesApi
      * Create request for operation 'postEmailTemplateCreate'
      *
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postEmailTemplateCreateRequest($emailTemplate)
+    public function postEmailTemplateCreateRequest($emailTemplate, string $contentType = self::contentTypes['postEmailTemplateCreate'][0])
     {
 
         // verify the required parameter 'emailTemplate' is set
@@ -1353,6 +1380,7 @@ class EmailTemplatesApi
                 'Missing the required parameter $emailTemplate when calling postEmailTemplateCreate'
             );
         }
+
 
         $resourcePath = '/emailtemplate.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class EmailTemplatesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($emailTemplate)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($emailTemplate));
             } else {
                 $httpBody = $emailTemplate;
@@ -1398,9 +1422,9 @@ class EmailTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class EmailTemplatesApi
      *
      * @param  string $uuid UUID of the Email Template (required)
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postEmailTemplateSingle($uuid, $emailTemplate)
+    public function postEmailTemplateSingle($uuid, $emailTemplate, string $contentType = self::contentTypes['postEmailTemplateSingle'][0])
     {
-        list($response) = $this->postEmailTemplateSingleWithHttpInfo($uuid, $emailTemplate);
+        list($response) = $this->postEmailTemplateSingleWithHttpInfo($uuid, $emailTemplate, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class EmailTemplatesApi
      *
      * @param  string $uuid UUID of the Email Template (required)
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postEmailTemplateSingleWithHttpInfo($uuid, $emailTemplate)
+    public function postEmailTemplateSingleWithHttpInfo($uuid, $emailTemplate, string $contentType = self::contentTypes['postEmailTemplateSingle'][0])
     {
-        $request = $this->postEmailTemplateSingleRequest($uuid, $emailTemplate);
+        $request = $this->postEmailTemplateSingleRequest($uuid, $emailTemplate, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class EmailTemplatesApi
      *
      * @param  string $uuid UUID of the Email Template (required)
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postEmailTemplateSingleAsync($uuid, $emailTemplate)
+    public function postEmailTemplateSingleAsync($uuid, $emailTemplate, string $contentType = self::contentTypes['postEmailTemplateSingle'][0])
     {
-        return $this->postEmailTemplateSingleAsyncWithHttpInfo($uuid, $emailTemplate)
+        return $this->postEmailTemplateSingleAsyncWithHttpInfo($uuid, $emailTemplate, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class EmailTemplatesApi
      *
      * @param  string $uuid UUID of the Email Template (required)
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postEmailTemplateSingleAsyncWithHttpInfo($uuid, $emailTemplate)
+    public function postEmailTemplateSingleAsyncWithHttpInfo($uuid, $emailTemplate, string $contentType = self::contentTypes['postEmailTemplateSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postEmailTemplateSingleRequest($uuid, $emailTemplate);
+        $request = $this->postEmailTemplateSingleRequest($uuid, $emailTemplate, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class EmailTemplatesApi
      *
      * @param  string $uuid UUID of the Email Template (required)
      * @param  \OpenAPI\Client\Model\EmailTemplate $emailTemplate Email Template fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postEmailTemplateSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postEmailTemplateSingleRequest($uuid, $emailTemplate)
+    public function postEmailTemplateSingleRequest($uuid, $emailTemplate, string $contentType = self::contentTypes['postEmailTemplateSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class EmailTemplatesApi
                 'Missing the required parameter $emailTemplate when calling postEmailTemplateSingle'
             );
         }
+
 
         $resourcePath = '/emailtemplate/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class EmailTemplatesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($emailTemplate)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($emailTemplate));
             } else {
                 $httpBody = $emailTemplate;
@@ -1752,9 +1778,9 @@ class EmailTemplatesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

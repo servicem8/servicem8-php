@@ -69,7 +69,26 @@ class JobMaterialBundlesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteJobMaterialBundleSingle' => [
+            'application/json',
+        ],
+        'getJobMaterialBundleAll' => [
+            'application/json',
+        ],
+        'getJobMaterialBundleSingle' => [
+            'application/json',
+        ],
+        'postJobMaterialBundleCreate' => [
+            'application/json',
+        ],
+        'postJobMaterialBundleSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class JobMaterialBundlesApi
      * Delete a JobMaterialBundle
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteJobMaterialBundleSingle($uuid)
+    public function deleteJobMaterialBundleSingle($uuid, string $contentType = self::contentTypes['deleteJobMaterialBundleSingle'][0])
     {
-        list($response) = $this->deleteJobMaterialBundleSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteJobMaterialBundleSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class JobMaterialBundlesApi
      * Delete a JobMaterialBundle
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteJobMaterialBundleSingleWithHttpInfo($uuid)
+    public function deleteJobMaterialBundleSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteJobMaterialBundleSingle'][0])
     {
-        $request = $this->deleteJobMaterialBundleSingleRequest($uuid);
+        $request = $this->deleteJobMaterialBundleSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class JobMaterialBundlesApi
      * Delete a JobMaterialBundle
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobMaterialBundleSingleAsync($uuid)
+    public function deleteJobMaterialBundleSingleAsync($uuid, string $contentType = self::contentTypes['deleteJobMaterialBundleSingle'][0])
     {
-        return $this->deleteJobMaterialBundleSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteJobMaterialBundleSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class JobMaterialBundlesApi
      * Delete a JobMaterialBundle
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobMaterialBundleSingleAsyncWithHttpInfo($uuid)
+    public function deleteJobMaterialBundleSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteJobMaterialBundleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteJobMaterialBundleSingleRequest($uuid);
+        $request = $this->deleteJobMaterialBundleSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class JobMaterialBundlesApi
      * Create request for operation 'deleteJobMaterialBundleSingle'
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteJobMaterialBundleSingleRequest($uuid)
+    public function deleteJobMaterialBundleSingleRequest($uuid, string $contentType = self::contentTypes['deleteJobMaterialBundleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class JobMaterialBundlesApi
                 'Missing the required parameter $uuid when calling deleteJobMaterialBundleSingle'
             );
         }
+
 
         $resourcePath = '/jobmaterialbundle/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class JobMaterialBundlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class JobMaterialBundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class JobMaterialBundlesApi
      *
      * List all JobMaterialBundles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\JobMaterialBundle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobMaterialBundleAll()
+    public function getJobMaterialBundleAll(string $contentType = self::contentTypes['getJobMaterialBundleAll'][0])
     {
-        list($response) = $this->getJobMaterialBundleAllWithHttpInfo();
+        list($response) = $this->getJobMaterialBundleAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class JobMaterialBundlesApi
      *
      * List all JobMaterialBundles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\JobMaterialBundle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobMaterialBundleAllWithHttpInfo()
+    public function getJobMaterialBundleAllWithHttpInfo(string $contentType = self::contentTypes['getJobMaterialBundleAll'][0])
     {
-        $request = $this->getJobMaterialBundleAllRequest();
+        $request = $this->getJobMaterialBundleAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class JobMaterialBundlesApi
      *
      * List all JobMaterialBundles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobMaterialBundleAllAsync()
+    public function getJobMaterialBundleAllAsync(string $contentType = self::contentTypes['getJobMaterialBundleAll'][0])
     {
-        return $this->getJobMaterialBundleAllAsyncWithHttpInfo()
+        return $this->getJobMaterialBundleAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class JobMaterialBundlesApi
      *
      * List all JobMaterialBundles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobMaterialBundleAllAsyncWithHttpInfo()
+    public function getJobMaterialBundleAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getJobMaterialBundleAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\JobMaterialBundle[]';
-        $request = $this->getJobMaterialBundleAllRequest();
+        $request = $this->getJobMaterialBundleAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class JobMaterialBundlesApi
     /**
      * Create request for operation 'getJobMaterialBundleAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobMaterialBundleAllRequest()
+    public function getJobMaterialBundleAllRequest(string $contentType = self::contentTypes['getJobMaterialBundleAll'][0])
     {
+
 
         $resourcePath = '/jobmaterialbundle.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class JobMaterialBundlesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class JobMaterialBundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class JobMaterialBundlesApi
      * Retrieve a JobMaterialBundle
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\JobMaterialBundle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobMaterialBundleSingle($uuid)
+    public function getJobMaterialBundleSingle($uuid, string $contentType = self::contentTypes['getJobMaterialBundleSingle'][0])
     {
-        list($response) = $this->getJobMaterialBundleSingleWithHttpInfo($uuid);
+        list($response) = $this->getJobMaterialBundleSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class JobMaterialBundlesApi
      * Retrieve a JobMaterialBundle
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\JobMaterialBundle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobMaterialBundleSingleWithHttpInfo($uuid)
+    public function getJobMaterialBundleSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getJobMaterialBundleSingle'][0])
     {
-        $request = $this->getJobMaterialBundleSingleRequest($uuid);
+        $request = $this->getJobMaterialBundleSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class JobMaterialBundlesApi
      * Retrieve a JobMaterialBundle
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobMaterialBundleSingleAsync($uuid)
+    public function getJobMaterialBundleSingleAsync($uuid, string $contentType = self::contentTypes['getJobMaterialBundleSingle'][0])
     {
-        return $this->getJobMaterialBundleSingleAsyncWithHttpInfo($uuid)
+        return $this->getJobMaterialBundleSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class JobMaterialBundlesApi
      * Retrieve a JobMaterialBundle
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobMaterialBundleSingleAsyncWithHttpInfo($uuid)
+    public function getJobMaterialBundleSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getJobMaterialBundleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\JobMaterialBundle';
-        $request = $this->getJobMaterialBundleSingleRequest($uuid);
+        $request = $this->getJobMaterialBundleSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class JobMaterialBundlesApi
      * Create request for operation 'getJobMaterialBundleSingle'
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobMaterialBundleSingleRequest($uuid)
+    public function getJobMaterialBundleSingleRequest($uuid, string $contentType = self::contentTypes['getJobMaterialBundleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class JobMaterialBundlesApi
                 'Missing the required parameter $uuid when calling getJobMaterialBundleSingle'
             );
         }
+
 
         $resourcePath = '/jobmaterialbundle/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class JobMaterialBundlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class JobMaterialBundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class JobMaterialBundlesApi
      * Create a new JobMaterialBundle
      *
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobMaterialBundleCreate($jobMaterialBundle)
+    public function postJobMaterialBundleCreate($jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleCreate'][0])
     {
-        list($response) = $this->postJobMaterialBundleCreateWithHttpInfo($jobMaterialBundle);
+        list($response) = $this->postJobMaterialBundleCreateWithHttpInfo($jobMaterialBundle, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class JobMaterialBundlesApi
      * Create a new JobMaterialBundle
      *
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobMaterialBundleCreateWithHttpInfo($jobMaterialBundle)
+    public function postJobMaterialBundleCreateWithHttpInfo($jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleCreate'][0])
     {
-        $request = $this->postJobMaterialBundleCreateRequest($jobMaterialBundle);
+        $request = $this->postJobMaterialBundleCreateRequest($jobMaterialBundle, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class JobMaterialBundlesApi
      * Create a new JobMaterialBundle
      *
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobMaterialBundleCreateAsync($jobMaterialBundle)
+    public function postJobMaterialBundleCreateAsync($jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleCreate'][0])
     {
-        return $this->postJobMaterialBundleCreateAsyncWithHttpInfo($jobMaterialBundle)
+        return $this->postJobMaterialBundleCreateAsyncWithHttpInfo($jobMaterialBundle, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class JobMaterialBundlesApi
      * Create a new JobMaterialBundle
      *
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobMaterialBundleCreateAsyncWithHttpInfo($jobMaterialBundle)
+    public function postJobMaterialBundleCreateAsyncWithHttpInfo($jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobMaterialBundleCreateRequest($jobMaterialBundle);
+        $request = $this->postJobMaterialBundleCreateRequest($jobMaterialBundle, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class JobMaterialBundlesApi
      * Create request for operation 'postJobMaterialBundleCreate'
      *
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobMaterialBundleCreateRequest($jobMaterialBundle)
+    public function postJobMaterialBundleCreateRequest($jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleCreate'][0])
     {
 
         // verify the required parameter 'jobMaterialBundle' is set
@@ -1353,6 +1380,7 @@ class JobMaterialBundlesApi
                 'Missing the required parameter $jobMaterialBundle when calling postJobMaterialBundleCreate'
             );
         }
+
 
         $resourcePath = '/jobmaterialbundle.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class JobMaterialBundlesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobMaterialBundle)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobMaterialBundle));
             } else {
                 $httpBody = $jobMaterialBundle;
@@ -1398,9 +1422,9 @@ class JobMaterialBundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class JobMaterialBundlesApi
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobMaterialBundleSingle($uuid, $jobMaterialBundle)
+    public function postJobMaterialBundleSingle($uuid, $jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleSingle'][0])
     {
-        list($response) = $this->postJobMaterialBundleSingleWithHttpInfo($uuid, $jobMaterialBundle);
+        list($response) = $this->postJobMaterialBundleSingleWithHttpInfo($uuid, $jobMaterialBundle, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class JobMaterialBundlesApi
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobMaterialBundleSingleWithHttpInfo($uuid, $jobMaterialBundle)
+    public function postJobMaterialBundleSingleWithHttpInfo($uuid, $jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleSingle'][0])
     {
-        $request = $this->postJobMaterialBundleSingleRequest($uuid, $jobMaterialBundle);
+        $request = $this->postJobMaterialBundleSingleRequest($uuid, $jobMaterialBundle, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class JobMaterialBundlesApi
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobMaterialBundleSingleAsync($uuid, $jobMaterialBundle)
+    public function postJobMaterialBundleSingleAsync($uuid, $jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleSingle'][0])
     {
-        return $this->postJobMaterialBundleSingleAsyncWithHttpInfo($uuid, $jobMaterialBundle)
+        return $this->postJobMaterialBundleSingleAsyncWithHttpInfo($uuid, $jobMaterialBundle, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class JobMaterialBundlesApi
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobMaterialBundleSingleAsyncWithHttpInfo($uuid, $jobMaterialBundle)
+    public function postJobMaterialBundleSingleAsyncWithHttpInfo($uuid, $jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobMaterialBundleSingleRequest($uuid, $jobMaterialBundle);
+        $request = $this->postJobMaterialBundleSingleRequest($uuid, $jobMaterialBundle, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class JobMaterialBundlesApi
      *
      * @param  string $uuid UUID of the JobMaterialBundle (required)
      * @param  \OpenAPI\Client\Model\JobMaterialBundle $jobMaterialBundle JobMaterialBundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobMaterialBundleSingleRequest($uuid, $jobMaterialBundle)
+    public function postJobMaterialBundleSingleRequest($uuid, $jobMaterialBundle, string $contentType = self::contentTypes['postJobMaterialBundleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class JobMaterialBundlesApi
                 'Missing the required parameter $jobMaterialBundle when calling postJobMaterialBundleSingle'
             );
         }
+
 
         $resourcePath = '/jobmaterialbundle/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class JobMaterialBundlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobMaterialBundle)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobMaterialBundle));
             } else {
                 $httpBody = $jobMaterialBundle;
@@ -1752,9 +1778,9 @@ class JobMaterialBundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

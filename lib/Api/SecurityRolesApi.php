@@ -69,7 +69,26 @@ class SecurityRolesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteSecurityRoleSingle' => [
+            'application/json',
+        ],
+        'getSecurityRoleAll' => [
+            'application/json',
+        ],
+        'getSecurityRoleSingle' => [
+            'application/json',
+        ],
+        'postSecurityRoleCreate' => [
+            'application/json',
+        ],
+        'postSecurityRoleSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class SecurityRolesApi
      * Delete a Security Role
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteSecurityRoleSingle($uuid)
+    public function deleteSecurityRoleSingle($uuid, string $contentType = self::contentTypes['deleteSecurityRoleSingle'][0])
     {
-        list($response) = $this->deleteSecurityRoleSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteSecurityRoleSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class SecurityRolesApi
      * Delete a Security Role
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteSecurityRoleSingleWithHttpInfo($uuid)
+    public function deleteSecurityRoleSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteSecurityRoleSingle'][0])
     {
-        $request = $this->deleteSecurityRoleSingleRequest($uuid);
+        $request = $this->deleteSecurityRoleSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class SecurityRolesApi
      * Delete a Security Role
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSecurityRoleSingleAsync($uuid)
+    public function deleteSecurityRoleSingleAsync($uuid, string $contentType = self::contentTypes['deleteSecurityRoleSingle'][0])
     {
-        return $this->deleteSecurityRoleSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteSecurityRoleSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class SecurityRolesApi
      * Delete a Security Role
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteSecurityRoleSingleAsyncWithHttpInfo($uuid)
+    public function deleteSecurityRoleSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteSecurityRoleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteSecurityRoleSingleRequest($uuid);
+        $request = $this->deleteSecurityRoleSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class SecurityRolesApi
      * Create request for operation 'deleteSecurityRoleSingle'
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteSecurityRoleSingleRequest($uuid)
+    public function deleteSecurityRoleSingleRequest($uuid, string $contentType = self::contentTypes['deleteSecurityRoleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class SecurityRolesApi
                 'Missing the required parameter $uuid when calling deleteSecurityRoleSingle'
             );
         }
+
 
         $resourcePath = '/securityrole/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class SecurityRolesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class SecurityRolesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class SecurityRolesApi
      *
      * List all Security Roles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SecurityRole[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getSecurityRoleAll()
+    public function getSecurityRoleAll(string $contentType = self::contentTypes['getSecurityRoleAll'][0])
     {
-        list($response) = $this->getSecurityRoleAllWithHttpInfo();
+        list($response) = $this->getSecurityRoleAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class SecurityRolesApi
      *
      * List all Security Roles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SecurityRole[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSecurityRoleAllWithHttpInfo()
+    public function getSecurityRoleAllWithHttpInfo(string $contentType = self::contentTypes['getSecurityRoleAll'][0])
     {
-        $request = $this->getSecurityRoleAllRequest();
+        $request = $this->getSecurityRoleAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class SecurityRolesApi
      *
      * List all Security Roles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSecurityRoleAllAsync()
+    public function getSecurityRoleAllAsync(string $contentType = self::contentTypes['getSecurityRoleAll'][0])
     {
-        return $this->getSecurityRoleAllAsyncWithHttpInfo()
+        return $this->getSecurityRoleAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class SecurityRolesApi
      *
      * List all Security Roles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSecurityRoleAllAsyncWithHttpInfo()
+    public function getSecurityRoleAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getSecurityRoleAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\SecurityRole[]';
-        $request = $this->getSecurityRoleAllRequest();
+        $request = $this->getSecurityRoleAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class SecurityRolesApi
     /**
      * Create request for operation 'getSecurityRoleAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSecurityRoleAllRequest()
+    public function getSecurityRoleAllRequest(string $contentType = self::contentTypes['getSecurityRoleAll'][0])
     {
+
 
         $resourcePath = '/securityrole.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class SecurityRolesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class SecurityRolesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class SecurityRolesApi
      * Retrieve a Security Role
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\SecurityRole|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getSecurityRoleSingle($uuid)
+    public function getSecurityRoleSingle($uuid, string $contentType = self::contentTypes['getSecurityRoleSingle'][0])
     {
-        list($response) = $this->getSecurityRoleSingleWithHttpInfo($uuid);
+        list($response) = $this->getSecurityRoleSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class SecurityRolesApi
      * Retrieve a Security Role
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\SecurityRole|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getSecurityRoleSingleWithHttpInfo($uuid)
+    public function getSecurityRoleSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getSecurityRoleSingle'][0])
     {
-        $request = $this->getSecurityRoleSingleRequest($uuid);
+        $request = $this->getSecurityRoleSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class SecurityRolesApi
      * Retrieve a Security Role
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSecurityRoleSingleAsync($uuid)
+    public function getSecurityRoleSingleAsync($uuid, string $contentType = self::contentTypes['getSecurityRoleSingle'][0])
     {
-        return $this->getSecurityRoleSingleAsyncWithHttpInfo($uuid)
+        return $this->getSecurityRoleSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class SecurityRolesApi
      * Retrieve a Security Role
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getSecurityRoleSingleAsyncWithHttpInfo($uuid)
+    public function getSecurityRoleSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getSecurityRoleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\SecurityRole';
-        $request = $this->getSecurityRoleSingleRequest($uuid);
+        $request = $this->getSecurityRoleSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class SecurityRolesApi
      * Create request for operation 'getSecurityRoleSingle'
      *
      * @param  string $uuid UUID of the Security Role (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getSecurityRoleSingleRequest($uuid)
+    public function getSecurityRoleSingleRequest($uuid, string $contentType = self::contentTypes['getSecurityRoleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class SecurityRolesApi
                 'Missing the required parameter $uuid when calling getSecurityRoleSingle'
             );
         }
+
 
         $resourcePath = '/securityrole/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class SecurityRolesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class SecurityRolesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class SecurityRolesApi
      * Create a new Security Role
      *
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postSecurityRoleCreate($securityRole)
+    public function postSecurityRoleCreate($securityRole, string $contentType = self::contentTypes['postSecurityRoleCreate'][0])
     {
-        list($response) = $this->postSecurityRoleCreateWithHttpInfo($securityRole);
+        list($response) = $this->postSecurityRoleCreateWithHttpInfo($securityRole, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class SecurityRolesApi
      * Create a new Security Role
      *
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postSecurityRoleCreateWithHttpInfo($securityRole)
+    public function postSecurityRoleCreateWithHttpInfo($securityRole, string $contentType = self::contentTypes['postSecurityRoleCreate'][0])
     {
-        $request = $this->postSecurityRoleCreateRequest($securityRole);
+        $request = $this->postSecurityRoleCreateRequest($securityRole, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class SecurityRolesApi
      * Create a new Security Role
      *
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSecurityRoleCreateAsync($securityRole)
+    public function postSecurityRoleCreateAsync($securityRole, string $contentType = self::contentTypes['postSecurityRoleCreate'][0])
     {
-        return $this->postSecurityRoleCreateAsyncWithHttpInfo($securityRole)
+        return $this->postSecurityRoleCreateAsyncWithHttpInfo($securityRole, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class SecurityRolesApi
      * Create a new Security Role
      *
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSecurityRoleCreateAsyncWithHttpInfo($securityRole)
+    public function postSecurityRoleCreateAsyncWithHttpInfo($securityRole, string $contentType = self::contentTypes['postSecurityRoleCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postSecurityRoleCreateRequest($securityRole);
+        $request = $this->postSecurityRoleCreateRequest($securityRole, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class SecurityRolesApi
      * Create request for operation 'postSecurityRoleCreate'
      *
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postSecurityRoleCreateRequest($securityRole)
+    public function postSecurityRoleCreateRequest($securityRole, string $contentType = self::contentTypes['postSecurityRoleCreate'][0])
     {
 
         // verify the required parameter 'securityRole' is set
@@ -1353,6 +1380,7 @@ class SecurityRolesApi
                 'Missing the required parameter $securityRole when calling postSecurityRoleCreate'
             );
         }
+
 
         $resourcePath = '/securityrole.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class SecurityRolesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($securityRole)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($securityRole));
             } else {
                 $httpBody = $securityRole;
@@ -1398,9 +1422,9 @@ class SecurityRolesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class SecurityRolesApi
      *
      * @param  string $uuid UUID of the Security Role (required)
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postSecurityRoleSingle($uuid, $securityRole)
+    public function postSecurityRoleSingle($uuid, $securityRole, string $contentType = self::contentTypes['postSecurityRoleSingle'][0])
     {
-        list($response) = $this->postSecurityRoleSingleWithHttpInfo($uuid, $securityRole);
+        list($response) = $this->postSecurityRoleSingleWithHttpInfo($uuid, $securityRole, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class SecurityRolesApi
      *
      * @param  string $uuid UUID of the Security Role (required)
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postSecurityRoleSingleWithHttpInfo($uuid, $securityRole)
+    public function postSecurityRoleSingleWithHttpInfo($uuid, $securityRole, string $contentType = self::contentTypes['postSecurityRoleSingle'][0])
     {
-        $request = $this->postSecurityRoleSingleRequest($uuid, $securityRole);
+        $request = $this->postSecurityRoleSingleRequest($uuid, $securityRole, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class SecurityRolesApi
      *
      * @param  string $uuid UUID of the Security Role (required)
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSecurityRoleSingleAsync($uuid, $securityRole)
+    public function postSecurityRoleSingleAsync($uuid, $securityRole, string $contentType = self::contentTypes['postSecurityRoleSingle'][0])
     {
-        return $this->postSecurityRoleSingleAsyncWithHttpInfo($uuid, $securityRole)
+        return $this->postSecurityRoleSingleAsyncWithHttpInfo($uuid, $securityRole, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class SecurityRolesApi
      *
      * @param  string $uuid UUID of the Security Role (required)
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postSecurityRoleSingleAsyncWithHttpInfo($uuid, $securityRole)
+    public function postSecurityRoleSingleAsyncWithHttpInfo($uuid, $securityRole, string $contentType = self::contentTypes['postSecurityRoleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postSecurityRoleSingleRequest($uuid, $securityRole);
+        $request = $this->postSecurityRoleSingleRequest($uuid, $securityRole, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class SecurityRolesApi
      *
      * @param  string $uuid UUID of the Security Role (required)
      * @param  \OpenAPI\Client\Model\SecurityRole $securityRole Security Role fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSecurityRoleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postSecurityRoleSingleRequest($uuid, $securityRole)
+    public function postSecurityRoleSingleRequest($uuid, $securityRole, string $contentType = self::contentTypes['postSecurityRoleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class SecurityRolesApi
                 'Missing the required parameter $securityRole when calling postSecurityRoleSingle'
             );
         }
+
 
         $resourcePath = '/securityrole/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class SecurityRolesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($securityRole)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($securityRole));
             } else {
                 $httpBody = $securityRole;
@@ -1752,9 +1778,9 @@ class SecurityRolesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

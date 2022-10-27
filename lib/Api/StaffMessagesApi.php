@@ -69,7 +69,26 @@ class StaffMessagesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteStaffMessageSingle' => [
+            'application/json',
+        ],
+        'getStaffMessageAll' => [
+            'application/json',
+        ],
+        'getStaffMessageSingle' => [
+            'application/json',
+        ],
+        'postStaffMessageCreate' => [
+            'application/json',
+        ],
+        'postStaffMessageSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class StaffMessagesApi
      * Delete a Staff Message
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteStaffMessageSingle($uuid)
+    public function deleteStaffMessageSingle($uuid, string $contentType = self::contentTypes['deleteStaffMessageSingle'][0])
     {
-        list($response) = $this->deleteStaffMessageSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteStaffMessageSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class StaffMessagesApi
      * Delete a Staff Message
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteStaffMessageSingleWithHttpInfo($uuid)
+    public function deleteStaffMessageSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteStaffMessageSingle'][0])
     {
-        $request = $this->deleteStaffMessageSingleRequest($uuid);
+        $request = $this->deleteStaffMessageSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class StaffMessagesApi
      * Delete a Staff Message
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteStaffMessageSingleAsync($uuid)
+    public function deleteStaffMessageSingleAsync($uuid, string $contentType = self::contentTypes['deleteStaffMessageSingle'][0])
     {
-        return $this->deleteStaffMessageSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteStaffMessageSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class StaffMessagesApi
      * Delete a Staff Message
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteStaffMessageSingleAsyncWithHttpInfo($uuid)
+    public function deleteStaffMessageSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteStaffMessageSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteStaffMessageSingleRequest($uuid);
+        $request = $this->deleteStaffMessageSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class StaffMessagesApi
      * Create request for operation 'deleteStaffMessageSingle'
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteStaffMessageSingleRequest($uuid)
+    public function deleteStaffMessageSingleRequest($uuid, string $contentType = self::contentTypes['deleteStaffMessageSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class StaffMessagesApi
                 'Missing the required parameter $uuid when calling deleteStaffMessageSingle'
             );
         }
+
 
         $resourcePath = '/staffmessage/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class StaffMessagesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class StaffMessagesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class StaffMessagesApi
      *
      * List all Staff Messages
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StaffMessage[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getStaffMessageAll()
+    public function getStaffMessageAll(string $contentType = self::contentTypes['getStaffMessageAll'][0])
     {
-        list($response) = $this->getStaffMessageAllWithHttpInfo();
+        list($response) = $this->getStaffMessageAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class StaffMessagesApi
      *
      * List all Staff Messages
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StaffMessage[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getStaffMessageAllWithHttpInfo()
+    public function getStaffMessageAllWithHttpInfo(string $contentType = self::contentTypes['getStaffMessageAll'][0])
     {
-        $request = $this->getStaffMessageAllRequest();
+        $request = $this->getStaffMessageAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class StaffMessagesApi
      *
      * List all Staff Messages
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffMessageAllAsync()
+    public function getStaffMessageAllAsync(string $contentType = self::contentTypes['getStaffMessageAll'][0])
     {
-        return $this->getStaffMessageAllAsyncWithHttpInfo()
+        return $this->getStaffMessageAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class StaffMessagesApi
      *
      * List all Staff Messages
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffMessageAllAsyncWithHttpInfo()
+    public function getStaffMessageAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getStaffMessageAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StaffMessage[]';
-        $request = $this->getStaffMessageAllRequest();
+        $request = $this->getStaffMessageAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class StaffMessagesApi
     /**
      * Create request for operation 'getStaffMessageAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStaffMessageAllRequest()
+    public function getStaffMessageAllRequest(string $contentType = self::contentTypes['getStaffMessageAll'][0])
     {
+
 
         $resourcePath = '/staffmessage.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class StaffMessagesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class StaffMessagesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class StaffMessagesApi
      * Retrieve a Staff Message
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\StaffMessage|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getStaffMessageSingle($uuid)
+    public function getStaffMessageSingle($uuid, string $contentType = self::contentTypes['getStaffMessageSingle'][0])
     {
-        list($response) = $this->getStaffMessageSingleWithHttpInfo($uuid);
+        list($response) = $this->getStaffMessageSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class StaffMessagesApi
      * Retrieve a Staff Message
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\StaffMessage|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getStaffMessageSingleWithHttpInfo($uuid)
+    public function getStaffMessageSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getStaffMessageSingle'][0])
     {
-        $request = $this->getStaffMessageSingleRequest($uuid);
+        $request = $this->getStaffMessageSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class StaffMessagesApi
      * Retrieve a Staff Message
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffMessageSingleAsync($uuid)
+    public function getStaffMessageSingleAsync($uuid, string $contentType = self::contentTypes['getStaffMessageSingle'][0])
     {
-        return $this->getStaffMessageSingleAsyncWithHttpInfo($uuid)
+        return $this->getStaffMessageSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class StaffMessagesApi
      * Retrieve a Staff Message
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getStaffMessageSingleAsyncWithHttpInfo($uuid)
+    public function getStaffMessageSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getStaffMessageSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\StaffMessage';
-        $request = $this->getStaffMessageSingleRequest($uuid);
+        $request = $this->getStaffMessageSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class StaffMessagesApi
      * Create request for operation 'getStaffMessageSingle'
      *
      * @param  string $uuid UUID of the Staff Message (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getStaffMessageSingleRequest($uuid)
+    public function getStaffMessageSingleRequest($uuid, string $contentType = self::contentTypes['getStaffMessageSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class StaffMessagesApi
                 'Missing the required parameter $uuid when calling getStaffMessageSingle'
             );
         }
+
 
         $resourcePath = '/staffmessage/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class StaffMessagesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class StaffMessagesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class StaffMessagesApi
      * Create a new Staff Message
      *
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postStaffMessageCreate($staffMessage)
+    public function postStaffMessageCreate($staffMessage, string $contentType = self::contentTypes['postStaffMessageCreate'][0])
     {
-        list($response) = $this->postStaffMessageCreateWithHttpInfo($staffMessage);
+        list($response) = $this->postStaffMessageCreateWithHttpInfo($staffMessage, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class StaffMessagesApi
      * Create a new Staff Message
      *
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postStaffMessageCreateWithHttpInfo($staffMessage)
+    public function postStaffMessageCreateWithHttpInfo($staffMessage, string $contentType = self::contentTypes['postStaffMessageCreate'][0])
     {
-        $request = $this->postStaffMessageCreateRequest($staffMessage);
+        $request = $this->postStaffMessageCreateRequest($staffMessage, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class StaffMessagesApi
      * Create a new Staff Message
      *
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postStaffMessageCreateAsync($staffMessage)
+    public function postStaffMessageCreateAsync($staffMessage, string $contentType = self::contentTypes['postStaffMessageCreate'][0])
     {
-        return $this->postStaffMessageCreateAsyncWithHttpInfo($staffMessage)
+        return $this->postStaffMessageCreateAsyncWithHttpInfo($staffMessage, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class StaffMessagesApi
      * Create a new Staff Message
      *
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postStaffMessageCreateAsyncWithHttpInfo($staffMessage)
+    public function postStaffMessageCreateAsyncWithHttpInfo($staffMessage, string $contentType = self::contentTypes['postStaffMessageCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postStaffMessageCreateRequest($staffMessage);
+        $request = $this->postStaffMessageCreateRequest($staffMessage, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class StaffMessagesApi
      * Create request for operation 'postStaffMessageCreate'
      *
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postStaffMessageCreateRequest($staffMessage)
+    public function postStaffMessageCreateRequest($staffMessage, string $contentType = self::contentTypes['postStaffMessageCreate'][0])
     {
 
         // verify the required parameter 'staffMessage' is set
@@ -1353,6 +1380,7 @@ class StaffMessagesApi
                 'Missing the required parameter $staffMessage when calling postStaffMessageCreate'
             );
         }
+
 
         $resourcePath = '/staffmessage.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class StaffMessagesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($staffMessage)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($staffMessage));
             } else {
                 $httpBody = $staffMessage;
@@ -1398,9 +1422,9 @@ class StaffMessagesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class StaffMessagesApi
      *
      * @param  string $uuid UUID of the Staff Message (required)
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postStaffMessageSingle($uuid, $staffMessage)
+    public function postStaffMessageSingle($uuid, $staffMessage, string $contentType = self::contentTypes['postStaffMessageSingle'][0])
     {
-        list($response) = $this->postStaffMessageSingleWithHttpInfo($uuid, $staffMessage);
+        list($response) = $this->postStaffMessageSingleWithHttpInfo($uuid, $staffMessage, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class StaffMessagesApi
      *
      * @param  string $uuid UUID of the Staff Message (required)
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postStaffMessageSingleWithHttpInfo($uuid, $staffMessage)
+    public function postStaffMessageSingleWithHttpInfo($uuid, $staffMessage, string $contentType = self::contentTypes['postStaffMessageSingle'][0])
     {
-        $request = $this->postStaffMessageSingleRequest($uuid, $staffMessage);
+        $request = $this->postStaffMessageSingleRequest($uuid, $staffMessage, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class StaffMessagesApi
      *
      * @param  string $uuid UUID of the Staff Message (required)
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postStaffMessageSingleAsync($uuid, $staffMessage)
+    public function postStaffMessageSingleAsync($uuid, $staffMessage, string $contentType = self::contentTypes['postStaffMessageSingle'][0])
     {
-        return $this->postStaffMessageSingleAsyncWithHttpInfo($uuid, $staffMessage)
+        return $this->postStaffMessageSingleAsyncWithHttpInfo($uuid, $staffMessage, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class StaffMessagesApi
      *
      * @param  string $uuid UUID of the Staff Message (required)
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postStaffMessageSingleAsyncWithHttpInfo($uuid, $staffMessage)
+    public function postStaffMessageSingleAsyncWithHttpInfo($uuid, $staffMessage, string $contentType = self::contentTypes['postStaffMessageSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postStaffMessageSingleRequest($uuid, $staffMessage);
+        $request = $this->postStaffMessageSingleRequest($uuid, $staffMessage, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class StaffMessagesApi
      *
      * @param  string $uuid UUID of the Staff Message (required)
      * @param  \OpenAPI\Client\Model\StaffMessage $staffMessage Staff Message fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postStaffMessageSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postStaffMessageSingleRequest($uuid, $staffMessage)
+    public function postStaffMessageSingleRequest($uuid, $staffMessage, string $contentType = self::contentTypes['postStaffMessageSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class StaffMessagesApi
                 'Missing the required parameter $staffMessage when calling postStaffMessageSingle'
             );
         }
+
 
         $resourcePath = '/staffmessage/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class StaffMessagesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($staffMessage)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($staffMessage));
             } else {
                 $httpBody = $staffMessage;
@@ -1752,9 +1778,9 @@ class StaffMessagesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

@@ -69,7 +69,26 @@ class KnowledgeArticlesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteKnowledgeArticleSingle' => [
+            'application/json',
+        ],
+        'getKnowledgeArticleAll' => [
+            'application/json',
+        ],
+        'getKnowledgeArticleSingle' => [
+            'application/json',
+        ],
+        'postKnowledgeArticleCreate' => [
+            'application/json',
+        ],
+        'postKnowledgeArticleSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class KnowledgeArticlesApi
      * Delete a Knowledge Article
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteKnowledgeArticleSingle($uuid)
+    public function deleteKnowledgeArticleSingle($uuid, string $contentType = self::contentTypes['deleteKnowledgeArticleSingle'][0])
     {
-        list($response) = $this->deleteKnowledgeArticleSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteKnowledgeArticleSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class KnowledgeArticlesApi
      * Delete a Knowledge Article
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteKnowledgeArticleSingleWithHttpInfo($uuid)
+    public function deleteKnowledgeArticleSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteKnowledgeArticleSingle'][0])
     {
-        $request = $this->deleteKnowledgeArticleSingleRequest($uuid);
+        $request = $this->deleteKnowledgeArticleSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class KnowledgeArticlesApi
      * Delete a Knowledge Article
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteKnowledgeArticleSingleAsync($uuid)
+    public function deleteKnowledgeArticleSingleAsync($uuid, string $contentType = self::contentTypes['deleteKnowledgeArticleSingle'][0])
     {
-        return $this->deleteKnowledgeArticleSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteKnowledgeArticleSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class KnowledgeArticlesApi
      * Delete a Knowledge Article
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteKnowledgeArticleSingleAsyncWithHttpInfo($uuid)
+    public function deleteKnowledgeArticleSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteKnowledgeArticleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteKnowledgeArticleSingleRequest($uuid);
+        $request = $this->deleteKnowledgeArticleSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class KnowledgeArticlesApi
      * Create request for operation 'deleteKnowledgeArticleSingle'
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteKnowledgeArticleSingleRequest($uuid)
+    public function deleteKnowledgeArticleSingleRequest($uuid, string $contentType = self::contentTypes['deleteKnowledgeArticleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class KnowledgeArticlesApi
                 'Missing the required parameter $uuid when calling deleteKnowledgeArticleSingle'
             );
         }
+
 
         $resourcePath = '/knowledgearticle/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class KnowledgeArticlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class KnowledgeArticlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class KnowledgeArticlesApi
      *
      * List all Knowledge Articles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\KnowledgeArticle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getKnowledgeArticleAll()
+    public function getKnowledgeArticleAll(string $contentType = self::contentTypes['getKnowledgeArticleAll'][0])
     {
-        list($response) = $this->getKnowledgeArticleAllWithHttpInfo();
+        list($response) = $this->getKnowledgeArticleAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class KnowledgeArticlesApi
      *
      * List all Knowledge Articles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\KnowledgeArticle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getKnowledgeArticleAllWithHttpInfo()
+    public function getKnowledgeArticleAllWithHttpInfo(string $contentType = self::contentTypes['getKnowledgeArticleAll'][0])
     {
-        $request = $this->getKnowledgeArticleAllRequest();
+        $request = $this->getKnowledgeArticleAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class KnowledgeArticlesApi
      *
      * List all Knowledge Articles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getKnowledgeArticleAllAsync()
+    public function getKnowledgeArticleAllAsync(string $contentType = self::contentTypes['getKnowledgeArticleAll'][0])
     {
-        return $this->getKnowledgeArticleAllAsyncWithHttpInfo()
+        return $this->getKnowledgeArticleAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class KnowledgeArticlesApi
      *
      * List all Knowledge Articles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getKnowledgeArticleAllAsyncWithHttpInfo()
+    public function getKnowledgeArticleAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getKnowledgeArticleAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\KnowledgeArticle[]';
-        $request = $this->getKnowledgeArticleAllRequest();
+        $request = $this->getKnowledgeArticleAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class KnowledgeArticlesApi
     /**
      * Create request for operation 'getKnowledgeArticleAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getKnowledgeArticleAllRequest()
+    public function getKnowledgeArticleAllRequest(string $contentType = self::contentTypes['getKnowledgeArticleAll'][0])
     {
+
 
         $resourcePath = '/knowledgearticle.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class KnowledgeArticlesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class KnowledgeArticlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class KnowledgeArticlesApi
      * Retrieve a Knowledge Article
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\KnowledgeArticle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getKnowledgeArticleSingle($uuid)
+    public function getKnowledgeArticleSingle($uuid, string $contentType = self::contentTypes['getKnowledgeArticleSingle'][0])
     {
-        list($response) = $this->getKnowledgeArticleSingleWithHttpInfo($uuid);
+        list($response) = $this->getKnowledgeArticleSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class KnowledgeArticlesApi
      * Retrieve a Knowledge Article
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\KnowledgeArticle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getKnowledgeArticleSingleWithHttpInfo($uuid)
+    public function getKnowledgeArticleSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getKnowledgeArticleSingle'][0])
     {
-        $request = $this->getKnowledgeArticleSingleRequest($uuid);
+        $request = $this->getKnowledgeArticleSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class KnowledgeArticlesApi
      * Retrieve a Knowledge Article
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getKnowledgeArticleSingleAsync($uuid)
+    public function getKnowledgeArticleSingleAsync($uuid, string $contentType = self::contentTypes['getKnowledgeArticleSingle'][0])
     {
-        return $this->getKnowledgeArticleSingleAsyncWithHttpInfo($uuid)
+        return $this->getKnowledgeArticleSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class KnowledgeArticlesApi
      * Retrieve a Knowledge Article
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getKnowledgeArticleSingleAsyncWithHttpInfo($uuid)
+    public function getKnowledgeArticleSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getKnowledgeArticleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\KnowledgeArticle';
-        $request = $this->getKnowledgeArticleSingleRequest($uuid);
+        $request = $this->getKnowledgeArticleSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class KnowledgeArticlesApi
      * Create request for operation 'getKnowledgeArticleSingle'
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getKnowledgeArticleSingleRequest($uuid)
+    public function getKnowledgeArticleSingleRequest($uuid, string $contentType = self::contentTypes['getKnowledgeArticleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class KnowledgeArticlesApi
                 'Missing the required parameter $uuid when calling getKnowledgeArticleSingle'
             );
         }
+
 
         $resourcePath = '/knowledgearticle/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class KnowledgeArticlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class KnowledgeArticlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class KnowledgeArticlesApi
      * Create a new Knowledge Article
      *
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postKnowledgeArticleCreate($knowledgeArticle)
+    public function postKnowledgeArticleCreate($knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleCreate'][0])
     {
-        list($response) = $this->postKnowledgeArticleCreateWithHttpInfo($knowledgeArticle);
+        list($response) = $this->postKnowledgeArticleCreateWithHttpInfo($knowledgeArticle, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class KnowledgeArticlesApi
      * Create a new Knowledge Article
      *
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postKnowledgeArticleCreateWithHttpInfo($knowledgeArticle)
+    public function postKnowledgeArticleCreateWithHttpInfo($knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleCreate'][0])
     {
-        $request = $this->postKnowledgeArticleCreateRequest($knowledgeArticle);
+        $request = $this->postKnowledgeArticleCreateRequest($knowledgeArticle, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class KnowledgeArticlesApi
      * Create a new Knowledge Article
      *
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postKnowledgeArticleCreateAsync($knowledgeArticle)
+    public function postKnowledgeArticleCreateAsync($knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleCreate'][0])
     {
-        return $this->postKnowledgeArticleCreateAsyncWithHttpInfo($knowledgeArticle)
+        return $this->postKnowledgeArticleCreateAsyncWithHttpInfo($knowledgeArticle, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class KnowledgeArticlesApi
      * Create a new Knowledge Article
      *
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postKnowledgeArticleCreateAsyncWithHttpInfo($knowledgeArticle)
+    public function postKnowledgeArticleCreateAsyncWithHttpInfo($knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postKnowledgeArticleCreateRequest($knowledgeArticle);
+        $request = $this->postKnowledgeArticleCreateRequest($knowledgeArticle, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class KnowledgeArticlesApi
      * Create request for operation 'postKnowledgeArticleCreate'
      *
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postKnowledgeArticleCreateRequest($knowledgeArticle)
+    public function postKnowledgeArticleCreateRequest($knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleCreate'][0])
     {
 
         // verify the required parameter 'knowledgeArticle' is set
@@ -1353,6 +1380,7 @@ class KnowledgeArticlesApi
                 'Missing the required parameter $knowledgeArticle when calling postKnowledgeArticleCreate'
             );
         }
+
 
         $resourcePath = '/knowledgearticle.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class KnowledgeArticlesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($knowledgeArticle)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($knowledgeArticle));
             } else {
                 $httpBody = $knowledgeArticle;
@@ -1398,9 +1422,9 @@ class KnowledgeArticlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class KnowledgeArticlesApi
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postKnowledgeArticleSingle($uuid, $knowledgeArticle)
+    public function postKnowledgeArticleSingle($uuid, $knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleSingle'][0])
     {
-        list($response) = $this->postKnowledgeArticleSingleWithHttpInfo($uuid, $knowledgeArticle);
+        list($response) = $this->postKnowledgeArticleSingleWithHttpInfo($uuid, $knowledgeArticle, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class KnowledgeArticlesApi
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postKnowledgeArticleSingleWithHttpInfo($uuid, $knowledgeArticle)
+    public function postKnowledgeArticleSingleWithHttpInfo($uuid, $knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleSingle'][0])
     {
-        $request = $this->postKnowledgeArticleSingleRequest($uuid, $knowledgeArticle);
+        $request = $this->postKnowledgeArticleSingleRequest($uuid, $knowledgeArticle, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class KnowledgeArticlesApi
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postKnowledgeArticleSingleAsync($uuid, $knowledgeArticle)
+    public function postKnowledgeArticleSingleAsync($uuid, $knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleSingle'][0])
     {
-        return $this->postKnowledgeArticleSingleAsyncWithHttpInfo($uuid, $knowledgeArticle)
+        return $this->postKnowledgeArticleSingleAsyncWithHttpInfo($uuid, $knowledgeArticle, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class KnowledgeArticlesApi
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postKnowledgeArticleSingleAsyncWithHttpInfo($uuid, $knowledgeArticle)
+    public function postKnowledgeArticleSingleAsyncWithHttpInfo($uuid, $knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postKnowledgeArticleSingleRequest($uuid, $knowledgeArticle);
+        $request = $this->postKnowledgeArticleSingleRequest($uuid, $knowledgeArticle, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class KnowledgeArticlesApi
      *
      * @param  string $uuid UUID of the Knowledge Article (required)
      * @param  \OpenAPI\Client\Model\KnowledgeArticle $knowledgeArticle Knowledge Article fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postKnowledgeArticleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postKnowledgeArticleSingleRequest($uuid, $knowledgeArticle)
+    public function postKnowledgeArticleSingleRequest($uuid, $knowledgeArticle, string $contentType = self::contentTypes['postKnowledgeArticleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class KnowledgeArticlesApi
                 'Missing the required parameter $knowledgeArticle when calling postKnowledgeArticleSingle'
             );
         }
+
 
         $resourcePath = '/knowledgearticle/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class KnowledgeArticlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($knowledgeArticle)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($knowledgeArticle));
             } else {
                 $httpBody = $knowledgeArticle;
@@ -1752,9 +1778,9 @@ class KnowledgeArticlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

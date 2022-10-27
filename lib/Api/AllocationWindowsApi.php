@@ -69,7 +69,26 @@ class AllocationWindowsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteAllocationWindowSingle' => [
+            'application/json',
+        ],
+        'getAllocationWindowAll' => [
+            'application/json',
+        ],
+        'getAllocationWindowSingle' => [
+            'application/json',
+        ],
+        'postAllocationWindowCreate' => [
+            'application/json',
+        ],
+        'postAllocationWindowSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class AllocationWindowsApi
      * Delete an Allocation Window
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteAllocationWindowSingle($uuid)
+    public function deleteAllocationWindowSingle($uuid, string $contentType = self::contentTypes['deleteAllocationWindowSingle'][0])
     {
-        list($response) = $this->deleteAllocationWindowSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteAllocationWindowSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class AllocationWindowsApi
      * Delete an Allocation Window
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteAllocationWindowSingleWithHttpInfo($uuid)
+    public function deleteAllocationWindowSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteAllocationWindowSingle'][0])
     {
-        $request = $this->deleteAllocationWindowSingleRequest($uuid);
+        $request = $this->deleteAllocationWindowSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class AllocationWindowsApi
      * Delete an Allocation Window
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAllocationWindowSingleAsync($uuid)
+    public function deleteAllocationWindowSingleAsync($uuid, string $contentType = self::contentTypes['deleteAllocationWindowSingle'][0])
     {
-        return $this->deleteAllocationWindowSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteAllocationWindowSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class AllocationWindowsApi
      * Delete an Allocation Window
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAllocationWindowSingleAsyncWithHttpInfo($uuid)
+    public function deleteAllocationWindowSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteAllocationWindowSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteAllocationWindowSingleRequest($uuid);
+        $request = $this->deleteAllocationWindowSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class AllocationWindowsApi
      * Create request for operation 'deleteAllocationWindowSingle'
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteAllocationWindowSingleRequest($uuid)
+    public function deleteAllocationWindowSingleRequest($uuid, string $contentType = self::contentTypes['deleteAllocationWindowSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class AllocationWindowsApi
                 'Missing the required parameter $uuid when calling deleteAllocationWindowSingle'
             );
         }
+
 
         $resourcePath = '/allocationwindow/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class AllocationWindowsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class AllocationWindowsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class AllocationWindowsApi
      *
      * List all Allocation Windows
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AllocationWindow[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getAllocationWindowAll()
+    public function getAllocationWindowAll(string $contentType = self::contentTypes['getAllocationWindowAll'][0])
     {
-        list($response) = $this->getAllocationWindowAllWithHttpInfo();
+        list($response) = $this->getAllocationWindowAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class AllocationWindowsApi
      *
      * List all Allocation Windows
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AllocationWindow[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAllocationWindowAllWithHttpInfo()
+    public function getAllocationWindowAllWithHttpInfo(string $contentType = self::contentTypes['getAllocationWindowAll'][0])
     {
-        $request = $this->getAllocationWindowAllRequest();
+        $request = $this->getAllocationWindowAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class AllocationWindowsApi
      *
      * List all Allocation Windows
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllocationWindowAllAsync()
+    public function getAllocationWindowAllAsync(string $contentType = self::contentTypes['getAllocationWindowAll'][0])
     {
-        return $this->getAllocationWindowAllAsyncWithHttpInfo()
+        return $this->getAllocationWindowAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class AllocationWindowsApi
      *
      * List all Allocation Windows
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllocationWindowAllAsyncWithHttpInfo()
+    public function getAllocationWindowAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getAllocationWindowAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AllocationWindow[]';
-        $request = $this->getAllocationWindowAllRequest();
+        $request = $this->getAllocationWindowAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class AllocationWindowsApi
     /**
      * Create request for operation 'getAllocationWindowAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllocationWindowAllRequest()
+    public function getAllocationWindowAllRequest(string $contentType = self::contentTypes['getAllocationWindowAll'][0])
     {
+
 
         $resourcePath = '/allocationwindow.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class AllocationWindowsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class AllocationWindowsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class AllocationWindowsApi
      * Retrieve an Allocation Window
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\AllocationWindow|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getAllocationWindowSingle($uuid)
+    public function getAllocationWindowSingle($uuid, string $contentType = self::contentTypes['getAllocationWindowSingle'][0])
     {
-        list($response) = $this->getAllocationWindowSingleWithHttpInfo($uuid);
+        list($response) = $this->getAllocationWindowSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class AllocationWindowsApi
      * Retrieve an Allocation Window
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\AllocationWindow|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getAllocationWindowSingleWithHttpInfo($uuid)
+    public function getAllocationWindowSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getAllocationWindowSingle'][0])
     {
-        $request = $this->getAllocationWindowSingleRequest($uuid);
+        $request = $this->getAllocationWindowSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class AllocationWindowsApi
      * Retrieve an Allocation Window
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllocationWindowSingleAsync($uuid)
+    public function getAllocationWindowSingleAsync($uuid, string $contentType = self::contentTypes['getAllocationWindowSingle'][0])
     {
-        return $this->getAllocationWindowSingleAsyncWithHttpInfo($uuid)
+        return $this->getAllocationWindowSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class AllocationWindowsApi
      * Retrieve an Allocation Window
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getAllocationWindowSingleAsyncWithHttpInfo($uuid)
+    public function getAllocationWindowSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getAllocationWindowSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\AllocationWindow';
-        $request = $this->getAllocationWindowSingleRequest($uuid);
+        $request = $this->getAllocationWindowSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class AllocationWindowsApi
      * Create request for operation 'getAllocationWindowSingle'
      *
      * @param  string $uuid UUID of the Allocation Window (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getAllocationWindowSingleRequest($uuid)
+    public function getAllocationWindowSingleRequest($uuid, string $contentType = self::contentTypes['getAllocationWindowSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class AllocationWindowsApi
                 'Missing the required parameter $uuid when calling getAllocationWindowSingle'
             );
         }
+
 
         $resourcePath = '/allocationwindow/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class AllocationWindowsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class AllocationWindowsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class AllocationWindowsApi
      * Create a new Allocation Window
      *
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postAllocationWindowCreate($allocationWindow)
+    public function postAllocationWindowCreate($allocationWindow, string $contentType = self::contentTypes['postAllocationWindowCreate'][0])
     {
-        list($response) = $this->postAllocationWindowCreateWithHttpInfo($allocationWindow);
+        list($response) = $this->postAllocationWindowCreateWithHttpInfo($allocationWindow, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class AllocationWindowsApi
      * Create a new Allocation Window
      *
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postAllocationWindowCreateWithHttpInfo($allocationWindow)
+    public function postAllocationWindowCreateWithHttpInfo($allocationWindow, string $contentType = self::contentTypes['postAllocationWindowCreate'][0])
     {
-        $request = $this->postAllocationWindowCreateRequest($allocationWindow);
+        $request = $this->postAllocationWindowCreateRequest($allocationWindow, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class AllocationWindowsApi
      * Create a new Allocation Window
      *
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAllocationWindowCreateAsync($allocationWindow)
+    public function postAllocationWindowCreateAsync($allocationWindow, string $contentType = self::contentTypes['postAllocationWindowCreate'][0])
     {
-        return $this->postAllocationWindowCreateAsyncWithHttpInfo($allocationWindow)
+        return $this->postAllocationWindowCreateAsyncWithHttpInfo($allocationWindow, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class AllocationWindowsApi
      * Create a new Allocation Window
      *
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAllocationWindowCreateAsyncWithHttpInfo($allocationWindow)
+    public function postAllocationWindowCreateAsyncWithHttpInfo($allocationWindow, string $contentType = self::contentTypes['postAllocationWindowCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postAllocationWindowCreateRequest($allocationWindow);
+        $request = $this->postAllocationWindowCreateRequest($allocationWindow, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class AllocationWindowsApi
      * Create request for operation 'postAllocationWindowCreate'
      *
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postAllocationWindowCreateRequest($allocationWindow)
+    public function postAllocationWindowCreateRequest($allocationWindow, string $contentType = self::contentTypes['postAllocationWindowCreate'][0])
     {
 
         // verify the required parameter 'allocationWindow' is set
@@ -1353,6 +1380,7 @@ class AllocationWindowsApi
                 'Missing the required parameter $allocationWindow when calling postAllocationWindowCreate'
             );
         }
+
 
         $resourcePath = '/allocationwindow.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class AllocationWindowsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($allocationWindow)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($allocationWindow));
             } else {
                 $httpBody = $allocationWindow;
@@ -1398,9 +1422,9 @@ class AllocationWindowsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class AllocationWindowsApi
      *
      * @param  string $uuid UUID of the Allocation Window (required)
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postAllocationWindowSingle($uuid, $allocationWindow)
+    public function postAllocationWindowSingle($uuid, $allocationWindow, string $contentType = self::contentTypes['postAllocationWindowSingle'][0])
     {
-        list($response) = $this->postAllocationWindowSingleWithHttpInfo($uuid, $allocationWindow);
+        list($response) = $this->postAllocationWindowSingleWithHttpInfo($uuid, $allocationWindow, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class AllocationWindowsApi
      *
      * @param  string $uuid UUID of the Allocation Window (required)
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postAllocationWindowSingleWithHttpInfo($uuid, $allocationWindow)
+    public function postAllocationWindowSingleWithHttpInfo($uuid, $allocationWindow, string $contentType = self::contentTypes['postAllocationWindowSingle'][0])
     {
-        $request = $this->postAllocationWindowSingleRequest($uuid, $allocationWindow);
+        $request = $this->postAllocationWindowSingleRequest($uuid, $allocationWindow, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class AllocationWindowsApi
      *
      * @param  string $uuid UUID of the Allocation Window (required)
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAllocationWindowSingleAsync($uuid, $allocationWindow)
+    public function postAllocationWindowSingleAsync($uuid, $allocationWindow, string $contentType = self::contentTypes['postAllocationWindowSingle'][0])
     {
-        return $this->postAllocationWindowSingleAsyncWithHttpInfo($uuid, $allocationWindow)
+        return $this->postAllocationWindowSingleAsyncWithHttpInfo($uuid, $allocationWindow, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class AllocationWindowsApi
      *
      * @param  string $uuid UUID of the Allocation Window (required)
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAllocationWindowSingleAsyncWithHttpInfo($uuid, $allocationWindow)
+    public function postAllocationWindowSingleAsyncWithHttpInfo($uuid, $allocationWindow, string $contentType = self::contentTypes['postAllocationWindowSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postAllocationWindowSingleRequest($uuid, $allocationWindow);
+        $request = $this->postAllocationWindowSingleRequest($uuid, $allocationWindow, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class AllocationWindowsApi
      *
      * @param  string $uuid UUID of the Allocation Window (required)
      * @param  \OpenAPI\Client\Model\AllocationWindow $allocationWindow Allocation Window fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postAllocationWindowSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postAllocationWindowSingleRequest($uuid, $allocationWindow)
+    public function postAllocationWindowSingleRequest($uuid, $allocationWindow, string $contentType = self::contentTypes['postAllocationWindowSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class AllocationWindowsApi
                 'Missing the required parameter $allocationWindow when calling postAllocationWindowSingle'
             );
         }
+
 
         $resourcePath = '/allocationwindow/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class AllocationWindowsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($allocationWindow)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($allocationWindow));
             } else {
                 $httpBody = $allocationWindow;
@@ -1752,9 +1778,9 @@ class AllocationWindowsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

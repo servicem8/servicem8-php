@@ -69,7 +69,26 @@ class MaterialsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteMaterialSingle' => [
+            'application/json',
+        ],
+        'getMaterialAll' => [
+            'application/json',
+        ],
+        'getMaterialSingle' => [
+            'application/json',
+        ],
+        'postMaterialCreate' => [
+            'application/json',
+        ],
+        'postMaterialSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class MaterialsApi
      * Delete a Material
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteMaterialSingle($uuid)
+    public function deleteMaterialSingle($uuid, string $contentType = self::contentTypes['deleteMaterialSingle'][0])
     {
-        list($response) = $this->deleteMaterialSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteMaterialSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class MaterialsApi
      * Delete a Material
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteMaterialSingleWithHttpInfo($uuid)
+    public function deleteMaterialSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteMaterialSingle'][0])
     {
-        $request = $this->deleteMaterialSingleRequest($uuid);
+        $request = $this->deleteMaterialSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class MaterialsApi
      * Delete a Material
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteMaterialSingleAsync($uuid)
+    public function deleteMaterialSingleAsync($uuid, string $contentType = self::contentTypes['deleteMaterialSingle'][0])
     {
-        return $this->deleteMaterialSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteMaterialSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class MaterialsApi
      * Delete a Material
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteMaterialSingleAsyncWithHttpInfo($uuid)
+    public function deleteMaterialSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteMaterialSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteMaterialSingleRequest($uuid);
+        $request = $this->deleteMaterialSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class MaterialsApi
      * Create request for operation 'deleteMaterialSingle'
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteMaterialSingleRequest($uuid)
+    public function deleteMaterialSingleRequest($uuid, string $contentType = self::contentTypes['deleteMaterialSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class MaterialsApi
                 'Missing the required parameter $uuid when calling deleteMaterialSingle'
             );
         }
+
 
         $resourcePath = '/material/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class MaterialsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class MaterialsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class MaterialsApi
      *
      * List all Materials
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Material[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getMaterialAll()
+    public function getMaterialAll(string $contentType = self::contentTypes['getMaterialAll'][0])
     {
-        list($response) = $this->getMaterialAllWithHttpInfo();
+        list($response) = $this->getMaterialAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class MaterialsApi
      *
      * List all Materials
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Material[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMaterialAllWithHttpInfo()
+    public function getMaterialAllWithHttpInfo(string $contentType = self::contentTypes['getMaterialAll'][0])
     {
-        $request = $this->getMaterialAllRequest();
+        $request = $this->getMaterialAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class MaterialsApi
      *
      * List all Materials
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMaterialAllAsync()
+    public function getMaterialAllAsync(string $contentType = self::contentTypes['getMaterialAll'][0])
     {
-        return $this->getMaterialAllAsyncWithHttpInfo()
+        return $this->getMaterialAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class MaterialsApi
      *
      * List all Materials
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMaterialAllAsyncWithHttpInfo()
+    public function getMaterialAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getMaterialAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Material[]';
-        $request = $this->getMaterialAllRequest();
+        $request = $this->getMaterialAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class MaterialsApi
     /**
      * Create request for operation 'getMaterialAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMaterialAllRequest()
+    public function getMaterialAllRequest(string $contentType = self::contentTypes['getMaterialAll'][0])
     {
+
 
         $resourcePath = '/material.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class MaterialsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class MaterialsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class MaterialsApi
      * Retrieve a Material
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Material|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getMaterialSingle($uuid)
+    public function getMaterialSingle($uuid, string $contentType = self::contentTypes['getMaterialSingle'][0])
     {
-        list($response) = $this->getMaterialSingleWithHttpInfo($uuid);
+        list($response) = $this->getMaterialSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class MaterialsApi
      * Retrieve a Material
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Material|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMaterialSingleWithHttpInfo($uuid)
+    public function getMaterialSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getMaterialSingle'][0])
     {
-        $request = $this->getMaterialSingleRequest($uuid);
+        $request = $this->getMaterialSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class MaterialsApi
      * Retrieve a Material
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMaterialSingleAsync($uuid)
+    public function getMaterialSingleAsync($uuid, string $contentType = self::contentTypes['getMaterialSingle'][0])
     {
-        return $this->getMaterialSingleAsyncWithHttpInfo($uuid)
+        return $this->getMaterialSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class MaterialsApi
      * Retrieve a Material
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMaterialSingleAsyncWithHttpInfo($uuid)
+    public function getMaterialSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getMaterialSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Material';
-        $request = $this->getMaterialSingleRequest($uuid);
+        $request = $this->getMaterialSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class MaterialsApi
      * Create request for operation 'getMaterialSingle'
      *
      * @param  string $uuid UUID of the Material (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMaterialSingleRequest($uuid)
+    public function getMaterialSingleRequest($uuid, string $contentType = self::contentTypes['getMaterialSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class MaterialsApi
                 'Missing the required parameter $uuid when calling getMaterialSingle'
             );
         }
+
 
         $resourcePath = '/material/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class MaterialsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class MaterialsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class MaterialsApi
      * Create a new Material
      *
      * @param  \OpenAPI\Client\Model\Material $material Material record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postMaterialCreate($material)
+    public function postMaterialCreate($material, string $contentType = self::contentTypes['postMaterialCreate'][0])
     {
-        list($response) = $this->postMaterialCreateWithHttpInfo($material);
+        list($response) = $this->postMaterialCreateWithHttpInfo($material, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class MaterialsApi
      * Create a new Material
      *
      * @param  \OpenAPI\Client\Model\Material $material Material record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postMaterialCreateWithHttpInfo($material)
+    public function postMaterialCreateWithHttpInfo($material, string $contentType = self::contentTypes['postMaterialCreate'][0])
     {
-        $request = $this->postMaterialCreateRequest($material);
+        $request = $this->postMaterialCreateRequest($material, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class MaterialsApi
      * Create a new Material
      *
      * @param  \OpenAPI\Client\Model\Material $material Material record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postMaterialCreateAsync($material)
+    public function postMaterialCreateAsync($material, string $contentType = self::contentTypes['postMaterialCreate'][0])
     {
-        return $this->postMaterialCreateAsyncWithHttpInfo($material)
+        return $this->postMaterialCreateAsyncWithHttpInfo($material, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class MaterialsApi
      * Create a new Material
      *
      * @param  \OpenAPI\Client\Model\Material $material Material record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postMaterialCreateAsyncWithHttpInfo($material)
+    public function postMaterialCreateAsyncWithHttpInfo($material, string $contentType = self::contentTypes['postMaterialCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postMaterialCreateRequest($material);
+        $request = $this->postMaterialCreateRequest($material, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class MaterialsApi
      * Create request for operation 'postMaterialCreate'
      *
      * @param  \OpenAPI\Client\Model\Material $material Material record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postMaterialCreateRequest($material)
+    public function postMaterialCreateRequest($material, string $contentType = self::contentTypes['postMaterialCreate'][0])
     {
 
         // verify the required parameter 'material' is set
@@ -1353,6 +1380,7 @@ class MaterialsApi
                 'Missing the required parameter $material when calling postMaterialCreate'
             );
         }
+
 
         $resourcePath = '/material.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class MaterialsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($material)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($material));
             } else {
                 $httpBody = $material;
@@ -1398,9 +1422,9 @@ class MaterialsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class MaterialsApi
      *
      * @param  string $uuid UUID of the Material (required)
      * @param  \OpenAPI\Client\Model\Material $material Material fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postMaterialSingle($uuid, $material)
+    public function postMaterialSingle($uuid, $material, string $contentType = self::contentTypes['postMaterialSingle'][0])
     {
-        list($response) = $this->postMaterialSingleWithHttpInfo($uuid, $material);
+        list($response) = $this->postMaterialSingleWithHttpInfo($uuid, $material, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class MaterialsApi
      *
      * @param  string $uuid UUID of the Material (required)
      * @param  \OpenAPI\Client\Model\Material $material Material fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postMaterialSingleWithHttpInfo($uuid, $material)
+    public function postMaterialSingleWithHttpInfo($uuid, $material, string $contentType = self::contentTypes['postMaterialSingle'][0])
     {
-        $request = $this->postMaterialSingleRequest($uuid, $material);
+        $request = $this->postMaterialSingleRequest($uuid, $material, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class MaterialsApi
      *
      * @param  string $uuid UUID of the Material (required)
      * @param  \OpenAPI\Client\Model\Material $material Material fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postMaterialSingleAsync($uuid, $material)
+    public function postMaterialSingleAsync($uuid, $material, string $contentType = self::contentTypes['postMaterialSingle'][0])
     {
-        return $this->postMaterialSingleAsyncWithHttpInfo($uuid, $material)
+        return $this->postMaterialSingleAsyncWithHttpInfo($uuid, $material, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class MaterialsApi
      *
      * @param  string $uuid UUID of the Material (required)
      * @param  \OpenAPI\Client\Model\Material $material Material fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postMaterialSingleAsyncWithHttpInfo($uuid, $material)
+    public function postMaterialSingleAsyncWithHttpInfo($uuid, $material, string $contentType = self::contentTypes['postMaterialSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postMaterialSingleRequest($uuid, $material);
+        $request = $this->postMaterialSingleRequest($uuid, $material, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class MaterialsApi
      *
      * @param  string $uuid UUID of the Material (required)
      * @param  \OpenAPI\Client\Model\Material $material Material fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postMaterialSingleRequest($uuid, $material)
+    public function postMaterialSingleRequest($uuid, $material, string $contentType = self::contentTypes['postMaterialSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class MaterialsApi
                 'Missing the required parameter $material when calling postMaterialSingle'
             );
         }
+
 
         $resourcePath = '/material/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class MaterialsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($material)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($material));
             } else {
                 $httpBody = $material;
@@ -1752,9 +1778,9 @@ class MaterialsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

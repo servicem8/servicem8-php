@@ -69,7 +69,26 @@ class TasksApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteTaskSingle' => [
+            'application/json',
+        ],
+        'getTaskAll' => [
+            'application/json',
+        ],
+        'getTaskSingle' => [
+            'application/json',
+        ],
+        'postTaskCreate' => [
+            'application/json',
+        ],
+        'postTaskSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class TasksApi
      * Delete a Task
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaskSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteTaskSingle($uuid)
+    public function deleteTaskSingle($uuid, string $contentType = self::contentTypes['deleteTaskSingle'][0])
     {
-        list($response) = $this->deleteTaskSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteTaskSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class TasksApi
      * Delete a Task
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaskSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteTaskSingleWithHttpInfo($uuid)
+    public function deleteTaskSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteTaskSingle'][0])
     {
-        $request = $this->deleteTaskSingleRequest($uuid);
+        $request = $this->deleteTaskSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class TasksApi
      * Delete a Task
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteTaskSingleAsync($uuid)
+    public function deleteTaskSingleAsync($uuid, string $contentType = self::contentTypes['deleteTaskSingle'][0])
     {
-        return $this->deleteTaskSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteTaskSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class TasksApi
      * Delete a Task
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteTaskSingleAsyncWithHttpInfo($uuid)
+    public function deleteTaskSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteTaskSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteTaskSingleRequest($uuid);
+        $request = $this->deleteTaskSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class TasksApi
      * Create request for operation 'deleteTaskSingle'
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteTaskSingleRequest($uuid)
+    public function deleteTaskSingleRequest($uuid, string $contentType = self::contentTypes['deleteTaskSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class TasksApi
                 'Missing the required parameter $uuid when calling deleteTaskSingle'
             );
         }
+
 
         $resourcePath = '/task/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class TasksApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class TasksApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class TasksApi
      *
      * List all Tasks
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Task[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getTaskAll()
+    public function getTaskAll(string $contentType = self::contentTypes['getTaskAll'][0])
     {
-        list($response) = $this->getTaskAllWithHttpInfo();
+        list($response) = $this->getTaskAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class TasksApi
      *
      * List all Tasks
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Task[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getTaskAllWithHttpInfo()
+    public function getTaskAllWithHttpInfo(string $contentType = self::contentTypes['getTaskAll'][0])
     {
-        $request = $this->getTaskAllRequest();
+        $request = $this->getTaskAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class TasksApi
      *
      * List all Tasks
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTaskAllAsync()
+    public function getTaskAllAsync(string $contentType = self::contentTypes['getTaskAll'][0])
     {
-        return $this->getTaskAllAsyncWithHttpInfo()
+        return $this->getTaskAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class TasksApi
      *
      * List all Tasks
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTaskAllAsyncWithHttpInfo()
+    public function getTaskAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getTaskAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Task[]';
-        $request = $this->getTaskAllRequest();
+        $request = $this->getTaskAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class TasksApi
     /**
      * Create request for operation 'getTaskAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTaskAllRequest()
+    public function getTaskAllRequest(string $contentType = self::contentTypes['getTaskAll'][0])
     {
+
 
         $resourcePath = '/task.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class TasksApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class TasksApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class TasksApi
      * Retrieve a Task
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Task|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getTaskSingle($uuid)
+    public function getTaskSingle($uuid, string $contentType = self::contentTypes['getTaskSingle'][0])
     {
-        list($response) = $this->getTaskSingleWithHttpInfo($uuid);
+        list($response) = $this->getTaskSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class TasksApi
      * Retrieve a Task
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Task|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getTaskSingleWithHttpInfo($uuid)
+    public function getTaskSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getTaskSingle'][0])
     {
-        $request = $this->getTaskSingleRequest($uuid);
+        $request = $this->getTaskSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class TasksApi
      * Retrieve a Task
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTaskSingleAsync($uuid)
+    public function getTaskSingleAsync($uuid, string $contentType = self::contentTypes['getTaskSingle'][0])
     {
-        return $this->getTaskSingleAsyncWithHttpInfo($uuid)
+        return $this->getTaskSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class TasksApi
      * Retrieve a Task
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getTaskSingleAsyncWithHttpInfo($uuid)
+    public function getTaskSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getTaskSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Task';
-        $request = $this->getTaskSingleRequest($uuid);
+        $request = $this->getTaskSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class TasksApi
      * Create request for operation 'getTaskSingle'
      *
      * @param  string $uuid UUID of the Task (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getTaskSingleRequest($uuid)
+    public function getTaskSingleRequest($uuid, string $contentType = self::contentTypes['getTaskSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class TasksApi
                 'Missing the required parameter $uuid when calling getTaskSingle'
             );
         }
+
 
         $resourcePath = '/task/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class TasksApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class TasksApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class TasksApi
      * Create a new Task
      *
      * @param  \OpenAPI\Client\Model\Task $task Task record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postTaskCreate($task)
+    public function postTaskCreate($task, string $contentType = self::contentTypes['postTaskCreate'][0])
     {
-        list($response) = $this->postTaskCreateWithHttpInfo($task);
+        list($response) = $this->postTaskCreateWithHttpInfo($task, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class TasksApi
      * Create a new Task
      *
      * @param  \OpenAPI\Client\Model\Task $task Task record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postTaskCreateWithHttpInfo($task)
+    public function postTaskCreateWithHttpInfo($task, string $contentType = self::contentTypes['postTaskCreate'][0])
     {
-        $request = $this->postTaskCreateRequest($task);
+        $request = $this->postTaskCreateRequest($task, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class TasksApi
      * Create a new Task
      *
      * @param  \OpenAPI\Client\Model\Task $task Task record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postTaskCreateAsync($task)
+    public function postTaskCreateAsync($task, string $contentType = self::contentTypes['postTaskCreate'][0])
     {
-        return $this->postTaskCreateAsyncWithHttpInfo($task)
+        return $this->postTaskCreateAsyncWithHttpInfo($task, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class TasksApi
      * Create a new Task
      *
      * @param  \OpenAPI\Client\Model\Task $task Task record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postTaskCreateAsyncWithHttpInfo($task)
+    public function postTaskCreateAsyncWithHttpInfo($task, string $contentType = self::contentTypes['postTaskCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postTaskCreateRequest($task);
+        $request = $this->postTaskCreateRequest($task, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class TasksApi
      * Create request for operation 'postTaskCreate'
      *
      * @param  \OpenAPI\Client\Model\Task $task Task record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postTaskCreateRequest($task)
+    public function postTaskCreateRequest($task, string $contentType = self::contentTypes['postTaskCreate'][0])
     {
 
         // verify the required parameter 'task' is set
@@ -1353,6 +1380,7 @@ class TasksApi
                 'Missing the required parameter $task when calling postTaskCreate'
             );
         }
+
 
         $resourcePath = '/task.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class TasksApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($task)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($task));
             } else {
                 $httpBody = $task;
@@ -1398,9 +1422,9 @@ class TasksApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class TasksApi
      *
      * @param  string $uuid UUID of the Task (required)
      * @param  \OpenAPI\Client\Model\Task $task Task fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postTaskSingle($uuid, $task)
+    public function postTaskSingle($uuid, $task, string $contentType = self::contentTypes['postTaskSingle'][0])
     {
-        list($response) = $this->postTaskSingleWithHttpInfo($uuid, $task);
+        list($response) = $this->postTaskSingleWithHttpInfo($uuid, $task, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class TasksApi
      *
      * @param  string $uuid UUID of the Task (required)
      * @param  \OpenAPI\Client\Model\Task $task Task fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postTaskSingleWithHttpInfo($uuid, $task)
+    public function postTaskSingleWithHttpInfo($uuid, $task, string $contentType = self::contentTypes['postTaskSingle'][0])
     {
-        $request = $this->postTaskSingleRequest($uuid, $task);
+        $request = $this->postTaskSingleRequest($uuid, $task, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class TasksApi
      *
      * @param  string $uuid UUID of the Task (required)
      * @param  \OpenAPI\Client\Model\Task $task Task fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postTaskSingleAsync($uuid, $task)
+    public function postTaskSingleAsync($uuid, $task, string $contentType = self::contentTypes['postTaskSingle'][0])
     {
-        return $this->postTaskSingleAsyncWithHttpInfo($uuid, $task)
+        return $this->postTaskSingleAsyncWithHttpInfo($uuid, $task, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class TasksApi
      *
      * @param  string $uuid UUID of the Task (required)
      * @param  \OpenAPI\Client\Model\Task $task Task fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postTaskSingleAsyncWithHttpInfo($uuid, $task)
+    public function postTaskSingleAsyncWithHttpInfo($uuid, $task, string $contentType = self::contentTypes['postTaskSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postTaskSingleRequest($uuid, $task);
+        $request = $this->postTaskSingleRequest($uuid, $task, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class TasksApi
      *
      * @param  string $uuid UUID of the Task (required)
      * @param  \OpenAPI\Client\Model\Task $task Task fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTaskSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postTaskSingleRequest($uuid, $task)
+    public function postTaskSingleRequest($uuid, $task, string $contentType = self::contentTypes['postTaskSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class TasksApi
                 'Missing the required parameter $task when calling postTaskSingle'
             );
         }
+
 
         $resourcePath = '/task/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class TasksApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($task)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($task));
             } else {
                 $httpBody = $task;
@@ -1752,9 +1778,9 @@ class TasksApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

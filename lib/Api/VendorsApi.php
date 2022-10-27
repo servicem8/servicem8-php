@@ -69,7 +69,20 @@ class VendorsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'getVendorAll' => [
+            'application/json',
+        ],
+        'getVendorSingle' => [
+            'application/json',
+        ],
+        'postVendorSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -120,14 +133,15 @@ class VendorsApi
      *
      * List all Vendors
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Vendor[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getVendorAll()
+    public function getVendorAll(string $contentType = self::contentTypes['getVendorAll'][0])
     {
-        list($response) = $this->getVendorAllWithHttpInfo();
+        list($response) = $this->getVendorAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -136,14 +150,15 @@ class VendorsApi
      *
      * List all Vendors
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Vendor[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getVendorAllWithHttpInfo()
+    public function getVendorAllWithHttpInfo(string $contentType = self::contentTypes['getVendorAll'][0])
     {
-        $request = $this->getVendorAllRequest();
+        $request = $this->getVendorAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -280,13 +295,14 @@ class VendorsApi
      *
      * List all Vendors
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getVendorAllAsync()
+    public function getVendorAllAsync(string $contentType = self::contentTypes['getVendorAll'][0])
     {
-        return $this->getVendorAllAsyncWithHttpInfo()
+        return $this->getVendorAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -299,14 +315,15 @@ class VendorsApi
      *
      * List all Vendors
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getVendorAllAsyncWithHttpInfo()
+    public function getVendorAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getVendorAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Vendor[]';
-        $request = $this->getVendorAllRequest();
+        $request = $this->getVendorAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -347,12 +364,14 @@ class VendorsApi
     /**
      * Create request for operation 'getVendorAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getVendorAllRequest()
+    public function getVendorAllRequest(string $contentType = self::contentTypes['getVendorAll'][0])
     {
+
 
         $resourcePath = '/vendor.json';
         $formParams = [];
@@ -365,16 +384,11 @@ class VendorsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -392,9 +406,9 @@ class VendorsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -437,14 +451,15 @@ class VendorsApi
      * Retrieve a Vendor
      *
      * @param  string $uuid UUID of the Vendor (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Vendor|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getVendorSingle($uuid)
+    public function getVendorSingle($uuid, string $contentType = self::contentTypes['getVendorSingle'][0])
     {
-        list($response) = $this->getVendorSingleWithHttpInfo($uuid);
+        list($response) = $this->getVendorSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -454,14 +469,15 @@ class VendorsApi
      * Retrieve a Vendor
      *
      * @param  string $uuid UUID of the Vendor (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Vendor|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getVendorSingleWithHttpInfo($uuid)
+    public function getVendorSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getVendorSingle'][0])
     {
-        $request = $this->getVendorSingleRequest($uuid);
+        $request = $this->getVendorSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -599,13 +615,14 @@ class VendorsApi
      * Retrieve a Vendor
      *
      * @param  string $uuid UUID of the Vendor (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getVendorSingleAsync($uuid)
+    public function getVendorSingleAsync($uuid, string $contentType = self::contentTypes['getVendorSingle'][0])
     {
-        return $this->getVendorSingleAsyncWithHttpInfo($uuid)
+        return $this->getVendorSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -619,14 +636,15 @@ class VendorsApi
      * Retrieve a Vendor
      *
      * @param  string $uuid UUID of the Vendor (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getVendorSingleAsyncWithHttpInfo($uuid)
+    public function getVendorSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getVendorSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Vendor';
-        $request = $this->getVendorSingleRequest($uuid);
+        $request = $this->getVendorSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -668,11 +686,12 @@ class VendorsApi
      * Create request for operation 'getVendorSingle'
      *
      * @param  string $uuid UUID of the Vendor (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getVendorSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getVendorSingleRequest($uuid)
+    public function getVendorSingleRequest($uuid, string $contentType = self::contentTypes['getVendorSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -681,6 +700,7 @@ class VendorsApi
                 'Missing the required parameter $uuid when calling getVendorSingle'
             );
         }
+
 
         $resourcePath = '/vendor/{uuid}.json';
         $formParams = [];
@@ -701,16 +721,11 @@ class VendorsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +743,9 @@ class VendorsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -774,14 +789,15 @@ class VendorsApi
      *
      * @param  string $uuid UUID of the Vendor (required)
      * @param  \OpenAPI\Client\Model\Vendor $vendor Vendor fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postVendorSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postVendorSingle($uuid, $vendor)
+    public function postVendorSingle($uuid, $vendor, string $contentType = self::contentTypes['postVendorSingle'][0])
     {
-        list($response) = $this->postVendorSingleWithHttpInfo($uuid, $vendor);
+        list($response) = $this->postVendorSingleWithHttpInfo($uuid, $vendor, $contentType);
         return $response;
     }
 
@@ -792,14 +808,15 @@ class VendorsApi
      *
      * @param  string $uuid UUID of the Vendor (required)
      * @param  \OpenAPI\Client\Model\Vendor $vendor Vendor fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postVendorSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postVendorSingleWithHttpInfo($uuid, $vendor)
+    public function postVendorSingleWithHttpInfo($uuid, $vendor, string $contentType = self::contentTypes['postVendorSingle'][0])
     {
-        $request = $this->postVendorSingleRequest($uuid, $vendor);
+        $request = $this->postVendorSingleRequest($uuid, $vendor, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -938,13 +955,14 @@ class VendorsApi
      *
      * @param  string $uuid UUID of the Vendor (required)
      * @param  \OpenAPI\Client\Model\Vendor $vendor Vendor fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postVendorSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postVendorSingleAsync($uuid, $vendor)
+    public function postVendorSingleAsync($uuid, $vendor, string $contentType = self::contentTypes['postVendorSingle'][0])
     {
-        return $this->postVendorSingleAsyncWithHttpInfo($uuid, $vendor)
+        return $this->postVendorSingleAsyncWithHttpInfo($uuid, $vendor, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -959,14 +977,15 @@ class VendorsApi
      *
      * @param  string $uuid UUID of the Vendor (required)
      * @param  \OpenAPI\Client\Model\Vendor $vendor Vendor fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postVendorSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postVendorSingleAsyncWithHttpInfo($uuid, $vendor)
+    public function postVendorSingleAsyncWithHttpInfo($uuid, $vendor, string $contentType = self::contentTypes['postVendorSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postVendorSingleRequest($uuid, $vendor);
+        $request = $this->postVendorSingleRequest($uuid, $vendor, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1009,11 +1028,12 @@ class VendorsApi
      *
      * @param  string $uuid UUID of the Vendor (required)
      * @param  \OpenAPI\Client\Model\Vendor $vendor Vendor fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postVendorSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postVendorSingleRequest($uuid, $vendor)
+    public function postVendorSingleRequest($uuid, $vendor, string $contentType = self::contentTypes['postVendorSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1029,6 +1049,7 @@ class VendorsApi
                 'Missing the required parameter $vendor when calling postVendorSingle'
             );
         }
+
 
         $resourcePath = '/vendor/{uuid}.json';
         $formParams = [];
@@ -1049,20 +1070,16 @@ class VendorsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($vendor)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($vendor));
             } else {
                 $httpBody = $vendor;
@@ -1082,9 +1099,9 @@ class VendorsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

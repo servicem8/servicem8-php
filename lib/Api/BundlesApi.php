@@ -69,7 +69,26 @@ class BundlesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteMaterialBundleSingle' => [
+            'application/json',
+        ],
+        'getMaterialBundleAll' => [
+            'application/json',
+        ],
+        'getMaterialBundleSingle' => [
+            'application/json',
+        ],
+        'postMaterialBundleCreate' => [
+            'application/json',
+        ],
+        'postMaterialBundleSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class BundlesApi
      * Delete a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteMaterialBundleSingle($uuid)
+    public function deleteMaterialBundleSingle($uuid, string $contentType = self::contentTypes['deleteMaterialBundleSingle'][0])
     {
-        list($response) = $this->deleteMaterialBundleSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteMaterialBundleSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class BundlesApi
      * Delete a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteMaterialBundleSingleWithHttpInfo($uuid)
+    public function deleteMaterialBundleSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteMaterialBundleSingle'][0])
     {
-        $request = $this->deleteMaterialBundleSingleRequest($uuid);
+        $request = $this->deleteMaterialBundleSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class BundlesApi
      * Delete a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteMaterialBundleSingleAsync($uuid)
+    public function deleteMaterialBundleSingleAsync($uuid, string $contentType = self::contentTypes['deleteMaterialBundleSingle'][0])
     {
-        return $this->deleteMaterialBundleSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteMaterialBundleSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class BundlesApi
      * Delete a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteMaterialBundleSingleAsyncWithHttpInfo($uuid)
+    public function deleteMaterialBundleSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteMaterialBundleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteMaterialBundleSingleRequest($uuid);
+        $request = $this->deleteMaterialBundleSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class BundlesApi
      * Create request for operation 'deleteMaterialBundleSingle'
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteMaterialBundleSingleRequest($uuid)
+    public function deleteMaterialBundleSingleRequest($uuid, string $contentType = self::contentTypes['deleteMaterialBundleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class BundlesApi
                 'Missing the required parameter $uuid when calling deleteMaterialBundleSingle'
             );
         }
+
 
         $resourcePath = '/materialbundle/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class BundlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class BundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class BundlesApi
      *
      * List all Bundles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\MaterialBundle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getMaterialBundleAll()
+    public function getMaterialBundleAll(string $contentType = self::contentTypes['getMaterialBundleAll'][0])
     {
-        list($response) = $this->getMaterialBundleAllWithHttpInfo();
+        list($response) = $this->getMaterialBundleAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class BundlesApi
      *
      * List all Bundles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\MaterialBundle[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMaterialBundleAllWithHttpInfo()
+    public function getMaterialBundleAllWithHttpInfo(string $contentType = self::contentTypes['getMaterialBundleAll'][0])
     {
-        $request = $this->getMaterialBundleAllRequest();
+        $request = $this->getMaterialBundleAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class BundlesApi
      *
      * List all Bundles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMaterialBundleAllAsync()
+    public function getMaterialBundleAllAsync(string $contentType = self::contentTypes['getMaterialBundleAll'][0])
     {
-        return $this->getMaterialBundleAllAsyncWithHttpInfo()
+        return $this->getMaterialBundleAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class BundlesApi
      *
      * List all Bundles
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMaterialBundleAllAsyncWithHttpInfo()
+    public function getMaterialBundleAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getMaterialBundleAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\MaterialBundle[]';
-        $request = $this->getMaterialBundleAllRequest();
+        $request = $this->getMaterialBundleAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class BundlesApi
     /**
      * Create request for operation 'getMaterialBundleAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMaterialBundleAllRequest()
+    public function getMaterialBundleAllRequest(string $contentType = self::contentTypes['getMaterialBundleAll'][0])
     {
+
 
         $resourcePath = '/materialbundle.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class BundlesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class BundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class BundlesApi
      * Retrieve a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\MaterialBundle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getMaterialBundleSingle($uuid)
+    public function getMaterialBundleSingle($uuid, string $contentType = self::contentTypes['getMaterialBundleSingle'][0])
     {
-        list($response) = $this->getMaterialBundleSingleWithHttpInfo($uuid);
+        list($response) = $this->getMaterialBundleSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class BundlesApi
      * Retrieve a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\MaterialBundle|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getMaterialBundleSingleWithHttpInfo($uuid)
+    public function getMaterialBundleSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getMaterialBundleSingle'][0])
     {
-        $request = $this->getMaterialBundleSingleRequest($uuid);
+        $request = $this->getMaterialBundleSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class BundlesApi
      * Retrieve a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMaterialBundleSingleAsync($uuid)
+    public function getMaterialBundleSingleAsync($uuid, string $contentType = self::contentTypes['getMaterialBundleSingle'][0])
     {
-        return $this->getMaterialBundleSingleAsyncWithHttpInfo($uuid)
+        return $this->getMaterialBundleSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class BundlesApi
      * Retrieve a Bundle
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getMaterialBundleSingleAsyncWithHttpInfo($uuid)
+    public function getMaterialBundleSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getMaterialBundleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\MaterialBundle';
-        $request = $this->getMaterialBundleSingleRequest($uuid);
+        $request = $this->getMaterialBundleSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class BundlesApi
      * Create request for operation 'getMaterialBundleSingle'
      *
      * @param  string $uuid UUID of the Bundle (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getMaterialBundleSingleRequest($uuid)
+    public function getMaterialBundleSingleRequest($uuid, string $contentType = self::contentTypes['getMaterialBundleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class BundlesApi
                 'Missing the required parameter $uuid when calling getMaterialBundleSingle'
             );
         }
+
 
         $resourcePath = '/materialbundle/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class BundlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class BundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class BundlesApi
      * Create a new Bundle
      *
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postMaterialBundleCreate($bundle)
+    public function postMaterialBundleCreate($bundle, string $contentType = self::contentTypes['postMaterialBundleCreate'][0])
     {
-        list($response) = $this->postMaterialBundleCreateWithHttpInfo($bundle);
+        list($response) = $this->postMaterialBundleCreateWithHttpInfo($bundle, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class BundlesApi
      * Create a new Bundle
      *
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postMaterialBundleCreateWithHttpInfo($bundle)
+    public function postMaterialBundleCreateWithHttpInfo($bundle, string $contentType = self::contentTypes['postMaterialBundleCreate'][0])
     {
-        $request = $this->postMaterialBundleCreateRequest($bundle);
+        $request = $this->postMaterialBundleCreateRequest($bundle, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class BundlesApi
      * Create a new Bundle
      *
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postMaterialBundleCreateAsync($bundle)
+    public function postMaterialBundleCreateAsync($bundle, string $contentType = self::contentTypes['postMaterialBundleCreate'][0])
     {
-        return $this->postMaterialBundleCreateAsyncWithHttpInfo($bundle)
+        return $this->postMaterialBundleCreateAsyncWithHttpInfo($bundle, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class BundlesApi
      * Create a new Bundle
      *
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postMaterialBundleCreateAsyncWithHttpInfo($bundle)
+    public function postMaterialBundleCreateAsyncWithHttpInfo($bundle, string $contentType = self::contentTypes['postMaterialBundleCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postMaterialBundleCreateRequest($bundle);
+        $request = $this->postMaterialBundleCreateRequest($bundle, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class BundlesApi
      * Create request for operation 'postMaterialBundleCreate'
      *
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postMaterialBundleCreateRequest($bundle)
+    public function postMaterialBundleCreateRequest($bundle, string $contentType = self::contentTypes['postMaterialBundleCreate'][0])
     {
 
         // verify the required parameter 'bundle' is set
@@ -1353,6 +1380,7 @@ class BundlesApi
                 'Missing the required parameter $bundle when calling postMaterialBundleCreate'
             );
         }
+
 
         $resourcePath = '/materialbundle.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class BundlesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($bundle)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($bundle));
             } else {
                 $httpBody = $bundle;
@@ -1398,9 +1422,9 @@ class BundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class BundlesApi
      *
      * @param  string $uuid UUID of the Bundle (required)
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postMaterialBundleSingle($uuid, $bundle)
+    public function postMaterialBundleSingle($uuid, $bundle, string $contentType = self::contentTypes['postMaterialBundleSingle'][0])
     {
-        list($response) = $this->postMaterialBundleSingleWithHttpInfo($uuid, $bundle);
+        list($response) = $this->postMaterialBundleSingleWithHttpInfo($uuid, $bundle, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class BundlesApi
      *
      * @param  string $uuid UUID of the Bundle (required)
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postMaterialBundleSingleWithHttpInfo($uuid, $bundle)
+    public function postMaterialBundleSingleWithHttpInfo($uuid, $bundle, string $contentType = self::contentTypes['postMaterialBundleSingle'][0])
     {
-        $request = $this->postMaterialBundleSingleRequest($uuid, $bundle);
+        $request = $this->postMaterialBundleSingleRequest($uuid, $bundle, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class BundlesApi
      *
      * @param  string $uuid UUID of the Bundle (required)
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postMaterialBundleSingleAsync($uuid, $bundle)
+    public function postMaterialBundleSingleAsync($uuid, $bundle, string $contentType = self::contentTypes['postMaterialBundleSingle'][0])
     {
-        return $this->postMaterialBundleSingleAsyncWithHttpInfo($uuid, $bundle)
+        return $this->postMaterialBundleSingleAsyncWithHttpInfo($uuid, $bundle, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class BundlesApi
      *
      * @param  string $uuid UUID of the Bundle (required)
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postMaterialBundleSingleAsyncWithHttpInfo($uuid, $bundle)
+    public function postMaterialBundleSingleAsyncWithHttpInfo($uuid, $bundle, string $contentType = self::contentTypes['postMaterialBundleSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postMaterialBundleSingleRequest($uuid, $bundle);
+        $request = $this->postMaterialBundleSingleRequest($uuid, $bundle, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class BundlesApi
      *
      * @param  string $uuid UUID of the Bundle (required)
      * @param  \OpenAPI\Client\Model\MaterialBundle $bundle Bundle fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postMaterialBundleSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postMaterialBundleSingleRequest($uuid, $bundle)
+    public function postMaterialBundleSingleRequest($uuid, $bundle, string $contentType = self::contentTypes['postMaterialBundleSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class BundlesApi
                 'Missing the required parameter $bundle when calling postMaterialBundleSingle'
             );
         }
+
 
         $resourcePath = '/materialbundle/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class BundlesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($bundle)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($bundle));
             } else {
                 $httpBody = $bundle;
@@ -1752,9 +1778,9 @@ class BundlesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

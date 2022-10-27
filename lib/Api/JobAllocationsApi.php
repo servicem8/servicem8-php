@@ -69,7 +69,26 @@ class JobAllocationsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteJobAllocationSingle' => [
+            'application/json',
+        ],
+        'getJobAllocationAll' => [
+            'application/json',
+        ],
+        'getJobAllocationSingle' => [
+            'application/json',
+        ],
+        'postJobAllocationCreate' => [
+            'application/json',
+        ],
+        'postJobAllocationSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class JobAllocationsApi
      * Delete a Job Allocation
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteJobAllocationSingle($uuid)
+    public function deleteJobAllocationSingle($uuid, string $contentType = self::contentTypes['deleteJobAllocationSingle'][0])
     {
-        list($response) = $this->deleteJobAllocationSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteJobAllocationSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class JobAllocationsApi
      * Delete a Job Allocation
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteJobAllocationSingleWithHttpInfo($uuid)
+    public function deleteJobAllocationSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteJobAllocationSingle'][0])
     {
-        $request = $this->deleteJobAllocationSingleRequest($uuid);
+        $request = $this->deleteJobAllocationSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class JobAllocationsApi
      * Delete a Job Allocation
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobAllocationSingleAsync($uuid)
+    public function deleteJobAllocationSingleAsync($uuid, string $contentType = self::contentTypes['deleteJobAllocationSingle'][0])
     {
-        return $this->deleteJobAllocationSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteJobAllocationSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class JobAllocationsApi
      * Delete a Job Allocation
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobAllocationSingleAsyncWithHttpInfo($uuid)
+    public function deleteJobAllocationSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteJobAllocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteJobAllocationSingleRequest($uuid);
+        $request = $this->deleteJobAllocationSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class JobAllocationsApi
      * Create request for operation 'deleteJobAllocationSingle'
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteJobAllocationSingleRequest($uuid)
+    public function deleteJobAllocationSingleRequest($uuid, string $contentType = self::contentTypes['deleteJobAllocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class JobAllocationsApi
                 'Missing the required parameter $uuid when calling deleteJobAllocationSingle'
             );
         }
+
 
         $resourcePath = '/joballocation/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class JobAllocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class JobAllocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class JobAllocationsApi
      *
      * List all Job Allocations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\JobAllocation[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobAllocationAll()
+    public function getJobAllocationAll(string $contentType = self::contentTypes['getJobAllocationAll'][0])
     {
-        list($response) = $this->getJobAllocationAllWithHttpInfo();
+        list($response) = $this->getJobAllocationAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class JobAllocationsApi
      *
      * List all Job Allocations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\JobAllocation[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobAllocationAllWithHttpInfo()
+    public function getJobAllocationAllWithHttpInfo(string $contentType = self::contentTypes['getJobAllocationAll'][0])
     {
-        $request = $this->getJobAllocationAllRequest();
+        $request = $this->getJobAllocationAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class JobAllocationsApi
      *
      * List all Job Allocations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobAllocationAllAsync()
+    public function getJobAllocationAllAsync(string $contentType = self::contentTypes['getJobAllocationAll'][0])
     {
-        return $this->getJobAllocationAllAsyncWithHttpInfo()
+        return $this->getJobAllocationAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class JobAllocationsApi
      *
      * List all Job Allocations
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobAllocationAllAsyncWithHttpInfo()
+    public function getJobAllocationAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getJobAllocationAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\JobAllocation[]';
-        $request = $this->getJobAllocationAllRequest();
+        $request = $this->getJobAllocationAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class JobAllocationsApi
     /**
      * Create request for operation 'getJobAllocationAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobAllocationAllRequest()
+    public function getJobAllocationAllRequest(string $contentType = self::contentTypes['getJobAllocationAll'][0])
     {
+
 
         $resourcePath = '/joballocation.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class JobAllocationsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class JobAllocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class JobAllocationsApi
      * Retrieve a Job Allocation
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\JobAllocation|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobAllocationSingle($uuid)
+    public function getJobAllocationSingle($uuid, string $contentType = self::contentTypes['getJobAllocationSingle'][0])
     {
-        list($response) = $this->getJobAllocationSingleWithHttpInfo($uuid);
+        list($response) = $this->getJobAllocationSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class JobAllocationsApi
      * Retrieve a Job Allocation
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\JobAllocation|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobAllocationSingleWithHttpInfo($uuid)
+    public function getJobAllocationSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getJobAllocationSingle'][0])
     {
-        $request = $this->getJobAllocationSingleRequest($uuid);
+        $request = $this->getJobAllocationSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class JobAllocationsApi
      * Retrieve a Job Allocation
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobAllocationSingleAsync($uuid)
+    public function getJobAllocationSingleAsync($uuid, string $contentType = self::contentTypes['getJobAllocationSingle'][0])
     {
-        return $this->getJobAllocationSingleAsyncWithHttpInfo($uuid)
+        return $this->getJobAllocationSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class JobAllocationsApi
      * Retrieve a Job Allocation
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobAllocationSingleAsyncWithHttpInfo($uuid)
+    public function getJobAllocationSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getJobAllocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\JobAllocation';
-        $request = $this->getJobAllocationSingleRequest($uuid);
+        $request = $this->getJobAllocationSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class JobAllocationsApi
      * Create request for operation 'getJobAllocationSingle'
      *
      * @param  string $uuid UUID of the Job Allocation (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobAllocationSingleRequest($uuid)
+    public function getJobAllocationSingleRequest($uuid, string $contentType = self::contentTypes['getJobAllocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class JobAllocationsApi
                 'Missing the required parameter $uuid when calling getJobAllocationSingle'
             );
         }
+
 
         $resourcePath = '/joballocation/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class JobAllocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class JobAllocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class JobAllocationsApi
      * Create a new Job Allocation
      *
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobAllocationCreate($jobAllocation)
+    public function postJobAllocationCreate($jobAllocation, string $contentType = self::contentTypes['postJobAllocationCreate'][0])
     {
-        list($response) = $this->postJobAllocationCreateWithHttpInfo($jobAllocation);
+        list($response) = $this->postJobAllocationCreateWithHttpInfo($jobAllocation, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class JobAllocationsApi
      * Create a new Job Allocation
      *
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobAllocationCreateWithHttpInfo($jobAllocation)
+    public function postJobAllocationCreateWithHttpInfo($jobAllocation, string $contentType = self::contentTypes['postJobAllocationCreate'][0])
     {
-        $request = $this->postJobAllocationCreateRequest($jobAllocation);
+        $request = $this->postJobAllocationCreateRequest($jobAllocation, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class JobAllocationsApi
      * Create a new Job Allocation
      *
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobAllocationCreateAsync($jobAllocation)
+    public function postJobAllocationCreateAsync($jobAllocation, string $contentType = self::contentTypes['postJobAllocationCreate'][0])
     {
-        return $this->postJobAllocationCreateAsyncWithHttpInfo($jobAllocation)
+        return $this->postJobAllocationCreateAsyncWithHttpInfo($jobAllocation, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class JobAllocationsApi
      * Create a new Job Allocation
      *
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobAllocationCreateAsyncWithHttpInfo($jobAllocation)
+    public function postJobAllocationCreateAsyncWithHttpInfo($jobAllocation, string $contentType = self::contentTypes['postJobAllocationCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobAllocationCreateRequest($jobAllocation);
+        $request = $this->postJobAllocationCreateRequest($jobAllocation, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class JobAllocationsApi
      * Create request for operation 'postJobAllocationCreate'
      *
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobAllocationCreateRequest($jobAllocation)
+    public function postJobAllocationCreateRequest($jobAllocation, string $contentType = self::contentTypes['postJobAllocationCreate'][0])
     {
 
         // verify the required parameter 'jobAllocation' is set
@@ -1353,6 +1380,7 @@ class JobAllocationsApi
                 'Missing the required parameter $jobAllocation when calling postJobAllocationCreate'
             );
         }
+
 
         $resourcePath = '/joballocation.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class JobAllocationsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobAllocation)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobAllocation));
             } else {
                 $httpBody = $jobAllocation;
@@ -1398,9 +1422,9 @@ class JobAllocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class JobAllocationsApi
      *
      * @param  string $uuid UUID of the Job Allocation (required)
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobAllocationSingle($uuid, $jobAllocation)
+    public function postJobAllocationSingle($uuid, $jobAllocation, string $contentType = self::contentTypes['postJobAllocationSingle'][0])
     {
-        list($response) = $this->postJobAllocationSingleWithHttpInfo($uuid, $jobAllocation);
+        list($response) = $this->postJobAllocationSingleWithHttpInfo($uuid, $jobAllocation, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class JobAllocationsApi
      *
      * @param  string $uuid UUID of the Job Allocation (required)
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobAllocationSingleWithHttpInfo($uuid, $jobAllocation)
+    public function postJobAllocationSingleWithHttpInfo($uuid, $jobAllocation, string $contentType = self::contentTypes['postJobAllocationSingle'][0])
     {
-        $request = $this->postJobAllocationSingleRequest($uuid, $jobAllocation);
+        $request = $this->postJobAllocationSingleRequest($uuid, $jobAllocation, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class JobAllocationsApi
      *
      * @param  string $uuid UUID of the Job Allocation (required)
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobAllocationSingleAsync($uuid, $jobAllocation)
+    public function postJobAllocationSingleAsync($uuid, $jobAllocation, string $contentType = self::contentTypes['postJobAllocationSingle'][0])
     {
-        return $this->postJobAllocationSingleAsyncWithHttpInfo($uuid, $jobAllocation)
+        return $this->postJobAllocationSingleAsyncWithHttpInfo($uuid, $jobAllocation, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class JobAllocationsApi
      *
      * @param  string $uuid UUID of the Job Allocation (required)
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobAllocationSingleAsyncWithHttpInfo($uuid, $jobAllocation)
+    public function postJobAllocationSingleAsyncWithHttpInfo($uuid, $jobAllocation, string $contentType = self::contentTypes['postJobAllocationSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobAllocationSingleRequest($uuid, $jobAllocation);
+        $request = $this->postJobAllocationSingleRequest($uuid, $jobAllocation, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class JobAllocationsApi
      *
      * @param  string $uuid UUID of the Job Allocation (required)
      * @param  \OpenAPI\Client\Model\JobAllocation $jobAllocation Job Allocation fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobAllocationSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobAllocationSingleRequest($uuid, $jobAllocation)
+    public function postJobAllocationSingleRequest($uuid, $jobAllocation, string $contentType = self::contentTypes['postJobAllocationSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class JobAllocationsApi
                 'Missing the required parameter $jobAllocation when calling postJobAllocationSingle'
             );
         }
+
 
         $resourcePath = '/joballocation/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class JobAllocationsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobAllocation)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobAllocation));
             } else {
                 $httpBody = $jobAllocation;
@@ -1752,9 +1778,9 @@ class JobAllocationsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

@@ -69,7 +69,26 @@ class JobPaymentsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteJobPaymentSingle' => [
+            'application/json',
+        ],
+        'getJobPaymentAll' => [
+            'application/json',
+        ],
+        'getJobPaymentSingle' => [
+            'application/json',
+        ],
+        'postJobPaymentCreate' => [
+            'application/json',
+        ],
+        'postJobPaymentSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class JobPaymentsApi
      * Delete a Job Payment
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteJobPaymentSingle($uuid)
+    public function deleteJobPaymentSingle($uuid, string $contentType = self::contentTypes['deleteJobPaymentSingle'][0])
     {
-        list($response) = $this->deleteJobPaymentSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteJobPaymentSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class JobPaymentsApi
      * Delete a Job Payment
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteJobPaymentSingleWithHttpInfo($uuid)
+    public function deleteJobPaymentSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteJobPaymentSingle'][0])
     {
-        $request = $this->deleteJobPaymentSingleRequest($uuid);
+        $request = $this->deleteJobPaymentSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class JobPaymentsApi
      * Delete a Job Payment
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobPaymentSingleAsync($uuid)
+    public function deleteJobPaymentSingleAsync($uuid, string $contentType = self::contentTypes['deleteJobPaymentSingle'][0])
     {
-        return $this->deleteJobPaymentSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteJobPaymentSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class JobPaymentsApi
      * Delete a Job Payment
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteJobPaymentSingleAsyncWithHttpInfo($uuid)
+    public function deleteJobPaymentSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteJobPaymentSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteJobPaymentSingleRequest($uuid);
+        $request = $this->deleteJobPaymentSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class JobPaymentsApi
      * Create request for operation 'deleteJobPaymentSingle'
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteJobPaymentSingleRequest($uuid)
+    public function deleteJobPaymentSingleRequest($uuid, string $contentType = self::contentTypes['deleteJobPaymentSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class JobPaymentsApi
                 'Missing the required parameter $uuid when calling deleteJobPaymentSingle'
             );
         }
+
 
         $resourcePath = '/jobpayment/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class JobPaymentsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class JobPaymentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class JobPaymentsApi
      *
      * List all Job Payments
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\JobPayment[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobPaymentAll()
+    public function getJobPaymentAll(string $contentType = self::contentTypes['getJobPaymentAll'][0])
     {
-        list($response) = $this->getJobPaymentAllWithHttpInfo();
+        list($response) = $this->getJobPaymentAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class JobPaymentsApi
      *
      * List all Job Payments
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\JobPayment[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobPaymentAllWithHttpInfo()
+    public function getJobPaymentAllWithHttpInfo(string $contentType = self::contentTypes['getJobPaymentAll'][0])
     {
-        $request = $this->getJobPaymentAllRequest();
+        $request = $this->getJobPaymentAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class JobPaymentsApi
      *
      * List all Job Payments
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobPaymentAllAsync()
+    public function getJobPaymentAllAsync(string $contentType = self::contentTypes['getJobPaymentAll'][0])
     {
-        return $this->getJobPaymentAllAsyncWithHttpInfo()
+        return $this->getJobPaymentAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class JobPaymentsApi
      *
      * List all Job Payments
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobPaymentAllAsyncWithHttpInfo()
+    public function getJobPaymentAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getJobPaymentAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\JobPayment[]';
-        $request = $this->getJobPaymentAllRequest();
+        $request = $this->getJobPaymentAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class JobPaymentsApi
     /**
      * Create request for operation 'getJobPaymentAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobPaymentAllRequest()
+    public function getJobPaymentAllRequest(string $contentType = self::contentTypes['getJobPaymentAll'][0])
     {
+
 
         $resourcePath = '/jobpayment.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class JobPaymentsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class JobPaymentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class JobPaymentsApi
      * Retrieve a Job Payment
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\JobPayment|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getJobPaymentSingle($uuid)
+    public function getJobPaymentSingle($uuid, string $contentType = self::contentTypes['getJobPaymentSingle'][0])
     {
-        list($response) = $this->getJobPaymentSingleWithHttpInfo($uuid);
+        list($response) = $this->getJobPaymentSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class JobPaymentsApi
      * Retrieve a Job Payment
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\JobPayment|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getJobPaymentSingleWithHttpInfo($uuid)
+    public function getJobPaymentSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getJobPaymentSingle'][0])
     {
-        $request = $this->getJobPaymentSingleRequest($uuid);
+        $request = $this->getJobPaymentSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class JobPaymentsApi
      * Retrieve a Job Payment
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobPaymentSingleAsync($uuid)
+    public function getJobPaymentSingleAsync($uuid, string $contentType = self::contentTypes['getJobPaymentSingle'][0])
     {
-        return $this->getJobPaymentSingleAsyncWithHttpInfo($uuid)
+        return $this->getJobPaymentSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class JobPaymentsApi
      * Retrieve a Job Payment
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getJobPaymentSingleAsyncWithHttpInfo($uuid)
+    public function getJobPaymentSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getJobPaymentSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\JobPayment';
-        $request = $this->getJobPaymentSingleRequest($uuid);
+        $request = $this->getJobPaymentSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class JobPaymentsApi
      * Create request for operation 'getJobPaymentSingle'
      *
      * @param  string $uuid UUID of the Job Payment (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getJobPaymentSingleRequest($uuid)
+    public function getJobPaymentSingleRequest($uuid, string $contentType = self::contentTypes['getJobPaymentSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class JobPaymentsApi
                 'Missing the required parameter $uuid when calling getJobPaymentSingle'
             );
         }
+
 
         $resourcePath = '/jobpayment/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class JobPaymentsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class JobPaymentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class JobPaymentsApi
      * Create a new Job Payment
      *
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobPaymentCreate($jobPayment)
+    public function postJobPaymentCreate($jobPayment, string $contentType = self::contentTypes['postJobPaymentCreate'][0])
     {
-        list($response) = $this->postJobPaymentCreateWithHttpInfo($jobPayment);
+        list($response) = $this->postJobPaymentCreateWithHttpInfo($jobPayment, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class JobPaymentsApi
      * Create a new Job Payment
      *
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobPaymentCreateWithHttpInfo($jobPayment)
+    public function postJobPaymentCreateWithHttpInfo($jobPayment, string $contentType = self::contentTypes['postJobPaymentCreate'][0])
     {
-        $request = $this->postJobPaymentCreateRequest($jobPayment);
+        $request = $this->postJobPaymentCreateRequest($jobPayment, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class JobPaymentsApi
      * Create a new Job Payment
      *
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobPaymentCreateAsync($jobPayment)
+    public function postJobPaymentCreateAsync($jobPayment, string $contentType = self::contentTypes['postJobPaymentCreate'][0])
     {
-        return $this->postJobPaymentCreateAsyncWithHttpInfo($jobPayment)
+        return $this->postJobPaymentCreateAsyncWithHttpInfo($jobPayment, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class JobPaymentsApi
      * Create a new Job Payment
      *
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobPaymentCreateAsyncWithHttpInfo($jobPayment)
+    public function postJobPaymentCreateAsyncWithHttpInfo($jobPayment, string $contentType = self::contentTypes['postJobPaymentCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobPaymentCreateRequest($jobPayment);
+        $request = $this->postJobPaymentCreateRequest($jobPayment, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class JobPaymentsApi
      * Create request for operation 'postJobPaymentCreate'
      *
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobPaymentCreateRequest($jobPayment)
+    public function postJobPaymentCreateRequest($jobPayment, string $contentType = self::contentTypes['postJobPaymentCreate'][0])
     {
 
         // verify the required parameter 'jobPayment' is set
@@ -1353,6 +1380,7 @@ class JobPaymentsApi
                 'Missing the required parameter $jobPayment when calling postJobPaymentCreate'
             );
         }
+
 
         $resourcePath = '/jobpayment.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class JobPaymentsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobPayment)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobPayment));
             } else {
                 $httpBody = $jobPayment;
@@ -1398,9 +1422,9 @@ class JobPaymentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class JobPaymentsApi
      *
      * @param  string $uuid UUID of the Job Payment (required)
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postJobPaymentSingle($uuid, $jobPayment)
+    public function postJobPaymentSingle($uuid, $jobPayment, string $contentType = self::contentTypes['postJobPaymentSingle'][0])
     {
-        list($response) = $this->postJobPaymentSingleWithHttpInfo($uuid, $jobPayment);
+        list($response) = $this->postJobPaymentSingleWithHttpInfo($uuid, $jobPayment, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class JobPaymentsApi
      *
      * @param  string $uuid UUID of the Job Payment (required)
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postJobPaymentSingleWithHttpInfo($uuid, $jobPayment)
+    public function postJobPaymentSingleWithHttpInfo($uuid, $jobPayment, string $contentType = self::contentTypes['postJobPaymentSingle'][0])
     {
-        $request = $this->postJobPaymentSingleRequest($uuid, $jobPayment);
+        $request = $this->postJobPaymentSingleRequest($uuid, $jobPayment, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class JobPaymentsApi
      *
      * @param  string $uuid UUID of the Job Payment (required)
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobPaymentSingleAsync($uuid, $jobPayment)
+    public function postJobPaymentSingleAsync($uuid, $jobPayment, string $contentType = self::contentTypes['postJobPaymentSingle'][0])
     {
-        return $this->postJobPaymentSingleAsyncWithHttpInfo($uuid, $jobPayment)
+        return $this->postJobPaymentSingleAsyncWithHttpInfo($uuid, $jobPayment, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class JobPaymentsApi
      *
      * @param  string $uuid UUID of the Job Payment (required)
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postJobPaymentSingleAsyncWithHttpInfo($uuid, $jobPayment)
+    public function postJobPaymentSingleAsyncWithHttpInfo($uuid, $jobPayment, string $contentType = self::contentTypes['postJobPaymentSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postJobPaymentSingleRequest($uuid, $jobPayment);
+        $request = $this->postJobPaymentSingleRequest($uuid, $jobPayment, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class JobPaymentsApi
      *
      * @param  string $uuid UUID of the Job Payment (required)
      * @param  \OpenAPI\Client\Model\JobPayment $jobPayment Job Payment fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postJobPaymentSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postJobPaymentSingleRequest($uuid, $jobPayment)
+    public function postJobPaymentSingleRequest($uuid, $jobPayment, string $contentType = self::contentTypes['postJobPaymentSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class JobPaymentsApi
                 'Missing the required parameter $jobPayment when calling postJobPaymentSingle'
             );
         }
+
 
         $resourcePath = '/jobpayment/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class JobPaymentsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($jobPayment)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($jobPayment));
             } else {
                 $httpBody = $jobPayment;
@@ -1752,9 +1778,9 @@ class JobPaymentsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

@@ -69,7 +69,26 @@ class BadgesApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteBadgeSingle' => [
+            'application/json',
+        ],
+        'getBadgeAll' => [
+            'application/json',
+        ],
+        'getBadgeSingle' => [
+            'application/json',
+        ],
+        'postBadgeCreate' => [
+            'application/json',
+        ],
+        'postBadgeSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class BadgesApi
      * Delete a Badge
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBadgeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteBadgeSingle($uuid)
+    public function deleteBadgeSingle($uuid, string $contentType = self::contentTypes['deleteBadgeSingle'][0])
     {
-        list($response) = $this->deleteBadgeSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteBadgeSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class BadgesApi
      * Delete a Badge
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBadgeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteBadgeSingleWithHttpInfo($uuid)
+    public function deleteBadgeSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteBadgeSingle'][0])
     {
-        $request = $this->deleteBadgeSingleRequest($uuid);
+        $request = $this->deleteBadgeSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class BadgesApi
      * Delete a Badge
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteBadgeSingleAsync($uuid)
+    public function deleteBadgeSingleAsync($uuid, string $contentType = self::contentTypes['deleteBadgeSingle'][0])
     {
-        return $this->deleteBadgeSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteBadgeSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class BadgesApi
      * Delete a Badge
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteBadgeSingleAsyncWithHttpInfo($uuid)
+    public function deleteBadgeSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteBadgeSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteBadgeSingleRequest($uuid);
+        $request = $this->deleteBadgeSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class BadgesApi
      * Create request for operation 'deleteBadgeSingle'
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteBadgeSingleRequest($uuid)
+    public function deleteBadgeSingleRequest($uuid, string $contentType = self::contentTypes['deleteBadgeSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class BadgesApi
                 'Missing the required parameter $uuid when calling deleteBadgeSingle'
             );
         }
+
 
         $resourcePath = '/badge/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class BadgesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class BadgesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class BadgesApi
      *
      * List all Badges
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Badge[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getBadgeAll()
+    public function getBadgeAll(string $contentType = self::contentTypes['getBadgeAll'][0])
     {
-        list($response) = $this->getBadgeAllWithHttpInfo();
+        list($response) = $this->getBadgeAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class BadgesApi
      *
      * List all Badges
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Badge[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getBadgeAllWithHttpInfo()
+    public function getBadgeAllWithHttpInfo(string $contentType = self::contentTypes['getBadgeAll'][0])
     {
-        $request = $this->getBadgeAllRequest();
+        $request = $this->getBadgeAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class BadgesApi
      *
      * List all Badges
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBadgeAllAsync()
+    public function getBadgeAllAsync(string $contentType = self::contentTypes['getBadgeAll'][0])
     {
-        return $this->getBadgeAllAsyncWithHttpInfo()
+        return $this->getBadgeAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class BadgesApi
      *
      * List all Badges
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBadgeAllAsyncWithHttpInfo()
+    public function getBadgeAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getBadgeAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Badge[]';
-        $request = $this->getBadgeAllRequest();
+        $request = $this->getBadgeAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class BadgesApi
     /**
      * Create request for operation 'getBadgeAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getBadgeAllRequest()
+    public function getBadgeAllRequest(string $contentType = self::contentTypes['getBadgeAll'][0])
     {
+
 
         $resourcePath = '/badge.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class BadgesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class BadgesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class BadgesApi
      * Retrieve a Badge
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Badge|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getBadgeSingle($uuid)
+    public function getBadgeSingle($uuid, string $contentType = self::contentTypes['getBadgeSingle'][0])
     {
-        list($response) = $this->getBadgeSingleWithHttpInfo($uuid);
+        list($response) = $this->getBadgeSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class BadgesApi
      * Retrieve a Badge
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Badge|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getBadgeSingleWithHttpInfo($uuid)
+    public function getBadgeSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getBadgeSingle'][0])
     {
-        $request = $this->getBadgeSingleRequest($uuid);
+        $request = $this->getBadgeSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class BadgesApi
      * Retrieve a Badge
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBadgeSingleAsync($uuid)
+    public function getBadgeSingleAsync($uuid, string $contentType = self::contentTypes['getBadgeSingle'][0])
     {
-        return $this->getBadgeSingleAsyncWithHttpInfo($uuid)
+        return $this->getBadgeSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class BadgesApi
      * Retrieve a Badge
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getBadgeSingleAsyncWithHttpInfo($uuid)
+    public function getBadgeSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getBadgeSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Badge';
-        $request = $this->getBadgeSingleRequest($uuid);
+        $request = $this->getBadgeSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class BadgesApi
      * Create request for operation 'getBadgeSingle'
      *
      * @param  string $uuid UUID of the Badge (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getBadgeSingleRequest($uuid)
+    public function getBadgeSingleRequest($uuid, string $contentType = self::contentTypes['getBadgeSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class BadgesApi
                 'Missing the required parameter $uuid when calling getBadgeSingle'
             );
         }
+
 
         $resourcePath = '/badge/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class BadgesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class BadgesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class BadgesApi
      * Create a new Badge
      *
      * @param  \OpenAPI\Client\Model\Badge $badge Badge record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postBadgeCreate($badge)
+    public function postBadgeCreate($badge, string $contentType = self::contentTypes['postBadgeCreate'][0])
     {
-        list($response) = $this->postBadgeCreateWithHttpInfo($badge);
+        list($response) = $this->postBadgeCreateWithHttpInfo($badge, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class BadgesApi
      * Create a new Badge
      *
      * @param  \OpenAPI\Client\Model\Badge $badge Badge record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postBadgeCreateWithHttpInfo($badge)
+    public function postBadgeCreateWithHttpInfo($badge, string $contentType = self::contentTypes['postBadgeCreate'][0])
     {
-        $request = $this->postBadgeCreateRequest($badge);
+        $request = $this->postBadgeCreateRequest($badge, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class BadgesApi
      * Create a new Badge
      *
      * @param  \OpenAPI\Client\Model\Badge $badge Badge record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postBadgeCreateAsync($badge)
+    public function postBadgeCreateAsync($badge, string $contentType = self::contentTypes['postBadgeCreate'][0])
     {
-        return $this->postBadgeCreateAsyncWithHttpInfo($badge)
+        return $this->postBadgeCreateAsyncWithHttpInfo($badge, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class BadgesApi
      * Create a new Badge
      *
      * @param  \OpenAPI\Client\Model\Badge $badge Badge record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postBadgeCreateAsyncWithHttpInfo($badge)
+    public function postBadgeCreateAsyncWithHttpInfo($badge, string $contentType = self::contentTypes['postBadgeCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postBadgeCreateRequest($badge);
+        $request = $this->postBadgeCreateRequest($badge, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class BadgesApi
      * Create request for operation 'postBadgeCreate'
      *
      * @param  \OpenAPI\Client\Model\Badge $badge Badge record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postBadgeCreateRequest($badge)
+    public function postBadgeCreateRequest($badge, string $contentType = self::contentTypes['postBadgeCreate'][0])
     {
 
         // verify the required parameter 'badge' is set
@@ -1353,6 +1380,7 @@ class BadgesApi
                 'Missing the required parameter $badge when calling postBadgeCreate'
             );
         }
+
 
         $resourcePath = '/badge.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class BadgesApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($badge)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($badge));
             } else {
                 $httpBody = $badge;
@@ -1398,9 +1422,9 @@ class BadgesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class BadgesApi
      *
      * @param  string $uuid UUID of the Badge (required)
      * @param  \OpenAPI\Client\Model\Badge $badge Badge fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postBadgeSingle($uuid, $badge)
+    public function postBadgeSingle($uuid, $badge, string $contentType = self::contentTypes['postBadgeSingle'][0])
     {
-        list($response) = $this->postBadgeSingleWithHttpInfo($uuid, $badge);
+        list($response) = $this->postBadgeSingleWithHttpInfo($uuid, $badge, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class BadgesApi
      *
      * @param  string $uuid UUID of the Badge (required)
      * @param  \OpenAPI\Client\Model\Badge $badge Badge fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postBadgeSingleWithHttpInfo($uuid, $badge)
+    public function postBadgeSingleWithHttpInfo($uuid, $badge, string $contentType = self::contentTypes['postBadgeSingle'][0])
     {
-        $request = $this->postBadgeSingleRequest($uuid, $badge);
+        $request = $this->postBadgeSingleRequest($uuid, $badge, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class BadgesApi
      *
      * @param  string $uuid UUID of the Badge (required)
      * @param  \OpenAPI\Client\Model\Badge $badge Badge fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postBadgeSingleAsync($uuid, $badge)
+    public function postBadgeSingleAsync($uuid, $badge, string $contentType = self::contentTypes['postBadgeSingle'][0])
     {
-        return $this->postBadgeSingleAsyncWithHttpInfo($uuid, $badge)
+        return $this->postBadgeSingleAsyncWithHttpInfo($uuid, $badge, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class BadgesApi
      *
      * @param  string $uuid UUID of the Badge (required)
      * @param  \OpenAPI\Client\Model\Badge $badge Badge fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postBadgeSingleAsyncWithHttpInfo($uuid, $badge)
+    public function postBadgeSingleAsyncWithHttpInfo($uuid, $badge, string $contentType = self::contentTypes['postBadgeSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postBadgeSingleRequest($uuid, $badge);
+        $request = $this->postBadgeSingleRequest($uuid, $badge, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class BadgesApi
      *
      * @param  string $uuid UUID of the Badge (required)
      * @param  \OpenAPI\Client\Model\Badge $badge Badge fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postBadgeSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postBadgeSingleRequest($uuid, $badge)
+    public function postBadgeSingleRequest($uuid, $badge, string $contentType = self::contentTypes['postBadgeSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class BadgesApi
                 'Missing the required parameter $badge when calling postBadgeSingle'
             );
         }
+
 
         $resourcePath = '/badge/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class BadgesApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($badge)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($badge));
             } else {
                 $httpBody = $badge;
@@ -1752,9 +1778,9 @@ class BadgesApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);

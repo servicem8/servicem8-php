@@ -69,7 +69,26 @@ class FormsApi
      */
     protected $hostIndex;
 
-    /**
+    /** @var string[] $contentTypes **/
+    public const contentTypes = [
+        'deleteFormSingle' => [
+            'application/json',
+        ],
+        'getFormAll' => [
+            'application/json',
+        ],
+        'getFormSingle' => [
+            'application/json',
+        ],
+        'postFormCreate' => [
+            'application/json',
+        ],
+        'postFormSingle' => [
+            'application/json',
+        ],
+    ];
+
+/**
      * @param ClientInterface $client
      * @param Configuration   $config
      * @param HeaderSelector  $selector
@@ -121,14 +140,15 @@ class FormsApi
      * Delete a Form
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function deleteFormSingle($uuid)
+    public function deleteFormSingle($uuid, string $contentType = self::contentTypes['deleteFormSingle'][0])
     {
-        list($response) = $this->deleteFormSingleWithHttpInfo($uuid);
+        list($response) = $this->deleteFormSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -138,14 +158,15 @@ class FormsApi
      * Delete a Form
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteFormSingleWithHttpInfo($uuid)
+    public function deleteFormSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteFormSingle'][0])
     {
-        $request = $this->deleteFormSingleRequest($uuid);
+        $request = $this->deleteFormSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -283,13 +304,14 @@ class FormsApi
      * Delete a Form
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFormSingleAsync($uuid)
+    public function deleteFormSingleAsync($uuid, string $contentType = self::contentTypes['deleteFormSingle'][0])
     {
-        return $this->deleteFormSingleAsyncWithHttpInfo($uuid)
+        return $this->deleteFormSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -303,14 +325,15 @@ class FormsApi
      * Delete a Form
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteFormSingleAsyncWithHttpInfo($uuid)
+    public function deleteFormSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['deleteFormSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->deleteFormSingleRequest($uuid);
+        $request = $this->deleteFormSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -352,11 +375,12 @@ class FormsApi
      * Create request for operation 'deleteFormSingle'
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function deleteFormSingleRequest($uuid)
+    public function deleteFormSingleRequest($uuid, string $contentType = self::contentTypes['deleteFormSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -365,6 +389,7 @@ class FormsApi
                 'Missing the required parameter $uuid when calling deleteFormSingle'
             );
         }
+
 
         $resourcePath = '/form/{uuid}.json';
         $formParams = [];
@@ -385,16 +410,11 @@ class FormsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -412,9 +432,9 @@ class FormsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -456,14 +476,15 @@ class FormsApi
      *
      * List all Forms
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Form[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getFormAll()
+    public function getFormAll(string $contentType = self::contentTypes['getFormAll'][0])
     {
-        list($response) = $this->getFormAllWithHttpInfo();
+        list($response) = $this->getFormAllWithHttpInfo($contentType);
         return $response;
     }
 
@@ -472,14 +493,15 @@ class FormsApi
      *
      * List all Forms
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormAll'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Form[]|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFormAllWithHttpInfo()
+    public function getFormAllWithHttpInfo(string $contentType = self::contentTypes['getFormAll'][0])
     {
-        $request = $this->getFormAllRequest();
+        $request = $this->getFormAllRequest($contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -616,13 +638,14 @@ class FormsApi
      *
      * List all Forms
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFormAllAsync()
+    public function getFormAllAsync(string $contentType = self::contentTypes['getFormAll'][0])
     {
-        return $this->getFormAllAsyncWithHttpInfo()
+        return $this->getFormAllAsyncWithHttpInfo($contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -635,14 +658,15 @@ class FormsApi
      *
      * List all Forms
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFormAllAsyncWithHttpInfo()
+    public function getFormAllAsyncWithHttpInfo(string $contentType = self::contentTypes['getFormAll'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Form[]';
-        $request = $this->getFormAllRequest();
+        $request = $this->getFormAllRequest($contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -683,12 +707,14 @@ class FormsApi
     /**
      * Create request for operation 'getFormAll'
      *
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormAll'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFormAllRequest()
+    public function getFormAllRequest(string $contentType = self::contentTypes['getFormAll'][0])
     {
+
 
         $resourcePath = '/form.json';
         $formParams = [];
@@ -701,16 +727,11 @@ class FormsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -728,9 +749,9 @@ class FormsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -773,14 +794,15 @@ class FormsApi
      * Retrieve a Form
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Form|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function getFormSingle($uuid)
+    public function getFormSingle($uuid, string $contentType = self::contentTypes['getFormSingle'][0])
     {
-        list($response) = $this->getFormSingleWithHttpInfo($uuid);
+        list($response) = $this->getFormSingleWithHttpInfo($uuid, $contentType);
         return $response;
     }
 
@@ -790,14 +812,15 @@ class FormsApi
      * Retrieve a Form
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Form|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function getFormSingleWithHttpInfo($uuid)
+    public function getFormSingleWithHttpInfo($uuid, string $contentType = self::contentTypes['getFormSingle'][0])
     {
-        $request = $this->getFormSingleRequest($uuid);
+        $request = $this->getFormSingleRequest($uuid, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -935,13 +958,14 @@ class FormsApi
      * Retrieve a Form
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFormSingleAsync($uuid)
+    public function getFormSingleAsync($uuid, string $contentType = self::contentTypes['getFormSingle'][0])
     {
-        return $this->getFormSingleAsyncWithHttpInfo($uuid)
+        return $this->getFormSingleAsyncWithHttpInfo($uuid, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -955,14 +979,15 @@ class FormsApi
      * Retrieve a Form
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function getFormSingleAsyncWithHttpInfo($uuid)
+    public function getFormSingleAsyncWithHttpInfo($uuid, string $contentType = self::contentTypes['getFormSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Form';
-        $request = $this->getFormSingleRequest($uuid);
+        $request = $this->getFormSingleRequest($uuid, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1004,11 +1029,12 @@ class FormsApi
      * Create request for operation 'getFormSingle'
      *
      * @param  string $uuid UUID of the Form (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function getFormSingleRequest($uuid)
+    public function getFormSingleRequest($uuid, string $contentType = self::contentTypes['getFormSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1017,6 +1043,7 @@ class FormsApi
                 'Missing the required parameter $uuid when calling getFormSingle'
             );
         }
+
 
         $resourcePath = '/form/{uuid}.json';
         $formParams = [];
@@ -1037,16 +1064,11 @@ class FormsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                []
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (count($formParams) > 0) {
@@ -1064,9 +1086,9 @@ class FormsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1109,14 +1131,15 @@ class FormsApi
      * Create a new Form
      *
      * @param  \OpenAPI\Client\Model\Form $form Form record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postFormCreate($form)
+    public function postFormCreate($form, string $contentType = self::contentTypes['postFormCreate'][0])
     {
-        list($response) = $this->postFormCreateWithHttpInfo($form);
+        list($response) = $this->postFormCreateWithHttpInfo($form, $contentType);
         return $response;
     }
 
@@ -1126,14 +1149,15 @@ class FormsApi
      * Create a new Form
      *
      * @param  \OpenAPI\Client\Model\Form $form Form record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormCreate'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postFormCreateWithHttpInfo($form)
+    public function postFormCreateWithHttpInfo($form, string $contentType = self::contentTypes['postFormCreate'][0])
     {
-        $request = $this->postFormCreateRequest($form);
+        $request = $this->postFormCreateRequest($form, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1271,13 +1295,14 @@ class FormsApi
      * Create a new Form
      *
      * @param  \OpenAPI\Client\Model\Form $form Form record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFormCreateAsync($form)
+    public function postFormCreateAsync($form, string $contentType = self::contentTypes['postFormCreate'][0])
     {
-        return $this->postFormCreateAsyncWithHttpInfo($form)
+        return $this->postFormCreateAsyncWithHttpInfo($form, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1291,14 +1316,15 @@ class FormsApi
      * Create a new Form
      *
      * @param  \OpenAPI\Client\Model\Form $form Form record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFormCreateAsyncWithHttpInfo($form)
+    public function postFormCreateAsyncWithHttpInfo($form, string $contentType = self::contentTypes['postFormCreate'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postFormCreateRequest($form);
+        $request = $this->postFormCreateRequest($form, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1340,11 +1366,12 @@ class FormsApi
      * Create request for operation 'postFormCreate'
      *
      * @param  \OpenAPI\Client\Model\Form $form Form record to create (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormCreate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postFormCreateRequest($form)
+    public function postFormCreateRequest($form, string $contentType = self::contentTypes['postFormCreate'][0])
     {
 
         // verify the required parameter 'form' is set
@@ -1353,6 +1380,7 @@ class FormsApi
                 'Missing the required parameter $form when calling postFormCreate'
             );
         }
+
 
         $resourcePath = '/form.json';
         $formParams = [];
@@ -1365,20 +1393,16 @@ class FormsApi
 
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($form)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($form));
             } else {
                 $httpBody = $form;
@@ -1398,9 +1422,9 @@ class FormsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
@@ -1444,14 +1468,15 @@ class FormsApi
      *
      * @param  string $uuid UUID of the Form (required)
      * @param  \OpenAPI\Client\Model\Form $form Form fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error
      */
-    public function postFormSingle($uuid, $form)
+    public function postFormSingle($uuid, $form, string $contentType = self::contentTypes['postFormSingle'][0])
     {
-        list($response) = $this->postFormSingleWithHttpInfo($uuid, $form);
+        list($response) = $this->postFormSingleWithHttpInfo($uuid, $form, $contentType);
         return $response;
     }
 
@@ -1462,14 +1487,15 @@ class FormsApi
      *
      * @param  string $uuid UUID of the Form (required)
      * @param  \OpenAPI\Client\Model\Form $form Form fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormSingle'] to see the possible values for this operation
      *
      * @throws \OpenAPI\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \OpenAPI\Client\Model\Result|\OpenAPI\Client\Model\Error|\OpenAPI\Client\Model\Error, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postFormSingleWithHttpInfo($uuid, $form)
+    public function postFormSingleWithHttpInfo($uuid, $form, string $contentType = self::contentTypes['postFormSingle'][0])
     {
-        $request = $this->postFormSingleRequest($uuid, $form);
+        $request = $this->postFormSingleRequest($uuid, $form, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -1608,13 +1634,14 @@ class FormsApi
      *
      * @param  string $uuid UUID of the Form (required)
      * @param  \OpenAPI\Client\Model\Form $form Form fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFormSingleAsync($uuid, $form)
+    public function postFormSingleAsync($uuid, $form, string $contentType = self::contentTypes['postFormSingle'][0])
     {
-        return $this->postFormSingleAsyncWithHttpInfo($uuid, $form)
+        return $this->postFormSingleAsyncWithHttpInfo($uuid, $form, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -1629,14 +1656,15 @@ class FormsApi
      *
      * @param  string $uuid UUID of the Form (required)
      * @param  \OpenAPI\Client\Model\Form $form Form fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postFormSingleAsyncWithHttpInfo($uuid, $form)
+    public function postFormSingleAsyncWithHttpInfo($uuid, $form, string $contentType = self::contentTypes['postFormSingle'][0])
     {
         $returnType = '\OpenAPI\Client\Model\Result';
-        $request = $this->postFormSingleRequest($uuid, $form);
+        $request = $this->postFormSingleRequest($uuid, $form, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -1679,11 +1707,12 @@ class FormsApi
      *
      * @param  string $uuid UUID of the Form (required)
      * @param  \OpenAPI\Client\Model\Form $form Form fields to update (required)
+     * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postFormSingle'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function postFormSingleRequest($uuid, $form)
+    public function postFormSingleRequest($uuid, $form, string $contentType = self::contentTypes['postFormSingle'][0])
     {
 
         // verify the required parameter 'uuid' is set
@@ -1699,6 +1728,7 @@ class FormsApi
                 'Missing the required parameter $form when calling postFormSingle'
             );
         }
+
 
         $resourcePath = '/form/{uuid}.json';
         $formParams = [];
@@ -1719,20 +1749,16 @@ class FormsApi
         }
 
 
-        if ($multipart) {
-            $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['application/json']
-            );
-        } else {
-            $headers = $this->headerSelector->selectHeaders(
-                ['application/json'],
-                ['application/json']
-            );
-        }
+        $headers = $this->headerSelector->selectHeaders(
+            ['application/json', ],
+            $contentType,
+            $multipart
+        );
 
         // for model (json/xml)
         if (isset($form)) {
-            if ($headers['Content-Type'] === 'application/json') {
+            if (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the body
                 $httpBody = \GuzzleHttp\json_encode(ObjectSerializer::sanitizeForSerialization($form));
             } else {
                 $httpBody = $form;
@@ -1752,9 +1778,9 @@ class FormsApi
                 // for HTTP post (form)
                 $httpBody = new MultipartStream($multipartContents);
 
-            } elseif ($headers['Content-Type'] === 'application/json') {
+            } elseif (stripos($headers['Content-Type'], 'application/json') !== false) {
+                # if Content-Type contains "application/json", json_encode the form parameters
                 $httpBody = \GuzzleHttp\json_encode($formParams);
-
             } else {
                 // for HTTP post (form)
                 $httpBody = ObjectSerializer::buildQuery($formParams);
