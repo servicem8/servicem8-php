@@ -329,11 +329,9 @@ class AssetType implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -358,11 +356,9 @@ class AssetType implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -387,11 +383,9 @@ class AssetType implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -416,11 +410,9 @@ class AssetType implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
         $this->container['name'] = $name;
 
         return $this;

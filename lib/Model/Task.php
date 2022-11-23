@@ -416,11 +416,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -445,11 +443,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -474,11 +470,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -503,11 +497,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDueDate($dueDate)
     {
-
         if (is_null($dueDate)) {
             throw new \InvalidArgumentException('non-nullable dueDate cannot be null');
         }
-
         $this->container['dueDate'] = $dueDate;
 
         return $this;
@@ -532,11 +524,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaskDetails($taskDetails)
     {
-
         if (is_null($taskDetails)) {
             throw new \InvalidArgumentException('non-nullable taskDetails cannot be null');
         }
-
         $this->container['taskDetails'] = $taskDetails;
 
         return $this;
@@ -561,11 +551,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
         $this->container['name'] = $name;
 
         return $this;
@@ -590,11 +578,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObject($relatedObject)
     {
-
         if (is_null($relatedObject)) {
             throw new \InvalidArgumentException('non-nullable relatedObject cannot be null');
         }
-
         $this->container['relatedObject'] = $relatedObject;
 
         return $this;
@@ -619,11 +605,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObjectUuid($relatedObjectUuid)
     {
-
         if (is_null($relatedObjectUuid)) {
             throw new \InvalidArgumentException('non-nullable relatedObjectUuid cannot be null');
         }
-
         $this->container['relatedObjectUuid'] = $relatedObjectUuid;
 
         return $this;
@@ -648,11 +632,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaskComplete($taskComplete)
     {
-
         if (is_null($taskComplete)) {
             throw new \InvalidArgumentException('non-nullable taskComplete cannot be null');
         }
-
         $this->container['taskComplete'] = $taskComplete;
 
         return $this;
@@ -677,11 +659,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompletedTimestamp($completedTimestamp)
     {
-
         if (is_null($completedTimestamp)) {
             throw new \InvalidArgumentException('non-nullable completedTimestamp cannot be null');
         }
-
         $this->container['completedTimestamp'] = $completedTimestamp;
 
         return $this;
@@ -706,11 +686,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompletedByStaffUuid($completedByStaffUuid)
     {
-
         if (is_null($completedByStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable completedByStaffUuid cannot be null');
         }
-
         $this->container['completedByStaffUuid'] = $completedByStaffUuid;
 
         return $this;
@@ -735,11 +713,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssignedToStaffUuid($assignedToStaffUuid)
     {
-
         if (is_null($assignedToStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable assignedToStaffUuid cannot be null');
         }
-
         $this->container['assignedToStaffUuid'] = $assignedToStaffUuid;
 
         return $this;
@@ -764,11 +740,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
-
         if (is_null($lng)) {
             throw new \InvalidArgumentException('non-nullable lng cannot be null');
         }
-
         $this->container['lng'] = $lng;
 
         return $this;
@@ -793,11 +767,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
-
         if (is_null($lat)) {
             throw new \InvalidArgumentException('non-nullable lat cannot be null');
         }
-
         $this->container['lat'] = $lat;
 
         return $this;
@@ -822,11 +794,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreatedByStaffUuid($createdByStaffUuid)
     {
-
         if (is_null($createdByStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable createdByStaffUuid cannot be null');
         }
-
         $this->container['createdByStaffUuid'] = $createdByStaffUuid;
 
         return $this;
@@ -851,11 +821,9 @@ class Task implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreateDate($createDate)
     {
-
         if (is_null($createDate)) {
             throw new \InvalidArgumentException('non-nullable createDate cannot be null');
         }
-
         $this->container['createDate'] = $createDate;
 
         return $this;

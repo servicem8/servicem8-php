@@ -321,11 +321,9 @@ class JobRelatedKnowledgeArticlesInner implements ModelInterface, ArrayAccess, \
      */
     public function setKnowledgeArticleUuid($knowledgeArticleUuid)
     {
-
         if (is_null($knowledgeArticleUuid)) {
             throw new \InvalidArgumentException('non-nullable knowledgeArticleUuid cannot be null');
         }
-
         $this->container['knowledgeArticleUuid'] = $knowledgeArticleUuid;
 
         return $this;
@@ -350,11 +348,9 @@ class JobRelatedKnowledgeArticlesInner implements ModelInterface, ArrayAccess, \
      */
     public function setRelevance($relevance)
     {
-
         if (is_null($relevance)) {
             throw new \InvalidArgumentException('non-nullable relevance cannot be null');
         }
-
         $this->container['relevance'] = $relevance;
 
         return $this;

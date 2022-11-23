@@ -410,11 +410,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -439,11 +437,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -468,11 +464,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -497,13 +491,11 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if ((mb_strlen($name) > 70)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling Material., must be smaller than or equal to 70.');
-        }
-
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 70)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling Material., must be smaller than or equal to 70.');
         }
 
         $this->container['name'] = $name;
@@ -530,13 +522,11 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setItemNumber($itemNumber)
     {
-        if (!is_null($itemNumber) && (mb_strlen($itemNumber) > 30)) {
-            throw new \InvalidArgumentException('invalid length for $itemNumber when calling Material., must be smaller than or equal to 30.');
-        }
-
-
         if (is_null($itemNumber)) {
             throw new \InvalidArgumentException('non-nullable itemNumber cannot be null');
+        }
+        if ((mb_strlen($itemNumber) > 30)) {
+            throw new \InvalidArgumentException('invalid length for $itemNumber when calling Material., must be smaller than or equal to 30.');
         }
 
         $this->container['itemNumber'] = $itemNumber;
@@ -563,11 +553,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPrice($price)
     {
-
         if (is_null($price)) {
             throw new \InvalidArgumentException('non-nullable price cannot be null');
         }
-
         $this->container['price'] = $price;
 
         return $this;
@@ -592,11 +580,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCost($cost)
     {
-
         if (is_null($cost)) {
             throw new \InvalidArgumentException('non-nullable cost cannot be null');
         }
-
         $this->container['cost'] = $cost;
 
         return $this;
@@ -621,11 +607,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setItemDescription($itemDescription)
     {
-
         if (is_null($itemDescription)) {
             throw new \InvalidArgumentException('non-nullable itemDescription cannot be null');
         }
-
         $this->container['itemDescription'] = $itemDescription;
 
         return $this;
@@ -650,11 +634,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQuantityInStock($quantityInStock)
     {
-
         if (is_null($quantityInStock)) {
             throw new \InvalidArgumentException('non-nullable quantityInStock cannot be null');
         }
-
         $this->container['quantityInStock'] = $quantityInStock;
 
         return $this;
@@ -679,11 +661,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPriceIncludesTaxes($priceIncludesTaxes)
     {
-
         if (is_null($priceIncludesTaxes)) {
             throw new \InvalidArgumentException('non-nullable priceIncludesTaxes cannot be null');
         }
-
         $this->container['priceIncludesTaxes'] = $priceIncludesTaxes;
 
         return $this;
@@ -708,11 +688,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUseDescriptionForInvoicing($useDescriptionForInvoicing)
     {
-
         if (is_null($useDescriptionForInvoicing)) {
             throw new \InvalidArgumentException('non-nullable useDescriptionForInvoicing cannot be null');
         }
-
         $this->container['useDescriptionForInvoicing'] = $useDescriptionForInvoicing;
 
         return $this;
@@ -737,11 +715,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxRateUuid($taxRateUuid)
     {
-
         if (is_null($taxRateUuid)) {
             throw new \InvalidArgumentException('non-nullable taxRateUuid cannot be null');
         }
-
         $this->container['taxRateUuid'] = $taxRateUuid;
 
         return $this;
@@ -766,11 +742,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBarcode($barcode)
     {
-
         if (is_null($barcode)) {
             throw new \InvalidArgumentException('non-nullable barcode cannot be null');
         }
-
         $this->container['barcode'] = $barcode;
 
         return $this;
@@ -795,11 +769,9 @@ class Material implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setItemIsInventoried($itemIsInventoried)
     {
-
         if (is_null($itemIsInventoried)) {
             throw new \InvalidArgumentException('non-nullable itemIsInventoried cannot be null');
         }
-
         $this->container['itemIsInventoried'] = $itemIsInventoried;
 
         return $this;

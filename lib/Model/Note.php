@@ -371,11 +371,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -400,11 +398,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -429,11 +425,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -458,11 +452,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObject($relatedObject)
     {
-
         if (is_null($relatedObject)) {
             throw new \InvalidArgumentException('non-nullable relatedObject cannot be null');
         }
-
         $this->container['relatedObject'] = $relatedObject;
 
         return $this;
@@ -487,11 +479,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObjectUuid($relatedObjectUuid)
     {
-
         if (is_null($relatedObjectUuid)) {
             throw new \InvalidArgumentException('non-nullable relatedObjectUuid cannot be null');
         }
-
         $this->container['relatedObjectUuid'] = $relatedObjectUuid;
 
         return $this;
@@ -516,11 +506,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNote($note)
     {
-
         if (is_null($note)) {
             throw new \InvalidArgumentException('non-nullable note cannot be null');
         }
-
         $this->container['note'] = $note;
 
         return $this;
@@ -545,11 +533,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActionRequired($actionRequired)
     {
-
         if (is_null($actionRequired)) {
             throw new \InvalidArgumentException('non-nullable actionRequired cannot be null');
         }
-
         $this->container['actionRequired'] = $actionRequired;
 
         return $this;
@@ -574,11 +560,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActionCompletedByStaffUuid($actionCompletedByStaffUuid)
     {
-
         if (is_null($actionCompletedByStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable actionCompletedByStaffUuid cannot be null');
         }
-
         $this->container['actionCompletedByStaffUuid'] = $actionCompletedByStaffUuid;
 
         return $this;
@@ -603,11 +587,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditByStaffUuid($editByStaffUuid)
     {
-
         if (is_null($editByStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable editByStaffUuid cannot be null');
         }
-
         $this->container['editByStaffUuid'] = $editByStaffUuid;
 
         return $this;
@@ -632,11 +614,9 @@ class Note implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreateDate($createDate)
     {
-
         if (is_null($createDate)) {
             throw new \InvalidArgumentException('non-nullable createDate cannot be null');
         }
-
         $this->container['createDate'] = $createDate;
 
         return $this;

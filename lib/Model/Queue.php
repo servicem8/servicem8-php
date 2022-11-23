@@ -350,11 +350,9 @@ class Queue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -379,11 +377,9 @@ class Queue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -408,11 +404,9 @@ class Queue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -437,11 +431,9 @@ class Queue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
         $this->container['name'] = $name;
 
         return $this;
@@ -466,11 +458,9 @@ class Queue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDefaultTimeframe($defaultTimeframe)
     {
-
         if (is_null($defaultTimeframe)) {
             throw new \InvalidArgumentException('non-nullable defaultTimeframe cannot be null');
         }
-
         $this->container['defaultTimeframe'] = $defaultTimeframe;
 
         return $this;
@@ -495,11 +485,9 @@ class Queue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubscribedStaff($subscribedStaff)
     {
-
         if (is_null($subscribedStaff)) {
             throw new \InvalidArgumentException('non-nullable subscribedStaff cannot be null');
         }
-
         $this->container['subscribedStaff'] = $subscribedStaff;
 
         return $this;
@@ -524,11 +512,9 @@ class Queue implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRequiresAssignment($requiresAssignment)
     {
-
         if (is_null($requiresAssignment)) {
             throw new \InvalidArgumentException('non-nullable requiresAssignment cannot be null');
         }
-
         $this->container['requiresAssignment'] = $requiresAssignment;
 
         return $this;

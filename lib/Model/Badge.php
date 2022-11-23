@@ -364,11 +364,9 @@ class Badge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -393,11 +391,9 @@ class Badge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -422,11 +418,9 @@ class Badge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -451,13 +445,11 @@ class Badge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling Badge., must be smaller than or equal to 50.');
-        }
-
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling Badge., must be smaller than or equal to 50.');
         }
 
         $this->container['name'] = $name;
@@ -484,11 +476,9 @@ class Badge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAutomaticallyAllocated($automaticallyAllocated)
     {
-
         if (is_null($automaticallyAllocated)) {
             throw new \InvalidArgumentException('non-nullable automaticallyAllocated cannot be null');
         }
-
         $this->container['automaticallyAllocated'] = $automaticallyAllocated;
 
         return $this;
@@ -513,11 +503,9 @@ class Badge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFileName($fileName)
     {
-
         if (is_null($fileName)) {
             throw new \InvalidArgumentException('non-nullable fileName cannot be null');
         }
-
         $this->container['fileName'] = $fileName;
 
         return $this;
@@ -542,11 +530,9 @@ class Badge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegardingFormUuid($regardingFormUuid)
     {
-
         if (is_null($regardingFormUuid)) {
             throw new \InvalidArgumentException('non-nullable regardingFormUuid cannot be null');
         }
-
         $this->container['regardingFormUuid'] = $regardingFormUuid;
 
         return $this;
@@ -571,11 +557,9 @@ class Badge implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegardingAssetTypeUuid($regardingAssetTypeUuid)
     {
-
         if (is_null($regardingAssetTypeUuid)) {
             throw new \InvalidArgumentException('non-nullable regardingAssetTypeUuid cannot be null');
         }
-
         $this->container['regardingAssetTypeUuid'] = $regardingAssetTypeUuid;
 
         return $this;

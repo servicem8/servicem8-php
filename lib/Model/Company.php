@@ -446,11 +446,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -475,11 +473,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -504,11 +500,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -533,13 +527,11 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if ((mb_strlen($name) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling Company., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling Company., must be smaller than or equal to 100.');
         }
 
         $this->container['name'] = $name;
@@ -566,11 +558,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebsite($website)
     {
-
         if (is_null($website)) {
             throw new \InvalidArgumentException('non-nullable website cannot be null');
         }
-
         $this->container['website'] = $website;
 
         return $this;
@@ -595,11 +585,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAbnNumber($abnNumber)
     {
-
         if (is_null($abnNumber)) {
             throw new \InvalidArgumentException('non-nullable abnNumber cannot be null');
         }
-
         $this->container['abnNumber'] = $abnNumber;
 
         return $this;
@@ -624,11 +612,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIsIndividual($isIndividual)
     {
-
         if (is_null($isIndividual)) {
             throw new \InvalidArgumentException('non-nullable isIndividual cannot be null');
         }
-
         $this->container['isIndividual'] = $isIndividual;
 
         return $this;
@@ -653,13 +639,11 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressStreet($addressStreet)
     {
-        if (!is_null($addressStreet) && (mb_strlen($addressStreet) > 500)) {
-            throw new \InvalidArgumentException('invalid length for $addressStreet when calling Company., must be smaller than or equal to 500.');
-        }
-
-
         if (is_null($addressStreet)) {
             throw new \InvalidArgumentException('non-nullable addressStreet cannot be null');
+        }
+        if ((mb_strlen($addressStreet) > 500)) {
+            throw new \InvalidArgumentException('invalid length for $addressStreet when calling Company., must be smaller than or equal to 500.');
         }
 
         $this->container['addressStreet'] = $addressStreet;
@@ -686,11 +670,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressCity($addressCity)
     {
-
         if (is_null($addressCity)) {
             throw new \InvalidArgumentException('non-nullable addressCity cannot be null');
         }
-
         $this->container['addressCity'] = $addressCity;
 
         return $this;
@@ -715,11 +697,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressState($addressState)
     {
-
         if (is_null($addressState)) {
             throw new \InvalidArgumentException('non-nullable addressState cannot be null');
         }
-
         $this->container['addressState'] = $addressState;
 
         return $this;
@@ -744,11 +724,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressPostcode($addressPostcode)
     {
-
         if (is_null($addressPostcode)) {
             throw new \InvalidArgumentException('non-nullable addressPostcode cannot be null');
         }
-
         $this->container['addressPostcode'] = $addressPostcode;
 
         return $this;
@@ -773,11 +751,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddressCountry($addressCountry)
     {
-
         if (is_null($addressCountry)) {
             throw new \InvalidArgumentException('non-nullable addressCountry cannot be null');
         }
-
         $this->container['addressCountry'] = $addressCountry;
 
         return $this;
@@ -802,11 +778,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFaxNumber($faxNumber)
     {
-
         if (is_null($faxNumber)) {
             throw new \InvalidArgumentException('non-nullable faxNumber cannot be null');
         }
-
         $this->container['faxNumber'] = $faxNumber;
 
         return $this;
@@ -831,13 +805,11 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAddress($address)
     {
-        if (!is_null($address) && (mb_strlen($address) > 500)) {
-            throw new \InvalidArgumentException('invalid length for $address when calling Company., must be smaller than or equal to 500.');
-        }
-
-
         if (is_null($address)) {
             throw new \InvalidArgumentException('non-nullable address cannot be null');
+        }
+        if ((mb_strlen($address) > 500)) {
+            throw new \InvalidArgumentException('invalid length for $address when calling Company., must be smaller than or equal to 500.');
         }
 
         $this->container['address'] = $address;
@@ -864,13 +836,11 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingAddress($billingAddress)
     {
-        if (!is_null($billingAddress) && (mb_strlen($billingAddress) > 500)) {
-            throw new \InvalidArgumentException('invalid length for $billingAddress when calling Company., must be smaller than or equal to 500.');
-        }
-
-
         if (is_null($billingAddress)) {
             throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
+        }
+        if ((mb_strlen($billingAddress) > 500)) {
+            throw new \InvalidArgumentException('invalid length for $billingAddress when calling Company., must be smaller than or equal to 500.');
         }
 
         $this->container['billingAddress'] = $billingAddress;
@@ -897,11 +867,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBadges($badges)
     {
-
         if (is_null($badges)) {
             throw new \InvalidArgumentException('non-nullable badges cannot be null');
         }
-
         $this->container['badges'] = $badges;
 
         return $this;
@@ -926,11 +894,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTaxRateUuid($taxRateUuid)
     {
-
         if (is_null($taxRateUuid)) {
             throw new \InvalidArgumentException('non-nullable taxRateUuid cannot be null');
         }
-
         $this->container['taxRateUuid'] = $taxRateUuid;
 
         return $this;
@@ -955,11 +921,9 @@ class Company implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPaymentTerms($paymentTerms)
     {
-
         if (is_null($paymentTerms)) {
             throw new \InvalidArgumentException('non-nullable paymentTerms cannot be null');
         }
-
         $this->container['paymentTerms'] = $paymentTerms;
 
         return $this;

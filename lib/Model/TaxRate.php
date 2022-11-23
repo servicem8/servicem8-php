@@ -350,11 +350,9 @@ class TaxRate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -379,11 +377,9 @@ class TaxRate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -408,11 +404,9 @@ class TaxRate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -437,13 +431,11 @@ class TaxRate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling TaxRate., must be smaller than or equal to 50.');
-        }
-
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling TaxRate., must be smaller than or equal to 50.');
         }
 
         $this->container['name'] = $name;
@@ -470,11 +462,9 @@ class TaxRate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
         }
-
         $this->container['amount'] = $amount;
 
         return $this;
@@ -499,11 +489,9 @@ class TaxRate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIsDefaultTaxRate($isDefaultTaxRate)
     {
-
         if (is_null($isDefaultTaxRate)) {
             throw new \InvalidArgumentException('non-nullable isDefaultTaxRate cannot be null');
         }
-
         $this->container['isDefaultTaxRate'] = $isDefaultTaxRate;
 
         return $this;

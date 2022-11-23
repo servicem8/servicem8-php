@@ -378,11 +378,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -407,11 +405,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -436,11 +432,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -465,11 +459,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFromStaffUuid($fromStaffUuid)
     {
-
         if (is_null($fromStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable fromStaffUuid cannot be null');
         }
-
         $this->container['fromStaffUuid'] = $fromStaffUuid;
 
         return $this;
@@ -494,11 +486,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setToStaffUuid($toStaffUuid)
     {
-
         if (is_null($toStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable toStaffUuid cannot be null');
         }
-
         $this->container['toStaffUuid'] = $toStaffUuid;
 
         return $this;
@@ -523,11 +513,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSentTimestamp($sentTimestamp)
     {
-
         if (is_null($sentTimestamp)) {
             throw new \InvalidArgumentException('non-nullable sentTimestamp cannot be null');
         }
-
         $this->container['sentTimestamp'] = $sentTimestamp;
 
         return $this;
@@ -552,11 +540,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDeliveredTimestamp($deliveredTimestamp)
     {
-
         if (is_null($deliveredTimestamp)) {
             throw new \InvalidArgumentException('non-nullable deliveredTimestamp cannot be null');
         }
-
         $this->container['deliveredTimestamp'] = $deliveredTimestamp;
 
         return $this;
@@ -581,11 +567,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReadTimestamp($readTimestamp)
     {
-
         if (is_null($readTimestamp)) {
             throw new \InvalidArgumentException('non-nullable readTimestamp cannot be null');
         }
-
         $this->container['readTimestamp'] = $readTimestamp;
 
         return $this;
@@ -610,11 +594,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMessage($message)
     {
-
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
-
         $this->container['message'] = $message;
 
         return $this;
@@ -639,11 +621,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegardingJobUuid($regardingJobUuid)
     {
-
         if (is_null($regardingJobUuid)) {
             throw new \InvalidArgumentException('non-nullable regardingJobUuid cannot be null');
         }
-
         $this->container['regardingJobUuid'] = $regardingJobUuid;
 
         return $this;
@@ -668,11 +648,9 @@ class StaffMessage implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAttachedJson($attachedJson)
     {
-
         if (is_null($attachedJson)) {
             throw new \InvalidArgumentException('non-nullable attachedJson cannot be null');
         }
-
         $this->container['attachedJson'] = $attachedJson;
 
         return $this;

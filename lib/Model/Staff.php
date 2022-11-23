@@ -465,11 +465,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -494,11 +492,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -523,11 +519,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -552,13 +546,11 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirst($first)
     {
-        if ((mb_strlen($first) > 30)) {
-            throw new \InvalidArgumentException('invalid length for $first when calling Staff., must be smaller than or equal to 30.');
-        }
-
-
         if (is_null($first)) {
             throw new \InvalidArgumentException('non-nullable first cannot be null');
+        }
+        if ((mb_strlen($first) > 30)) {
+            throw new \InvalidArgumentException('invalid length for $first when calling Staff., must be smaller than or equal to 30.');
         }
 
         $this->container['first'] = $first;
@@ -585,13 +577,11 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLast($last)
     {
-        if ((mb_strlen($last) > 30)) {
-            throw new \InvalidArgumentException('invalid length for $last when calling Staff., must be smaller than or equal to 30.');
-        }
-
-
         if (is_null($last)) {
             throw new \InvalidArgumentException('non-nullable last cannot be null');
+        }
+        if ((mb_strlen($last) > 30)) {
+            throw new \InvalidArgumentException('invalid length for $last when calling Staff., must be smaller than or equal to 30.');
         }
 
         $this->container['last'] = $last;
@@ -618,11 +608,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
         }
-
         $this->container['email'] = $email;
 
         return $this;
@@ -647,11 +635,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMobile($mobile)
     {
-
         if (is_null($mobile)) {
             throw new \InvalidArgumentException('non-nullable mobile cannot be null');
         }
-
         $this->container['mobile'] = $mobile;
 
         return $this;
@@ -676,11 +662,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
-
         if (is_null($lng)) {
             throw new \InvalidArgumentException('non-nullable lng cannot be null');
         }
-
         $this->container['lng'] = $lng;
 
         return $this;
@@ -705,11 +689,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
-
         if (is_null($lat)) {
             throw new \InvalidArgumentException('non-nullable lat cannot be null');
         }
-
         $this->container['lat'] = $lat;
 
         return $this;
@@ -734,11 +716,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoTimestamp($geoTimestamp)
     {
-
         if (is_null($geoTimestamp)) {
             throw new \InvalidArgumentException('non-nullable geoTimestamp cannot be null');
         }
-
         $this->container['geoTimestamp'] = $geoTimestamp;
 
         return $this;
@@ -763,11 +743,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobTitle($jobTitle)
     {
-
         if (is_null($jobTitle)) {
             throw new \InvalidArgumentException('non-nullable jobTitle cannot be null');
         }
-
         $this->container['jobTitle'] = $jobTitle;
 
         return $this;
@@ -792,11 +770,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNavigatingToJobUuid($navigatingToJobUuid)
     {
-
         if (is_null($navigatingToJobUuid)) {
             throw new \InvalidArgumentException('non-nullable navigatingToJobUuid cannot be null');
         }
-
         $this->container['navigatingToJobUuid'] = $navigatingToJobUuid;
 
         return $this;
@@ -821,11 +797,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNavigatingTimestamp($navigatingTimestamp)
     {
-
         if (is_null($navigatingTimestamp)) {
             throw new \InvalidArgumentException('non-nullable navigatingTimestamp cannot be null');
         }
-
         $this->container['navigatingTimestamp'] = $navigatingTimestamp;
 
         return $this;
@@ -850,11 +824,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNavigatingExpiryTimestamp($navigatingExpiryTimestamp)
     {
-
         if (is_null($navigatingExpiryTimestamp)) {
             throw new \InvalidArgumentException('non-nullable navigatingExpiryTimestamp cannot be null');
         }
-
         $this->container['navigatingExpiryTimestamp'] = $navigatingExpiryTimestamp;
 
         return $this;
@@ -879,11 +851,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setColor($color)
     {
-
         if (is_null($color)) {
             throw new \InvalidArgumentException('non-nullable color cannot be null');
         }
-
         $this->container['color'] = $color;
 
         return $this;
@@ -908,11 +878,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCustomIconUrl($customIconUrl)
     {
-
         if (is_null($customIconUrl)) {
             throw new \InvalidArgumentException('non-nullable customIconUrl cannot be null');
         }
-
         $this->container['customIconUrl'] = $customIconUrl;
 
         return $this;
@@ -937,11 +905,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatusMessage($statusMessage)
     {
-
         if (is_null($statusMessage)) {
             throw new \InvalidArgumentException('non-nullable statusMessage cannot be null');
         }
-
         $this->container['statusMessage'] = $statusMessage;
 
         return $this;
@@ -966,11 +932,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStatusMessageTimestamp($statusMessageTimestamp)
     {
-
         if (is_null($statusMessageTimestamp)) {
             throw new \InvalidArgumentException('non-nullable statusMessageTimestamp cannot be null');
         }
-
         $this->container['statusMessageTimestamp'] = $statusMessageTimestamp;
 
         return $this;
@@ -995,11 +959,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCanReceivePushNotification($canReceivePushNotification)
     {
-
         if (is_null($canReceivePushNotification)) {
             throw new \InvalidArgumentException('non-nullable canReceivePushNotification cannot be null');
         }
-
         $this->container['canReceivePushNotification'] = $canReceivePushNotification;
 
         return $this;
@@ -1024,11 +986,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setHideFromSchedule($hideFromSchedule)
     {
-
         if (is_null($hideFromSchedule)) {
             throw new \InvalidArgumentException('non-nullable hideFromSchedule cannot be null');
         }
-
         $this->container['hideFromSchedule'] = $hideFromSchedule;
 
         return $this;
@@ -1053,11 +1013,9 @@ class Staff implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSecurityRoleUuid($securityRoleUuid)
     {
-
         if (is_null($securityRoleUuid)) {
             throw new \InvalidArgumentException('non-nullable securityRoleUuid cannot be null');
         }
-
         $this->container['securityRoleUuid'] = $securityRoleUuid;
 
         return $this;

@@ -357,11 +357,9 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -386,11 +384,9 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -415,11 +411,9 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -444,11 +438,9 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
         $this->container['name'] = $name;
 
         return $this;
@@ -473,11 +465,9 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setContent($content)
     {
-
         if (is_null($content)) {
             throw new \InvalidArgumentException('non-nullable content cannot be null');
         }
-
         $this->container['content'] = $content;
 
         return $this;
@@ -502,11 +492,9 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setArticleType($articleType)
     {
-
         if (is_null($articleType)) {
             throw new \InvalidArgumentException('non-nullable articleType cannot be null');
         }
-
         $this->container['articleType'] = $articleType;
 
         return $this;
@@ -531,11 +519,9 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTags($tags)
     {
-
         if (is_null($tags)) {
             throw new \InvalidArgumentException('non-nullable tags cannot be null');
         }
-
         $this->container['tags'] = $tags;
 
         return $this;
@@ -560,11 +546,9 @@ class KnowledgeArticle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelationships($relationships)
     {
-
         if (is_null($relationships)) {
             throw new \InvalidArgumentException('non-nullable relationships cannot be null');
         }
-
         $this->container['relationships'] = $relationships;
 
         return $this;

@@ -449,11 +449,9 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -478,11 +476,9 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -507,11 +503,9 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -536,13 +530,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling Location., must be smaller than or equal to 50.');
-        }
-
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling Location., must be smaller than or equal to 50.');
         }
 
         $this->container['name'] = $name;
@@ -569,13 +561,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLine1($line1)
     {
-        if (!is_null($line1) && (mb_strlen($line1) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $line1 when calling Location., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($line1)) {
             throw new \InvalidArgumentException('non-nullable line1 cannot be null');
+        }
+        if ((mb_strlen($line1) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $line1 when calling Location., must be smaller than or equal to 100.');
         }
 
         $this->container['line1'] = $line1;
@@ -602,13 +592,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLine2($line2)
     {
-        if (!is_null($line2) && (mb_strlen($line2) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $line2 when calling Location., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($line2)) {
             throw new \InvalidArgumentException('non-nullable line2 cannot be null');
+        }
+        if ((mb_strlen($line2) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $line2 when calling Location., must be smaller than or equal to 100.');
         }
 
         $this->container['line2'] = $line2;
@@ -635,13 +623,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLine3($line3)
     {
-        if (!is_null($line3) && (mb_strlen($line3) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $line3 when calling Location., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($line3)) {
             throw new \InvalidArgumentException('non-nullable line3 cannot be null');
+        }
+        if ((mb_strlen($line3) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $line3 when calling Location., must be smaller than or equal to 100.');
         }
 
         $this->container['line3'] = $line3;
@@ -668,13 +654,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCity($city)
     {
-        if (!is_null($city) && (mb_strlen($city) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $city when calling Location., must be smaller than or equal to 50.');
-        }
-
-
         if (is_null($city)) {
             throw new \InvalidArgumentException('non-nullable city cannot be null');
+        }
+        if ((mb_strlen($city) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $city when calling Location., must be smaller than or equal to 50.');
         }
 
         $this->container['city'] = $city;
@@ -701,13 +685,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCountry($country)
     {
-        if (!is_null($country) && (mb_strlen($country) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $country when calling Location., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($country)) {
             throw new \InvalidArgumentException('non-nullable country cannot be null');
+        }
+        if ((mb_strlen($country) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $country when calling Location., must be smaller than or equal to 100.');
         }
 
         $this->container['country'] = $country;
@@ -734,13 +716,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPostCode($postCode)
     {
-        if (!is_null($postCode) && (mb_strlen($postCode) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $postCode when calling Location., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($postCode)) {
             throw new \InvalidArgumentException('non-nullable postCode cannot be null');
+        }
+        if ((mb_strlen($postCode) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $postCode when calling Location., must be smaller than or equal to 100.');
         }
 
         $this->container['postCode'] = $postCode;
@@ -767,13 +747,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhone1($phone1)
     {
-        if (!is_null($phone1) && (mb_strlen($phone1) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $phone1 when calling Location., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($phone1)) {
             throw new \InvalidArgumentException('non-nullable phone1 cannot be null');
+        }
+        if ((mb_strlen($phone1) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $phone1 when calling Location., must be smaller than or equal to 100.');
         }
 
         $this->container['phone1'] = $phone1;
@@ -800,13 +778,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFax($fax)
     {
-        if (!is_null($fax) && (mb_strlen($fax) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $fax when calling Location., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($fax)) {
             throw new \InvalidArgumentException('non-nullable fax cannot be null');
+        }
+        if ((mb_strlen($fax) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $fax when calling Location., must be smaller than or equal to 100.');
         }
 
         $this->container['fax'] = $fax;
@@ -833,13 +809,11 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setState($state)
     {
-        if (!is_null($state) && (mb_strlen($state) > 400)) {
-            throw new \InvalidArgumentException('invalid length for $state when calling Location., must be smaller than or equal to 400.');
-        }
-
-
         if (is_null($state)) {
             throw new \InvalidArgumentException('non-nullable state cannot be null');
+        }
+        if ((mb_strlen($state) > 400)) {
+            throw new \InvalidArgumentException('invalid length for $state when calling Location., must be smaller than or equal to 400.');
         }
 
         $this->container['state'] = $state;
@@ -866,11 +840,9 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
-
         if (is_null($lng)) {
             throw new \InvalidArgumentException('non-nullable lng cannot be null');
         }
-
         $this->container['lng'] = $lng;
 
         return $this;
@@ -895,11 +867,9 @@ class Location implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
-
         if (is_null($lat)) {
             throw new \InvalidArgumentException('non-nullable lat cannot be null');
         }
-
         $this->container['lat'] = $lat;
 
         return $this;

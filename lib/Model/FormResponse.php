@@ -385,11 +385,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -414,11 +412,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -443,11 +439,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -472,11 +466,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFormUuid($formUuid)
     {
-
         if (is_null($formUuid)) {
             throw new \InvalidArgumentException('non-nullable formUuid cannot be null');
         }
-
         $this->container['formUuid'] = $formUuid;
 
         return $this;
@@ -501,11 +493,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStaffUuid($staffUuid)
     {
-
         if (is_null($staffUuid)) {
             throw new \InvalidArgumentException('non-nullable staffUuid cannot be null');
         }
-
         $this->container['staffUuid'] = $staffUuid;
 
         return $this;
@@ -530,11 +520,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegardingObject($regardingObject)
     {
-
         if (is_null($regardingObject)) {
             throw new \InvalidArgumentException('non-nullable regardingObject cannot be null');
         }
-
         $this->container['regardingObject'] = $regardingObject;
 
         return $this;
@@ -559,11 +547,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRegardingObjectUuid($regardingObjectUuid)
     {
-
         if (is_null($regardingObjectUuid)) {
             throw new \InvalidArgumentException('non-nullable regardingObjectUuid cannot be null');
         }
-
         $this->container['regardingObjectUuid'] = $regardingObjectUuid;
 
         return $this;
@@ -588,11 +574,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFieldData($fieldData)
     {
-
         if (is_null($fieldData)) {
             throw new \InvalidArgumentException('non-nullable fieldData cannot be null');
         }
-
         $this->container['fieldData'] = $fieldData;
 
         return $this;
@@ -617,11 +601,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimestamp($timestamp)
     {
-
         if (is_null($timestamp)) {
             throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
         }
-
         $this->container['timestamp'] = $timestamp;
 
         return $this;
@@ -646,11 +628,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFormByStaffUuid($formByStaffUuid)
     {
-
         if (is_null($formByStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable formByStaffUuid cannot be null');
         }
-
         $this->container['formByStaffUuid'] = $formByStaffUuid;
 
         return $this;
@@ -675,11 +655,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDocumentAttachmentUuid($documentAttachmentUuid)
     {
-
         if (is_null($documentAttachmentUuid)) {
             throw new \InvalidArgumentException('non-nullable documentAttachmentUuid cannot be null');
         }
-
         $this->container['documentAttachmentUuid'] = $documentAttachmentUuid;
 
         return $this;
@@ -704,11 +682,9 @@ class FormResponse implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssetUuid($assetUuid)
     {
-
         if (is_null($assetUuid)) {
             throw new \InvalidArgumentException('non-nullable assetUuid cannot be null');
         }
-
         $this->container['assetUuid'] = $assetUuid;
 
         return $this;

@@ -364,11 +364,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -393,11 +391,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -422,11 +418,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -451,11 +445,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setItemNumber($itemNumber)
     {
-
         if (is_null($itemNumber)) {
             throw new \InvalidArgumentException('non-nullable itemNumber cannot be null');
         }
-
         $this->container['itemNumber'] = $itemNumber;
 
         return $this;
@@ -480,11 +472,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setName($name)
     {
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
         $this->container['name'] = $name;
 
         return $this;
@@ -509,11 +499,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setQuantity($quantity)
     {
-
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
-
         $this->container['quantity'] = $quantity;
 
         return $this;
@@ -538,11 +526,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setSortOrder($sortOrder)
     {
-
         if (is_null($sortOrder)) {
             throw new \InvalidArgumentException('non-nullable sortOrder cannot be null');
         }
-
         $this->container['sortOrder'] = $sortOrder;
 
         return $this;
@@ -567,11 +553,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setMaterialBundleUuid($materialBundleUuid)
     {
-
         if (is_null($materialBundleUuid)) {
             throw new \InvalidArgumentException('non-nullable materialBundleUuid cannot be null');
         }
-
         $this->container['materialBundleUuid'] = $materialBundleUuid;
 
         return $this;
@@ -596,11 +580,9 @@ class JobMaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function setJobUuid($jobUuid)
     {
-
         if (is_null($jobUuid)) {
             throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
         }
-
         $this->container['jobUuid'] = $jobUuid;
 
         return $this;

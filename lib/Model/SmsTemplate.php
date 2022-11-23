@@ -347,11 +347,9 @@ class SmsTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -376,11 +374,9 @@ class SmsTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -405,11 +401,9 @@ class SmsTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -434,13 +428,11 @@ class SmsTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling SmsTemplate., must be smaller than or equal to 50.');
-        }
-
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling SmsTemplate., must be smaller than or equal to 50.');
         }
 
         $this->container['name'] = $name;
@@ -467,13 +459,11 @@ class SmsTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMessage($message)
     {
-        if (!is_null($message) && (mb_strlen($message) > 612)) {
-            throw new \InvalidArgumentException('invalid length for $message when calling SmsTemplate., must be smaller than or equal to 612.');
-        }
-
-
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
+        }
+        if ((mb_strlen($message) > 612)) {
+            throw new \InvalidArgumentException('invalid length for $message when calling SmsTemplate., must be smaller than or equal to 612.');
         }
 
         $this->container['message'] = $message;

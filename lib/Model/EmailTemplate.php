@@ -358,11 +358,9 @@ class EmailTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -387,11 +385,9 @@ class EmailTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -416,11 +412,9 @@ class EmailTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -445,13 +439,11 @@ class EmailTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if ((mb_strlen($name) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling EmailTemplate., must be smaller than or equal to 50.');
-        }
-
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling EmailTemplate., must be smaller than or equal to 50.');
         }
 
         $this->container['name'] = $name;
@@ -478,13 +470,11 @@ class EmailTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSubject($subject)
     {
-        if (!is_null($subject) && (mb_strlen($subject) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $subject when calling EmailTemplate., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($subject)) {
             throw new \InvalidArgumentException('non-nullable subject cannot be null');
+        }
+        if ((mb_strlen($subject) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $subject when calling EmailTemplate., must be smaller than or equal to 100.');
         }
 
         $this->container['subject'] = $subject;
@@ -511,13 +501,11 @@ class EmailTemplate implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMessage($message)
     {
-        if (!is_null($message) && (mb_strlen($message) > 1000)) {
-            throw new \InvalidArgumentException('invalid length for $message when calling EmailTemplate., must be smaller than or equal to 1000.');
-        }
-
-
         if (is_null($message)) {
             throw new \InvalidArgumentException('non-nullable message cannot be null');
+        }
+        if ((mb_strlen($message) > 1000)) {
+            throw new \InvalidArgumentException('invalid length for $message when calling EmailTemplate., must be smaller than or equal to 1000.');
         }
 
         $this->container['message'] = $message;

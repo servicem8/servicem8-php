@@ -378,11 +378,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -407,11 +405,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -436,11 +432,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -465,11 +459,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompanyUuid($companyUuid)
     {
-
         if (is_null($companyUuid)) {
             throw new \InvalidArgumentException('non-nullable companyUuid cannot be null');
         }
-
         $this->container['companyUuid'] = $companyUuid;
 
         return $this;
@@ -494,11 +486,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFirst($first)
     {
-
         if (is_null($first)) {
             throw new \InvalidArgumentException('non-nullable first cannot be null');
         }
-
         $this->container['first'] = $first;
 
         return $this;
@@ -523,11 +513,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLast($last)
     {
-
         if (is_null($last)) {
             throw new \InvalidArgumentException('non-nullable last cannot be null');
         }
-
         $this->container['last'] = $last;
 
         return $this;
@@ -552,11 +540,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhone($phone)
     {
-
         if (is_null($phone)) {
             throw new \InvalidArgumentException('non-nullable phone cannot be null');
         }
-
         $this->container['phone'] = $phone;
 
         return $this;
@@ -581,11 +567,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMobile($mobile)
     {
-
         if (is_null($mobile)) {
             throw new \InvalidArgumentException('non-nullable mobile cannot be null');
         }
-
         $this->container['mobile'] = $mobile;
 
         return $this;
@@ -610,11 +594,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
         }
-
         $this->container['email'] = $email;
 
         return $this;
@@ -639,11 +621,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setType($type)
     {
-
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-
         $this->container['type'] = $type;
 
         return $this;
@@ -668,11 +648,9 @@ class CompanyContact implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setIsPrimaryContact($isPrimaryContact)
     {
-
         if (is_null($isPrimaryContact)) {
             throw new \InvalidArgumentException('non-nullable isPrimaryContact cannot be null');
         }
-
         $this->container['isPrimaryContact'] = $isPrimaryContact;
 
         return $this;

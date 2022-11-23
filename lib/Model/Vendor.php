@@ -522,11 +522,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -551,11 +549,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -580,11 +576,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -609,13 +603,11 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-        if ((mb_strlen($name) > 200)) {
-            throw new \InvalidArgumentException('invalid length for $name when calling Vendor., must be smaller than or equal to 200.');
-        }
-
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
+        }
+        if ((mb_strlen($name) > 200)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling Vendor., must be smaller than or equal to 200.');
         }
 
         $this->container['name'] = $name;
@@ -642,11 +634,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAbnNumber($abnNumber)
     {
-
         if (is_null($abnNumber)) {
             throw new \InvalidArgumentException('non-nullable abnNumber cannot be null');
         }
-
         $this->container['abnNumber'] = $abnNumber;
 
         return $this;
@@ -671,11 +661,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBusinessNumber($businessNumber)
     {
-
         if (is_null($businessNumber)) {
             throw new \InvalidArgumentException('non-nullable businessNumber cannot be null');
         }
-
         $this->container['businessNumber'] = $businessNumber;
 
         return $this;
@@ -700,13 +688,11 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setWebsite($website)
     {
-        if (!is_null($website) && (mb_strlen($website) > 100)) {
-            throw new \InvalidArgumentException('invalid length for $website when calling Vendor., must be smaller than or equal to 100.');
-        }
-
-
         if (is_null($website)) {
             throw new \InvalidArgumentException('non-nullable website cannot be null');
+        }
+        if ((mb_strlen($website) > 100)) {
+            throw new \InvalidArgumentException('invalid length for $website when calling Vendor., must be smaller than or equal to 100.');
         }
 
         $this->container['website'] = $website;
@@ -733,11 +719,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmail($email)
     {
-
         if (is_null($email)) {
             throw new \InvalidArgumentException('non-nullable email cannot be null');
         }
-
         $this->container['email'] = $email;
 
         return $this;
@@ -762,11 +746,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEmailAccounts($emailAccounts)
     {
-
         if (is_null($emailAccounts)) {
             throw new \InvalidArgumentException('non-nullable emailAccounts cannot be null');
         }
-
         $this->container['emailAccounts'] = $emailAccounts;
 
         return $this;
@@ -791,11 +773,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setBillingAddress($billingAddress)
     {
-
         if (is_null($billingAddress)) {
             throw new \InvalidArgumentException('non-nullable billingAddress cannot be null');
         }
-
         $this->container['billingAddress'] = $billingAddress;
 
         return $this;
@@ -820,11 +800,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptedPaymentMethods($acceptedPaymentMethods)
     {
-
         if (is_null($acceptedPaymentMethods)) {
             throw new \InvalidArgumentException('non-nullable acceptedPaymentMethods cannot be null');
         }
-
         $this->container['acceptedPaymentMethods'] = $acceptedPaymentMethods;
 
         return $this;
@@ -849,11 +827,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setDefaultRegion($defaultRegion)
     {
-
         if (is_null($defaultRegion)) {
             throw new \InvalidArgumentException('non-nullable defaultRegion cannot be null');
         }
-
         $this->container['defaultRegion'] = $defaultRegion;
 
         return $this;
@@ -878,11 +854,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCurrency($currency)
     {
-
         if (is_null($currency)) {
             throw new \InvalidArgumentException('non-nullable currency cannot be null');
         }
-
         $this->container['currency'] = $currency;
 
         return $this;
@@ -907,11 +881,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOpeningTimeMonday($openingTimeMonday)
     {
-
         if (is_null($openingTimeMonday)) {
             throw new \InvalidArgumentException('non-nullable openingTimeMonday cannot be null');
         }
-
         $this->container['openingTimeMonday'] = $openingTimeMonday;
 
         return $this;
@@ -936,11 +908,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosingTimeMonday($closingTimeMonday)
     {
-
         if (is_null($closingTimeMonday)) {
             throw new \InvalidArgumentException('non-nullable closingTimeMonday cannot be null');
         }
-
         $this->container['closingTimeMonday'] = $closingTimeMonday;
 
         return $this;
@@ -965,11 +935,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOpeningTimeTuesday($openingTimeTuesday)
     {
-
         if (is_null($openingTimeTuesday)) {
             throw new \InvalidArgumentException('non-nullable openingTimeTuesday cannot be null');
         }
-
         $this->container['openingTimeTuesday'] = $openingTimeTuesday;
 
         return $this;
@@ -994,11 +962,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosingTimeTuesday($closingTimeTuesday)
     {
-
         if (is_null($closingTimeTuesday)) {
             throw new \InvalidArgumentException('non-nullable closingTimeTuesday cannot be null');
         }
-
         $this->container['closingTimeTuesday'] = $closingTimeTuesday;
 
         return $this;
@@ -1023,11 +989,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOpeningTimeWednesday($openingTimeWednesday)
     {
-
         if (is_null($openingTimeWednesday)) {
             throw new \InvalidArgumentException('non-nullable openingTimeWednesday cannot be null');
         }
-
         $this->container['openingTimeWednesday'] = $openingTimeWednesday;
 
         return $this;
@@ -1052,11 +1016,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosingTimeWednesday($closingTimeWednesday)
     {
-
         if (is_null($closingTimeWednesday)) {
             throw new \InvalidArgumentException('non-nullable closingTimeWednesday cannot be null');
         }
-
         $this->container['closingTimeWednesday'] = $closingTimeWednesday;
 
         return $this;
@@ -1081,11 +1043,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOpeningTimeThursday($openingTimeThursday)
     {
-
         if (is_null($openingTimeThursday)) {
             throw new \InvalidArgumentException('non-nullable openingTimeThursday cannot be null');
         }
-
         $this->container['openingTimeThursday'] = $openingTimeThursday;
 
         return $this;
@@ -1110,11 +1070,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosingTimeThursday($closingTimeThursday)
     {
-
         if (is_null($closingTimeThursday)) {
             throw new \InvalidArgumentException('non-nullable closingTimeThursday cannot be null');
         }
-
         $this->container['closingTimeThursday'] = $closingTimeThursday;
 
         return $this;
@@ -1139,11 +1097,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOpeningTimeFriday($openingTimeFriday)
     {
-
         if (is_null($openingTimeFriday)) {
             throw new \InvalidArgumentException('non-nullable openingTimeFriday cannot be null');
         }
-
         $this->container['openingTimeFriday'] = $openingTimeFriday;
 
         return $this;
@@ -1168,11 +1124,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosingTimeFriday($closingTimeFriday)
     {
-
         if (is_null($closingTimeFriday)) {
             throw new \InvalidArgumentException('non-nullable closingTimeFriday cannot be null');
         }
-
         $this->container['closingTimeFriday'] = $closingTimeFriday;
 
         return $this;
@@ -1197,11 +1151,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOpeningTimeSaturday($openingTimeSaturday)
     {
-
         if (is_null($openingTimeSaturday)) {
             throw new \InvalidArgumentException('non-nullable openingTimeSaturday cannot be null');
         }
-
         $this->container['openingTimeSaturday'] = $openingTimeSaturday;
 
         return $this;
@@ -1226,11 +1178,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosingTimeSaturday($closingTimeSaturday)
     {
-
         if (is_null($closingTimeSaturday)) {
             throw new \InvalidArgumentException('non-nullable closingTimeSaturday cannot be null');
         }
-
         $this->container['closingTimeSaturday'] = $closingTimeSaturday;
 
         return $this;
@@ -1255,11 +1205,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setOpeningTimeSunday($openingTimeSunday)
     {
-
         if (is_null($openingTimeSunday)) {
             throw new \InvalidArgumentException('non-nullable openingTimeSunday cannot be null');
         }
-
         $this->container['openingTimeSunday'] = $openingTimeSunday;
 
         return $this;
@@ -1284,11 +1232,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setClosingTimeSunday($closingTimeSunday)
     {
-
         if (is_null($closingTimeSunday)) {
             throw new \InvalidArgumentException('non-nullable closingTimeSunday cannot be null');
         }
-
         $this->container['closingTimeSunday'] = $closingTimeSunday;
 
         return $this;
@@ -1313,11 +1259,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimezoneName($timezoneName)
     {
-
         if (is_null($timezoneName)) {
             throw new \InvalidArgumentException('non-nullable timezoneName cannot be null');
         }
-
         $this->container['timezoneName'] = $timezoneName;
 
         return $this;
@@ -1342,11 +1286,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setInvoiceTerms($invoiceTerms)
     {
-
         if (is_null($invoiceTerms)) {
             throw new \InvalidArgumentException('non-nullable invoiceTerms cannot be null');
         }
-
         $this->container['invoiceTerms'] = $invoiceTerms;
 
         return $this;
@@ -1371,11 +1313,9 @@ class Vendor implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobDefaultStatus($jobDefaultStatus)
     {
-
         if (is_null($jobDefaultStatus)) {
             throw new \InvalidArgumentException('non-nullable jobDefaultStatus cannot be null');
         }
-
         $this->container['jobDefaultStatus'] = $jobDefaultStatus;
 
         return $this;

@@ -414,11 +414,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -443,11 +441,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -472,11 +468,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -501,11 +495,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObject($relatedObject)
     {
-
         if (is_null($relatedObject)) {
             throw new \InvalidArgumentException('non-nullable relatedObject cannot be null');
         }
-
         $this->container['relatedObject'] = $relatedObject;
 
         return $this;
@@ -530,11 +522,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObjectUuid($relatedObjectUuid)
     {
-
         if (is_null($relatedObjectUuid)) {
             throw new \InvalidArgumentException('non-nullable relatedObjectUuid cannot be null');
         }
-
         $this->container['relatedObjectUuid'] = $relatedObjectUuid;
 
         return $this;
@@ -559,13 +549,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAttachmentName($attachmentName)
     {
-        if (!is_null($attachmentName) && (mb_strlen($attachmentName) > 127)) {
-            throw new \InvalidArgumentException('invalid length for $attachmentName when calling Attachment., must be smaller than or equal to 127.');
-        }
-
-
         if (is_null($attachmentName)) {
             throw new \InvalidArgumentException('non-nullable attachmentName cannot be null');
+        }
+        if ((mb_strlen($attachmentName) > 127)) {
+            throw new \InvalidArgumentException('invalid length for $attachmentName when calling Attachment., must be smaller than or equal to 127.');
         }
 
         $this->container['attachmentName'] = $attachmentName;
@@ -592,13 +580,11 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFileType($fileType)
     {
-        if (!is_null($fileType) && (mb_strlen($fileType) > 50)) {
-            throw new \InvalidArgumentException('invalid length for $fileType when calling Attachment., must be smaller than or equal to 50.');
-        }
-
-
         if (is_null($fileType)) {
             throw new \InvalidArgumentException('non-nullable fileType cannot be null');
+        }
+        if ((mb_strlen($fileType) > 50)) {
+            throw new \InvalidArgumentException('invalid length for $fileType when calling Attachment., must be smaller than or equal to 50.');
         }
 
         $this->container['fileType'] = $fileType;
@@ -625,11 +611,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCreatedByStaffUuid($createdByStaffUuid)
     {
-
         if (is_null($createdByStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable createdByStaffUuid cannot be null');
         }
-
         $this->container['createdByStaffUuid'] = $createdByStaffUuid;
 
         return $this;
@@ -654,11 +638,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimestamp($timestamp)
     {
-
         if (is_null($timestamp)) {
             throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
         }
-
         $this->container['timestamp'] = $timestamp;
 
         return $this;
@@ -683,11 +665,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAttachmentSource($attachmentSource)
     {
-
         if (is_null($attachmentSource)) {
             throw new \InvalidArgumentException('non-nullable attachmentSource cannot be null');
         }
-
         $this->container['attachmentSource'] = $attachmentSource;
 
         return $this;
@@ -712,11 +692,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTags($tags)
     {
-
         if (is_null($tags)) {
             throw new \InvalidArgumentException('non-nullable tags cannot be null');
         }
-
         $this->container['tags'] = $tags;
 
         return $this;
@@ -741,11 +719,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
-
         if (is_null($lng)) {
             throw new \InvalidArgumentException('non-nullable lng cannot be null');
         }
-
         $this->container['lng'] = $lng;
 
         return $this;
@@ -770,11 +746,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
-
         if (is_null($lat)) {
             throw new \InvalidArgumentException('non-nullable lat cannot be null');
         }
-
         $this->container['lat'] = $lat;
 
         return $this;
@@ -799,11 +773,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhotoWidth($photoWidth)
     {
-
         if (is_null($photoWidth)) {
             throw new \InvalidArgumentException('non-nullable photoWidth cannot be null');
         }
-
         $this->container['photoWidth'] = $photoWidth;
 
         return $this;
@@ -828,11 +800,9 @@ class Attachment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setPhotoHeight($photoHeight)
     {
-
         if (is_null($photoHeight)) {
             throw new \InvalidArgumentException('non-nullable photoHeight cannot be null');
         }
-
         $this->container['photoHeight'] = $photoHeight;
 
         return $this;

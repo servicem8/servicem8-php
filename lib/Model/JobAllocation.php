@@ -434,11 +434,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -463,11 +461,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -492,11 +488,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -521,11 +515,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobUuid($jobUuid)
     {
-
         if (is_null($jobUuid)) {
             throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
         }
-
         $this->container['jobUuid'] = $jobUuid;
 
         return $this;
@@ -550,11 +542,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setQueueUuid($queueUuid)
     {
-
         if (is_null($queueUuid)) {
             throw new \InvalidArgumentException('non-nullable queueUuid cannot be null');
         }
-
         $this->container['queueUuid'] = $queueUuid;
 
         return $this;
@@ -579,11 +569,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setStaffUuid($staffUuid)
     {
-
         if (is_null($staffUuid)) {
             throw new \InvalidArgumentException('non-nullable staffUuid cannot be null');
         }
-
         $this->container['staffUuid'] = $staffUuid;
 
         return $this;
@@ -608,11 +596,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllocationDate($allocationDate)
     {
-
         if (is_null($allocationDate)) {
             throw new \InvalidArgumentException('non-nullable allocationDate cannot be null');
         }
-
         $this->container['allocationDate'] = $allocationDate;
 
         return $this;
@@ -637,11 +623,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllocationWindowUuid($allocationWindowUuid)
     {
-
         if (is_null($allocationWindowUuid)) {
             throw new \InvalidArgumentException('non-nullable allocationWindowUuid cannot be null');
         }
-
         $this->container['allocationWindowUuid'] = $allocationWindowUuid;
 
         return $this;
@@ -666,11 +650,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllocatedByStaffUuid($allocatedByStaffUuid)
     {
-
         if (is_null($allocatedByStaffUuid)) {
             throw new \InvalidArgumentException('non-nullable allocatedByStaffUuid cannot be null');
         }
-
         $this->container['allocatedByStaffUuid'] = $allocatedByStaffUuid;
 
         return $this;
@@ -695,11 +677,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAllocatedTimestamp($allocatedTimestamp)
     {
-
         if (is_null($allocatedTimestamp)) {
             throw new \InvalidArgumentException('non-nullable allocatedTimestamp cannot be null');
         }
-
         $this->container['allocatedTimestamp'] = $allocatedTimestamp;
 
         return $this;
@@ -724,11 +704,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setExpiryTimestamp($expiryTimestamp)
     {
-
         if (is_null($expiryTimestamp)) {
             throw new \InvalidArgumentException('non-nullable expiryTimestamp cannot be null');
         }
-
         $this->container['expiryTimestamp'] = $expiryTimestamp;
 
         return $this;
@@ -753,11 +731,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setReadTimestamp($readTimestamp)
     {
-
         if (is_null($readTimestamp)) {
             throw new \InvalidArgumentException('non-nullable readTimestamp cannot be null');
         }
-
         $this->container['readTimestamp'] = $readTimestamp;
 
         return $this;
@@ -782,11 +758,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompletionTimestamp($completionTimestamp)
     {
-
         if (is_null($completionTimestamp)) {
             throw new \InvalidArgumentException('non-nullable completionTimestamp cannot be null');
         }
-
         $this->container['completionTimestamp'] = $completionTimestamp;
 
         return $this;
@@ -811,11 +785,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEstimatedDuration($estimatedDuration)
     {
-
         if (is_null($estimatedDuration)) {
             throw new \InvalidArgumentException('non-nullable estimatedDuration cannot be null');
         }
-
         $this->container['estimatedDuration'] = $estimatedDuration;
 
         return $this;
@@ -840,11 +812,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRevisedDuration($revisedDuration)
     {
-
         if (is_null($revisedDuration)) {
             throw new \InvalidArgumentException('non-nullable revisedDuration cannot be null');
         }
-
         $this->container['revisedDuration'] = $revisedDuration;
 
         return $this;
@@ -869,11 +839,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setSortPriority($sortPriority)
     {
-
         if (is_null($sortPriority)) {
             throw new \InvalidArgumentException('non-nullable sortPriority cannot be null');
         }
-
         $this->container['sortPriority'] = $sortPriority;
 
         return $this;
@@ -898,11 +866,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRequiresAcceptance($requiresAcceptance)
     {
-
         if (is_null($requiresAcceptance)) {
             throw new \InvalidArgumentException('non-nullable requiresAcceptance cannot be null');
         }
-
         $this->container['requiresAcceptance'] = $requiresAcceptance;
 
         return $this;
@@ -927,11 +893,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptanceStatus($acceptanceStatus)
     {
-
         if (is_null($acceptanceStatus)) {
             throw new \InvalidArgumentException('non-nullable acceptanceStatus cannot be null');
         }
-
         $this->container['acceptanceStatus'] = $acceptanceStatus;
 
         return $this;
@@ -956,11 +920,9 @@ class JobAllocation implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAcceptanceTimestamp($acceptanceTimestamp)
     {
-
         if (is_null($acceptanceTimestamp)) {
             throw new \InvalidArgumentException('non-nullable acceptanceTimestamp cannot be null');
         }
-
         $this->container['acceptanceTimestamp'] = $acceptanceTimestamp;
 
         return $this;

@@ -357,11 +357,9 @@ class Feedback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -386,11 +384,9 @@ class Feedback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -415,11 +411,9 @@ class Feedback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -444,11 +438,9 @@ class Feedback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimestamp($timestamp)
     {
-
         if (is_null($timestamp)) {
             throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
         }
-
         $this->container['timestamp'] = $timestamp;
 
         return $this;
@@ -473,11 +465,9 @@ class Feedback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObject($relatedObject)
     {
-
         if (is_null($relatedObject)) {
             throw new \InvalidArgumentException('non-nullable relatedObject cannot be null');
         }
-
         $this->container['relatedObject'] = $relatedObject;
 
         return $this;
@@ -502,11 +492,9 @@ class Feedback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRelatedObjectUuid($relatedObjectUuid)
     {
-
         if (is_null($relatedObjectUuid)) {
             throw new \InvalidArgumentException('non-nullable relatedObjectUuid cannot be null');
         }
-
         $this->container['relatedObjectUuid'] = $relatedObjectUuid;
 
         return $this;
@@ -531,11 +519,9 @@ class Feedback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setRating($rating)
     {
-
         if (is_null($rating)) {
             throw new \InvalidArgumentException('non-nullable rating cannot be null');
         }
-
         $this->container['rating'] = $rating;
 
         return $this;
@@ -560,11 +546,9 @@ class Feedback implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setComment($comment)
     {
-
         if (is_null($comment)) {
             throw new \InvalidArgumentException('non-nullable comment cannot be null');
         }
-
         $this->container['comment'] = $comment;
 
         return $this;

@@ -371,11 +371,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -400,11 +398,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -429,11 +425,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -458,11 +452,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setJobUuid($jobUuid)
     {
-
         if (is_null($jobUuid)) {
             throw new \InvalidArgumentException('non-nullable jobUuid cannot be null');
         }
-
         $this->container['jobUuid'] = $jobUuid;
 
         return $this;
@@ -487,11 +479,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActionedByUuid($actionedByUuid)
     {
-
         if (is_null($actionedByUuid)) {
             throw new \InvalidArgumentException('non-nullable actionedByUuid cannot be null');
         }
-
         $this->container['actionedByUuid'] = $actionedByUuid;
 
         return $this;
@@ -516,11 +506,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setTimestamp($timestamp)
     {
-
         if (is_null($timestamp)) {
             throw new \InvalidArgumentException('non-nullable timestamp cannot be null');
         }
-
         $this->container['timestamp'] = $timestamp;
 
         return $this;
@@ -545,11 +533,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAmount($amount)
     {
-
         if (is_null($amount)) {
             throw new \InvalidArgumentException('non-nullable amount cannot be null');
         }
-
         $this->container['amount'] = $amount;
 
         return $this;
@@ -574,11 +560,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMethod($method)
     {
-
         if (is_null($method)) {
             throw new \InvalidArgumentException('non-nullable method cannot be null');
         }
-
         $this->container['method'] = $method;
 
         return $this;
@@ -603,11 +587,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setNote($note)
     {
-
         if (is_null($note)) {
             throw new \InvalidArgumentException('non-nullable note cannot be null');
         }
-
         $this->container['note'] = $note;
 
         return $this;
@@ -632,11 +614,9 @@ class JobPayment implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAttachmentUuid($attachmentUuid)
     {
-
         if (is_null($attachmentUuid)) {
             throw new \InvalidArgumentException('non-nullable attachmentUuid cannot be null');
         }
-
         $this->container['attachmentUuid'] = $attachmentUuid;
 
         return $this;

@@ -385,11 +385,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -414,11 +412,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -443,11 +439,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -472,11 +466,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setCompanyUuid($companyUuid)
     {
-
         if (is_null($companyUuid)) {
             throw new \InvalidArgumentException('non-nullable companyUuid cannot be null');
         }
-
         $this->container['companyUuid'] = $companyUuid;
 
         return $this;
@@ -501,11 +493,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssetCode($assetCode)
     {
-
         if (is_null($assetCode)) {
             throw new \InvalidArgumentException('non-nullable assetCode cannot be null');
         }
-
         $this->container['assetCode'] = $assetCode;
 
         return $this;
@@ -530,11 +520,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAssetTypeUuid($assetTypeUuid)
     {
-
         if (is_null($assetTypeUuid)) {
             throw new \InvalidArgumentException('non-nullable assetTypeUuid cannot be null');
         }
-
         $this->container['assetTypeUuid'] = $assetTypeUuid;
 
         return $this;
@@ -559,11 +547,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
         $this->container['name'] = $name;
 
         return $this;
@@ -588,11 +574,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLat($lat)
     {
-
         if (is_null($lat)) {
             throw new \InvalidArgumentException('non-nullable lat cannot be null');
         }
-
         $this->container['lat'] = $lat;
 
         return $this;
@@ -617,11 +601,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setLng($lng)
     {
-
         if (is_null($lng)) {
             throw new \InvalidArgumentException('non-nullable lng cannot be null');
         }
-
         $this->container['lng'] = $lng;
 
         return $this;
@@ -646,11 +628,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setGeoTimestamp($geoTimestamp)
     {
-
         if (is_null($geoTimestamp)) {
             throw new \InvalidArgumentException('non-nullable geoTimestamp cannot be null');
         }
-
         $this->container['geoTimestamp'] = $geoTimestamp;
 
         return $this;
@@ -675,11 +655,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setAltitude($altitude)
     {
-
         if (is_null($altitude)) {
             throw new \InvalidArgumentException('non-nullable altitude cannot be null');
         }
-
         $this->container['altitude'] = $altitude;
 
         return $this;
@@ -704,11 +682,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setFieldData($fieldData)
     {
-
         if (is_null($fieldData)) {
             throw new \InvalidArgumentException('non-nullable fieldData cannot be null');
         }
-
         $this->container['fieldData'] = $fieldData;
 
         return $this;

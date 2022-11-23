@@ -343,11 +343,9 @@ class MaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setUuid($uuid)
     {
-
         if (is_null($uuid)) {
             throw new \InvalidArgumentException('non-nullable uuid cannot be null');
         }
-
         $this->container['uuid'] = $uuid;
 
         return $this;
@@ -372,11 +370,9 @@ class MaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setActive($active)
     {
-
         if (is_null($active)) {
             throw new \InvalidArgumentException('non-nullable active cannot be null');
         }
-
         $this->container['active'] = $active;
 
         return $this;
@@ -401,11 +397,9 @@ class MaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setEditDate($editDate)
     {
-
         if (is_null($editDate)) {
             throw new \InvalidArgumentException('non-nullable editDate cannot be null');
         }
-
         $this->container['editDate'] = $editDate;
 
         return $this;
@@ -430,11 +424,9 @@ class MaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setItemNumber($itemNumber)
     {
-
         if (is_null($itemNumber)) {
             throw new \InvalidArgumentException('non-nullable itemNumber cannot be null');
         }
-
         $this->container['itemNumber'] = $itemNumber;
 
         return $this;
@@ -459,11 +451,9 @@ class MaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setName($name)
     {
-
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
         $this->container['name'] = $name;
 
         return $this;
@@ -488,11 +478,9 @@ class MaterialBundle implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function setMaterialList($materialList)
     {
-
         if (is_null($materialList)) {
             throw new \InvalidArgumentException('non-nullable materialList cannot be null');
         }
-
         $this->container['materialList'] = $materialList;
 
         return $this;
