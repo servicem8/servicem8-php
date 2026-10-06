@@ -1,0 +1,21 @@
+{
+  "cliVersion": "5.112.0",
+  "generatorName": "fernapi/fern-php-sdk",
+  "generatorVersion": "2.11.1",
+  "generatorConfig": {
+    "packageName": "servicem8/servicem8-php",
+    "namespace": "ServiceM8",
+    "clientName": "ServiceM8Client",
+    "composerJson": {
+      "description": "PHP SDK for the ServiceM8 API",
+      "license": "MIT",
+      "homepage": "https://developer.servicem8.com"
+    },
+    "retryStatusCodes": "recommended"
+  },
+  "originGitCommit": "8b56eaeb2f00e9cc8f2021393abae729ef8b179c",
+  "originGitCommitIsDirty": true,
+  "invokedBy": "ci",
+  "requestedVersion": null,
+  "ciProvider": "gitlab"
+}

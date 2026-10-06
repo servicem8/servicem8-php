@@ -1,382 +1,173 @@
-# OpenAPIClient-php
+# Servicem8 PHP Library
 
-Move your app forward with the ServiceM8 API
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=Servicem8%2FPHP)
+[![php shield](https://img.shields.io/badge/php-packagist-pink)](https://packagist.org/packages/servicem8/servicem8-php)
 
+The Servicem8 PHP library provides convenient access to the Servicem8 APIs from PHP.
 
+## Table of Contents
 
-## Limits and Throttling
-To ensure continuous quality of service, API usage can be subject to throttling. The throttle will be applied once an API consumer reaches a certain 
-threshold in terms of a maximum number of requests per minute. Most clients will never hit this threshold, but those that do, will get met by a 
-HTTP 429 Too Many Requests response code. 
- 
-There is a limit of 180 requests per minute, if you reach this you will receive a HTTP 429 with a text body of \"Number of allowed API requests per minute exceeded\".
-There is a limit of 20000 requests per day, if you reach this you will receive a HTTP 429 with a text body of \"Number of allowed API requests per day exceeded\".
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Environments](#environments)
+- [Exception Handling](#exception-handling)
+- [Advanced](#advanced)
+  - [Custom Client](#custom-client)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+- [Contributing](#contributing)
 
-We encourage all API developers to anticipate this error, and take appropriate measures like e.g. using a cached value from a previous call, or passing on a message to the end user that gets subjected to this behaviour (if any).
+## Requirements
 
-Limits are per Addon per account.
+This SDK requires PHP ^8.1.
 
+## Installation
 
-
-## Installation & Usage
-
-### Requirements
-
-PHP 7.4 and later.
-Should also work with PHP 8.0.
-
-### Composer
-
-To install the bindings via [Composer](https://getcomposer.org/), add the following to `composer.json`:
-
-```json
-{
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/servicem8/servicem8-php.git"
-    }
-  ],
-  "require": {
-    "servicem8/servicem8-php": "*@dev"
-  }
-}
+```sh
+composer require servicem8/servicem8-php
 ```
 
-Then run `composer install`
+## Usage
 
-### Manual Installation
-
-Download the files and include `autoload.php`:
+Instantiate and use the client with the following:
 
 ```php
 <?php
-require_once('/path/to/OpenAPIClient-php/vendor/autoload.php');
-```
 
-## Getting Started
+namespace Example;
 
-Please follow the [installation procedure](#installation--usage) and then run the following:
+use ServiceM8\ServiceM8Client;
+use ServiceM8\ServiceTemplates\Requests\ServiceTemplateUpsertRequest;
 
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
-
-
-
-// Configure HTTP basic authorization: basicAuth
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()
-              ->setUsername('YOUR_USERNAME')
-              ->setPassword('YOUR_PASSWORD');
-
-// Configure OAuth2 access token for authorization: oauth2
-$config = OpenAPI\Client\Configuration::getDefaultConfiguration()->setAccessToken('YOUR_ACCESS_TOKEN');
-
-
-$apiInstance = new OpenAPI\Client\Api\AllocationWindowsApi(
-    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-    // This is optional, `GuzzleHttp\Client` will be used as default.
-    new GuzzleHttp\Client(),
-    $config
+$client = new ServiceM8Client(
+    apiKey: '<value>',
 );
-$uuid = 'uuid_example'; // string | UUID of the Allocation Window
+$client->serviceTemplates->upsertServiceTemplate(
+    'uuid',
+    new ServiceTemplateUpsertRequest([]),
+);
+
+```
+
+## Environments
+
+This SDK allows you to configure different environments for API requests.
+
+```php
+The SDK defaults to the `Default_` environment. To use a different environment, pass it to the client constructor:
+
+```php
+use ServiceM8\ServiceM8Client;
+use ServiceM8\Environments;
+
+$client = new ServiceM8Client(
+    token: '<YOUR_TOKEN>',
+    options: [
+        'baseUrl' => Environments::Staging->value
+    ]
+);
+```
+
+Available environments:
+- `Environments::Default_`
+```
+
+## Exception Handling
+
+When the API returns a non-success status code (4xx or 5xx response), an exception will be thrown.
+
+```php
+use ServiceM8\Exceptions\Servicem8ApiException;
+use ServiceM8\Exceptions\Servicem8Exception;
 
 try {
-    $result = $apiInstance->deleteAllocationWindowSingle($uuid);
-    print_r($result);
-} catch (Exception $e) {
-    echo 'Exception when calling AllocationWindowsApi->deleteAllocationWindowSingle: ', $e->getMessage(), PHP_EOL;
+    $response = $client->serviceTemplates->upsertServiceTemplate(...);
+} catch (Servicem8ApiException $e) {
+    echo 'API Exception occurred: ' . $e->getMessage() . "\n";
+    echo 'Status Code: ' . $e->getCode() . "\n";
+    echo 'Response Body: ' . $e->getBody() . "\n";
+    // Optionally, rethrow the exception or handle accordingly.
 }
-
 ```
 
-## API Endpoints
+## Advanced
 
-All URIs are relative to *https://api.servicem8.com/api_1.0*
+### Custom Client
 
-Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*AllocationWindowsApi* | [**deleteAllocationWindowSingle**](docs/Api/AllocationWindowsApi.md#deleteallocationwindowsingle) | **DELETE** /allocationwindow/{uuid}.json | Delete an Allocation Window
-*AllocationWindowsApi* | [**getAllocationWindowAll**](docs/Api/AllocationWindowsApi.md#getallocationwindowall) | **GET** /allocationwindow.json | List all Allocation Windows
-*AllocationWindowsApi* | [**getAllocationWindowSingle**](docs/Api/AllocationWindowsApi.md#getallocationwindowsingle) | **GET** /allocationwindow/{uuid}.json | Retrieve an Allocation Window
-*AllocationWindowsApi* | [**postAllocationWindowCreate**](docs/Api/AllocationWindowsApi.md#postallocationwindowcreate) | **POST** /allocationwindow.json | Create a new Allocation Window
-*AllocationWindowsApi* | [**postAllocationWindowSingle**](docs/Api/AllocationWindowsApi.md#postallocationwindowsingle) | **POST** /allocationwindow/{uuid}.json | Update an Allocation Window
-*AssetTypeFieldsApi* | [**deleteAssetTypeFieldSingle**](docs/Api/AssetTypeFieldsApi.md#deleteassettypefieldsingle) | **DELETE** /assettypefield/{uuid}.json | Delete an Asset Type Field
-*AssetTypeFieldsApi* | [**getAssetTypeFieldAll**](docs/Api/AssetTypeFieldsApi.md#getassettypefieldall) | **GET** /assettypefield.json | List all Asset Type Fields
-*AssetTypeFieldsApi* | [**getAssetTypeFieldSingle**](docs/Api/AssetTypeFieldsApi.md#getassettypefieldsingle) | **GET** /assettypefield/{uuid}.json | Retrieve an Asset Type Field
-*AssetTypeFieldsApi* | [**postAssetTypeFieldCreate**](docs/Api/AssetTypeFieldsApi.md#postassettypefieldcreate) | **POST** /assettypefield.json | Create a new Asset Type Field
-*AssetTypeFieldsApi* | [**postAssetTypeFieldSingle**](docs/Api/AssetTypeFieldsApi.md#postassettypefieldsingle) | **POST** /assettypefield/{uuid}.json | Update an Asset Type Field
-*AssetTypesApi* | [**deleteAssetTypeSingle**](docs/Api/AssetTypesApi.md#deleteassettypesingle) | **DELETE** /assettype/{uuid}.json | Delete an Asset Type
-*AssetTypesApi* | [**getAssetTypeAll**](docs/Api/AssetTypesApi.md#getassettypeall) | **GET** /assettype.json | List all Asset Types
-*AssetTypesApi* | [**getAssetTypeSingle**](docs/Api/AssetTypesApi.md#getassettypesingle) | **GET** /assettype/{uuid}.json | Retrieve an Asset Type
-*AssetTypesApi* | [**postAssetTypeCreate**](docs/Api/AssetTypesApi.md#postassettypecreate) | **POST** /assettype.json | Create a new Asset Type
-*AssetTypesApi* | [**postAssetTypeSingle**](docs/Api/AssetTypesApi.md#postassettypesingle) | **POST** /assettype/{uuid}.json | Update an Asset Type
-*AssetsApi* | [**deleteAssetSingle**](docs/Api/AssetsApi.md#deleteassetsingle) | **DELETE** /asset/{uuid}.json | Delete an Asset
-*AssetsApi* | [**getAssetAll**](docs/Api/AssetsApi.md#getassetall) | **GET** /asset.json | List all Assets
-*AssetsApi* | [**getAssetSingle**](docs/Api/AssetsApi.md#getassetsingle) | **GET** /asset/{uuid}.json | Retrieve an Asset
-*AssetsApi* | [**postAssetSingle**](docs/Api/AssetsApi.md#postassetsingle) | **POST** /asset/{uuid}.json | Update an Asset
-*AttachmentsApi* | [**deleteAttachmentSingle**](docs/Api/AttachmentsApi.md#deleteattachmentsingle) | **DELETE** /attachment/{uuid}.json | Delete an Attachment
-*AttachmentsApi* | [**getAttachmentAll**](docs/Api/AttachmentsApi.md#getattachmentall) | **GET** /attachment.json | List all Attachments
-*AttachmentsApi* | [**getAttachmentSingle**](docs/Api/AttachmentsApi.md#getattachmentsingle) | **GET** /attachment/{uuid}.json | Retrieve an Attachment
-*AttachmentsApi* | [**postAttachmentCreate**](docs/Api/AttachmentsApi.md#postattachmentcreate) | **POST** /attachment.json | Create a new Attachment
-*AttachmentsApi* | [**postAttachmentSingle**](docs/Api/AttachmentsApi.md#postattachmentsingle) | **POST** /attachment/{uuid}.json | Update an Attachment
-*BadgesApi* | [**deleteBadgeSingle**](docs/Api/BadgesApi.md#deletebadgesingle) | **DELETE** /badge/{uuid}.json | Delete a Badge
-*BadgesApi* | [**getBadgeAll**](docs/Api/BadgesApi.md#getbadgeall) | **GET** /badge.json | List all Badges
-*BadgesApi* | [**getBadgeSingle**](docs/Api/BadgesApi.md#getbadgesingle) | **GET** /badge/{uuid}.json | Retrieve a Badge
-*BadgesApi* | [**postBadgeCreate**](docs/Api/BadgesApi.md#postbadgecreate) | **POST** /badge.json | Create a new Badge
-*BadgesApi* | [**postBadgeSingle**](docs/Api/BadgesApi.md#postbadgesingle) | **POST** /badge/{uuid}.json | Update a Badge
-*BundlesApi* | [**deleteMaterialBundleSingle**](docs/Api/BundlesApi.md#deletematerialbundlesingle) | **DELETE** /materialbundle/{uuid}.json | Delete a Bundle
-*BundlesApi* | [**getMaterialBundleAll**](docs/Api/BundlesApi.md#getmaterialbundleall) | **GET** /materialbundle.json | List all Bundles
-*BundlesApi* | [**getMaterialBundleSingle**](docs/Api/BundlesApi.md#getmaterialbundlesingle) | **GET** /materialbundle/{uuid}.json | Retrieve a Bundle
-*BundlesApi* | [**postMaterialBundleCreate**](docs/Api/BundlesApi.md#postmaterialbundlecreate) | **POST** /materialbundle.json | Create a new Bundle
-*BundlesApi* | [**postMaterialBundleSingle**](docs/Api/BundlesApi.md#postmaterialbundlesingle) | **POST** /materialbundle/{uuid}.json | Update a Bundle
-*CategoriesApi* | [**deleteCategorySingle**](docs/Api/CategoriesApi.md#deletecategorysingle) | **DELETE** /category/{uuid}.json | Delete a Category
-*CategoriesApi* | [**getCategoryAll**](docs/Api/CategoriesApi.md#getcategoryall) | **GET** /category.json | List all Categories
-*CategoriesApi* | [**getCategorySingle**](docs/Api/CategoriesApi.md#getcategorysingle) | **GET** /category/{uuid}.json | Retrieve a Category
-*CategoriesApi* | [**postCategoryCreate**](docs/Api/CategoriesApi.md#postcategorycreate) | **POST** /category.json | Create a new Category
-*CategoriesApi* | [**postCategorySingle**](docs/Api/CategoriesApi.md#postcategorysingle) | **POST** /category/{uuid}.json | Update a Category
-*ClientsApi* | [**deleteCompanySingle**](docs/Api/ClientsApi.md#deletecompanysingle) | **DELETE** /company/{uuid}.json | Delete a Client
-*ClientsApi* | [**getCompanyAll**](docs/Api/ClientsApi.md#getcompanyall) | **GET** /company.json | List all Clients
-*ClientsApi* | [**getCompanySingle**](docs/Api/ClientsApi.md#getcompanysingle) | **GET** /company/{uuid}.json | Retrieve a Client
-*ClientsApi* | [**postCompanyCreate**](docs/Api/ClientsApi.md#postcompanycreate) | **POST** /company.json | Create a new Client
-*ClientsApi* | [**postCompanySingle**](docs/Api/ClientsApi.md#postcompanysingle) | **POST** /company/{uuid}.json | Update a Client
-*CompanyContactsApi* | [**deleteCompanyContactSingle**](docs/Api/CompanyContactsApi.md#deletecompanycontactsingle) | **DELETE** /companycontact/{uuid}.json | Delete a Company Contact
-*CompanyContactsApi* | [**getCompanyContactAll**](docs/Api/CompanyContactsApi.md#getcompanycontactall) | **GET** /companycontact.json | List all Company Contacts
-*CompanyContactsApi* | [**getCompanyContactSingle**](docs/Api/CompanyContactsApi.md#getcompanycontactsingle) | **GET** /companycontact/{uuid}.json | Retrieve a Company Contact
-*CompanyContactsApi* | [**postCompanyContactCreate**](docs/Api/CompanyContactsApi.md#postcompanycontactcreate) | **POST** /companycontact.json | Create a new Company Contact
-*CompanyContactsApi* | [**postCompanyContactSingle**](docs/Api/CompanyContactsApi.md#postcompanycontactsingle) | **POST** /companycontact/{uuid}.json | Update a Company Contact
-*EmailTemplatesApi* | [**deleteEmailTemplateSingle**](docs/Api/EmailTemplatesApi.md#deleteemailtemplatesingle) | **DELETE** /emailtemplate/{uuid}.json | Delete an Email Template
-*EmailTemplatesApi* | [**getEmailTemplateAll**](docs/Api/EmailTemplatesApi.md#getemailtemplateall) | **GET** /emailtemplate.json | List all Email Templates
-*EmailTemplatesApi* | [**getEmailTemplateSingle**](docs/Api/EmailTemplatesApi.md#getemailtemplatesingle) | **GET** /emailtemplate/{uuid}.json | Retrieve an Email Template
-*EmailTemplatesApi* | [**postEmailTemplateCreate**](docs/Api/EmailTemplatesApi.md#postemailtemplatecreate) | **POST** /emailtemplate.json | Create a new Email Template
-*EmailTemplatesApi* | [**postEmailTemplateSingle**](docs/Api/EmailTemplatesApi.md#postemailtemplatesingle) | **POST** /emailtemplate/{uuid}.json | Update an Email Template
-*FeedbackApi* | [**deleteFeedbackSingle**](docs/Api/FeedbackApi.md#deletefeedbacksingle) | **DELETE** /feedback/{uuid}.json | Delete a Feedback
-*FeedbackApi* | [**getFeedbackAll**](docs/Api/FeedbackApi.md#getfeedbackall) | **GET** /feedback.json | List all Feedback
-*FeedbackApi* | [**getFeedbackSingle**](docs/Api/FeedbackApi.md#getfeedbacksingle) | **GET** /feedback/{uuid}.json | Retrieve a Feedback
-*FeedbackApi* | [**postFeedbackCreate**](docs/Api/FeedbackApi.md#postfeedbackcreate) | **POST** /feedback.json | Create a new Feedback
-*FeedbackApi* | [**postFeedbackSingle**](docs/Api/FeedbackApi.md#postfeedbacksingle) | **POST** /feedback/{uuid}.json | Update a Feedback
-*FormFieldsApi* | [**deleteFormFieldSingle**](docs/Api/FormFieldsApi.md#deleteformfieldsingle) | **DELETE** /formfield/{uuid}.json | Delete a Form Field
-*FormFieldsApi* | [**getFormFieldAll**](docs/Api/FormFieldsApi.md#getformfieldall) | **GET** /formfield.json | List all Form Fields
-*FormFieldsApi* | [**getFormFieldSingle**](docs/Api/FormFieldsApi.md#getformfieldsingle) | **GET** /formfield/{uuid}.json | Retrieve a Form Field
-*FormFieldsApi* | [**postFormFieldCreate**](docs/Api/FormFieldsApi.md#postformfieldcreate) | **POST** /formfield.json | Create a new Form Field
-*FormFieldsApi* | [**postFormFieldSingle**](docs/Api/FormFieldsApi.md#postformfieldsingle) | **POST** /formfield/{uuid}.json | Update a Form Field
-*FormResponsesApi* | [**deleteFormResponseSingle**](docs/Api/FormResponsesApi.md#deleteformresponsesingle) | **DELETE** /formresponse/{uuid}.json | Delete a Form Response
-*FormResponsesApi* | [**getFormResponseAll**](docs/Api/FormResponsesApi.md#getformresponseall) | **GET** /formresponse.json | List all Form Responses
-*FormResponsesApi* | [**getFormResponseSingle**](docs/Api/FormResponsesApi.md#getformresponsesingle) | **GET** /formresponse/{uuid}.json | Retrieve a Form Response
-*FormResponsesApi* | [**postFormResponseCreate**](docs/Api/FormResponsesApi.md#postformresponsecreate) | **POST** /formresponse.json | Create a new Form Response
-*FormResponsesApi* | [**postFormResponseSingle**](docs/Api/FormResponsesApi.md#postformresponsesingle) | **POST** /formresponse/{uuid}.json | Update a Form Response
-*FormsApi* | [**deleteFormSingle**](docs/Api/FormsApi.md#deleteformsingle) | **DELETE** /form/{uuid}.json | Delete a Form
-*FormsApi* | [**getFormAll**](docs/Api/FormsApi.md#getformall) | **GET** /form.json | List all Forms
-*FormsApi* | [**getFormSingle**](docs/Api/FormsApi.md#getformsingle) | **GET** /form/{uuid}.json | Retrieve a Form
-*FormsApi* | [**postFormCreate**](docs/Api/FormsApi.md#postformcreate) | **POST** /form.json | Create a new Form
-*FormsApi* | [**postFormSingle**](docs/Api/FormsApi.md#postformsingle) | **POST** /form/{uuid}.json | Update a Form
-*JobActivitiesApi* | [**deleteJobActivitySingle**](docs/Api/JobActivitiesApi.md#deletejobactivitysingle) | **DELETE** /jobactivity/{uuid}.json | Delete a Job Activity
-*JobActivitiesApi* | [**getJobActivityAll**](docs/Api/JobActivitiesApi.md#getjobactivityall) | **GET** /jobactivity.json | List all Job Activities
-*JobActivitiesApi* | [**getJobActivitySingle**](docs/Api/JobActivitiesApi.md#getjobactivitysingle) | **GET** /jobactivity/{uuid}.json | Retrieve a Job Activity
-*JobActivitiesApi* | [**postJobActivityCreate**](docs/Api/JobActivitiesApi.md#postjobactivitycreate) | **POST** /jobactivity.json | Create a new Job Activity
-*JobActivitiesApi* | [**postJobActivitySingle**](docs/Api/JobActivitiesApi.md#postjobactivitysingle) | **POST** /jobactivity/{uuid}.json | Update a Job Activity
-*JobAllocationsApi* | [**deleteJobAllocationSingle**](docs/Api/JobAllocationsApi.md#deletejoballocationsingle) | **DELETE** /joballocation/{uuid}.json | Delete a Job Allocation
-*JobAllocationsApi* | [**getJobAllocationAll**](docs/Api/JobAllocationsApi.md#getjoballocationall) | **GET** /joballocation.json | List all Job Allocations
-*JobAllocationsApi* | [**getJobAllocationSingle**](docs/Api/JobAllocationsApi.md#getjoballocationsingle) | **GET** /joballocation/{uuid}.json | Retrieve a Job Allocation
-*JobAllocationsApi* | [**postJobAllocationCreate**](docs/Api/JobAllocationsApi.md#postjoballocationcreate) | **POST** /joballocation.json | Create a new Job Allocation
-*JobAllocationsApi* | [**postJobAllocationSingle**](docs/Api/JobAllocationsApi.md#postjoballocationsingle) | **POST** /joballocation/{uuid}.json | Update a Job Allocation
-*JobContactsApi* | [**deleteJobContactSingle**](docs/Api/JobContactsApi.md#deletejobcontactsingle) | **DELETE** /jobcontact/{uuid}.json | Delete a Job Contact
-*JobContactsApi* | [**getJobContactAll**](docs/Api/JobContactsApi.md#getjobcontactall) | **GET** /jobcontact.json | List all Job Contacts
-*JobContactsApi* | [**getJobContactSingle**](docs/Api/JobContactsApi.md#getjobcontactsingle) | **GET** /jobcontact/{uuid}.json | Retrieve a Job Contact
-*JobContactsApi* | [**postJobContactCreate**](docs/Api/JobContactsApi.md#postjobcontactcreate) | **POST** /jobcontact.json | Create a new Job Contact
-*JobContactsApi* | [**postJobContactSingle**](docs/Api/JobContactsApi.md#postjobcontactsingle) | **POST** /jobcontact/{uuid}.json | Update a Job Contact
-*JobMaterialBundlesApi* | [**deleteJobMaterialBundleSingle**](docs/Api/JobMaterialBundlesApi.md#deletejobmaterialbundlesingle) | **DELETE** /jobmaterialbundle/{uuid}.json | Delete a JobMaterialBundle
-*JobMaterialBundlesApi* | [**getJobMaterialBundleAll**](docs/Api/JobMaterialBundlesApi.md#getjobmaterialbundleall) | **GET** /jobmaterialbundle.json | List all JobMaterialBundles
-*JobMaterialBundlesApi* | [**getJobMaterialBundleSingle**](docs/Api/JobMaterialBundlesApi.md#getjobmaterialbundlesingle) | **GET** /jobmaterialbundle/{uuid}.json | Retrieve a JobMaterialBundle
-*JobMaterialBundlesApi* | [**postJobMaterialBundleCreate**](docs/Api/JobMaterialBundlesApi.md#postjobmaterialbundlecreate) | **POST** /jobmaterialbundle.json | Create a new JobMaterialBundle
-*JobMaterialBundlesApi* | [**postJobMaterialBundleSingle**](docs/Api/JobMaterialBundlesApi.md#postjobmaterialbundlesingle) | **POST** /jobmaterialbundle/{uuid}.json | Update a JobMaterialBundle
-*JobMaterialsApi* | [**deleteJobMaterialSingle**](docs/Api/JobMaterialsApi.md#deletejobmaterialsingle) | **DELETE** /jobmaterial/{uuid}.json | Delete a Job Material
-*JobMaterialsApi* | [**getJobMaterialAll**](docs/Api/JobMaterialsApi.md#getjobmaterialall) | **GET** /jobmaterial.json | List all Job Materials
-*JobMaterialsApi* | [**getJobMaterialSingle**](docs/Api/JobMaterialsApi.md#getjobmaterialsingle) | **GET** /jobmaterial/{uuid}.json | Retrieve a Job Material
-*JobMaterialsApi* | [**postJobMaterialCreate**](docs/Api/JobMaterialsApi.md#postjobmaterialcreate) | **POST** /jobmaterial.json | Create a new Job Material
-*JobMaterialsApi* | [**postJobMaterialSingle**](docs/Api/JobMaterialsApi.md#postjobmaterialsingle) | **POST** /jobmaterial/{uuid}.json | Update a Job Material
-*JobPaymentsApi* | [**deleteJobPaymentSingle**](docs/Api/JobPaymentsApi.md#deletejobpaymentsingle) | **DELETE** /jobpayment/{uuid}.json | Delete a Job Payment
-*JobPaymentsApi* | [**getJobPaymentAll**](docs/Api/JobPaymentsApi.md#getjobpaymentall) | **GET** /jobpayment.json | List all Job Payments
-*JobPaymentsApi* | [**getJobPaymentSingle**](docs/Api/JobPaymentsApi.md#getjobpaymentsingle) | **GET** /jobpayment/{uuid}.json | Retrieve a Job Payment
-*JobPaymentsApi* | [**postJobPaymentCreate**](docs/Api/JobPaymentsApi.md#postjobpaymentcreate) | **POST** /jobpayment.json | Create a new Job Payment
-*JobPaymentsApi* | [**postJobPaymentSingle**](docs/Api/JobPaymentsApi.md#postjobpaymentsingle) | **POST** /jobpayment/{uuid}.json | Update a Job Payment
-*JobQueuesApi* | [**deleteQueueSingle**](docs/Api/JobQueuesApi.md#deletequeuesingle) | **DELETE** /queue/{uuid}.json | Delete a Job Queue
-*JobQueuesApi* | [**getQueueAll**](docs/Api/JobQueuesApi.md#getqueueall) | **GET** /queue.json | List all Job Queues
-*JobQueuesApi* | [**getQueueSingle**](docs/Api/JobQueuesApi.md#getqueuesingle) | **GET** /queue/{uuid}.json | Retrieve a Job Queue
-*JobQueuesApi* | [**postQueueCreate**](docs/Api/JobQueuesApi.md#postqueuecreate) | **POST** /queue.json | Create a new Job Queue
-*JobQueuesApi* | [**postQueueSingle**](docs/Api/JobQueuesApi.md#postqueuesingle) | **POST** /queue/{uuid}.json | Update a Job Queue
-*JobsApi* | [**deleteJobSingle**](docs/Api/JobsApi.md#deletejobsingle) | **DELETE** /job/{uuid}.json | Delete a Job
-*JobsApi* | [**getJobAll**](docs/Api/JobsApi.md#getjoball) | **GET** /job.json | List all Jobs
-*JobsApi* | [**getJobSingle**](docs/Api/JobsApi.md#getjobsingle) | **GET** /job/{uuid}.json | Retrieve a Job
-*JobsApi* | [**postJobCreate**](docs/Api/JobsApi.md#postjobcreate) | **POST** /job.json | Create a new Job
-*JobsApi* | [**postJobSingle**](docs/Api/JobsApi.md#postjobsingle) | **POST** /job/{uuid}.json | Update a Job
-*KnowledgeArticlesApi* | [**deleteKnowledgeArticleSingle**](docs/Api/KnowledgeArticlesApi.md#deleteknowledgearticlesingle) | **DELETE** /knowledgearticle/{uuid}.json | Delete a Knowledge Article
-*KnowledgeArticlesApi* | [**getKnowledgeArticleAll**](docs/Api/KnowledgeArticlesApi.md#getknowledgearticleall) | **GET** /knowledgearticle.json | List all Knowledge Articles
-*KnowledgeArticlesApi* | [**getKnowledgeArticleSingle**](docs/Api/KnowledgeArticlesApi.md#getknowledgearticlesingle) | **GET** /knowledgearticle/{uuid}.json | Retrieve a Knowledge Article
-*KnowledgeArticlesApi* | [**postKnowledgeArticleCreate**](docs/Api/KnowledgeArticlesApi.md#postknowledgearticlecreate) | **POST** /knowledgearticle.json | Create a new Knowledge Article
-*KnowledgeArticlesApi* | [**postKnowledgeArticleSingle**](docs/Api/KnowledgeArticlesApi.md#postknowledgearticlesingle) | **POST** /knowledgearticle/{uuid}.json | Update a Knowledge Article
-*LocationsApi* | [**deleteLocationSingle**](docs/Api/LocationsApi.md#deletelocationsingle) | **DELETE** /location/{uuid}.json | Delete a Location
-*LocationsApi* | [**getLocationAll**](docs/Api/LocationsApi.md#getlocationall) | **GET** /location.json | List all Locations
-*LocationsApi* | [**getLocationSingle**](docs/Api/LocationsApi.md#getlocationsingle) | **GET** /location/{uuid}.json | Retrieve a Location
-*LocationsApi* | [**postLocationCreate**](docs/Api/LocationsApi.md#postlocationcreate) | **POST** /location.json | Create a new Location
-*LocationsApi* | [**postLocationSingle**](docs/Api/LocationsApi.md#postlocationsingle) | **POST** /location/{uuid}.json | Update a Location
-*MaterialsApi* | [**deleteMaterialSingle**](docs/Api/MaterialsApi.md#deletematerialsingle) | **DELETE** /material/{uuid}.json | Delete a Material
-*MaterialsApi* | [**getMaterialAll**](docs/Api/MaterialsApi.md#getmaterialall) | **GET** /material.json | List all Materials
-*MaterialsApi* | [**getMaterialSingle**](docs/Api/MaterialsApi.md#getmaterialsingle) | **GET** /material/{uuid}.json | Retrieve a Material
-*MaterialsApi* | [**postMaterialCreate**](docs/Api/MaterialsApi.md#postmaterialcreate) | **POST** /material.json | Create a new Material
-*MaterialsApi* | [**postMaterialSingle**](docs/Api/MaterialsApi.md#postmaterialsingle) | **POST** /material/{uuid}.json | Update a Material
-*NotesApi* | [**deleteNoteSingle**](docs/Api/NotesApi.md#deletenotesingle) | **DELETE** /note/{uuid}.json | Delete a Note
-*NotesApi* | [**getNoteAll**](docs/Api/NotesApi.md#getnoteall) | **GET** /note.json | List all Notes
-*NotesApi* | [**getNoteSingle**](docs/Api/NotesApi.md#getnotesingle) | **GET** /note/{uuid}.json | Retrieve a Note
-*NotesApi* | [**postNoteCreate**](docs/Api/NotesApi.md#postnotecreate) | **POST** /note.json | Create a new Note
-*NotesApi* | [**postNoteSingle**](docs/Api/NotesApi.md#postnotesingle) | **POST** /note/{uuid}.json | Update a Note
-*SMSTemplatesApi* | [**deleteSmsTemplateSingle**](docs/Api/SMSTemplatesApi.md#deletesmstemplatesingle) | **DELETE** /smstemplate/{uuid}.json | Delete a SMS Template
-*SMSTemplatesApi* | [**getSmsTemplateAll**](docs/Api/SMSTemplatesApi.md#getsmstemplateall) | **GET** /smstemplate.json | List all SMS Templates
-*SMSTemplatesApi* | [**getSmsTemplateSingle**](docs/Api/SMSTemplatesApi.md#getsmstemplatesingle) | **GET** /smstemplate/{uuid}.json | Retrieve a SMS Template
-*SMSTemplatesApi* | [**postSmsTemplateCreate**](docs/Api/SMSTemplatesApi.md#postsmstemplatecreate) | **POST** /smstemplate.json | Create a new SMS Template
-*SMSTemplatesApi* | [**postSmsTemplateSingle**](docs/Api/SMSTemplatesApi.md#postsmstemplatesingle) | **POST** /smstemplate/{uuid}.json | Update a SMS Template
-*SecurityRolesApi* | [**deleteSecurityRoleSingle**](docs/Api/SecurityRolesApi.md#deletesecurityrolesingle) | **DELETE** /securityrole/{uuid}.json | Delete a Security Role
-*SecurityRolesApi* | [**getSecurityRoleAll**](docs/Api/SecurityRolesApi.md#getsecurityroleall) | **GET** /securityrole.json | List all Security Roles
-*SecurityRolesApi* | [**getSecurityRoleSingle**](docs/Api/SecurityRolesApi.md#getsecurityrolesingle) | **GET** /securityrole/{uuid}.json | Retrieve a Security Role
-*SecurityRolesApi* | [**postSecurityRoleCreate**](docs/Api/SecurityRolesApi.md#postsecurityrolecreate) | **POST** /securityrole.json | Create a new Security Role
-*SecurityRolesApi* | [**postSecurityRoleSingle**](docs/Api/SecurityRolesApi.md#postsecurityrolesingle) | **POST** /securityrole/{uuid}.json | Update a Security Role
-*StaffMembersApi* | [**deleteStaffSingle**](docs/Api/StaffMembersApi.md#deletestaffsingle) | **DELETE** /staff/{uuid}.json | Delete a Staff Member
-*StaffMembersApi* | [**getStaffAll**](docs/Api/StaffMembersApi.md#getstaffall) | **GET** /staff.json | List all Staff Members
-*StaffMembersApi* | [**getStaffSingle**](docs/Api/StaffMembersApi.md#getstaffsingle) | **GET** /staff/{uuid}.json | Retrieve a Staff Member
-*StaffMembersApi* | [**postStaffCreate**](docs/Api/StaffMembersApi.md#poststaffcreate) | **POST** /staff.json | Create a new Staff Member
-*StaffMembersApi* | [**postStaffSingle**](docs/Api/StaffMembersApi.md#poststaffsingle) | **POST** /staff/{uuid}.json | Update a Staff Member
-*StaffMessagesApi* | [**deleteStaffMessageSingle**](docs/Api/StaffMessagesApi.md#deletestaffmessagesingle) | **DELETE** /staffmessage/{uuid}.json | Delete a Staff Message
-*StaffMessagesApi* | [**getStaffMessageAll**](docs/Api/StaffMessagesApi.md#getstaffmessageall) | **GET** /staffmessage.json | List all Staff Messages
-*StaffMessagesApi* | [**getStaffMessageSingle**](docs/Api/StaffMessagesApi.md#getstaffmessagesingle) | **GET** /staffmessage/{uuid}.json | Retrieve a Staff Message
-*StaffMessagesApi* | [**postStaffMessageCreate**](docs/Api/StaffMessagesApi.md#poststaffmessagecreate) | **POST** /staffmessage.json | Create a new Staff Message
-*StaffMessagesApi* | [**postStaffMessageSingle**](docs/Api/StaffMessagesApi.md#poststaffmessagesingle) | **POST** /staffmessage/{uuid}.json | Update a Staff Message
-*TasksApi* | [**deleteTaskSingle**](docs/Api/TasksApi.md#deletetasksingle) | **DELETE** /task/{uuid}.json | Delete a Task
-*TasksApi* | [**getTaskAll**](docs/Api/TasksApi.md#gettaskall) | **GET** /task.json | List all Tasks
-*TasksApi* | [**getTaskSingle**](docs/Api/TasksApi.md#gettasksingle) | **GET** /task/{uuid}.json | Retrieve a Task
-*TasksApi* | [**postTaskCreate**](docs/Api/TasksApi.md#posttaskcreate) | **POST** /task.json | Create a new Task
-*TasksApi* | [**postTaskSingle**](docs/Api/TasksApi.md#posttasksingle) | **POST** /task/{uuid}.json | Update a Task
-*TaxRatesApi* | [**deleteTaxRateSingle**](docs/Api/TaxRatesApi.md#deletetaxratesingle) | **DELETE** /taxrate/{uuid}.json | Delete a Tax Rate
-*TaxRatesApi* | [**getTaxRateAll**](docs/Api/TaxRatesApi.md#gettaxrateall) | **GET** /taxrate.json | List all Tax Rates
-*TaxRatesApi* | [**getTaxRateSingle**](docs/Api/TaxRatesApi.md#gettaxratesingle) | **GET** /taxrate/{uuid}.json | Retrieve a Tax Rate
-*TaxRatesApi* | [**postTaxRateCreate**](docs/Api/TaxRatesApi.md#posttaxratecreate) | **POST** /taxrate.json | Create a new Tax Rate
-*TaxRatesApi* | [**postTaxRateSingle**](docs/Api/TaxRatesApi.md#posttaxratesingle) | **POST** /taxrate/{uuid}.json | Update a Tax Rate
-*VendorsApi* | [**getVendorAll**](docs/Api/VendorsApi.md#getvendorall) | **GET** /vendor.json | List all Vendors
-*VendorsApi* | [**getVendorSingle**](docs/Api/VendorsApi.md#getvendorsingle) | **GET** /vendor/{uuid}.json | Retrieve a Vendor
-*VendorsApi* | [**postVendorSingle**](docs/Api/VendorsApi.md#postvendorsingle) | **POST** /vendor/{uuid}.json | Update a Vendor
+This SDK is built to work with any HTTP client that implements the [PSR-18](https://www.php-fig.org/psr/psr-18/) `ClientInterface`.
+By default, if no client is provided, the SDK will use `php-http/discovery` to find an installed HTTP client.
+However, you can pass your own client that adheres to `ClientInterface`:
 
-## Models
+```php
+use ServiceM8\ServiceM8Client;
 
-- [AllocationWindow](docs/Model/AllocationWindow.md)
-- [Asset](docs/Model/Asset.md)
-- [AssetType](docs/Model/AssetType.md)
-- [AssetTypeField](docs/Model/AssetTypeField.md)
-- [Attachment](docs/Model/Attachment.md)
-- [Badge](docs/Model/Badge.md)
-- [Category](docs/Model/Category.md)
-- [Company](docs/Model/Company.md)
-- [CompanyContact](docs/Model/CompanyContact.md)
-- [EmailTemplate](docs/Model/EmailTemplate.md)
-- [Error](docs/Model/Error.md)
-- [Feedback](docs/Model/Feedback.md)
-- [Form](docs/Model/Form.md)
-- [FormField](docs/Model/FormField.md)
-- [FormResponse](docs/Model/FormResponse.md)
-- [Job](docs/Model/Job.md)
-- [JobActivity](docs/Model/JobActivity.md)
-- [JobAllocation](docs/Model/JobAllocation.md)
-- [JobContact](docs/Model/JobContact.md)
-- [JobMaterial](docs/Model/JobMaterial.md)
-- [JobMaterialBundle](docs/Model/JobMaterialBundle.md)
-- [JobPayment](docs/Model/JobPayment.md)
-- [JobRelatedKnowledgeArticlesInner](docs/Model/JobRelatedKnowledgeArticlesInner.md)
-- [KnowledgeArticle](docs/Model/KnowledgeArticle.md)
-- [Location](docs/Model/Location.md)
-- [Material](docs/Model/Material.md)
-- [MaterialBundle](docs/Model/MaterialBundle.md)
-- [Note](docs/Model/Note.md)
-- [Queue](docs/Model/Queue.md)
-- [Result](docs/Model/Result.md)
-- [SecurityRole](docs/Model/SecurityRole.md)
-- [SmsTemplate](docs/Model/SmsTemplate.md)
-- [Staff](docs/Model/Staff.md)
-- [StaffMessage](docs/Model/StaffMessage.md)
-- [Task](docs/Model/Task.md)
-- [TaxRate](docs/Model/TaxRate.md)
-- [Vendor](docs/Model/Vendor.md)
+// Pass any PSR-18 compatible HTTP client implementation.
+// For example, using Guzzle:
+$customClient = new \GuzzleHttp\Client([
+    'timeout' => 5.0,
+]);
 
-## Authorization
+$client = new ServiceM8Client(options: [
+    'client' => $customClient
+]);
 
-### basicAuth
-
-- **Type**: HTTP basic authentication
-
-
-### oauth2
-
-- **Type**: `OAuth`
-- **Flow**: `accessCode`
-- **Authorization URL**: `https://api.servicem8.com/oauth/authorize`
-- **Scopes**: 
-    - **staff_locations**: Access to real-time GPS information about staff
-    - **staff_activity**: Access to clock on, lunch break and clock off information about staff
-    - **publish_sms**: Access to send SMS messages to customers and/or staff on your behalf. Note sending SMS messages will incur account charges.
-    - **publish_email**: Access to send Email messages to customers and/or staff on your behalf
-    - **vendor**: Access to basic account information
-    - **vendor_logo**: Access to account logo
-    - **vendor_email**: Access to account holder email address
-    - **read_locations**: Read-only access to Location Endpoint
-    - **manage_locations**: Full access to Location Endpoint
-    - **read_staff**: Read-only access to Staff Endpoint
-    - **manage_staff**: Full access to Staff Endpoint
-    - **read_customers**: Read-only access to Company Endpoint
-    - **manage_customers**: Full access to Company Endpoint
-    - **read_customer_contacts**: Read-only access to CompanyContact Endpoint
-    - **manage_customer_contacts**: Full access to CompanyContact Endpoint
-    - **read_jobs**: Read-only access to Job Endpoint
-    - **manage_jobs**: Full access to Job Endpoint
-    - **create_jobs**: Ability to create jobs on behalf of account. Note creating jobs may incur account charges.
-    - **read_job_contacts**: Read-only access to JobContact Endpoint
-    - **manage_job_contacts**: Full access to JobContact Endpoint
-    - **read_job_materials**: Read-only access to JobMaterials Endpoint
-    - **manage_job_materials**: Full access to JobMaterials Endpoint
-    - **read_job_categories**: Read-only access to Categories Endpoint
-    - **manage_job_categories**: Full access to Categories Endpoint
-    - **read_job_queues**: Read-only access to Job Queues Endpoint
-    - **manage_job_queues**: Full access to Job Queues Endpoint
-    - **read_tasks**: Read-only access to Tasks Endpoint
-    - **manage_tasks**: Full access to Tasks Endpoint
-    - **read_schedule**: Read-only access to JobActivity Endpoint
-    - **manage_schedule**: Full access to JobActivity Endpoint
-    - **read_inventory**: Read-only access to Materials Endpoint
-    - **manage_inventory**: Full access to Materials Endpoint
-    - **read_job_notes**: Read-only access to job notes
-    - **publish_job_notes**: Ability to add new job notes
-    - **read_job_photos**: Read-only access to job photos
-    - **publish_job_photos**: Ability to add new job photos
-    - **read_attachments**: Read-only access to Attachments Endpoint
-    - **manage_attachments**: Full access to Attachments Endpoint
-    - **read_inbox**: Read-only access to inbox messages
-    - **read_messages**: Read-only access to staff messages
-    - **manage_notifications**: Ability to read notifications and mark as read
-    - **manage_templates**: Full-access to email, sms and document templates
-    - **manage_badges**: Full-access to create/modify job badges
-
-## Tests
-
-To run the tests, use:
-
-```bash
-composer install
-vendor/bin/phpunit
+// Or using Symfony HttpClient:
+// $customClient = (new \Symfony\Component\HttpClient\Psr18Client())
+//     ->withOptions(['timeout' => 5.0]);
+//
+// $client = new ServiceM8Client(options: [
+//     'client' => $customClient
+// ]);
 ```
 
-## Author
+### Retries
 
+The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
+as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
+retry limit (default: 2).
 
+A request is deemed retryable when any of the following HTTP status codes is returned:
 
-## About this package
+- [408](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/408) (Timeout)
+- [429](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/429) (Too Many Requests)
+- [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) (Internal Server Error)
 
-This PHP package is automatically generated by the [OpenAPI Generator](https://openapi-generator.tech) project:
+The `retryStatusCodes` configuration controls which [5XX](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses) status codes are retried:
 
-- API version: `1.0.0`
-- Build package: `org.openapitools.codegen.languages.PhpClientCodegen`
+- `legacy` (default): Retries `408`, `429`, and all `>= 500`
+- `recommended`: Retries `408`, `429`, `502`, `503`, `504` only (excludes `500 Internal Server Error` to avoid retrying non-idempotent failures)
+
+Use the `maxRetries` request option to configure this behavior.
+
+```php
+$response = $client->serviceTemplates->upsertServiceTemplate(
+    ...,
+    options: [
+        'maxRetries' => 0 // Override maxRetries at the request level
+    ]
+);
+```
+
+### Timeouts
+
+The SDK defaults to a 30 second timeout. Use the `timeout` option to configure this behavior.
+
+```php
+$response = $client->serviceTemplates->upsertServiceTemplate(
+    ...,
+    options: [
+        'timeout' => 3.0 // Override timeout at the request level
+    ]
+);
+```
+
+## Contributing
+
+While we value open-source contributions to this SDK, this library is generated programmatically.
+Additions made directly to this library would have to be moved over to our generation code,
+otherwise they would be overwritten upon the next generated release. Feel free to open a PR as
+a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
+an issue first to discuss with us!
+
+On the other hand, contributions to the README are always very welcome!

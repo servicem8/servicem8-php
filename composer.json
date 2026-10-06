@@ -1,39 +1,46 @@
 {
     "name": "servicem8/servicem8-php",
-    "description": "Move your app forward with the ServiceM8 API    ## Limits and Throttling To ensure continuous quality of service, API usage can be subject to throttling. The throttle will be applied once an API consumer reaches a certain  threshold in terms of a maximum number of requests per minute. Most clients will never hit this threshold, but those that do, will get met by a  HTTP 429 Too Many Requests response code.    There is a limit of 180 requests per minute, if you reach this you will receive a HTTP 429 with a text body of \"Number of allowed API requests per minute exceeded\". There is a limit of 20000 requests per day, if you reach this you will receive a HTTP 429 with a text body of \"Number of allowed API requests per day exceeded\".  We encourage all API developers to anticipate this error, and take appropriate measures like e.g. using a cached value from a previous call, or passing on a message to the end user that gets subjected to this behaviour (if any).  Limits are per Addon per account.",
+    "description": "PHP SDK for the ServiceM8 API",
     "keywords": [
-        "openapitools",
-        "openapi-generator",
-        "openapi",
-        "php",
-        "sdk",
-        "rest",
-        "api"
+        "servicem8",
+        "api",
+        "sdk"
     ],
-    "homepage": "https://openapi-generator.tech",
-    "license": "unlicense",
-    "authors": [
-        {
-            "name": "OpenAPI-Generator contributors",
-            "homepage": "https://openapi-generator.tech"
-        }
-    ],
+    "license": "MIT",
     "require": {
-        "php": "^7.4 || ^8.0",
-        "ext-curl": "*",
+        "php": "^8.1",
         "ext-json": "*",
-        "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "^7.3",
-        "guzzlehttp/psr7": "^1.7 || ^2.0"
+        "psr/http-client": "^1.0",
+        "psr/http-client-implementation": "^1.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-factory-implementation": "^1.0",
+        "psr/http-message": "^1.1 || ^2.0",
+        "php-http/discovery": "^1.0",
+        "php-http/multipart-stream-builder": "^1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.0 || ^9.0",
-        "friendsofphp/php-cs-fixer": "^3.5"
+        "phpunit/phpunit": "^12.5.22",
+        "friendsofphp/php-cs-fixer": "3.5.0",
+        "phpstan/phpstan": "^1.12",
+        "guzzlehttp/guzzle": "^7.4"
     },
     "autoload": {
-        "psr-4": { "OpenAPI\\Client\\" : "lib/" }
+        "psr-4": {
+            "ServiceM8\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": { "OpenAPI\\Client\\Test\\" : "test/" }
-    }
+        "psr-4": {
+            "ServiceM8\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "build": [
+            "@php -l src",
+            "@php -l tests"
+        ],
+        "test": "phpunit",
+        "analyze": "phpstan analyze src tests --memory-limit=1G"
+    },
+    "homepage": "https://developer.servicem8.com"
 }
