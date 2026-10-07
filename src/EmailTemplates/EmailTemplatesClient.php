@@ -62,7 +62,7 @@ class EmailTemplatesClient
      *
      *
      * #### OAuth Scope
-     * This endpoint requires the following OAuth scope **manage_templates**.
+     * This endpoint requires the following OAuth scope **read_templates**.
      *
      *
      *
@@ -179,7 +179,7 @@ class EmailTemplatesClient
      *
      *
      * #### OAuth Scope
-     * This endpoint requires the following OAuth scope **manage_templates**.
+     * This endpoint requires the following OAuth scope **read_templates**.
      *
      *
      *

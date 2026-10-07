@@ -4236,7 +4236,7 @@ This endpoint supports result filtering using the `$filter` query parameter. For
 			
 			
 #### OAuth Scope
-This endpoint requires the following OAuth scope **manage_templates**.
+This endpoint requires the following OAuth scope **read_templates**.
 
 			
 </dd>
@@ -4365,7 +4365,7 @@ $client->documentTemplates->createDocumentTemplates(
 
 			
 #### OAuth Scope
-This endpoint requires the following OAuth scope **manage_templates**.
+This endpoint requires the following OAuth scope **read_templates**.
 
 			
 </dd>
@@ -4699,7 +4699,7 @@ This endpoint supports result filtering using the `$filter` query parameter. For
 			
 			
 #### OAuth Scope
-This endpoint requires the following OAuth scope **manage_templates**.
+This endpoint requires the following OAuth scope **read_templates**.
 
 			
 </dd>
@@ -4830,7 +4830,7 @@ $client->emailTemplates->createEmailTemplates(
 
 			
 #### OAuth Scope
-This endpoint requires the following OAuth scope **manage_templates**.
+This endpoint requires the following OAuth scope **read_templates**.
 
 			
 </dd>
@@ -12307,7 +12307,7 @@ This endpoint supports result filtering using the `$filter` query parameter. For
 			
 			
 #### OAuth Scope
-This endpoint requires the following OAuth scope **manage_templates**.
+This endpoint requires the following OAuth scope **read_templates**.
 
 			
 </dd>
@@ -12438,7 +12438,7 @@ $client->smsTemplates->createSmsTemplates(
 
 			
 #### OAuth Scope
-This endpoint requires the following OAuth scope **manage_templates**.
+This endpoint requires the following OAuth scope **read_templates**.
 
 			
 </dd>
@@ -13066,8 +13066,8 @@ UUID is optional for record creation. If no UUID is supplied, a UUID will be aut
 ```php
 $client->staffMessages->createStaffMessages(
     new StaffMessageCreate([
-        'fromStaffUuid' => '123e4567-d397-7d94-8a1e-7767be09397b',
-        'toStaffUuid' => '123e4567-d397-7d94-8a1e-cefb21e189cb',
+        'fromStaffUuid' => '123e4567-8bad-7d94-8a1f-91ac9ae46dbb',
+        'toStaffUuid' => '123e4567-8bad-7d94-8a1e-c2a9ceff151b',
     ]),
 );
 ```
@@ -13193,8 +13193,8 @@ $client->staffMessages->updateStaffMessages(
     'uuid',
     new UpdateStaffMessagesRequest([
         'body' => new StaffMessageCreate([
-            'fromStaffUuid' => '123e4567-d397-7d94-8a1e-7767be09397b',
-            'toStaffUuid' => '123e4567-d397-7d94-8a1e-cefb21e189cb',
+            'fromStaffUuid' => '123e4567-8bad-7d94-8a1f-91ac9ae46dbb',
+            'toStaffUuid' => '123e4567-8bad-7d94-8a1e-c2a9ceff151b',
         ]),
     ]),
 );

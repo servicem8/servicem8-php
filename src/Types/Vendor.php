@@ -188,6 +188,12 @@ class Vendor extends JsonSerializableType
     public ?string $website;
 
     /**
+     * @var ?string $displayedAmountsAreTaxInclusive
+     */
+    #[JsonProperty('displayed_amounts_are_tax_inclusive')]
+    public ?string $displayedAmountsAreTaxInclusive;
+
+    /**
      * @param array{
      *   name: string,
      *   businessNumber?: ?string,
@@ -219,6 +225,7 @@ class Vendor extends JsonSerializableType
      *   editDate?: mixed,
      *   abnNumber?: ?string,
      *   website?: ?string,
+     *   displayedAmountsAreTaxInclusive?: ?string,
      * } $values
      */
     public function __construct(
@@ -254,6 +261,7 @@ class Vendor extends JsonSerializableType
         $this->name = $values['name'];
         $this->abnNumber = $values['abnNumber'] ?? null;
         $this->website = $values['website'] ?? null;
+        $this->displayedAmountsAreTaxInclusive = $values['displayedAmountsAreTaxInclusive'] ?? null;
     }
 
     /**
