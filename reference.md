@@ -13066,8 +13066,8 @@ UUID is optional for record creation. If no UUID is supplied, a UUID will be aut
 ```php
 $client->staffMessages->createStaffMessages(
     new StaffMessageCreate([
-        'fromStaffUuid' => '123e4567-1a3c-7d94-8a1f-afdfebba145b',
-        'toStaffUuid' => '123e4567-1a3c-7d94-8a1f-bb6c045ada5b',
+        'fromStaffUuid' => '123e4567-af1f-4f1d-9728-c2a1cd0acb2e',
+        'toStaffUuid' => '123e4567-1a60-46e9-958b-ce290cedc86e',
     ]),
 );
 ```
@@ -13193,8 +13193,8 @@ $client->staffMessages->updateStaffMessages(
     'uuid',
     new UpdateStaffMessagesRequest([
         'body' => new StaffMessageCreate([
-            'fromStaffUuid' => '123e4567-1a3c-7d94-8a1f-afdfebba145b',
-            'toStaffUuid' => '123e4567-1a3c-7d94-8a1f-bb6c045ada5b',
+            'fromStaffUuid' => '123e4567-af1f-4f1d-9728-c2a1cd0acb2e',
+            'toStaffUuid' => '123e4567-1a60-46e9-958b-ce290cedc86e',
         ]),
     ]),
 );
