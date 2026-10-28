@@ -9,7 +9,7 @@ use ServiceM8\Core\Types\ArrayType;
 class StaffMessageCreate extends JsonSerializableType
 {
     /**
-     * @var string $fromStaffUuid Unique identifier (UUID) of the staff member who sent this message. Identifies the sender of the communication within the system.
+     * @var string $fromStaffUuid Unique identifier (UUID) of the staff member who sent this message. When creating a direct message, this must match the authenticated staff member's UUID. A staff identity is required for both JSON and multipart requests; requests without one or with a different sender are rejected. For OAuth requests, set x-impersonate-uuid to the same active staff member's UUID; API keys do not support this header. See https://developer.servicem8.com/docs/authentication#user-impersonation.
      */
     #[JsonProperty('from_staff_uuid')]
     public string $fromStaffUuid;
