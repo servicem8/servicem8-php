@@ -38,7 +38,7 @@ class MaterialCreate extends JsonSerializableType
     public ?float $quantityInStock;
 
     /**
-     * @var ?int $priceIncludesTaxes Boolean flag indicating whether the price and cost values include tax (1/true) or exclude tax (0/false). Controls tax calculations when determining final pricing. New materials inherit this setting from the account's default tax display preference..  Valid values are [0,1]
+     * @var ?int $priceIncludesTaxes Boolean flag indicating whether the price and cost values include tax (1/true) or exclude tax (0/false). Controls tax calculations when determining final pricing. New materials inherit this setting from the account's default tax display preference. Valid values are [0,1]
      */
     #[JsonProperty('price_includes_taxes')]
     public ?int $priceIncludesTaxes;
@@ -50,7 +50,7 @@ class MaterialCreate extends JsonSerializableType
     public ?string $barcode;
 
     /**
-     * @var ?int $itemIsInventoried Boolean flag indicating whether inventory tracking is enabled for this material (1/true) or disabled (0/false). When enabled, the quantity_in_stock is tracked and updated automatically when the material is used in jobs. Only physical products typically have this enabled..  Valid values are [0,1]
+     * @var ?int $itemIsInventoried Boolean flag indicating whether inventory tracking is enabled for this material (1/true) or disabled (0/false). When enabled, the quantity_in_stock is tracked and updated automatically when the material is used in jobs. Only physical products typically have this enabled. Valid values are [0,1]
      */
     #[JsonProperty('item_is_inventoried')]
     public ?int $itemIsInventoried;

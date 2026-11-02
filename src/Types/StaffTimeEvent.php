@@ -20,7 +20,7 @@ class StaffTimeEvent extends JsonSerializableType
     public string $timestamp;
 
     /**
-     * @var value-of<StaffTimeEventEventName> $eventName Clock or lunch-break action recorded for the staff member..  Valid values are [CLOCK_ON,CLOCK_OFF,LUNCH_START,LUNCH_END]
+     * @var value-of<StaffTimeEventEventName> $eventName Clock or lunch-break action recorded for the staff member. Valid values are [CLOCK_ON,CLOCK_OFF,LUNCH_START,LUNCH_END]
      */
     #[JsonProperty('event_name')]
     public string $eventName;
@@ -38,7 +38,7 @@ class StaffTimeEvent extends JsonSerializableType
     public ?string $uuid;
 
     /**
-     * @var ?int $active Record active/deleted flag.  Valid values are [0,1]
+     * @var ?int $active Record active/deleted flag. Valid values are [0,1]
      */
     #[JsonProperty('active')]
     public ?int $active;

@@ -14,7 +14,7 @@ class AssetTypeField extends JsonSerializableType
     public ?string $uuid;
 
     /**
-     * @var ?int $active Record active/deleted flag.  Valid values are [0,1]
+     * @var ?int $active Record active/deleted flag. Valid values are [0,1]
      */
     #[JsonProperty('active')]
     public ?int $active;

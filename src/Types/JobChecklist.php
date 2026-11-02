@@ -15,7 +15,7 @@ class JobChecklist extends JsonSerializableType
     public ?string $uuid;
 
     /**
-     * @var ?int $active Record active/deleted flag.  Valid values are [0,1]
+     * @var ?int $active Record active/deleted flag. Valid values are [0,1]
      */
     #[JsonProperty('active')]
     public ?int $active;
@@ -117,7 +117,7 @@ class JobChecklist extends JsonSerializableType
     public ?array $assignedToStaffUuids;
 
     /**
-     * @var ?int $isLocked If this checklist item is locked (read-only) and cannot be modified. This is set by the system when the checklist item is created from a Task or Network Request. (Read only).  Valid values are [0,1]
+     * @var ?int $isLocked If this checklist item is locked (read-only) and cannot be modified. This is set by the system when the checklist item is created from a Task or Network Request. (Read only). Valid values are [0,1]
      */
     #[JsonProperty('is_locked')]
     public ?int $isLocked;

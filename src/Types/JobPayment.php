@@ -56,7 +56,7 @@ class JobPayment extends JsonSerializableType
     public ?string $uuid;
 
     /**
-     * @var ?int $active Record active/deleted flag.  Valid values are [0,1]
+     * @var ?int $active Record active/deleted flag. Valid values are [0,1]
      */
     #[JsonProperty('active')]
     public ?int $active;
@@ -68,7 +68,7 @@ class JobPayment extends JsonSerializableType
     public mixed $editDate;
 
     /**
-     * @var ?int $isDeposit Boolean flag indicating whether this payment represents a deposit against future work (true) rather than a payment for completed work (false). Read-only in the API. (Read only).  Valid values are [0,1]
+     * @var ?int $isDeposit Boolean flag indicating whether this payment represents a deposit against future work (true) rather than a payment for completed work (false). Read-only in the API. (Read only). Valid values are [0,1]
      */
     #[JsonProperty('is_deposit')]
     public ?int $isDeposit;

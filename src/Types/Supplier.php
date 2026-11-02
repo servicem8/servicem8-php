@@ -14,7 +14,7 @@ class Supplier extends JsonSerializableType
     public ?string $uuid;
 
     /**
-     * @var ?int $active Record active/deleted flag.  Valid values are [0,1]
+     * @var ?int $active Record active/deleted flag. Valid values are [0,1]
      */
     #[JsonProperty('active')]
     public ?int $active;
@@ -74,7 +74,7 @@ class Supplier extends JsonSerializableType
     public ?float $lat;
 
     /**
-     * @var ?int $geoIsValid Whether the geocoded coordinates are valid (Read only).  Valid values are [0,1]
+     * @var ?int $geoIsValid Whether the geocoded coordinates are valid (Read only). Valid values are [0,1]
      */
     #[JsonProperty('geo_is_valid')]
     public ?int $geoIsValid;

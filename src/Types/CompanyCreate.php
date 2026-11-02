@@ -32,7 +32,7 @@ class CompanyCreate extends JsonSerializableType
     public ?string $billingAddress;
 
     /**
-     * @var ?int $isIndividual Derived flag indicating whether the client is an individual. This value is set automatically based on the company name and contact first/last name, and cannot be set via the API..  Valid values are [0,1]
+     * @var ?int $isIndividual Derived flag indicating whether the client is an individual. This value is set automatically based on the company name and contact first/last name, and cannot be set via the API. Valid values are [0,1]
      */
     #[JsonProperty('is_individual')]
     public ?int $isIndividual;

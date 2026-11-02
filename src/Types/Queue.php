@@ -14,7 +14,7 @@ class Queue extends JsonSerializableType
     public ?string $uuid;
 
     /**
-     * @var ?int $active Record active/deleted flag.  Valid values are [0,1]
+     * @var ?int $active Record active/deleted flag. Valid values are [0,1]
      */
     #[JsonProperty('active')]
     public ?int $active;
@@ -44,7 +44,7 @@ class Queue extends JsonSerializableType
     public ?string $subscribedStaff;
 
     /**
-     * @var ?int $requiresAssignment Determines if jobs in this queue require assignment to staff members. If true, jobs must be explicitly assigned to staff. If false, jobs are visible to all staff..  Valid values are [0,1]
+     * @var ?int $requiresAssignment Determines if jobs in this queue require assignment to staff members. If true, jobs must be explicitly assigned to staff. If false, jobs are visible to all staff. Valid values are [0,1]
      */
     #[JsonProperty('requires_assignment')]
     public ?int $requiresAssignment;

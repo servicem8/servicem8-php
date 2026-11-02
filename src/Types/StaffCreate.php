@@ -98,7 +98,7 @@ class StaffCreate extends JsonSerializableType
     public ?string $statusMessageTimestamp;
 
     /**
-     * @var ?int $hideFromSchedule Boolean flag controlling whether this staff member appears in the schedule view. When true (1), the staff member is hidden from the schedule. When false (0), they appear normally in scheduling interfaces..  Valid values are [0,1]
+     * @var ?int $hideFromSchedule Boolean flag controlling whether this staff member appears in the schedule view. When true (1), the staff member is hidden from the schedule. When false (0), they appear normally in scheduling interfaces. Valid values are [0,1]
      */
     #[JsonProperty('hide_from_schedule')]
     public ?int $hideFromSchedule;

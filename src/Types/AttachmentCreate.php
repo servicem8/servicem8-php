@@ -74,7 +74,7 @@ class AttachmentCreate extends JsonSerializableType
     public mixed $extractedInfo;
 
     /**
-     * @var ?int $isFavourite Flag indicating whether this attachment has been marked as a favorite. Used for filtering and displaying attachments..  Valid values are [0,1]
+     * @var ?int $isFavourite Flag indicating whether this attachment has been marked as a favorite. Used for filtering and displaying attachments. Valid values are [0,1]
      */
     #[JsonProperty('is_favourite')]
     public ?int $isFavourite;

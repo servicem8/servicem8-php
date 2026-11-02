@@ -32,7 +32,7 @@ class JobCreate extends JsonSerializableType
     public ?string $billingAddress;
 
     /**
-     * @var value-of<JobCreateStatus> $status Current status of the job. Controls where the Job appears in the Dispatch Board..  Valid values are [Quote,Work Order,Unsuccessful,Completed]
+     * @var value-of<JobCreateStatus> $status Current status of the job. Controls where the Job appears in the Dispatch Board. Valid values are [Quote,Work Order,Unsuccessful,Completed]
      */
     #[JsonProperty('status')]
     public string $status;
@@ -98,7 +98,7 @@ class JobCreate extends JsonSerializableType
     public ?string $purchaseOrderNumber;
 
     /**
-     * @var ?int $invoiceSent Indicates whether an invoice has been sent for this job..  Valid values are [0,1]
+     * @var ?int $invoiceSent Indicates whether an invoice has been sent for this job. Valid values are [0,1]
      */
     #[JsonProperty('invoice_sent')]
     public ?int $invoiceSent;
@@ -194,7 +194,7 @@ class JobCreate extends JsonSerializableType
     public ?string $quoteDate;
 
     /**
-     * @var ?int $quoteSent Boolean flag indicating whether a quote has been sent to the client for this job..  Valid values are [0,1]
+     * @var ?int $quoteSent Boolean flag indicating whether a quote has been sent to the client for this job. Valid values are [0,1]
      */
     #[JsonProperty('quote_sent')]
     public ?int $quoteSent;
@@ -248,13 +248,13 @@ class JobCreate extends JsonSerializableType
     public ?string $workDoneDescription;
 
     /**
-     * @var ?int $paymentProcessed Indicates whether the job has been exported to the connected Accounting Package..  Valid values are [0,1]
+     * @var ?int $paymentProcessed Indicates whether the job has been exported to the connected Accounting Package. Valid values are [0,1]
      */
     #[JsonProperty('payment_processed')]
     public ?int $paymentProcessed;
 
     /**
-     * @var ?int $paymentReceived Indicates whether full payment has been received for this job..  Valid values are [0,1]
+     * @var ?int $paymentReceived Indicates whether full payment has been received for this job. Valid values are [0,1]
      */
     #[JsonProperty('payment_received')]
     public ?int $paymentReceived;
