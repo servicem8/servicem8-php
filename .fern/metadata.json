@@ -13,7 +13,7 @@
     },
     "retryStatusCodes": "recommended"
   },
-  "originGitCommit": "ce5bbd0657bd74290df65f1e37cb25c2482bf7a0",
+  "originGitCommit": "6ac2139014d9ac259557421d90d2c2e7f45ee067",
   "originGitCommitIsDirty": true,
   "invokedBy": "ci",
   "requestedVersion": null,
